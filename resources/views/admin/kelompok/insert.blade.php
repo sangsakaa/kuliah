@@ -33,7 +33,11 @@
           <div>Jumlah Anggota</div>
           <div>
             : {{$dataMHS->count();}}
-
+          </div>
+          <div>Jumlah</div>
+          <div>
+            : L : {{$dataAnggota->where('jenis_kelamin', 'L')->count();}}
+            : P : {{$dataAnggota->where('jenis_kelamin', 'P')->count();}}
           </div>
         </div>
 
