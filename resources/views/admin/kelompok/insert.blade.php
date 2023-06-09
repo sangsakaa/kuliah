@@ -36,8 +36,8 @@
           </div>
           <div>Jumlah</div>
           <div>
-            : L : {{$dataAnggota->where('jenis_kelamin', 'L')->count();}}
-            : P : {{$dataAnggota->where('jenis_kelamin', 'P')->count();}}
+            : L : {{$dataMHS->where('jenis_kelamin', 'L')->count();}}
+            : P : {{$dataMHS->where('jenis_kelamin', 'P')->count();}}
           </div>
         </div>
 
