@@ -57,7 +57,7 @@ Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])
 
 // 
 
-Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User'])->name('akun-mahasiswa');
+Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User'])->middleware(['auth'])->name('akun-mahasiswa');
 
 
 
@@ -65,9 +65,9 @@ Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User'])->name('akun
 
 
 // KELOMPOK
-Route::get('/kelompok-mahasiswa', [KelompokController::class, 'index'])->name('kelompok-mahasiswa');
+Route::get('/kelompok-mahasiswa', [KelompokController::class, 'index'])->middleware(['auth'])->name('kelompok-mahasiswa');
 Route::post('/kelompok-mahasiswa', [KelompokController::class, 'store']);
-Route::get('/detail-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'view']);
+Route::get('/detail-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'view'])->middleware(['auth']);
 Route::get('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'insert']);
 Route::post('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'storeAnggota']);
 Route::delete('/detail-kelompok-mahasiswa/{anggota_Kelompok}', [KelompokController::class, 'DestroAnggota']);
