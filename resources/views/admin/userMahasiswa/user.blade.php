@@ -60,44 +60,7 @@
           <button class=" bg-blue-700 text-white px-2 mt-2" type="submit">Uploud</button>
         </form>
       </div>
-      <!-- <script>
-        $(document).ready(function() {
-          $('#fileInput').on('change', function() {
-            var file = this.files[0];
-            var reader = new FileReader();
-            reader.onload = function(e) {
-              $('#preview').attr('src', e.target.result);
-            };
-            reader.readAsDataURL(file);
-          });
 
-          $('#uploadForm').on('submit', function(e) {
-            e.preventDefault();
-            var file = $('#fileInput')[0].files[0];
-            var formData = new FormData();
-            formData.append('file', file);
-
-            // Kirim formData ke server (Anda dapat menggunakan Ajax atau teknik lainnya untuk mengirim data ke server)
-
-            // Contoh menggunakan Ajax untuk mengirim formData ke server
-            $.ajax({
-              url: 'server_upload_script.php', // Ganti dengan URL ke skrip server yang akan menghandle unggahan gambar
-              type: 'POST',
-              data: formData,
-              contentType: false,
-              processData: false,
-              success: function(response) {
-                // Tanggapan dari server setelah berhasil mengunggah gambar
-                alert('Gambar berhasil diunggah!');
-              },
-              error: function(xhr, status, error) {
-                // Tanggapan dari server jika terjadi kesalahan
-                alert('Terjadi kesalahan saat mengunggah gambar: ' + error);
-              }
-            });
-          });
-        });
-      </script> -->
     </div>
   </div>
 
