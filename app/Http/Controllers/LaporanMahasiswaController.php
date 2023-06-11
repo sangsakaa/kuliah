@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mahasiswa;
+use App\Models\User;
 
+use App\Models\Mahasiswa;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
@@ -24,4 +25,5 @@ class LaporanMahasiswaController extends Controller
             ->get();
         return view('admin.mahasiswa.laporan.laporanMhs', compact('data', 'dataMahasiswa'));
     }
+    
 }

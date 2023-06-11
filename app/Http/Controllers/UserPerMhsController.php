@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class DashboardController extends Controller
+class UserPerMhsController extends Controller
 {
-    public function index()
+    public function User()
     {
         $UserPermhs = Auth::user()->id;
         $data = Mahasiswa::where('id', $UserPermhs)->get();
-        $putra = Mahasiswa::where('jenis_kelamin', 'L')->count();
-        $putri = Mahasiswa::where('jenis_kelamin', 'P')->count();
-        return view('/dashboard', compact('putra', 'putri', 'data'));
+        return view('admin.userMahasiswa.user', compact('UserPermhs', 'data'));
     }
 }

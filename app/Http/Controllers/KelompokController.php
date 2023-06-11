@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Anggota_Kelompok;
+use App\Models\Desa;
 use App\Models\Dosen;
 use App\Models\Kelompok;
 use App\Models\Mahasiswa;
@@ -13,19 +14,27 @@ class KelompokController extends Controller
     public function index()
     {
 
+        $dataDesa = Desa::query()
+            ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+            ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+            ->select('nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'desa.id')
+            ->get();
         $dataDosen = Dosen::orderby('nama_dosen')->get();
         $dataKelompok = Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'kecamatan')
+            ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
+            ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+            ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten')
             ->get();
-        return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen'));
+        return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
     }
     public function store(Request $request)
     {
         $kelompok = new Kelompok();
         $kelompok->nama_kelompok = $request->nama_kelompok;
         $kelompok->dosen_id = $request->dosen_id;
-        $kelompok->kecamatan = $request->kecamatan;
+        $kelompok->desa_id = $request->desa_id;
         $kelompok->tahun = $request->tahun;
         $kelompok->save();
         return redirect()->back();
@@ -36,7 +45,10 @@ class KelompokController extends Controller
         $tittle =
             Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'kecamatan')
+        ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
+        ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+        ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+        ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten')
             ->find($kelompok->id);
         $dataAnggota = Anggota_Kelompok::query()
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
@@ -51,7 +63,7 @@ class KelompokController extends Controller
         $tittle =
             Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'kecamatan')
+        ->select('kelompok.id', 'nama_dosen', 'nama_kelompok',)
             ->find($kelompok->id);
 
         $pesertaTerpilih = Anggota_Kelompok::select('mahasiswa_id');
@@ -88,13 +100,15 @@ class KelompokController extends Controller
 
         return redirect()->back();
     }
-    public function DestroAnggota(Kelompok $kelompok)
+    public function DestroAnggota(Anggota_Kelompok $anggota_Kelompok)
     {
-        Anggota_Kelompok::destroy('id', $kelompok->id);
+        // dd($anggota_Kelompok);
+        Anggota_Kelompok::destroy('id', $anggota_Kelompok->id);
         return redirect()->back();
     }
     public function destroy(Kelompok $kelompok)
     {
+
         Kelompok::destroy($kelompok->id);
         Anggota_Kelompok::where('kelompok_id', $kelompok->id)->delete();
         return redirect()->back();

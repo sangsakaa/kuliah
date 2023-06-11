@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      <span class=" capitalize">KELOMPOK {{$tittle->nama_kelompok}} Kec . {{$tittle->kecamatan}} </span>
+      <span class=" capitalize">KELOMPOK {{$tittle->nama_kelompok}} Kec . {{$tittle->nama_kecamatan}} Desa .{{$tittle->nama_desa}} </span>
     </h2>
   </x-slot>
   <div class=" w-full py-2 px-2 ">

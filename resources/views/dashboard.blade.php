@@ -7,6 +7,7 @@
     <div class=" w-full py-2 px-2 ">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-4 bg-white  border-gray-200">
+                @role('super admin')
                 <div>
                     <div class=" w-full grid grid-cols-1 gap-2 sm:grid-cols-4">
                         <div class=" w-full grid grid-cols-2 bg-red-500 text-white rounded-md">
@@ -32,10 +33,9 @@
                                 </svg>
                             </div>
                         </div>
-
-
                     </div>
                 </div>
+                @endrole
             </div>
         </div>
     </div>
@@ -50,6 +50,7 @@
                             <div class=" grid content-end">
                                 <!-- <label for="">DAFTAR DATA MAHASISWA</label> -->
                             </div>
+                            @role('super admin')
                             <div class=" grid justify-items-end content-end">
                                 <form action="/mahasiswa" method="get">
                                     <input type="text" name="cari" value="{{ request('cari') }}" class=" border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder=" Cari ..">
@@ -57,11 +58,24 @@
                                         Cari</button>
                                 </form>
                             </div>
-
+                            @endrole
                         </div>
-                        <div class="overflow-hidden mb-2 w-full rounded-lg border shadow-xs">
-                            <div class="overflow-x-auto w-full">
+                        <div class="mb-2 w-full  ">
+                            <div class=" text-center">
+                                @role('mahasiswa')
+                                <p class=" capitalize">Selemat datang di </p>
+                                <p class="  text-9xl bold "> SPK</p>
+                                <p class=" sm:text-sm text-xs">(Sistem Pelaporan Kegiatan)</p>
 
+                                <div>
+                                    @foreach($data as $detail)
+                                    <p>{{$detail->nama_mhs}}</p>
+                                    <p class=" text-sm">{{$detail->nim}}</p>
+                                    {{$detail->prodi}} ({{$detail->jenis_kelamin}})
+
+                                    @endforeach
+                                </div>
+                                @endrole
                             </div>
                         </div>
                     </div>
@@ -69,7 +83,22 @@
             </div>
         </div>
     </div>
+    <div class=" px-2">
+        <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
+            <div class="flex justify-center items-center w-1   bg-green-800"></div>
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan Harian</div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan akhir</div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
+
+
+            </div>
+        </div>
+
     </div>
+    </div>
+
 
 
 

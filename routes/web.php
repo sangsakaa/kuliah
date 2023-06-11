@@ -2,15 +2,16 @@
 
 
 
-use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DosenController;
-use App\Http\Controllers\KelompokController;
-use App\Http\Controllers\LaporanMahasiswaController;
-use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TestingController;
-use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\KelompokController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\LaporanMahasiswaController;
+use App\Http\Controllers\UserManagemetController;
+use App\Http\Controllers\UserPerMhsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,15 +49,28 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 
 // LAPORAN MAHASISWA
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
+// userManajement
+Route::get('/data-user', [UserManagemetController::class, 'UserAdmin']);
+Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin']);
+
+
+
+// 
+
+Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User']);
+
+
+
+
+
 
 // KELOMPOK
-
 Route::get('/kelompok-mahasiswa', [KelompokController::class, 'index'])->name('kelompok-mahasiswa');
 Route::post('/kelompok-mahasiswa', [KelompokController::class, 'store']);
 Route::get('/detail-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'view']);
 Route::get('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'insert']);
 Route::post('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'storeAnggota']);
-Route::delete('/detail-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'DestroAnggota']);
+Route::delete('/detail-kelompok-mahasiswa/{anggota_Kelompok}', [KelompokController::class, 'DestroAnggota']);
 Route::delete('/kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'destroy']);
 
 
