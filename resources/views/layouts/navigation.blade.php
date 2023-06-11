@@ -6,8 +6,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="dashboard">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                    <a href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        <x-application-logo class=" block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
 
@@ -42,7 +42,6 @@
                     <x-slot name="trigger">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
                             <div>{{ Auth::user()->name }}</div>
-
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
@@ -122,7 +121,7 @@
                 <!-- Navigation Links -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('akun-mahasiswa')" :active="request()->routeIs('akun-mahasiswa')">
+                    <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
                         {{ __('Detail Mahasiswa') }}
                     </x-nav-link>
                 </div>
