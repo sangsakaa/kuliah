@@ -122,8 +122,8 @@
                 <!-- Navigation Links -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('mahasiswa')" :active="request()->routeIs('mahasiswa')">
-                        {{ __('Data Mahasiswa') }}
+                    <x-nav-link :href="route('akun-mahasiswa')" :active="request()->routeIs('akun-mahasiswa')">
+                        {{ __('Detail Mahasiswa') }}
                     </x-nav-link>
                 </div>
             </div>

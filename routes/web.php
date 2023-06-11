@@ -57,7 +57,7 @@ Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])
 
 // 
 
-Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User']);
+Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User'])->name('akun-mahasiswa');
 
 
 

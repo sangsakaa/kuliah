@@ -72,7 +72,6 @@
                                     <p>{{$detail->nama_mhs}}</p>
                                     <p class=" text-sm">{{$detail->nim}}</p>
                                     {{$detail->prodi}} ({{$detail->jenis_kelamin}})
-
                                     @endforeach
                                 </div>
                                 @endrole
@@ -91,7 +90,9 @@
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan Harian</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan akhir</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
-                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
+                <a href="/akun-mahasiswa">
+                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
+                </a>
             </div>
             @endrole
         </div>
