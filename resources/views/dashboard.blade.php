@@ -86,14 +86,14 @@
     <div class=" px-2">
         <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
             <div class="flex justify-center items-center w-1   bg-green-800"></div>
+            @role('mahasiswa')
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan Harian</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan akhir</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
-
-
             </div>
+            @endrole
         </div>
 
     </div>
