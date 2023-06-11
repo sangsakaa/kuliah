@@ -11,7 +11,7 @@ class UserPerMhsController extends Controller
 {
     public function User()
     {
-        $UserPermhs = Auth::user()->id;
+        $UserPermhs = Auth::user()->mahasiswa_id;
         $data = Mahasiswa::where('id', $UserPermhs)->get();
         return view('admin.userMahasiswa.user', compact('UserPermhs', 'data'));
     }
