@@ -63,7 +63,7 @@
                         <div class="mb-2 w-full  ">
                             <div class=" text-center">
                                 @role('mahasiswa')
-                                <p class=" capitalize">Selemat datang di </p>
+                                <p class=" capitalize">Selamat datang di </p>
                                 <p class="  text-9xl bold "> SPK</p>
                                 <p class=" sm:text-sm text-xs">(Sistem Pelaporan Kegiatan)</p>
 
