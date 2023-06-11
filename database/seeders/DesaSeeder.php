@@ -56,6 +56,18 @@ class DesaSeeder extends Seeder
                 'Karanganyar',
                 'Karangduren'
             ],
+            'Karangrejo' => [
+                'Karangrejo',
+                'Gadung',
+                'Sidomulyo',
+                'Dawuhan',
+                'Sumberbulu',
+                'Pagerwojo',
+                'Karangsari',
+                'Klakah',
+                'Sumberjambe',
+                'Sidorejo'
+            ],
             // Daftar desa di kecamatan lainnya...
         ];
 

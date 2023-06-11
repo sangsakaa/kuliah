@@ -50,14 +50,20 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 // LAPORAN MAHASISWA
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
 // userManajement
-Route::get('/data-user', [UserManagemetController::class, 'UserAdmin']);
-Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin']);
+Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth']);
+Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])->middleware(['auth']);
 
 
 
 // 
 
 Route::get('/akun-mahasiswa', [UserPerMhsController::class, 'User'])->middleware(['auth'])->name('akun-mahasiswa');
+// sesiLap
+Route::get('/sesi-laporan-mahasiswa', [UserPerMhsController::class, 'sesiLap'])->middleware(['auth'])->name('sesi-laporan-mahasiswa');
+Route::post('/sesi-laporan-mahasiswa', [UserPerMhsController::class, 'createSesiLap'])->middleware(['auth'])->name('sesi-laporan-mahasiswa');
+Route::get('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'laporan'])->middleware(['auth'])->name('sesi-laporan-mahasiswa');
+Route::post('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'BuatLap'])->middleware(['auth']);
+
 
 
 
