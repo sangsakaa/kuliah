@@ -67,37 +67,70 @@ class UserPerMhsController extends Controller
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
 
+        
+        
         // dd($sesi_Laporan_Harian);
         $UserPermhs = Auth::user()->mahasiswa_id;
+        $data = Mahasiswa::query()
+        ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
+        ->join('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+        ->join('dosen', 'kelompok.dosen_id', '=', 'dosen.id')
+        ->leftjoin('desa', 'desa.id', '=', 'kelompok.desa_id')
+        ->leftjoin('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+        ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+        ->select('anggota_kelompok.mahasiswa_id', 'kelompok.dosen_id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nim', 'nama_mhs')
+        ->where('mahasiswa.id', $UserPermhs)
+        ->first();
+        // dd($UserPermhs);
         $dataMhs = Anggota_Kelompok::query()
             ->leftjoin('laporan_mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'laporan_mahasiswa.anggota_kelompok_id')
             ->leftjoin('sesi_laporan_harian', 'sesi_laporan_harian.id', '=', 'laporan_mahasiswa.sesi_laporan_harian_id')
-            ->select('laporan_mahasiswa.*')
-            ->where('mahasiswa_id', $UserPermhs)
-            ->where('laporan_mahasiswa.sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
+            ->where('anggota_kelompok.mahasiswa_id', $UserPermhs)
+            // ->where('laporan_mahasiswa.sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
             ->get();
+        // dd($dataMhs);
 
-        return view('admin.userMahasiswa.laporan.laporan', compact('dataMhs', 'sesi_Laporan_Harian', 'UserPermhs'));
+        return view('admin.userMahasiswa.laporan.laporan', compact('dataMhs', 'data', 'sesi_Laporan_Harian', 'UserPermhs'));
     }
     public function BuatLap(Request $request)
     {
-        $Lap = Laporan_Mahasiswa::find($request->sesi_laporan_harian_id);
+        $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
+        $anggota_kelompok_id = $request->anggota_kelompok_id;
+
+        $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_laporan_harian_id)
+            ->where('anggota_kelompok_id', $anggota_kelompok_id)
+            ->first();
+
         if ($Lap) {
-            $Lap->sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
-            $Lap->anggota_kelompok_id = $request->anggota_kelompok_id;
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskrip_laporan = $request->deskrip_laporan;
-            $Lap->butkti_laporan = $request->butkti_laporan;
+
+            if ($request->hasFile('butkti_laporan')) {
+                $file = $request->file('butkti_laporan');
+                $filename = $file->getClientOriginalName();
+                $path = $file->store('butkti_laporan');
+                $Lap->butkti_laporan = $path;
+            }
+
             $Lap->save();
         } else {
             $Lap = new Laporan_Mahasiswa();
-            $Lap->sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
-            $Lap->anggota_kelompok_id = $request->anggota_kelompok_id;
+            $Lap->sesi_laporan_harian_id = $sesi_laporan_harian_id;
+            $Lap->anggota_kelompok_id = $anggota_kelompok_id;
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskrip_laporan = $request->deskrip_laporan;
-            $Lap->butkti_laporan = $request->butkti_laporan;
+
+            if ($request->hasFile('butkti_laporan')) {
+                $file = $request->file('butkti_laporan');
+                $filename = $file->getClientOriginalName();
+                $path = $file->store('butkti_laporan');
+                $Lap->butkti_laporan = $path;
+            }
+
             $Lap->save();
         }
+
+
 
         return redirect()->back();
         
