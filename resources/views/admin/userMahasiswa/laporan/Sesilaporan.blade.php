@@ -4,6 +4,7 @@
       {{ __('Sesi Laporan Harian Mahasiswa') }}
     </h2>
   </x-slot>
+
   <div class=" w-full py-2 px-2 ">
     <div class=" py-1 mt-2 bg-white">
       <div class="p-4 bg-white  border-gray-200">

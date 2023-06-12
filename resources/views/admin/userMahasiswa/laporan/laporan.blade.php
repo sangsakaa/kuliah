@@ -37,10 +37,10 @@
     </div>
   </div>
   <div class=" mt-2 bg-white p-4">
+
     <div class=" p-4">
       <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" id="uploadForm" method="post" enctype="multipart/form-data">
         @csrf
-
         <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
         @foreach($dataMhs as $item)
 
@@ -50,8 +50,14 @@
         <label for="" class="capitalize">Deskripsi Laporan Harian</label>
         <textarea name="deskrip_laporan" id="" class="w-full" cols="30" rows="10"><?php echo !empty($item->deskrip_laporan) ? $item->deskrip_laporan : ""; ?></textarea>
         <h1>Unggah Bukti Kegiatan</h1>
-        <input type="file" id="fileInput" accept="image/*" name="butkti_laporan" capture="camera" value="">
+
+        <input type="file" id="fileInput" accept="image/*" name="butkti_laporan" capture="camera" value="{{ asset($item->butkti_laporan) }}">
         <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+        <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+        <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+        <div>
+          <img src="{{ asset($item->butkti_laporan) }}" alt="Gambar Laporan">
+        </div>
         @endforeach
       </form>
     </div>
