@@ -10,6 +10,7 @@ use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
+use App\Http\Controllers\UserDosenController;
 use App\Http\Controllers\UserManagemetController;
 use App\Http\Controllers\UserPerMhsController;
 
@@ -50,8 +51,9 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 // LAPORAN MAHASISWA
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
 // userManajement
-Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth']);
+Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');
 Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])->middleware(['auth']);
+Route::post('/create-user-dosen', [UserManagemetController::class, 'CreateUserDosen'])->middleware(['auth']);
 
 
 
@@ -65,6 +67,9 @@ Route::get('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::cl
 Route::post('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'BuatLap'])->middleware(['auth']);
 
 
+
+Route::get('/sesi-validasi-laporan-mhs', [UserDosenController::class, 'validasiLaporan'])->middleware(['auth'])->name('sesi-validasi-laporan-mhs');
+Route::get('/daftar-validasi-laporan-mhs/{sesi_Laporan_Harian}', [UserDosenController::class, 'DaftaValidasi'])->middleware(['auth'])->name('daftar-validasi-laporan-mhs');
 
 
 

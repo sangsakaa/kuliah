@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota_Kelompok;
 use App\Models\Kelompok;
-use App\Models\Laporan_Mahasiswa;
 use App\Models\Mahasiswa;
-use App\Models\Sesi_Laporan_Harian;
 use Illuminate\Http\Request;
+use App\Models\Anggota_Kelompok;
+use App\Models\Laporan_Mahasiswa;
 use Illuminate\Routing\Controller;
+use App\Models\Sesi_Laporan_Harian;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserPerMhsController extends Controller
 {
@@ -67,9 +68,6 @@ class UserPerMhsController extends Controller
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
 
-        
-        
-        // dd($sesi_Laporan_Harian);
         $UserPermhs = Auth::user()->mahasiswa_id;
         $data = Mahasiswa::query()
         ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
@@ -86,10 +84,18 @@ class UserPerMhsController extends Controller
             ->leftjoin('laporan_mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'laporan_mahasiswa.anggota_kelompok_id')
             ->leftjoin('sesi_laporan_harian', 'sesi_laporan_harian.id', '=', 'laporan_mahasiswa.sesi_laporan_harian_id')
             ->where('anggota_kelompok.mahasiswa_id', $UserPermhs)
-            // ->where('laporan_mahasiswa.sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
+            ->select(
+                [
+                    'anggota_kelompok.mahasiswa_id',
+                    'laporan_mahasiswa.*'
+                ]
+            )
+            ->where('laporan_mahasiswa.sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
             ->get();
         // dd($dataMhs);
-
+        if ($dataMhs->count() == 0) {
+            $dataMhs = Anggota_Kelompok::query()->where('anggota_kelompok.mahasiswa_id', $UserPermhs)->get();
+        }
         return view('admin.userMahasiswa.laporan.laporan', compact('dataMhs', 'data', 'sesi_Laporan_Harian', 'UserPermhs'));
     }
     public function BuatLap(Request $request)
@@ -106,10 +112,13 @@ class UserPerMhsController extends Controller
             $Lap->deskrip_laporan = $request->deskrip_laporan;
 
             if ($request->hasFile('butkti_laporan')) {
+                // Menghapus file laporan yang lama
+                Storage::delete($Lap->butkti_laporan);
+
                 $file = $request->file('butkti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->store('butkti_laporan');
-                $Lap->butkti_laporan = $path;
+                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
             }
 
             $Lap->save();
@@ -123,16 +132,15 @@ class UserPerMhsController extends Controller
             if ($request->hasFile('butkti_laporan')) {
                 $file = $request->file('butkti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->store('butkti_laporan');
-                $Lap->butkti_laporan = $path;
+                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
             }
 
             $Lap->save();
         }
 
-
-
         return redirect()->back();
+
         
     }
 }

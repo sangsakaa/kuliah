@@ -65,6 +65,7 @@
             <th class="border border-green-700 px-4 py-2">No</th>
             <th class="border border-green-700 px-4 py-2">Tanggal</th>
             <th class="border border-green-700 px-4 py-2">Nama Kelompok</th>
+            <th class="border border-green-700 px-4 py-2">Laporan</th>
           </tr>
         </thead>
         <tbody>
@@ -72,7 +73,12 @@
           <tr>
             <td class="border border-green-700 px-4 py-2 text-center">{{$loop->iteration}}</td>
             <td class="border border-green-700 px-4 py-2 text-center">{{$list->tanggal}}</td>
-            <td class="border border-green-700 px-4 py-2 text-center"><a href="/laporan-mahasiswa/{{$list->id}}">Kelompok {{$list->nama_kelompok}}</a></td>
+            <td class="border border-green-700 px-4 py-2 text-center">
+              <a href="/laporan-mahasiswa/{{$list->id}}">Kelompok {{$list->nama_kelompok}}</a>
+            </td>
+            <td class="border border-green-700 px-4 py-2 text-center">
+              <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>
+            </td>
 
           </tr>
           @endforeach

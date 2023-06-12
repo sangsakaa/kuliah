@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Mahasiswa') }}
+            {{ __('Beranda') }}
         </h2>
     </x-slot>
     <div class=" w-full py-2 px-2 ">
@@ -96,6 +96,12 @@
                 <a href="/sesi-laporan-mahasiswa">
                     <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan</div>
                 </a>
+            </div>
+            @endrole
+            @role('dosen')
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Laporan Harian Mahasiswa</div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
             </div>
             @endrole
         </div>
