@@ -40,12 +40,12 @@
     <div class=" p-4">
       <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" id="uploadForm" method="post" enctype="multipart/form-data">
         @csrf
-        <label for="">Sesi</label>
+
         <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
         @foreach($dataMhs as $item)
-        <label for="">Nama Mhs</label>
+
         <input class="w-full" type="hidden" name="anggota_kelompok_id" value="{{$item->mahasiswa_id}}">
-        <label for="">Lokasi</label>
+        <label for="">Lokasi Pratikum</label>
         <input class="w-full" type="text" name="lokasi_praktik" value="{{ $item->lokasi_praktik ?? '' }}">
         <label for="" class="capitalize">Deskripsi Laporan Harian</label>
         <textarea name="deskrip_laporan" id="" class="w-full" cols="30" rows="10"><?php echo !empty($item->deskrip_laporan) ? $item->deskrip_laporan : ""; ?></textarea>
