@@ -117,7 +117,7 @@ class UserPerMhsController extends Controller
 
                 $file = $request->file('butkti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $path = $file->move('public/butkti_laporan', $filename);
                 $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
             }
 
@@ -132,7 +132,7 @@ class UserPerMhsController extends Controller
             if ($request->hasFile('butkti_laporan')) {
                 $file = $request->file('butkti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $path = $file->move('public/butkti_laporan', $filename);
                 $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
             }
 
