@@ -103,7 +103,7 @@ class UserPerMhsController extends Controller
 
         $file = $request->file('butkti_laporan');
         $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('files'), $fileName);
+        $file->move(public_path('butkti_laporan'), $fileName);
         $Lap = new Laporan_Mahasiswa();
         $Lap->sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
         $Lap->anggota_kelompok_id = $request->anggota_kelompok_id;
