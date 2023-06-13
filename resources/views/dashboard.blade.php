@@ -90,7 +90,7 @@
 
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan akhir</div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
-                <a href="/akun-mahasiswa">
+                <a href="#">
                     <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
                 </a>
                 <a href="/sesi-laporan-mahasiswa">

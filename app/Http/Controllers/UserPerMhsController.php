@@ -50,7 +50,8 @@ class UserPerMhsController extends Controller
         $DataSesiLap = Sesi_Laporan_Harian::query()
             ->join('kelompok', 'kelompok.id', '=', 'sesi_laporan_harian.kelompok_id')
             ->where('sesi_laporan_harian.kelompok_id', $dataKelompok->kelompok_id)
-            ->select('sesi_laporan_harian.id', 'sesi_laporan_harian.kelompok_id', 'tanggal', 'nama_kelompok')
+            ->select('sesi_laporan_harian.id', 'sesi_laporan_harian.kelompok_id', 'tanggal', 'nama_kelompok', 'sesi_laporan_harian.created_at')
+            ->orderby('tanggal')
             ->get();
         // dd($DataSesiLap);
 
@@ -100,9 +101,6 @@ class UserPerMhsController extends Controller
     }
     public function BuatLap(Request $request)
     {
-
-
-
         $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
         $anggota_kelompok_id = $request->anggota_kelompok_id;
 

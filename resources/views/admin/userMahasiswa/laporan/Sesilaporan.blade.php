@@ -49,7 +49,7 @@
       <form action="/sesi-laporan-mahasiswa" method="post" enctype="multipart/form-data">
         @csrf
         <div class=" grid grid-cols-1 sm:grid-cols-4 gap-2">
-          <input type="date" name="tanggal" class=" w-full py-1" id="">
+          <input type="date" name="tanggal" class=" w-full py-1" id="" required>
           <input type="hidden" name="kelompok_id" value="{{$dataKelompok->kelompok_id}}" class=" w-full py-1" id="">
           <button class=" px-2 py-1 bg-blue-700 text-white">Buat Laporan Harian</button>
         </div>
@@ -58,12 +58,13 @@
   </div>
   </div>
   <div class=" py-1 mt-2 bg-white">
-    <div class=" p-4">
+    <div class=" overflow-auto p-4">
       <table class="w-full border border-green-700">
         <thead>
           <tr>
             <th class="border border-green-700 px-4 py-2">No</th>
             <th class="border border-green-700 px-4 py-2">Tanggal</th>
+            <th class="border border-green-700 px-4 py-2">Jam </th>
             <th class="border border-green-700 px-4 py-2">Nama Kelompok</th>
             <th class="border border-green-700 px-4 py-2">Laporan</th>
           </tr>
@@ -72,7 +73,12 @@
           @foreach($DataSesiLap as $list)
           <tr>
             <td class="border border-green-700 px-4 py-2 text-center">{{$loop->iteration}}</td>
-            <td class="border border-green-700 px-4 py-2 text-center">{{$list->tanggal}}</td>
+            <td class="border border-green-700 px-4 py-2 text-center">
+              {{ \Carbon\Carbon::parse($list->tanggal)->isoFormat('dddd , DD MMMM Y ') }}
+            </td>
+            <td class="border border-green-700 px-4 py-2 text-center">
+              {{ \Carbon\Carbon::parse($list->created_at)->isoFormat('h:m') }}
+            </td>
             <td class="border border-green-700 px-4 py-2 text-center">
               <a href="/laporan-mahasiswa/{{$list->id}}">Kelompok {{$list->nama_kelompok}}</a>
             </td>
@@ -82,11 +88,9 @@
 
           </tr>
           @endforeach
-
           <!-- Tambahkan baris lainnya di sini -->
         </tbody>
       </table>
-
     </div>
   </div>
 
