@@ -20,12 +20,13 @@ class KelompokController extends Controller
             ->select('nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'desa.id')
             ->get();
         $dataDosen = Dosen::orderby('nama_dosen')->get();
+
         $dataKelompok = Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten')
+            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
             ->get();
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
     }

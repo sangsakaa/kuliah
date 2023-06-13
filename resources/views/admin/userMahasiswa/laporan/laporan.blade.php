@@ -62,7 +62,7 @@
 
           <textarea name="deskrip_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskrip_laporan) ? $item->deskrip_laporan : ""; ?></textarea>
           <h1>Unggah Bukti Kegiatan</h1>
-          <input required type="file" id="fileInput" accept="image/*" name="butkti_laporan" capture="camera" value="{{ asset($item->butkti_laporan) }}">
+          <input type="file" id="fileInput" accept="image/*" name="butkti_laporan" value="{{ asset($item->butkti_laporan) }}">
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>

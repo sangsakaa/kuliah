@@ -435,9 +435,9 @@
                                 @if (Route::has('login'))
                                 <div class="  right-0 px-6 py-4 sm:block">
                                     @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 dark:text-gray-500 ">Dashboard</a>
+                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-200 dark:text-gray-200 ">BERANDA</a>
                                     @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-200 dark:text-gray-200 ">Log in</a>
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-200 dark:text-gray-200 ">MASUK</a>
                                     @endauth
                                 </div>
                                 @endif
@@ -449,10 +449,11 @@
             </div>
             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                 <div class="text-center text-sm text-gray-500 sm:text-left">
-
-                    <div class=" text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                        &copy KKN 2023 UNIIVERSITAS WAHIDIYAH KEDIRI
-                    </div>
+                    <center>
+                        <div class=" text-center sm:text-center text-sm text-gray-500  sm:ml-0">
+                            &copy KKN 2023 UNIIVERSITAS WAHIDIYAH KEDIRI
+                        </div>
+                    </center>
                 </div>
 
 

@@ -71,6 +71,7 @@
               <tr class=" border">
                 <th class=" border">No</th>
                 <th class=" border">Kelompok</th>
+                <th class=" border">NIDN</th>
                 <th class=" border">Pembimbing</th>
                 <th class=" border">Alamat</th>
                 <th class=" border hidden sm:block">Act</th>
@@ -81,6 +82,7 @@
               <tr class=" border">
                 <th class=" px-1 capitalize border">{{$loop->iteration}}</th>
                 <td class=" px-1 capitalize border text-center"><a href="/detail-kelompok-mahasiswa/{{$team->id}}">{{$team->nama_kelompok}}</a></td>
+                <td class=" px-1 capitalize border text-center">{{$team->nidn}}</td>
                 <td class=" px-1 capitalize border">{{$team->nama_dosen}}</td>
                 <td class=" px-1 capitalize border">
                   Desa .{{$team->nama_desa}}

@@ -88,13 +88,9 @@
             @role('mahasiswa')
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
 
-                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan akhir</div>
-                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
-                <a href="#">
-                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">laporan</div>
-                </a>
+
                 <a href="/sesi-laporan-mahasiswa">
-                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan</div>
+                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan Harian</div>
                 </a>
             </div>
             @endrole
