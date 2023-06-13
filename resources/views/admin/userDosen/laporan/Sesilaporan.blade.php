@@ -45,7 +45,6 @@
               <td class=" border border-green-700 px-2 py-1 text-center">
                 <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
                   LAP
-
                 </a>
               </td>
 

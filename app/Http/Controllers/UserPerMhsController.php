@@ -101,25 +101,27 @@ class UserPerMhsController extends Controller
     }
     public function BuatLap(Request $request)
     {
+        // dd($request);
         $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
         $anggota_kelompok_id = $request->anggota_kelompok_id;
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_laporan_harian_id)
         ->where('anggota_kelompok_id', $anggota_kelompok_id)
         ->first();
-
         if ($Lap) {
             $Lap->lokasi_praktik = $request->lokasi_praktik;
-            $Lap->deskrip_laporan = $request->deskrip_laporan;
+            $Lap->deskripsi_laporan = $request->deskripsi_laporan;
+            $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
+            $Lap->note_laporan = $request->note_laporan;
 
-            if ($request->hasFile('butkti_laporan')) {
+            if ($request->hasFile('bukti_laporan')) {
                 // Menghapus file laporan yang lama
-                Storage::delete($Lap->butkti_laporan);
+                Storage::delete($Lap->bukti_laporan);
 
-                $file = $request->file('butkti_laporan');
+                $file = $request->file('bukti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->storeAs('public/butkti_laporan', $filename);
-                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
+                $path = $file->storeAs('public/bukti_laporan', $filename);
+                $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
 
             $Lap->save();
@@ -128,14 +130,17 @@ class UserPerMhsController extends Controller
             $Lap->sesi_laporan_harian_id = $sesi_laporan_harian_id;
             $Lap->anggota_kelompok_id = $anggota_kelompok_id;
             $Lap->lokasi_praktik = $request->lokasi_praktik;
-            $Lap->deskrip_laporan = $request->deskrip_laporan;
+            $Lap->deskripsi_laporan = $request->deskripsi_laporan;
+            $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
+            $Lap->note_laporan = $request->note_laporan;
 
-            if ($request->hasFile('butkti_laporan')) {
-                $file = $request->file('butkti_laporan');
+            if ($request->hasFile('bukti_laporan')) {
+                $file = $request->file('bukti_laporan');
                 $filename = $file->getClientOriginalName();
-                $path = $file->storeAs('public/butkti_laporan', $filename);
-                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
+                $path = $file->storeAs('public/bukti_laporan', $filename);
+                $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
+            
 
             $Lap->save();
         }
