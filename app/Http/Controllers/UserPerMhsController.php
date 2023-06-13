@@ -101,55 +101,46 @@ class UserPerMhsController extends Controller
     public function BuatLap(Request $request)
     {
 
-        $file = $request->file('butkti_laporan');
-        $fileName = time() . '.' . $file->getClientOriginalExtension();
-        $file->move(public_path('butkti_laporan'), $fileName);
-        $Lap = new Laporan_Mahasiswa();
-        $Lap->sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
-        $Lap->anggota_kelompok_id = $request->anggota_kelompok_id;
+
+
+        $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
+        $anggota_kelompok_id = $request->anggota_kelompok_id;
+
+        $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_laporan_harian_id)
+        ->where('anggota_kelompok_id', $anggota_kelompok_id)
+        ->first();
+
+        if ($Lap) {
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskrip_laporan = $request->deskrip_laporan;
-        $Lap->butkti_laporan = $fileName;
-        $Lap->save();
-        
-        // $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
-        // $anggota_kelompok_id = $request->anggota_kelompok_id;
 
-        // $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_laporan_harian_id)
-        //     ->where('anggota_kelompok_id', $anggota_kelompok_id)
-        //     ->first();
+            if ($request->hasFile('butkti_laporan')) {
+                // Menghapus file laporan yang lama
+                Storage::delete($Lap->butkti_laporan);
 
-        // if ($Lap) {
-        //     $Lap->lokasi_praktik = $request->lokasi_praktik;
-        //     $Lap->deskrip_laporan = $request->deskrip_laporan;
+                $file = $request->file('butkti_laporan');
+                $filename = $file->getClientOriginalName();
+                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
+            }
 
-        //     if ($request->hasFile('butkti_laporan')) {
-        //         // Menghapus file laporan yang lama
-        //         Storage::delete($Lap->butkti_laporan);
+            $Lap->save();
+        } else {
+            $Lap = new Laporan_Mahasiswa();
+            $Lap->sesi_laporan_harian_id = $sesi_laporan_harian_id;
+            $Lap->anggota_kelompok_id = $anggota_kelompok_id;
+            $Lap->lokasi_praktik = $request->lokasi_praktik;
+            $Lap->deskrip_laporan = $request->deskrip_laporan;
 
-        //         $file = $request->file('butkti_laporan');
-        //         $filename = $file->getClientOriginalName();
-        //         $path = $file->storeAs('public/butkti_laporan', $filename);
-        //         $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
-        //     }
+            if ($request->hasFile('butkti_laporan')) {
+                $file = $request->file('butkti_laporan');
+                $filename = $file->getClientOriginalName();
+                $path = $file->storeAs('public/butkti_laporan', $filename);
+                $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
+            }
 
-        //     $Lap->save();
-        // } else {
-        //     $Lap = new Laporan_Mahasiswa();
-        //     $Lap->sesi_laporan_harian_id = $sesi_laporan_harian_id;
-        //     $Lap->anggota_kelompok_id = $anggota_kelompok_id;
-        //     $Lap->lokasi_praktik = $request->lokasi_praktik;
-        //     $Lap->deskrip_laporan = $request->deskrip_laporan;
-
-        //     if ($request->hasFile('butkti_laporan')) {
-        //         $file = $request->file('butkti_laporan');
-        //         $filename = $file->getClientOriginalName();
-        //         $path = $file->storeAs('public/butkti_laporan', $filename);
-        //         $Lap->butkti_laporan = 'butkti_laporan/' . $filename;
-        //     }
-
-        //     $Lap->save();
-        // }
+            $Lap->save();
+        }
 
         return redirect()->back();
 
