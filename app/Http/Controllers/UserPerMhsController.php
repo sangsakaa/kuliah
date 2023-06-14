@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kelompok;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Models\Anggota_Kelompok;
 use App\Models\Laporan_Mahasiswa;
 use Illuminate\Routing\Controller;
@@ -60,11 +61,22 @@ class UserPerMhsController extends Controller
     public function createSesiLap(Request $request)
     {
         $sesiLap = new Sesi_Laporan_Harian();
-        $sesiLap->tanggal = $request->tanggal;
         $sesiLap->kelompok_id = $request->kelompok_id;
-        // dd($sesiLap);
+        $currentDate = \Carbon\Carbon::now();
+
+        if ($request->tanggal == 'besok') {
+            $currentDate->addDay();
+        }
+
+        if (!$currentDate->isToday()) {
+            return response()->json(['error' => 'Tanggal yang diminta tidak sesuai dengan hari ini'], 400);
+        }
+        $sesiLap->tanggal = $currentDate;
         $sesiLap->save();
-        return redirect()->back();
+
+
+
+        return redirect()->back()->with('error', 'Tanggal yang diminta sudah lewat 1 hari');
     }
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {

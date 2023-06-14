@@ -54,6 +54,14 @@
   </div>
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
+      <div>
+        @if(session('error'))
+        <div class="alert alert-danger">
+          {{ session('error') }}
+        </div>
+        @endif
+
+      </div>
       <table class="w-full border border-green-700">
         <thead>
           <tr>
@@ -61,6 +69,7 @@
             <th class="border border-green-700 px-2 py-1">Tanggal</th>
             <th class="border border-green-700 px-2 py-1">Jam </th>
 
+            <th class="border border-green-700 px-2 py-1">Laporan</th>
             <th class="border border-green-700 px-2 py-1">Laporan</th>
           </tr>
         </thead>
@@ -76,6 +85,9 @@
             </td>
             <td class="border border-green-700 px-2 py-1 text-center">
               <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>
+            </td>
+            <td>
+
             </td>
 
           </tr>

@@ -40,6 +40,7 @@
                 <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
                   {{ $data->nama_kelompok }}
 
+
                 </a>
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center">
