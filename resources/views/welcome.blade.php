@@ -422,7 +422,7 @@
                                     SIP
                                 </div>
                                 <div class=" text-gray-600 dark:text-gray-400 text-lg">
-                                    SISTEM INFOMASI PELAPORAN
+                                    SISTEM INFORMASI PELAPORAN
                                 </div>
                                 <div class=" text-gray-600 dark:text-gray-400 text-lg">
                                     KULIAH KERJA NYATA
