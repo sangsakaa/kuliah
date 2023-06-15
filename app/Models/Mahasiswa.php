@@ -4,7 +4,8 @@ namespace App\Models;
 
 
 
-use App\Models\Anggotaasrama;
+
+use App\Models\Anggota_Kelompok;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -12,8 +13,5 @@ class Mahasiswa extends Model
 {
     use HasFactory;
     protected $table = "mahasiswa";
-    public function anggota()
-    {
-        return $this->hasMany(Anggotaasrama::class, 'mahasiswa_id', 'id');
-    }
+    
 }

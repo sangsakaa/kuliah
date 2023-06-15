@@ -3,7 +3,7 @@
 namespace App\Models;
 
 
-use App\Models\Sesi_Laporan_Harian;
+use App\Models\Mahasiswa;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -14,7 +14,10 @@ class Anggota_Kelompok extends Model
 
 
 
-
+    public function Mahasiswa()
+    {
+        return $this->hasMany(Mahasiswa::class, 'id', 'mahasiswa_id');
+    }   
     
 
     

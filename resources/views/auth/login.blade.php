@@ -2,16 +2,20 @@
 
     <x-auth-card>
         <x-slot name="logo">
+            <center>
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class=" mt-4 sm:pt-4" width="150px" height="150px">
+            </center>
             <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
+                <!-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> -->
             </a>
         </x-slot>
 
         <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
 
+        <x-auth-session-status class="mb-4" :status="session('status')" />
         <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <x-auth-validation-errors class="mb-1" :errors="$errors" />
+
 
         <form method="POST" action="{{ route('login') }}">
             @csrf

@@ -16,7 +16,6 @@ class Sesi_Laporan_Harian extends Model
         return $this->hasMany(Laporan_Mahasiswa::class, 'sesi_laporan_harian_id');
     }
 
-
     public function Mahasiswa()
     {
         return $this->hasMany(Anggota_Kelompok::class, 'mahasiswa_id', 'anggota_kelompok_id');

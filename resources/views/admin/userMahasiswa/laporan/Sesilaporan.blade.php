@@ -90,13 +90,19 @@
             <td class="border border-green-700 px-2 py-1 text-center capitalize">
               @foreach($list->laporanMahasiswa as $status)
               @if($status->status_laporan === 'menunggu')
-              <span class="text-red-500">{{$status->status_laporan}}</span>
+              <span class="text-red-700 font-semibold">{{$status->status_laporan}}</span>
               @elseif($status->status_laporan === 'valid')
-              <span class="text-green-500">{{$status->status_laporan}}</span>
+              <span class="text-green-700 font-semibold">{{$status->status_laporan}}</span>
+              @elseif($status->status_laporan === null)
+              <span class="text-black">Belum melakukan laporan</span>
               @else
               {{$status->status_laporan}}
               @endif
               @endforeach
+
+              @if(count($list->laporanMahasiswa) === 0)
+              <span class="text-black">Belum Laporan</span>
+              @endif
             </td>
 
           </tr>

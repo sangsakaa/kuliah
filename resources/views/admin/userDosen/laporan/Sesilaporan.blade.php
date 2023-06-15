@@ -22,12 +22,13 @@
           <thead>
             <tr class=" uppercase">
               <th class="border border-green-700 px-2 py-1 text-center">No</th>
-
+              <th class="border border-green-700 px-2 py-1 text-center">Mahasiswa</th>
+              <th class="border border-green-700 px-2 py-1 text-center">Prodi</th>
               <th class="border border-green-700 px-2 py-1 text-center">Tanggal</th>
               <th class="border border-green-700 px-2 py-1 text-center">Jam</th>
               <th class="border border-green-700 px-2 py-1 text-center">KEL</th>
               <th class="border border-green-700 px-2 py-1 text-center">LAP</th>
-              <th class="border border-green-700 px-2 py-1 text-center">LAP</th>
+              <th class="border border-green-700 px-2 py-1 text-center">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -35,7 +36,23 @@
             <tr>
 
               <td class=" border border-green-700 px-2 py-1 text-center">{{ $loop->iteration }}</td>
+              <td class=" capitalize border border-green-700 px-2 py-1 text-left">
+                <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
+                  @foreach($data->Mahasiswa as $list)
+                  @foreach($list->Mahasiswa as $detil)
+                  {{strtolower($detil->nama_mhs)}}
+                  @endforeach
+                  @endforeach
+                </a>
 
+              </td>
+              <td class=" capitalize border border-green-700 px-2 py-1 text-center">
+                @foreach($data->Mahasiswa as $list)
+                @foreach($list->Mahasiswa as $detil)
+                {{strtolower($detil->prodi)}}
+                @endforeach
+                @endforeach
+              </td>
               <td class=" border border-green-700 px-2 py-1 text-center">
                 {{ \Carbon\Carbon::parse($data->tanggal)->isoFormat('dddd , DD MMMM Y') }}
               </td>
@@ -55,16 +72,22 @@
               <td class=" border border-green-700 px-2 py-1 text-center capitalize">
                 @foreach($data->laporanMahasiswa as $status)
                 @if($status->status_laporan === 'menunggu')
-                <span class="text-red-500">{{$status->status_laporan}}</span>
+                <span class="text-red-700 font-semibold">{{$status->status_laporan}}</span>
                 @elseif($status->status_laporan === 'valid')
-                <span class="text-green-500">{{$status->status_laporan}}</span>
+                <span class="text-green-700 font-semibold">{{$status->status_laporan}}</span>
                 @elseif($status->status_laporan === null)
-                <span class="text-yellow-500">Belum melakukan laporan</span>
+                <span class="text-black">Belum melakukan laporan</span>
                 @else
                 {{$status->status_laporan}}
                 @endif
                 @endforeach
+
+                @if(count($data->laporanMahasiswa) === 0)
+                <span class="text-red-700">Invalid</span>
+                @endif
+
               </td>
+
 
             </tr>
             @endforeach

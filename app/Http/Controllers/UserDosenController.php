@@ -25,7 +25,7 @@ class UserDosenController extends Controller
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
             ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
-            ->select('sesi_laporan_harian.id', 'nama_kelompok', 'kelompok_id')
+            ->select('sesi_laporan_harian.id', 'nama_kelompok', 'kelompok_id', 'sesi_laporan_harian.anggota_kelompok_id', 'laporan_mahasiswa.created_at')
             ->where('kelompok.id', $dataDosen->id)
             ->orderby('tanggal')->get();
         // dd($dataLaporan);

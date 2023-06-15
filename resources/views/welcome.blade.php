@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SPK</title>
+    <title>SIP - Sistem Infomasi Pelaporan </title>
+    <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -410,11 +411,7 @@
 
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-
-            </div>
             <div class=" mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-1">
                     <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
@@ -422,10 +419,10 @@
                             <center>
                                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="200px" height="200px">
                                 <div class=" text-gray-600 dark:text-gray-400 text-gede">
-                                    SPK
+                                    SIP
                                 </div>
                                 <div class=" text-gray-600 dark:text-gray-400 text-lg">
-                                    SISTEM PELAPORAN KEGIATAN
+                                    SISTEM INFOMASI PELAPORAN
                                 </div>
                                 <div class=" text-gray-600 dark:text-gray-400 text-lg">
                                     KULIAH KERJA NYATA
@@ -435,9 +432,9 @@
                                 @if (Route::has('login'))
                                 <div class="  right-0 px-6 py-4 sm:block">
                                     @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-200 dark:text-gray-200 ">BERANDA</a>
+                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-200 dark:text-gray-900 ">BERANDA</a>
                                     @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-200 dark:text-gray-200 ">MASUK</a>
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-200 dark:text-gray-900 ">MASUK</a>
                                     @endauth
                                 </div>
                                 @endif
@@ -446,7 +443,7 @@
                         </div>
                         <center>
                             <div class=" text-center sm:text-center text-sm text-gray-500  sm:ml-0">
-                                &copy KKN 2023 UNIIVERSITAS WAHIDIYAH KEDIRI
+                                &copy KKN 2023 UNIVERSITAS WAHIDIYAH KEDIRI
                             </div>
                         </center>
                     </div>
