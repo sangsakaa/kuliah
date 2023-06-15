@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>SIP - Sistem Infomasi Pelaporan </title>
+    <title>SIP - Sistem Informasi Pelaporan </title>
     <link rel="shortcut icon" href="{{ asset('img/logo.png') }}" type="image/x-icon">
 
     <!-- Fonts -->

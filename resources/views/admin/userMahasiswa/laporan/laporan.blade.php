@@ -71,7 +71,7 @@
           <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1>Unggah Bukti Kegiatan</h1>
 
-          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
+          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" capture="camera" value="{{ asset($item->bukti_laporan) }}">
           @if($item->status_laporan === "valid")
           <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @elseif($item->status_laporan === "menunggu")
