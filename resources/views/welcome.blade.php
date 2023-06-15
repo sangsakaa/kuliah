@@ -442,22 +442,18 @@
                                 </div>
                                 @endif
                             </center>
+
                         </div>
+                        <center>
+                            <div class=" text-center sm:text-center text-sm text-gray-500  sm:ml-0">
+                                &copy KKN 2023 UNIIVERSITAS WAHIDIYAH KEDIRI
+                            </div>
+                        </center>
                     </div>
 
                 </div>
             </div>
-            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                <div class="text-center text-sm text-gray-500 sm:text-left">
-                    <center>
-                        <div class=" text-center sm:text-center text-sm text-gray-500  sm:ml-0">
-                            &copy KKN 2023 UNIIVERSITAS WAHIDIYAH KEDIRI
-                        </div>
-                    </center>
-                </div>
 
-
-            </div>
         </div>
     </div>
 </body>
