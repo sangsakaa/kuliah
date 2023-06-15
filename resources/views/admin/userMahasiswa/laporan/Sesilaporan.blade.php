@@ -62,15 +62,16 @@
         @endif
 
       </div>
+
       <table class="w-full border border-green-700">
         <thead>
           <tr>
             <th class="border border-green-700 px-2 py-1 w-5 sm:w-3">No</th>
+
             <th class="border border-green-700 px-2 py-1">Tanggal</th>
             <th class="border border-green-700 px-2 py-1">Jam </th>
-
             <th class="border border-green-700 px-2 py-1">Laporan</th>
-            <th class="border border-green-700 px-2 py-1">Laporan</th>
+            <th class="border border-green-700 px-2 py-1">Status</th>
           </tr>
         </thead>
         <tbody>
@@ -86,8 +87,16 @@
             <td class="border border-green-700 px-2 py-1 text-center">
               <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>
             </td>
-            <td>
-
+            <td class="border border-green-700 px-2 py-1 text-center capitalize">
+              @foreach($list->laporanMahasiswa as $status)
+              @if($status->status_laporan === 'menunggu')
+              <span class="text-red-500">{{$status->status_laporan}}</span>
+              @elseif($status->status_laporan === 'valid')
+              <span class="text-green-500">{{$status->status_laporan}}</span>
+              @else
+              {{$status->status_laporan}}
+              @endif
+              @endforeach
             </td>
 
           </tr>

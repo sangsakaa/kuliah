@@ -2,11 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+
+use App\Models\Sesi_Laporan_Harian;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Anggota_Kelompok extends Model
 {
     use HasFactory;
     protected $table = "anggota_kelompok";
+
+
+
+
+    
+
+    
+
+
+
+
+   
 }

@@ -9,7 +9,34 @@
       <div>
         <div class=" w-full grid ">
           <div class=" hidden sm:block ">
-
+            <div class=" w-full grid ">
+              <div class=" hidden sm:block ">
+                <div class="  grid grid-cols-4 sm:grid-cols-4">
+                  <div>NIM</div>
+                  <div class="">: {{$data->nim}}
+                  </div>
+                  <div>Pembimbing</div>
+                  <div> : {{$data->nama_dosen}}</div>
+                  <div>Nama Mahasiswa</div>
+                  <div> : {{$data->nama_mhs}}</div>
+                  <div>Nama Kelompok</div>
+                  <div> : Kelompok {{$data->nama_kelompok}}</div>
+                </div>
+              </div>
+              <div class=" bloc sm:hidden ">
+                <div class=" text-center  grid grid-cols-1 ">
+                  <div class=" text-2xl"> {{$data->nama_mhs}}</div>
+                  <div> {{$data->nim}}</div>
+                  <div class=" uppercase"> Kelompok {{$data->nama_kelompok}}</div>
+                  <div> {{$data->nama_dosen}}</div>
+                  <div>
+                    Desa . {{$data->nama_desa}}
+                    Kec . {{$data->nama_kecamatan}}
+                    <p>Kab . {{$data->nama_kabupaten}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -33,7 +60,6 @@
               <input class="w-full" type="text" name="note_laporan" value="{{$item->note_laporan}}">
             </div>
           </div>
-          <input class="w-full" type="hidden" name="anggota_kelompok_id" value="{{$item->mahasiswa_id}}">
           <label for="">Institusi / Tempat Kegiatan</label>
           <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
           @if($item->bukti_laporan == null)
@@ -47,7 +73,6 @@
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesui</span>
           @endif
-
           <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1>Unggah Bukti Kegiatan</h1>
           <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">

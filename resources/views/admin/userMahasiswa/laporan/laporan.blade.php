@@ -43,19 +43,17 @@
           @csrf
           <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
           @foreach($dataMhs as $item)
+
           <div class=" grid grid-cols-1 sm:grid-cols-2  gap-2">
             <div class=" grid-cols-1 grid">
               <span>Status Validasi </span>
               <input class="w-full capitalize {{ $item->status_laporan === 'valid' ? 'text-white bg-green-700' : ($item->status_laporan === 'menunggu' ? 'text-white bg-red-700' : 'text-white bg-green-700') }}" type="text" disabled name="status_laporan" value="{{ $item->status_laporan }}">
-
-
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi </span>
               <input class="w-full" type="text" placeholder=" Catatan Sesui revisi" disabled name="note_laporan" value="{{$item->note_laporan}}">
             </div>
           </div>
-          <input class="w-full" type="hidden" name="anggota_kelompok_id" value="{{$item->mahasiswa_id}}">
           <label for="">Institusi / Tempat Kegiatan</label>
           <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
           @if($item->bukti_laporan == null)

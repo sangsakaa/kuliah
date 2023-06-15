@@ -32,11 +32,12 @@ class UserPerMhsController extends Controller
     }
     public function sesiLap()
     {
+        
         $UserPermhs = Auth::user()->mahasiswa_id;
         $dataKelompok = Kelompok::query()
             ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
-            ->where('mahasiswa_id', $UserPermhs)
-            ->first();
+        ->where('mahasiswa_id', $UserPermhs)
+        ->first();
         // dd($dataKelompok);
         $data = Mahasiswa::query()
             ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
@@ -48,11 +49,11 @@ class UserPerMhsController extends Controller
             ->select('anggota_kelompok.mahasiswa_id', 'kelompok.dosen_id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nim', 'nama_mhs')
             ->where('mahasiswa.id', $UserPermhs)
             ->first();
-        $DataSesiLap = Sesi_Laporan_Harian::query()
-            ->join('kelompok', 'kelompok.id', '=', 'sesi_laporan_harian.kelompok_id')
-            ->where('sesi_laporan_harian.kelompok_id', $dataKelompok->kelompok_id)
-            ->select('sesi_laporan_harian.id', 'sesi_laporan_harian.kelompok_id', 'tanggal', 'nama_kelompok', 'sesi_laporan_harian.created_at')
+        // dd($data);
+        $DataSesiLap = Sesi_Laporan_Harian::query()    
             ->orderby('tanggal')
+
+            ->where('anggota_kelompok_id', $data->mahasiswa_id)
             ->get();
         // dd($DataSesiLap);
 
@@ -60,27 +61,16 @@ class UserPerMhsController extends Controller
     }
     public function createSesiLap(Request $request)
     {
+        $UserPermhs = Auth::user()->mahasiswa_id;
         $sesiLap = new Sesi_Laporan_Harian();
-        $sesiLap->kelompok_id = $request->kelompok_id;
-        $currentDate = \Carbon\Carbon::now();
-
-        if ($request->tanggal == 'besok') {
-            $currentDate->addDay();
-        }
-
-        if (!$currentDate->isToday()) {
-            return response()->json(['error' => 'Tanggal yang diminta tidak sesuai dengan hari ini'], 400);
-        }
-        $sesiLap->tanggal = $currentDate;
+        $sesiLap->anggota_kelompok_id = $UserPermhs;
+        $sesiLap->tanggal = $request->tanggal;
         $sesiLap->save();
-
-
-
-        return redirect()->back()->with('error', 'Tanggal yang diminta sudah lewat 1 hari');
+        return redirect()->back()->with('error', 'sesi laporan berhasi di buat');
     }
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
-
+        // dd($sesi_Laporan_Harian);
         $UserPermhs = Auth::user()->mahasiswa_id;
         $data = Mahasiswa::query()
         ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
@@ -90,36 +80,29 @@ class UserPerMhsController extends Controller
         ->leftjoin('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
         ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
         ->select('anggota_kelompok.mahasiswa_id', 'kelompok.dosen_id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nim', 'nama_mhs')
-        ->where('mahasiswa.id', $UserPermhs)
+            ->where('mahasiswa.id', $UserPermhs)
         ->first();
         // dd($UserPermhs);
         $dataMhs = Anggota_Kelompok::query()
-            ->leftjoin('laporan_mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'laporan_mahasiswa.anggota_kelompok_id')
-            ->leftjoin('sesi_laporan_harian', 'sesi_laporan_harian.id', '=', 'laporan_mahasiswa.sesi_laporan_harian_id')
+            ->leftJoin('sesi_laporan_harian', 'sesi_laporan_harian.anggota_kelompok_id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->where('sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
             ->where('anggota_kelompok.mahasiswa_id', $UserPermhs)
-            ->select(
-                [
-                    'anggota_kelompok.mahasiswa_id',
-                    'laporan_mahasiswa.*'
-                ]
-            )
-            ->where('laporan_mahasiswa.sesi_laporan_harian_id', $sesi_Laporan_Harian->id)
-            ->get();
+        ->get();
         // dd($dataMhs);
-        if ($dataMhs->count() == 0) {
-            $dataMhs = Anggota_Kelompok::query()->where('anggota_kelompok.mahasiswa_id', $UserPermhs)->get();
+        if ($dataMhs->count() === 0) {
+            $dataMhs = Anggota_Kelompok::query()->where('mahasiswa_id', $UserPermhs)->get();
         }
+        
         return view('admin.userMahasiswa.laporan.laporan', compact('dataMhs', 'data', 'sesi_Laporan_Harian', 'UserPermhs'));
     }
-    public function BuatLap(Request $request)
-    {
-        // dd($request);
-        $sesi_laporan_harian_id = $request->sesi_laporan_harian_id;
-        $anggota_kelompok_id = $request->anggota_kelompok_id;
+    public function BuatLap(Request $request, Sesi_Laporan_Harian $sesi_Laporan_Harian)
 
-        $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_laporan_harian_id)
-        ->where('anggota_kelompok_id', $anggota_kelompok_id)
-        ->first();
+    {
+        $sesi_Laporan_Harian = (int) $request->sesi_laporan_harian_id;
+
+        $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
+
         if ($Lap) {
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
@@ -139,8 +122,7 @@ class UserPerMhsController extends Controller
             $Lap->save();
         } else {
             $Lap = new Laporan_Mahasiswa();
-            $Lap->sesi_laporan_harian_id = $sesi_laporan_harian_id;
-            $Lap->anggota_kelompok_id = $anggota_kelompok_id;
+            $Lap->sesi_laporan_harian_id = $sesi_Laporan_Harian;
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
             $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
@@ -152,8 +134,6 @@ class UserPerMhsController extends Controller
                 $path = $file->storeAs('public/bukti_laporan', $filename);
                 $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
-            
-
             $Lap->save();
         }
 
