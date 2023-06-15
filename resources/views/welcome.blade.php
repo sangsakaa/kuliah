@@ -129,6 +129,10 @@
             font-size: 5.125rem
         }
 
+        .text-sedang {
+            font-size: 1.50rem
+        }
+
         .leading-7 {
             line-height: 1.75rem
         }
@@ -412,7 +416,7 @@
 <body class="antialiased">
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class=" mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+            <div class="  m-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-1">
                     <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                         <div class=" p-6">
@@ -424,8 +428,11 @@
                                 <div class=" text-gray-600 dark:text-gray-400 text-lg">
                                     SISTEM INFORMASI PELAPORAN
                                 </div>
-                                <div class=" text-gray-600 dark:text-gray-400 text-lg">
+                                <div class=" font-semibold text-gray-600 dark:text-gray-400 text-sedang">
                                     KULIAH KERJA NYATA
+                                </div>
+                                <div class=" text-gray-600 dark:text-gray-400 text-sedang">
+                                    2023
                                 </div>
                             </center>
                             <center>
