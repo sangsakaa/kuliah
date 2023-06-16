@@ -7,7 +7,7 @@
 
   <div class=" w-full py-2 px-2 ">
     <div class=" py-1 mt-2 bg-white">
-      <div class="p-4 sm:p-2 bg-white  border-gray-200">
+      <div class="p-2 sm:p-2 bg-white  border-gray-200">
         <div class=" w-full grid ">
           <div class=" hidden sm:block ">
             <div class="  grid grid-cols-4 sm:grid-cols-4">
@@ -36,16 +36,21 @@
   </div>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class=" grid grid-cols-1 sm:grid-cols-2 px-2">
-      <form action="/sesi-laporan-mahasiswa" method="post" enctype="multipart/form-data">
-        @csrf
-        <input type="date" readonly name="tanggal" class="  py-1" id="" value="{{ $tanggal->toDateString() }}" required>
-        <input type="hidden" name="kelompok_id" value="{{$dataKelompok->kelompok_id}}" class=" py-1 " id="">
-        <button class=" px-2 py-1 bg-blue-700 text-white">Buat Laporan Harian</button>
-      </form>
-      <form action="/sesi-laporan-mahasiswa" method="get" class=" py-1 ">
-        <input type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" class=" border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
-        <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
-          Cari By Tanggal </button>
+      <div class=" p-1">
+        <form action="/sesi-laporan-mahasiswa" method="post" enctype="multipart/form-data">
+          @csrf
+          <input hidden type="date" readonly name="tanggal" class="  py-1" id="" value="{{ $tanggal->toDateString() }}" required>
+          <input type="hidden" name="kelompok_id" value="{{$dataKelompok->kelompok_id}}" class=" py-1 " id="">
+          <button class=" w-full sm:w-1/3 px-2 py-1 bg-blue-700 text-white">Buat Laporan</button>
+        </form>
+      </div>
+      <div class=" sm:justify-end justify-start grid">
+        <form action="/sesi-laporan-mahasiswa" method="get" class=" py-1 ">
+          <input type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" class=" border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
+          <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
+            Cari Tanggal </button>
+        </form>
+      </div>
     </div>
   </div>
   <div class=" py-1 mt-2 bg-white">
