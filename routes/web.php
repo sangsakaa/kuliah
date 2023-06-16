@@ -8,6 +8,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
 use App\Http\Controllers\UserDosenController;
@@ -71,7 +72,8 @@ Route::post('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::c
 Route::get('/sesi-validasi-laporan-mhs', [UserDosenController::class, 'validasiLaporan'])->middleware(['auth'])->name('sesi-validasi-laporan-mhs');
 Route::get('/daftar-validasi-laporan-mhs/{sesi_Laporan_Harian}', [UserDosenController::class, 'DaftaValidasi'])->middleware(['auth'])->name('daftar-validasi-laporan-mhs');
 
-
+// LAPORAN
+Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');
 
 
 

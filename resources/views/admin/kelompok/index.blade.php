@@ -54,8 +54,6 @@
               <div class=" w-full ">
                 <p class=" text-center text-lg font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
                 <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
-
-
                 <p class=" text-center  text-4xl  tracking-widest space-x-2   font-semibold font-sans   ">KULIAH KERJA NYATA</p>
                 <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
               </div>
@@ -63,7 +61,7 @@
             <hr class=" border-b-2 border-b-green-700">
             <hr class=" border-b border-b-green-700">
             <div class=" py-1">
-              <span class=" capitalize text-green-700 font-semibold text-center mt-2 ">daftar kelompok dan pembimbing</span>
+              <span class="  uppercase text-green-700 font-semibold text-center mt-2 ">daftar kelompok dan pembimbing</span>
             </div>
           </div>
           <table class="  w-full sm:w-full">
@@ -79,12 +77,12 @@
             </thead>
             <tbody>
               @foreach($dataKelompok as $team)
-              <tr class=" border">
+              <tr class=" border text-sm">
                 <th class=" px-1 capitalize border">{{$loop->iteration}}</th>
                 <td class=" px-1 capitalize border text-center"><a href="/detail-kelompok-mahasiswa/{{$team->id}}">{{$team->nama_kelompok}}</a></td>
                 <td class=" px-1 capitalize border text-center">{{$team->nidn}}</td>
-                <td class=" px-1 capitalize border">{{$team->nama_dosen}}</td>
-                <td class=" px-1 capitalize border">
+                <td class=" px-1 capitalize border ">{{strtolower($team->nama_dosen)}}</td>
+                <td class=" px-1 capitalize border text-sm">
                   Desa .{{$team->nama_desa}}
                   Kec.{{$team->nama_kecamatan}}
                   Kab.{{$team->nama_kabupaten}}

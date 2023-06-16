@@ -194,6 +194,10 @@
             padding: 1.5rem
         }
 
+        .p-4 {
+            padding: 1.2rem
+        }
+
         .py-4 {
             padding-top: 1rem;
             padding-bottom: 1rem
@@ -446,7 +450,6 @@
                                 </div>
                                 @endif
                             </center>
-
                         </div>
                         <center>
                             <div class=" text-center sm:text-center text-sm text-gray-500  sm:ml-0">
