@@ -61,7 +61,7 @@
             </div>
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>
-          <input disabled class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
+          <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
@@ -73,7 +73,7 @@
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
-          <textarea disabled name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
+          <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1 hidden class="">Unggah Bukti Kegiatan</h1>
           <input hidden type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
