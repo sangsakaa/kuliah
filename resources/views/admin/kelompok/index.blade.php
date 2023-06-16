@@ -54,7 +54,7 @@
               <div class=" w-full ">
                 <p class=" text-center text-lg font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
                 <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
-                <p class=" text-center  text-4xl  tracking-widest space-x-2   font-semibold font-sans   ">KULIAH KERJA NYATA</p>
+                <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
                 <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
               </div>
             </div>
@@ -66,28 +66,28 @@
           </div>
           <table class="  w-full sm:w-full">
             <thead>
-              <tr class=" border">
-                <th class=" border">No</th>
-                <th class=" border">Kelompok</th>
-                <th class=" border">NIDN</th>
-                <th class=" border">Pembimbing</th>
-                <th class=" border">Alamat</th>
-                <th class=" border hidden sm:block">Act</th>
+              <tr class=" border border-black">
+                <th class=" border border-black">No</th>
+                <th class=" border border-black">Kelompok</th>
+                <th class=" border border-black">NIDN</th>
+                <th class=" border border-black">Pembimbing</th>
+                <th class=" border border-black">Alamat</th>
+                <th class=" border  hidden sm:block">Act</th>
               </tr>
             </thead>
             <tbody>
               @foreach($dataKelompok as $team)
-              <tr class=" border text-sm">
-                <th class=" px-1 capitalize border">{{$loop->iteration}}</th>
-                <td class=" px-1 capitalize border text-center"><a href="/detail-kelompok-mahasiswa/{{$team->id}}">{{$team->nama_kelompok}}</a></td>
-                <td class=" px-1 capitalize border text-center">{{$team->nidn}}</td>
-                <td class=" px-1 capitalize border ">{{strtolower($team->nama_dosen)}}</td>
-                <td class=" px-1 capitalize border text-sm">
+              <tr class=" border border-black text-sm">
+                <th class=" px-1 capitalize border border-black">{{$loop->iteration}}</th>
+                <td class=" px-1 capitalize border border-black text-center"><a href="/detail-kelompok-mahasiswa/{{$team->id}}">{{$team->nama_kelompok}}</a></td>
+                <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
+                <td class=" px-1 capitalize border border-black ">{{strtolower($team->nama_dosen)}}</td>
+                <td class=" px-1 capitalize border border-black text-sm">
                   Desa .{{$team->nama_desa}}
                   Kec.{{$team->nama_kecamatan}}
                   Kab.{{$team->nama_kabupaten}}
                 </td>
-                <td class=" px-1 capitalize border border-1 text-center hidden sm:block ">
+                <td class=" px-1 capitalize border  border-1 text-center hidden sm:block ">
                   <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
                     @csrf
                     @method('delete')
