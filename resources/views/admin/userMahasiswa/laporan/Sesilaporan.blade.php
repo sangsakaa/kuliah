@@ -82,6 +82,7 @@
             </tr>
           </thead>
           <tbody>
+            @if($DataSesiLap->count() != null)
             @foreach($DataSesiLap as $list)
             <tr class=" text-xs sm:text-sm">
               <td class="border border-green-700 px-2 py-1 text-center">{{$loop->iteration}}</td>
@@ -116,9 +117,14 @@
                 {{$status->note_laporan}}
                 @endforeach
               </td>
-
             </tr>
+
             @endforeach
+            @else
+            <tr>
+              <td class=" text-red-700 text-center py-1 font-semibold uppercase" colspan="6">tidak ada sesi Laporan</td>
+            </tr>
+            @endif
             <!-- Tambahkan baris lainnya di sini -->
           </tbody>
         </table>
