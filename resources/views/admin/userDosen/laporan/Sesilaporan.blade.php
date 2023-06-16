@@ -96,13 +96,26 @@
           </tbody>
         </table>
       </div>
-
     </div>
-    <div class=" py-1">
-      <div class=" bg-green-200">
-        <p class=" px-2">Note Status :</p>
-        <p class=" px-4">Valid : Sudah Diperikas dan Acc</p>
-        <p class=" px-4">Invalid : Belum mengirim Laporan</p>
+    <div class=" bg-green-700 mt-1  text-white">
+      <p class=" px-2">Note Status :</p>
+      <div class=" grid  sm:flex grid-cols-2 sm:grid-cols-2 ">
+        <div>
+          <p class=" px-4">Valid </p>
+        </div>
+        <div>
+          : Sudah Diperika
+        </div>
+        <div>
+          <p class=" px-4">Invalid </p>
+        </div>
+        <div>
+          : Belum mengirim
+        </div>
+
+
+
+
       </div>
     </div>
   </div>
