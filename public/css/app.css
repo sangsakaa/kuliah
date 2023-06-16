@@ -864,6 +864,9 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-scroll {
+  overflow: scroll;
+}
 .overflow-x-auto {
   overflow-x: auto;
 }
@@ -1146,9 +1149,6 @@ select {
 }
 .font-semibold {
   font-weight: 600;
-}
-.font-extrabold {
-  font-weight: 800;
 }
 .font-black {
   font-weight: 900;

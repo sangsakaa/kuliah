@@ -129,6 +129,9 @@
                     <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
                         {{ __('Detail Mahasiswa') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
+                        {{ __('Rekap Laporan Harian') }}
+                    </x-nav-link>
 
                 </div>
             </div>

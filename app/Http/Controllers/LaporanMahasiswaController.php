@@ -14,7 +14,6 @@ class LaporanMahasiswaController extends Controller
     public function LaporanDataMahasiswa()
 
     {
-
         $dataMahasiswa = Mahasiswa::first();
         $nim = substr($dataMahasiswa->nim, 0, 4);
         $data = Mahasiswa::select('prodi', 'periode_masuk', DB::raw('count(*) as total'))

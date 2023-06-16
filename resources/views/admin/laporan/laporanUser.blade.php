@@ -16,40 +16,45 @@
       </div>
     </div>
     <div class="p-4 mt-2 bg-white  border-gray-200">
-      <div>
-
-        <table class=" w-full">
+      <div class=" overflow-auto">
+        <table class="w-full">
           <thead>
             <tr>
-              <th class=" border px-1">No</th>
-              <th class=" border px-1">Pembimbing</th>
-              <th class=" border px-1">Kelompok</th>
-              <th class=" border px-1">Alamat</th>
-              <th class=" border px-1">Detail Anggota</th>
+              <th class="border border-black px-1">No</th>
+              <th class="border border-black px-1">Pembimbing</th>
+              <th class="border border-black px-1">Kelompok</th>
+              <th class="border border-black px-1">Alamat</th>
+              <th class="border border-black px-1">Prodi</th>
+              <th class="border border-black px-1">Detail Anggota</th>
             </tr>
           </thead>
           <tbody>
             @foreach($LapMhs as $list)
             <tr>
-              <td class=" border px-1 text-center">{{$loop->iteration}}</td>
-              <td class=" border px-1">{{$list->nama_dosen}}</td>
-              <td class=" border px-1 text-center">{{$list->nama_kelompok}}</td>
-              <td class=" border px-1 capitalize">
-                Desa.{{$list->nama_desa}} -
-                Kec.{{$list->nama_kecamatan}} -
-                Kab.{{$list->nama_kabupaten}}
+              <td class="border border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$loop->iteration}}</td>
+              <td class="border border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{strtolower($list->nama_dosen)}}</td>
+              <td class="border border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$list->nama_kelompok}}</td>
+              <td class="border border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">
+                Desa.{{$list->nama_desa}} - Kec.{{$list->nama_kecamatan}} - Kab.{{$list->nama_kabupaten}}
               </td>
-              <td class=" border px-1 capitalize text-sm">
-                @foreach($list->JmlMahasiswa as $item)
-                {{$loop->iteration}}.
-                @foreach($item->DetailMahasiswa as $detail)
-                {{strtolower($detail->nama_mhs)}} - {{$detail->prodi}} <br>
-                @endforeach
-                @endforeach
+            </tr>
+            @foreach($list->JmlMahasiswa as $item)
+            @foreach($item->DetailMahasiswa as $index=>$detail)
+            <tr>
+              @if($index === 0)
+              <td class="border border-black text-center" rowspan="{{count($item->DetailMahasiswa)}}">
+                {{$detail->prodi}} <br>
+              </td>
+              @endif
+              <td class="border border-black capitalize px-1">
+                {{strtolower($detail->nama_mhs)}} <br>
               </td>
             </tr>
             @endforeach
+            @endforeach
+            @endforeach
           </tbody>
+        </table>
 
       </div>
     </div>
