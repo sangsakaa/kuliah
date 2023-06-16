@@ -97,7 +97,7 @@
         </table>
       </div>
     </div>
-    <div class=" bg-green-700 mt-1  text-white">
+    <div class=" bg-white  mt-1  ">
       <p class=" px-2">Note Status :</p>
       <div class=" grid  sm:flex grid-cols-2 sm:grid-cols-2 ">
         <div>
@@ -112,10 +112,6 @@
         <div>
           : Belum mengirim
         </div>
-
-
-
-
       </div>
     </div>
   </div>
