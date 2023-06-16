@@ -13,6 +13,7 @@
               <th class="border border-black" rowspan="2">No</th>
               <th class="border border-black" rowspan="2">Tanggal</th>
               <th class="border border-black" colspan="2"> Jumlah Status</th>
+              <th class="border border-black" rowspan="2"> Total</th>
             </tr>
             <tr>
               <th class="border border-black w-1/5"> Valid</th>
@@ -37,6 +38,7 @@
               </td>
               <td class="border border-black text-center">{{ $jumlahValid }}</td>
               <td class="border border-black text-center">{{ $jumlahMenunggu }}</td>
+              <td class="border border-black text-center">{{ $jumlahMenunggu + $jumlahMenunggu}}</td>
             </tr>
             @endforeach
           </tbody>
