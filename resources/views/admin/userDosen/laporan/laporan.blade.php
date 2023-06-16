@@ -57,25 +57,25 @@
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi Laporan</span>
-              <input class="w-full" type="text" name="note_laporan" value="{{$item->note_laporan}}">
+              <input class="w-full" type="text" placeholder=" Contoh : banyak yang typo" name="note_laporan" value="{{$item->note_laporan}}">
             </div>
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>
-          <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
+          <input disabled class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
-          <label for="" class="capitalize">Deskripsi Laporan Harian (min : 1000) <span> jumlah : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
-          @if(strlen($item->deskripsi_laporan)>1000)
-          <span class=" text-green-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
+          <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000) <span> jumlah : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
+          @if(strlen($item->deskripsi_laporan)>499)
+          <span class=" text-green-700 uppercase font-semibold text-sm">sudah Sesuai</span>
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
-          <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
-          <h1>Unggah Bukti Kegiatan</h1>
-          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
+          <textarea disabled name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
+          <h1 hidden class="">Unggah Bukti Kegiatan</h1>
+          <input hidden type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-validasi-laporan-mhs">Kembali</a>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>

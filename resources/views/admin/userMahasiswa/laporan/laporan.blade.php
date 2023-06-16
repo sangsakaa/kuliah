@@ -63,14 +63,13 @@
           @endif
           <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
 
-          @if(strlen($item->deskripsi_laporan)>500)
+          @if(strlen($item->deskripsi_laporan)>499)
           <span class=" text-green-700 uppercase font-semibold text-sm"> Sudah Sesuai</span>
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
           <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1>Unggah Bukti Kegiatan</h1>
-
           <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
           @if($item->status_laporan === "valid")
           <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>

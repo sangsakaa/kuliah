@@ -102,7 +102,7 @@
       <div class=" bg-blue-200">
         <p class=" px-2">Note Status :</p>
         <p class=" px-4">Valid : Sudah Diperikas dan Acc</p>
-        <p class=" px-4">Inalid : Belum mengirim Laporan</p>
+        <p class=" px-4">Invalid : Belum mengirim Laporan</p>
       </div>
 
     </div>
