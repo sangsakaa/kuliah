@@ -61,12 +61,12 @@
           @else
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
-          <label for="" class="capitalize">Deskripsi Laporan Harian (min : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
+          <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
 
-          @if(strlen($item->deskripsi_laporan)>1000)
-          <span class=" text-green-700 uppercase font-semibold text-sm">Tidak Sesui</span>
+          @if(strlen($item->deskripsi_laporan)>500)
+          <span class=" text-green-700 uppercase font-semibold text-sm"> Sudah Sesuai</span>
           @else
-          <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesui</span>
+          <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
           <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1>Unggah Bukti Kegiatan</h1>

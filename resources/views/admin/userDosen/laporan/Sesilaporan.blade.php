@@ -6,11 +6,16 @@
   </x-slot>
   <div class=" p-2">
     <div class=" p-4   bg-white w-full py-2 px-2 ">
-      <div class=" p-4 grid grid-cols-2 sm:grid-cols-4">
+      <div class=" p-1 sm:p-4 grid grid-cols-2 sm:grid-cols-4">
         <div class=" capitalize">NIDN</div>
         <div class=" capitalize"> : {{$dataDosen->nidn}}</div>
-        <div class=" capitalize">nama Pembimbing</div>
-        <div class=" capitalize"> : {{strtolower($dataDosen->nama_dosen)}}</div>
+        <div class=" capitalize">Pembimbing</div>
+        <div class=" capitalize"> :
+          {{ strtolower(substr($dataDosen->nama_dosen, 0, 20)) }}{{ strtolower(strlen($dataDosen->nama_dosen) > 15 ? '...' : '') }}
+
+
+
+        </div>
         <div class=" capitalize">Kelompok</div>
         <div class=" capitalize"> : {{$dataDosen->nama_kelompok}}</div>
 
@@ -85,17 +90,21 @@
                 @if(count($data->laporanMahasiswa) === 0)
                 <span class="text-red-700">Invalid</span>
                 @endif
-
               </td>
-
-
             </tr>
             @endforeach
           </tbody>
         </table>
-
-
       </div>
+
+    </div>
+    <div class=" py-1">
+      <div class=" bg-blue-200">
+        <p class=" px-2">Note Status :</p>
+        <p class=" px-4">Valid : Sudah Diperikas dan Acc</p>
+        <p class=" px-4">Inalid : Belum mengirim Laporan</p>
+      </div>
+
     </div>
   </div>
 </x-app-layout>
