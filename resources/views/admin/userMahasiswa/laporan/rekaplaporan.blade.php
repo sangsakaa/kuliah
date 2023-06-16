@@ -38,6 +38,7 @@
               </td>
               <td class="border border-black text-center">{{ $jumlahValid }}</td>
               <td class="border border-black text-center">{{ $jumlahMenunggu }}</td>
+              <td class="border border-black text-center">{{ $jumlahMenunggu + $jumlahValid }}</td>
 
             </tr>
             @endforeach
