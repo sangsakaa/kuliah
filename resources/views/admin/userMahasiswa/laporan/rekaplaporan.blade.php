@@ -9,13 +9,13 @@
       <div class=" p-2 overflow-auto">
         <table class="w-full">
           <thead>
-            <tr>
+            <tr class=" border ">
               <th class="border border-black" rowspan="2">No</th>
               <th class="border border-black" rowspan="2">Tanggal</th>
               <th class="border border-black" colspan="2"> Jumlah Status</th>
               <th class="border border-black" rowspan="2"> Total</th>
             </tr>
-            <tr>
+            <tr class=" border ">
               <th class="border border-black w-1/5"> Valid</th>
               <th class="border border-black  w-1/5"> Menunggu</th>
             </tr>
@@ -38,7 +38,7 @@
               </td>
               <td class="border border-black text-center">{{ $jumlahValid }}</td>
               <td class="border border-black text-center">{{ $jumlahMenunggu }}</td>
-              <td class="border border-black text-center">{{ $jumlahMenunggu + $jumlahMenunggu}}</td>
+
             </tr>
             @endforeach
           </tbody>
