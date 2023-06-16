@@ -99,12 +99,11 @@
 
     </div>
     <div class=" py-1">
-      <div class=" bg-blue-200">
+      <div class=" bg-green-200">
         <p class=" px-2">Note Status :</p>
         <p class=" px-4">Valid : Sudah Diperikas dan Acc</p>
         <p class=" px-4">Invalid : Belum mengirim Laporan</p>
       </div>
-
     </div>
   </div>
 </x-app-layout>
