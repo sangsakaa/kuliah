@@ -619,6 +619,9 @@ select {
 .z-50 {
   z-index: 50;
 }
+.m-4 {
+  margin: 1rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -1484,10 +1487,6 @@ select {
     margin-bottom: -1px;
   }
 
-  .sm\:mt-4 {
-    margin-top: 1rem;
-  }
-
   .sm\:ml-10 {
     margin-left: 2.5rem;
   }
@@ -1577,12 +1576,12 @@ select {
     padding-right: 1.5rem;
   }
 
-  .sm\:pt-0 {
-    padding-top: 0px;
-  }
-
   .sm\:pt-4 {
     padding-top: 1rem;
+  }
+
+  .sm\:pt-0 {
+    padding-top: 0px;
   }
 
   .sm\:text-left {

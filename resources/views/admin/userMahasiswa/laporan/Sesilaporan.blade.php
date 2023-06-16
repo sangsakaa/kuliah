@@ -72,6 +72,7 @@
             <th class="border border-green-700 px-2 py-1">Jam </th>
             <th class="border border-green-700 px-2 py-1">Laporan</th>
             <th class="border border-green-700 px-2 py-1">Status</th>
+            <th class="border border-green-700 px-2 py-1">Catatan Pembimbing</th>
           </tr>
         </thead>
         <tbody>
@@ -103,6 +104,11 @@
               @if(count($list->laporanMahasiswa) === 0)
               <span class="text-black">Belum Laporan</span>
               @endif
+            </td>
+            <td class=" border border-green-700 px-2 py-1">
+              @foreach($list->laporanMahasiswa as $status)
+              {{$status->note_laporan}}
+              @endforeach
             </td>
 
           </tr>

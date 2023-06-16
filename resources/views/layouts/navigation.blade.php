@@ -27,7 +27,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('kelompok-mahasiswa')" :active="request()->routeIs('kelompok-mahasiswa')">
+                    <x-nav-link :href="route('laporan-harian-mahasiswa')" :active="request()->routeIs('laporan-harian-mahasiswa')">
                         {{ __('Laporan') }}
                     </x-nav-link>
                 </div>
