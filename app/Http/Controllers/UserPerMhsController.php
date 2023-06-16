@@ -89,7 +89,7 @@ class UserPerMhsController extends Controller
         $sesiLap->anggota_kelompok_id = $UserPermhs;
         $sesiLap->tanggal = $request->tanggal;
         $sesiLap->save();
-        return redirect()->back()->with('error', 'sesi laporan berhasi di buat');
+        return redirect()->back()->with('error', 'sesi laporan berhasil di buat');
     }
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
