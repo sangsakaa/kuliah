@@ -6,14 +6,17 @@
   </x-slot>
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-      <div class=" p-2">
+      <div class=" p-2 overflow-auto">
         <table class="w-full">
           <thead>
             <tr>
-              <th class="border border-black">No</th>
-              <th class="border border-black">Tanggal</th>
-              <th class="border border-black">Jumlah Valid</th>
-              <th class="border border-black">Jumlah Menunggu</th>
+              <th class="border border-black" rowspan="2">No</th>
+              <th class="border border-black" rowspan="2">Tanggal</th>
+              <th class="border border-black" colspan="2"> Jumlah Status</th>
+            </tr>
+            <tr>
+              <th class="border border-black w-1/5"> Valid</th>
+              <th class="border border-black  w-1/5"> Menunggu</th>
             </tr>
           </thead>
           <tbody>
