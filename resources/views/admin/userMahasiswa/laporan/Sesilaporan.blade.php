@@ -35,22 +35,18 @@
     </div>
   </div>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-
-    <head>
-      <title>Unggah Gambar dengan Kamera</title>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    </head>
-    <div class=" p-4 w-full">
+    <div class=" grid grid-cols-1 sm:grid-cols-2 px-2">
       <form action="/sesi-laporan-mahasiswa" method="post" enctype="multipart/form-data">
         @csrf
-        <div class=" grid grid-cols-1 sm:grid-cols-4 gap-2">
-          <input type="date" name="tanggal" class=" w-full py-1" id="" required>
-          <input type="hidden" name="kelompok_id" value="{{$dataKelompok->kelompok_id}}" class=" w-full py-1" id="">
-          <button class=" px-2 py-1 bg-blue-700 text-white">Buat Laporan Harian</button>
-        </div>
+        <input type="date" readonly name="tanggal" class="  py-1" id="" value="{{ $tanggal->toDateString() }}" required>
+        <input type="hidden" name="kelompok_id" value="{{$dataKelompok->kelompok_id}}" class=" py-1 " id="">
+        <button class=" px-2 py-1 bg-blue-700 text-white">Buat Laporan Harian</button>
       </form>
+      <form action="/sesi-laporan-mahasiswa" method="get" class=" py-1 ">
+        <input type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" class=" border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
+        <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
+          Cari By Tanggal </button>
     </div>
-  </div>
   </div>
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
@@ -62,62 +58,67 @@
         @endif
 
       </div>
+      <div>
+        <div class=" ">
+          <div class=" grid grid-cols-1 sm:grid-cols-1">
 
-      <table class="w-full border border-green-700">
-        <thead>
-          <tr>
-            <th class="border border-green-700 px-2 py-1 w-5 sm:w-3">No</th>
+          </div>
+        </div>
+        <table class="w-full border border-green-700">
+          <thead>
+            <tr>
+              <th class="border border-green-700 px-2 py-1 w-5 sm:w-3">No</th>
 
-            <th class="border border-green-700 px-2 py-1">Tanggal</th>
-            <th class="border border-green-700 px-2 py-1">Jam </th>
-            <th class="border border-green-700 px-2 py-1">Laporan</th>
-            <th class="border border-green-700 px-2 py-1">Status</th>
-            <th class="border border-green-700 px-2 py-1">Catatan Pembimbing</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($DataSesiLap as $list)
-          <tr class=" text-xs sm:text-sm">
-            <td class="border border-green-700 px-2 py-1 text-center">{{$loop->iteration}}</td>
-            <td class="border border-green-700 px-2 py-1 text-center">
-              {{ \Carbon\Carbon::parse($list->tanggal)->isoFormat('dddd , DD MMMM Y') }}
-            </td>
-            <td class="border border-green-700 px-2 py-1 text-center">
-              {{ \Carbon\Carbon::parse($list->created_at)->isoFormat('H:m') }}
-            </td>
-            <td class="border border-green-700 px-2 py-1 text-center">
-              <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>
-            </td>
-            <td class="border border-green-700 px-2 py-1 text-center capitalize">
-              @foreach($list->laporanMahasiswa as $status)
-              @if($status->status_laporan === 'menunggu')
-              <span class="text-red-700 font-semibold">{{$status->status_laporan}}</span>
-              @elseif($status->status_laporan === 'valid')
-              <span class="text-green-700 font-semibold">{{$status->status_laporan}}</span>
-              @elseif($status->status_laporan === null)
-              <span class="text-black">Belum melakukan laporan</span>
-              @else
-              {{$status->status_laporan}}
-              @endif
-              @endforeach
+              <th class="border border-green-700 px-2 py-1">Tanggal</th>
+              <th class="border border-green-700 px-2 py-1">Jam </th>
+              <th class="border border-green-700 px-2 py-1">Laporan</th>
+              <th class="border border-green-700 px-2 py-1">Status</th>
+              <th class="border border-green-700 px-2 py-1">Catatan Pembimbing</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($DataSesiLap as $list)
+            <tr class=" text-xs sm:text-sm">
+              <td class="border border-green-700 px-2 py-1 text-center">{{$loop->iteration}}</td>
+              <td class="border border-green-700 px-2 py-1 text-center">
+                {{ \Carbon\Carbon::parse($list->tanggal)->isoFormat('dddd , DD MMMM Y') }}
+              </td>
+              <td class="border border-green-700 px-2 py-1 text-center">
+                {{ \Carbon\Carbon::parse($list->created_at)->isoFormat('H:m') }}
+              </td>
+              <td class="border border-green-700 px-2 py-1 text-center">
+                <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>
+              </td>
+              <td class="border border-green-700 px-2 py-1 text-center capitalize">
+                @foreach($list->laporanMahasiswa as $status)
+                @if($status->status_laporan === 'menunggu')
+                <span class="text-red-700 font-semibold">{{$status->status_laporan}}</span>
+                @elseif($status->status_laporan === 'valid')
+                <span class="text-green-700 font-semibold">{{$status->status_laporan}}</span>
+                @elseif($status->status_laporan === null)
+                <span class="text-black">Belum melakukan laporan</span>
+                @else
+                {{$status->status_laporan}}
+                @endif
+                @endforeach
 
-              @if(count($list->laporanMahasiswa) === 0)
-              <span class="text-black">Belum Laporan</span>
-              @endif
-            </td>
-            <td class=" border border-green-700 px-2 py-1">
-              @foreach($list->laporanMahasiswa as $status)
-              {{$status->note_laporan}}
-              @endforeach
-            </td>
+                @if(count($list->laporanMahasiswa) === 0)
+                <span class="text-black">Belum Laporan</span>
+                @endif
+              </td>
+              <td class=" border border-green-700 px-2 py-1">
+                @foreach($list->laporanMahasiswa as $status)
+                {{$status->note_laporan}}
+                @endforeach
+              </td>
 
-          </tr>
-          @endforeach
-          <!-- Tambahkan baris lainnya di sini -->
-        </tbody>
-      </table>
+            </tr>
+            @endforeach
+            <!-- Tambahkan baris lainnya di sini -->
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
 
 
 

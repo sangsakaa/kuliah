@@ -10,14 +10,14 @@
         <table class="w-full">
           <thead>
             <tr class=" border ">
-              <th class="border border-black" rowspan="2">No</th>
-              <th class="border border-black" rowspan="2">Tanggal</th>
-              <th class="border border-black" colspan="2"> Jumlah Status</th>
-              <th class="border border-black" rowspan="2"> Total</th>
+              <th class=" px-1 border border-black" rowspan="2">No</th>
+              <th class=" px-1 border border-black" rowspan="2">Tanggal</th>
+              <th class=" px-1 border border-black" colspan="2"> Jumlah Status</th>
+              <th class=" px-1 border border-black" rowspan="2"> Total</th>
             </tr>
             <tr class=" border ">
-              <th class="border border-black w-1/5"> Valid</th>
-              <th class="border border-black  w-1/5"> Menunggu</th>
+              <th class=" px-1 border border-black w-1/5"> Valid</th>
+              <th class=" px-1 border border-black  w-1/5"> Menunggu</th>
             </tr>
           </thead>
           <tbody>

@@ -12,6 +12,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Sesi_Laporan_Harian;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Exceptions\InvalidFormatException;
 
 class UserPerMhsController extends Controller
 {
@@ -30,9 +31,14 @@ class UserPerMhsController extends Controller
         ->first();
         return view('admin.userMahasiswa.user', compact('UserPermhs', 'data'));
     }
-    public function sesiLap()
+    public function sesiLap(Request $request)
     {
-        
+
+        try {
+            $tgl = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tgl = now();
+        }
         $UserPermhs = Auth::user()->mahasiswa_id;
         $dataKelompok = Kelompok::query()
             ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
@@ -48,16 +54,33 @@ class UserPerMhsController extends Controller
             ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->select('anggota_kelompok.mahasiswa_id', 'kelompok.dosen_id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nim', 'nama_mhs')
             ->where('mahasiswa.id', $UserPermhs)
+            
             ->first();
         // dd($data);
         $DataSesiLap = Sesi_Laporan_Harian::query()    
             ->orderby('tanggal')
+        ->select(
+            [
+                'sesi_laporan_harian.id',
+                'sesi_laporan_harian.tanggal',
+                'sesi_laporan_harian.created_at'
+            ]
+        )
+        ->where('sesi_laporan_harian.tanggal', $tgl->toDateString())
+        ->where('anggota_kelompok_id', $data->mahasiswa_id);
 
-            ->where('anggota_kelompok_id', $data->mahasiswa_id)
-            ->get();
+        if (request('tanggal')) {
+            $DataSesiLap->where('tanggal', 'like', '%' . request('tanggal') . '%');
+        }
         // dd($DataSesiLap);
 
-        return view('admin.userMahasiswa.laporan.Sesilaporan', compact('UserPermhs', 'data', 'dataKelompok', 'DataSesiLap'));
+        return view('admin.userMahasiswa.laporan.Sesilaporan', ([
+            'UserPermhs' => $UserPermhs,
+            'data' => $data,
+            'dataKelompok' => $dataKelompok,
+            'DataSesiLap' => $DataSesiLap->get(),
+            'tanggal' => $tgl
+        ]));
     }
     public function createSesiLap(Request $request)
     {

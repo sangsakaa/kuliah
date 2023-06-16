@@ -91,6 +91,9 @@
                 <a href="/sesi-laporan-mahasiswa">
                     <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan Harian</div>
                 </a>
+                <a href="/rekap-laporan-mahasiswa">
+                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan Harian</div>
+                </a>
             </div>
             @endrole
             @role('dosen')
@@ -100,7 +103,6 @@
                         <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Laporan Harian Mahasiswa</div>
                     </a>
                 </div>
-
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
             </div>
             @endrole
