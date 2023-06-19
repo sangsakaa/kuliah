@@ -29,7 +29,7 @@
             </tr>
             <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm">
               @foreach ($periodeBulan as $hari)
-              <th class="border border-green-800 {{ $hari->isThursday() ? " border-green-800 bg-green-200 text-black "
+              <th class="border border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-200 text-black "
                                     : "" }}">{{ $hari->day }}</th>
               @endforeach
             </tr>
@@ -39,7 +39,7 @@
             <tr class=" border border-green-800 text-xs sm:text-sm even:bg-green-100 hover:bg-gray-200">
               <th class="border border-green-800 text-center ">Kelompok {{ $rekapSesi['kelompok']->nama_kelompok }}</th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
-              <td class="border border-green-800 {{ $sesi['hari']->isThursday() ? " bg-green-800 text-white" : "" }}">
+              <td class="border border-green-800 {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
 
                 <div class="grid justify-items-center">
                   @if (!$sesi['data'])
