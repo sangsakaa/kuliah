@@ -55,7 +55,8 @@
             </div>
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>
-          <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ $item->lokasi_praktik ?? '' }}">
+          <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ old('lokasi_praktik', $item->lokasi_praktik ?? '') }}">
+
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
@@ -68,9 +69,14 @@
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
-          <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
-          <h1>Unggah Bukti Kegiatan</h1>
+          <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required>{{ old('deskripsi_laporan', $item->deskripsi_laporan ?? '') }}</textarea>
+          <h1>Unggah Bukti Kegiatan <span class=" font-semibold`">( Max : 1 MB)</span></h1>
           <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
+          @error('bukti_laporan')
+          <p class="text-red-800 font-semibold text-xs italic mt-4">
+            {{ $message }}
+          </p>
+          @enderror
           @if($item->status_laporan === "valid")
           <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @elseif($item->status_laporan === "menunggu")

@@ -80,8 +80,8 @@
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center capitalize">
                 @foreach($data->laporanMahasiswa as $status)
-
                 <a href="{{asset('storage/' .$status->bukti_laporan) }}" target="_blank" class="text-blue-500 hover:text-blue-800">Lihat</a>
+
                 @endforeach
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center capitalize">
