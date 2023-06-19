@@ -36,6 +36,7 @@
               <th class="border border-green-700 px-2 py-1 text-center">Jam</th>
               <th class="border border-green-700 px-2 py-1 text-center">KEL</th>
               <th class="border border-green-700 px-2 py-1 text-center">LAP</th>
+              <th class="border border-green-700 px-2 py-1 text-center">File</th>
               <th class="border border-green-700 px-2 py-1 text-center">Status</th>
             </tr>
           </thead>
@@ -79,6 +80,12 @@
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center capitalize">
                 @foreach($data->laporanMahasiswa as $status)
+
+                <a href="{{asset('storage/' .$status->bukti_laporan) }}" target="_blank" class="text-blue-500 hover:text-blue-800">Lihat</a>
+                @endforeach
+              </td>
+              <td class=" border border-green-700 px-2 py-1 text-center capitalize">
+                @foreach($data->laporanMahasiswa as $status)
                 @if($status->status_laporan === 'menunggu')
                 <span class="text-red-700 font-semibold">{{$status->status_laporan}}</span>
                 @elseif($status->status_laporan === 'valid')
@@ -93,7 +100,8 @@
                 @if(count($data->laporanMahasiswa) === 0)
                 <span class="text-red-700">Invalid</span>
                 @endif
-              </td>
+
+
             </tr>
 
             @endforeach

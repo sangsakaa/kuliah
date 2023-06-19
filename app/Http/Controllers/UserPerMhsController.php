@@ -122,6 +122,10 @@ class UserPerMhsController extends Controller
     public function BuatLap(Request $request, Sesi_Laporan_Harian $sesi_Laporan_Harian)
 
     {
+        $request->validate([
+
+            'bukti_laporan' => 'required|max:1048',
+        ]);
         $sesi_Laporan_Harian = (int) $request->sesi_laporan_harian_id;
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
@@ -177,8 +181,12 @@ class UserPerMhsController extends Controller
 
 
         return view('admin.userMahasiswa.laporan.rekaplaporan', compact('rekapLapHarian'));
+    }
+    public function unduhFile($id)
+    {
+        $Foto = Laporan_Mahasiswa::findOrFail($id);
+        $filePath = public_path('public/bukti_laporan' . $Foto->bukti_laporan);
 
-        
-        
+        return response()->download($filePath, $Foto->bukti_laporan);
     }
 }

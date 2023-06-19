@@ -112,7 +112,7 @@ class UserDosenController extends Controller
             ->select(
                 [
                     'kelompok.nama_kelompok',
-                    'nama_mhs',
+                'mahasiswa_id',
                     'anggota_kelompok.kelompok_id',
                     'mahasiswa.nama_mhs',
                     'laporan_mahasiswa.created_at',
@@ -140,11 +140,11 @@ class UserDosenController extends Controller
                 ];
             });
         // dd($dataRekapSesi);
-        return view('admin.userDosen.laporan.rekapSesi', ([
-            'bulan' => $bulan,
-            'periodeBulan' => $periodeBulan,
-            'dataRekapSesi' => $dataRekapSesi
 
+        return view(
+            'admin.userDosen.laporan.rekapSesi',
+            ([
+                'bulan' => $bulan, 'periodeBulan' => $periodeBulan, 'dataRekapSesi' => $dataRekapSesi,
         ]
         ));
     }

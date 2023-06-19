@@ -69,6 +69,7 @@ Route::post('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::c
 
 
 Route::get('/rekap-laporan-mahasiswa', [UserPerMhsController::class, 'RekapLapHarian'])->middleware(['auth'])->name('rekap-laporan-mahasiswa');
+Route::get('/unduh-file/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'unduhFile'])->middleware(['auth'])->name('/unduh-file');
 
 
 
