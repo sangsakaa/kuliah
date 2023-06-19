@@ -107,7 +107,7 @@
             @endforeach
             @else
             <tr>
-              <td class=" py-1 border-black text-center text-red-700 uppercase border" colspan="8">
+              <td class=" py-1 border-black text-center text-red-700 uppercase border" colspan="9">
                 Belum ada Laporan
               </td>
             </tr>
