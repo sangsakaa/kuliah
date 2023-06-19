@@ -17,12 +17,12 @@
     </div>
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-2">
-        {{$dataRekapSesi}} <br> <br>
+
         <hr class=" border border-b-2">
         <table class="table-fixed w-full border border-green-800">
           <thead>
             <tr class="border bg-green-200  text-black text-xs sm:text-sm">
-              <th class="border border-green-800 px-1  w-1/2" rowspan="2">Kelas</th>
+              <th class="border border-green-800 px-1 w-24 " rowspan="2">Kelompok</th>
               <th class="border border-green-800 px-1  uppercase  text-black " colspan="{{ $periodeBulan->count() }}">
                 {{$bulan->isoFormat('MMMM YYYY')}}
               </th>
@@ -37,13 +37,13 @@
           <tbody class=" text-sm border border-green-800">
             @foreach ($dataRekapSesi as $rekapSesi)
             <tr class=" border border-green-800 text-xs sm:text-sm even:bg-green-100 hover:bg-gray-200">
-              <th class="border border-green-800 text-center ">{{ $rekapSesi['kelompok'] }}</th>
+              <th class="border border-green-800 text-center ">Kelompok {{ $rekapSesi['kelompok']->nama_kelompok }}</th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
               <td class="border border-green-800 {{ $sesi['hari']->isThursday() ? " bg-green-800 text-white" : "" }}">
 
                 <div class="grid justify-items-center">
                   @if (!$sesi['data'])
-                  @elseif ($sesi['data'])
+                  @elseif ($sesi['data']->nama_kelompok)
                   x
                   @else
                   x
