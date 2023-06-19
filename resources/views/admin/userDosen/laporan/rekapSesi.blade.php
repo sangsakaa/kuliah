@@ -29,7 +29,7 @@
             </tr>
             <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm">
               @foreach ($periodeBulan as $hari)
-              <th class="border border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-200 text-black "
+              <th class="border border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
                                     : "" }}">{{ $hari->day }}</th>
               @endforeach
             </tr>
