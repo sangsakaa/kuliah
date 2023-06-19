@@ -46,6 +46,7 @@
         <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" method="post" enctype="multipart/form-data">
           @csrf
           <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
+          @if($dataMhs->count()!= null)
           @foreach($dataMhs as $item)
           <div class=" grid grid-cols-2 gap-2">
             <div class=" grid-cols-1 grid">
@@ -81,6 +82,9 @@
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
 
           @endforeach
+          @else
+          <div class=" text-center uppercase text-red-700">Belum Mengirim Laporan</div>
+          @endif
         </form>
       </div>
     </div>

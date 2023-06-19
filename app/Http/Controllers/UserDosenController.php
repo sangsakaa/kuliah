@@ -4,18 +4,27 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Dosen;
+use App\Models\Kelompok;
 use App\Models\Mahasiswa;
+use Illuminate\Support\Carbon;
 use App\Models\Anggota_Kelompok;
-use App\Models\Laporan_Mahasiswa;
 use App\Models\Sesi_Laporan_Harian;
 use App\Http\Controllers\Controller;
-use App\Models\Kelompok;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+use Carbon\Exceptions\InvalidFormatException;
 
 class UserDosenController extends Controller
 {
-    public function validasiLaporan()
+    public function validasiLaporan(Request $request)
     {
+
+        try {
+            $tanggal = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tanggal = now();
+        }
         $UserPerDosen = Auth::user()->dosen_id;
         $dataDosen = Dosen::query()
             ->join('kelompok', 'kelompok.dosen_id', '=', 'dosen.id')
@@ -25,11 +34,21 @@ class UserDosenController extends Controller
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
             ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
-            ->select('sesi_laporan_harian.id', 'nama_kelompok', 'kelompok_id', 'sesi_laporan_harian.anggota_kelompok_id', 'laporan_mahasiswa.created_at')
+            ->select('sesi_laporan_harian.id', 'nama_kelompok', 'kelompok_id', 'sesi_laporan_harian.anggota_kelompok_id', 'laporan_mahasiswa.created_at', 'tanggal')
             ->where('kelompok.id', $dataDosen->id)
-            ->orderby('tanggal')->get();
+            ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
+            ->orderby('tanggal');
+        if (request('tanggal')) {
+            $dataLaporan->where('tanggal', 'like', '%' . request('tanggal') . '%');
+        }
         // dd($dataLaporan);
-        return view('admin.userDosen.laporan.Sesilaporan', compact('UserPerDosen', 'dataDosen', 'dataLaporan'));
+        return view('admin.userDosen.laporan.Sesilaporan', ([
+            'UserPerDosen' => $UserPerDosen,
+            'dataDosen' => $dataDosen,
+            'dataLaporan' => $dataLaporan->get(),
+            'tanggal' => $tanggal
+        ]
+        ));
     }
     public function DaftaValidasi(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
@@ -56,4 +75,79 @@ class UserDosenController extends Controller
 
         return view('admin.userDosen.laporan.laporan', compact('dataMhs',  'sesi_Laporan_Harian', 'UserPerDosen', 'data'));
     }
+    public function dataAnggota()
+    {
+        $UserPerDosen = Auth::user()->dosen_id;
+        $dataDosen = Kelompok::query()
+            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->leftjoin('desa', 'desa.id', '=', 'kelompok.desa_id')
+            ->leftjoin('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+            ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+            ->where('dosen_id', $UserPerDosen)
+            ->first();
+        $dataAnggota = Kelompok::query()
+            ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', 'kelompok.id')
+            ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
+            ->where('dosen_id', $UserPerDosen)
+            ->get();
+
+        return view('admin.userDosen.laporan.Anggota', compact('dataDosen', 'dataAnggota'));
+    }
+
+    public function timeLine(Request $request)
+    {
+        $bulan = $request->bulan ? Carbon::parse($request->bulan) : now();
+        $periodeBulan = $bulan->startOfMonth()->daysUntil($bulan->copy()->endOfMonth());
+        $UserPerDosen = Auth::user()->dosen_id;
+        $dataKelompok = Kelompok::query()
+            ->select('kelompok.*')
+            ->where('kelompok.dosen_id', $UserPerDosen)
+            ->get();
+        // dd($dataKelompok);
+        $dataSesi  = Sesi_Laporan_Harian::query()
+            ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->select(
+                [
+                    'kelompok.nama_kelompok',
+                    'nama_mhs',
+                    'anggota_kelompok.kelompok_id',
+                    'mahasiswa.nama_mhs',
+                    'laporan_mahasiswa.created_at',
+                    'sesi_laporan_harian.anggota_kelompok_id',`
+                    'sesi_laporan_harian.tanggal'
+                ]
+            )
+            ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
+            ->get()
+            ->groupBy('kelompok_id', 'kelompok.nama_kelompok', 'tanggal');
+        // dd($dataSesi);
+        $dataRekapSesi = $dataKelompok
+            ->keyBy('id')
+            ->map(function ($kelompok, $kelompok_id) use ($dataSesi, $periodeBulan) {
+                // dd($dataSesi); 
+                foreach ($periodeBulan as $hari) {
+                    $sesiPerbulan[] = [
+                        'hari' => $hari,
+                        'data' => $dataSesi->count() ? $dataSesi[$kelompok_id]->firstWhere('tanggal', $hari->toDateString()) : null
+                    ];
+                }
+                return [
+                    'sesiPerBulan' => $sesiPerbulan,
+                    'kelompok' => $kelompok
+                ];
+            });
+        // dd($dataRekapSesi);
+        return view('admin.userDosen.laporan.rekapSesi', ([
+            'bulan' => $bulan,
+            'periodeBulan' => $periodeBulan,
+            'dataRekapSesi' => $dataRekapSesi
+
+        ]
+        ));
+    }
+
+    
 }

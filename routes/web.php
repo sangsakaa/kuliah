@@ -80,6 +80,8 @@ Route::get('/rekap-laporan-mahasiswa', [UserPerMhsController::class, 'RekapLapHa
 
 Route::get('/sesi-validasi-laporan-mhs', [UserDosenController::class, 'validasiLaporan'])->middleware(['auth'])->name('sesi-validasi-laporan-mhs');
 Route::get('/daftar-validasi-laporan-mhs/{sesi_Laporan_Harian}', [UserDosenController::class, 'DaftaValidasi'])->middleware(['auth'])->name('daftar-validasi-laporan-mhs');
+Route::get('/data-anggota', [UserDosenController::class, 'dataAnggota'])->middleware(['auth'])->name('data-anggota');
+Route::get('/time-line', [UserDosenController::class, 'timeLine'])->middleware(['auth'])->name('time-line');
 
 // LAPORAN
 Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');

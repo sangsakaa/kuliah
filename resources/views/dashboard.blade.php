@@ -64,14 +64,26 @@
                         <div class="mb-2 w-full  ">
                             <div class=" text-center">
                                 @role('mahasiswa')
-                                <p class=" capitalize">Selamat datang di </p>
-                                <p class="  text-9xl bold "> SPK</p>
-                                <p class=" sm:text-sm text-xs">(Sistem Pelaporan Kegiatan)</p>
-
+                                <p class=" ">Selamat Datang di </p>
+                                <p class="  text-9xl bold "> SIP-K</p>
+                                <p class=" sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
                                 <div>
                                     @foreach($data as $detail)
                                     <p>{{$detail->nama_mhs}}</p>
                                     <p class=" text-sm">{{$detail->nim}}</p>
+                                    {{$detail->prodi}} ({{$detail->jenis_kelamin}})
+                                    @endforeach
+                                </div>
+                                @endrole
+                                @role('dosen')
+                                <p class=" ">Selamat Datang di </p>
+                                <p class="  text-9xl bold "> SIP-K</p>
+                                <p class=" sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
+
+                                <div>
+                                    @foreach($dataDosen as $detail)
+                                    <p>{{$detail->nama_dosen}}</p>
+                                    <p class=" text-sm">{{$detail->nidn}}</p>
                                     {{$detail->prodi}} ({{$detail->jenis_kelamin}})
                                     @endforeach
                                 </div>
@@ -103,7 +115,12 @@
                         <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Laporan Harian Mahasiswa</div>
                     </a>
                 </div>
-                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">presensi</div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/data-anggota">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Data Anggota</div>
+                    </a>
+                </div>
+
             </div>
             @endrole
         </div>

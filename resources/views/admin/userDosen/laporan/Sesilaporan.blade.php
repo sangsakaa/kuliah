@@ -12,16 +12,19 @@
         <div class=" capitalize">Pembimbing</div>
         <div class=" capitalize"> :
           {{ strtolower(substr($dataDosen->nama_dosen, 0, 20)) }}{{ strtolower(strlen($dataDosen->nama_dosen) > 15 ? '...' : '') }}
-
-
-
         </div>
         <div class=" capitalize">Kelompok</div>
         <div class=" capitalize"> : {{$dataDosen->nama_kelompok}}</div>
-
       </div>
     </div>
     <div class=" mt-2  bg-white w-full py-2 px-2 ">
+      <div class=" sm:justify-end justify-start grid">
+        <form action="/sesi-validasi-laporan-mhs" method="get" class=" py-1 ">
+          <input type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" class=" border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
+          <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
+            Cari Tanggal </button>
+        </form>
+      </div>
       <div class=" overflow-auto">
         <table class=" w-full">
           <thead>
@@ -37,9 +40,9 @@
             </tr>
           </thead>
           <tbody>
+            @if($dataLaporan->count() != null)
             @foreach($dataLaporan as $data)
             <tr>
-
               <td class=" border border-green-700 px-2 py-1 text-center">{{ $loop->iteration }}</td>
               <td class=" capitalize border border-green-700 px-2 py-1 text-left">
                 <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
@@ -92,7 +95,16 @@
                 @endif
               </td>
             </tr>
+
             @endforeach
+            @else
+            <tr>
+              <td class=" py-1 border-black text-center text-red-700 uppercase border" colspan="8">
+                Belum ada Laporan
+              </td>
+            </tr>
+            @endif
+
           </tbody>
         </table>
       </div>
