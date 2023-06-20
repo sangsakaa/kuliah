@@ -61,7 +61,14 @@
               </td>
               @if($index === 0)
               <td class=" border border-black text-center" rowspan="{{count($item->DetailMahasiswa)}}">
-                {{$detail->prodi}} <br>
+
+                @if ($detail->prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
+                S1 HKI
+                @elseif ($detail->prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
+                S1 PG PAUD
+                @else
+                {{ $detail->prodi }}
+                @endif
               </td>
               @endif
             </tr>
