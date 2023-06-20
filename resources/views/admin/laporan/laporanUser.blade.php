@@ -51,7 +51,7 @@
               </td>
             </tr>
             @foreach($list->JmlMahasiswa as $item)
-            <tr>
+            <tr class=" text-sm">
               <th class=" border border-black text-center">
                 {{$loop->iteration}}
               </th>
