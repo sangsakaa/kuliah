@@ -43,28 +43,27 @@
           <tbody>
             @foreach($LapMhs as $list)
             <tr class=" text-sm">
-              <td class="border border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$loop->iteration}}</td>
-              <td class="border border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{strtolower($list->nama_dosen)}}</td>
-              <td class="border border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$list->nama_kelompok}}</td>
-              <td class="border border-black px-1  capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">
-                Desa.{{$list->nama_desa}} - Kec.{{$list->nama_kecamatan}}
+              <td class="border border-b-2 border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$loop->iteration}}</td>
+              <td class="border border-b-2 border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{strtolower($list->nama_dosen)}}</td>
+              <td class="border border-b-2 border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$list->nama_kelompok}}</td>
+              <td class="border border-b-2 border-black px-1  capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">
+                Desa.{{$list->nama_desa}} - Kec.{{$list->nama_kecamatan}} Kab. {{$list->nama_kabupaten}}
               </td>
             </tr>
             @foreach($list->JmlMahasiswa as $item)
-            <tr class=" text-sm">
+            <tr class=" text-sm ">
               <th class=" border border-black text-center">
                 {{$loop->iteration}}
               </th>
               @foreach($item->DetailMahasiswa as $index=>$detail)
-              <td class="border border-black capitalize px-1">
+              <td class=" border border-black capitalize px-1">
                 {{strtolower($detail->nama_mhs)}} <br>
               </td>
               @if($index === 0)
-              <td class="border border-black text-center" rowspan="{{count($item->DetailMahasiswa)}}">
+              <td class=" border border-black text-center" rowspan="{{count($item->DetailMahasiswa)}}">
                 {{$detail->prodi}} <br>
               </td>
               @endif
-
             </tr>
             @endforeach
             @endforeach
