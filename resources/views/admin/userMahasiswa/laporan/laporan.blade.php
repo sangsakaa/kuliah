@@ -23,7 +23,7 @@
           </div>
           <div class=" bloc sm:hidden ">
             <div class=" text-center  grid grid-cols-1 ">
-              <div class=" text-2xl"> {{$data->nama_mhs}}</div>
+              <div class="  text-lg"> {{$data->nama_mhs}}</div>
               <div> {{$data->nim}}</div>
               <div class=" uppercase"> Kelompok {{$data->nama_kelompok}}</div>
               <div> {{$data->nama_dosen}}</div>
