@@ -7,13 +7,20 @@
   <div class=" w-full py-2 px-2 ">
     <div class=" py-1">
       <div class=" bg-white py-1">
-        <div class=" p-2 grid grid-cols-2 sm:grid-cols-4">
-          <div>NIDN</div>
-          <div> : {{$dataDosen->nidn}}</div>
-          <div>Pembimbing</div>
-          <div> : {{$dataDosen->nama_dosen}}</div>
-          <div>Kelompok</div>
-          <div> : {{$dataDosen->nama_kelompok}}</div>
+        <div class=" p-2  grid grid-cols-4      ">
+          <div class="">NIDN</div>
+          <div class=" "> : {{$dataDosen->nidn}}</div>
+          <div class="">Pembimbing</div>
+          <div class=" "> :
+            {{strlen($dataDosen->nama_dosen) > 25 ? substr($dataDosen->nama_dosen, 0, 25) . "..." : $dataDosen->nama_dosen;}}
+          </div>
+          <div class="">Kelompok</div>
+          <div class=""> : {{$dataDosen->nama_kelompok}}</div>
+          <div class="">Jumlah</div>
+          <div class="">
+            : L : {{$dataAnggota->where('jenis_kelamin', 'L')->count();}}
+            : P : {{$dataAnggota->where('jenis_kelamin', 'P')->count();}}
+          </div>
         </div>
       </div>
     </div>
@@ -39,7 +46,16 @@
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nim)}}</td>
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nama_mhs)}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{$list->jenis_kelamin}}</td>
-              <td class=" border border-black px-1 capitalize text-center">{{$list->prodi}}</td>
+              <td class=" border border-black px-1 capitalize text-center">
+
+                @if ($list->prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
+                S1 HKI
+                @elseif ($list->prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
+                S1 PG PAUD
+                @else
+                {{ $list->prodi }}
+                @endif
+              </td>
 
             </tr>
             @endforeach

@@ -26,7 +26,7 @@
                 {{$bulan->isoFormat('MMMM YYYY')}}
               </th>
             </tr>
-            <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm">
+            <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm w-8">
               @foreach ($periodeBulan as $hari)
               <th class="border border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
                                     : "" }}">{{ $hari->day }}</th>
@@ -60,26 +60,7 @@
         </table>
       </div>
       <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Kelompok ID</th>
-              <th>Kelompok</th>
-              <th>Sesi Per Bulan</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach ($dataRekapSesi as $kelompok_id => $rekap) : ?>
-              <tr>
-                <td><?php echo $kelompok_id; ?></td>
-                <td><?php echo $rekap['kelompok']->nama_kelompok; ?></td>
-                <td>
 
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
 
       </div>
     </div>
