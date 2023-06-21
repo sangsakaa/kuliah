@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Exceptions\InvalidFormatException;
 
+
 class UserPerMhsController extends Controller
 {
     public function User()
@@ -189,9 +190,24 @@ class UserPerMhsController extends Controller
     }
     public function unduhFile(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
-        $Foto = Laporan_Mahasiswa::findOrFail($sesi_Laporan_Harian->id);
-        $filePath = public_path('storage/bukti_laporan' . $Foto->bukti_laporan);
+        dd($sesi_Laporan_Harian);
+        $laporan = Laporan_Mahasiswa::findOrFail($sesi_Laporan_Harian->id);
 
-        return response()->download($filePath, $Foto->bukti_laporan);
+        // Get the image file path based on the session and laporan ID
+        $filePath = $laporan->bukti_laporan[$sesi_Laporan_Harian];
+
+        // Check if the file exists
+        if (!Storage::exists($filePath)) {
+            abort(404);
+        }
+        dd($filePath);
+
+        // Generate a download response with the appropriate content type
+        $headers = [
+            'Content-Type' => 'image/jpeg', // Replace with the correct MIME type for your image
+            'Content-Disposition' => 'attachment; filename=image.jpg', // Replace with the desired filename
+        ];
+
+        return Storage::download($filePath, 'image.jpg', $headers);
     }
 }

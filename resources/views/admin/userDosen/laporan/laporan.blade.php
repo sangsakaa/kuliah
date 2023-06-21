@@ -68,19 +68,22 @@
           @else
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
+
           <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000) <span> jumlah : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
           @if(strlen($item->deskripsi_laporan)>499)
           <span class=" text-green-700 uppercase font-semibold text-sm">sudah Sesuai</span>
           @else
           <span class=" text-red-700 uppercase font-semibold text-sm">Tidak Sesuai</span>
           @endif
-          <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required readonly><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
+          <textarea name="deskripsi_laporan" id="" class="w-full mt-2 " cols="30" rows="10" required readonly><?php echo !empty($item->deskripsi_laporan) ? $item->deskripsi_laporan : ""; ?></textarea>
           <h1 hidden class="">Unggah Bukti Kegiatan</h1>
           <input hidden type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-validasi-laporan-mhs">Kembali</a>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
-
+          <a class=" text-white hover:bg-red-500 bg-red-700 rounded-sm py-1 px-2 capitalize" href="{{ asset('storage/' . $item->bukti_laporan) }}" download>
+            unduh
+          </a>
           @endforeach
           @else
           <div class=" text-center uppercase text-red-700">Belum Mengirim Laporan</div>

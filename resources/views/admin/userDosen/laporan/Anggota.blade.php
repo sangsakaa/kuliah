@@ -7,7 +7,7 @@
   <div class=" w-full py-2 px-2 ">
     <div class=" py-1">
       <div class=" bg-white py-1">
-        <div class=" p-2  grid grid-cols-4      ">
+        <div class=" p-2  grid grid-cols-2 sm:grid-cols-4     ">
           <div class="">NIDN</div>
           <div class=" "> : {{$dataDosen->nidn}}</div>
           <div class="">Pembimbing</div>
@@ -43,7 +43,7 @@
             @foreach($dataAnggota as $list)
             <tr>
               <td class=" border border-black px-1 text-center">{{$loop->iteration}}</td>
-              <td class=" border border-black px-1 capitalize">{{strtolower($list->nim)}}</td>
+              <td class=" border border-black px-1 capitalize text-center">{{strtolower($list->nim)}}</td>
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nama_mhs)}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{$list->jenis_kelamin}}</td>
               <td class=" border border-black px-1 capitalize text-center">
