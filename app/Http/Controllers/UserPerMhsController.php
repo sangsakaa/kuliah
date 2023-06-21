@@ -123,12 +123,12 @@ class UserPerMhsController extends Controller
     public function BuatLap(Request $request, Sesi_Laporan_Harian $sesi_Laporan_Harian)
 
     {
+        // dd($request);
         $request->validate(
             [
-                'bukti_laporan' => 'required|max:1042',
+                'bukti_laporan' => 'max:1042',
             ],
             [
-                'bukti_laporan.required' => 'File bukti laporan harus diunggah.',
                 'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh melebihi 1 MB.',
             ]
         );
@@ -141,7 +141,6 @@ class UserPerMhsController extends Controller
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
             $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
             $Lap->note_laporan = $request->note_laporan;
-
             if ($request->hasFile('bukti_laporan')) {
                 // Menghapus file laporan yang lama
                 Storage::delete($Lap->bukti_laporan);

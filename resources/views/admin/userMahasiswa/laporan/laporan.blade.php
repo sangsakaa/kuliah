@@ -51,7 +51,7 @@
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi </span>
-              <input class="w-full" type="text" placeholder=" Catatan Sesui revisi" disabled name="note_laporan" value="{{$item->note_laporan}}">
+              <input class="w-full" type="text" placeholder=" Catatan Sesui revisi" readonly name="note_laporan" value="{{$item->note_laporan}}">
             </div>
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>

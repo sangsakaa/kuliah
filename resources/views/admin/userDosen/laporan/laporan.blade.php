@@ -48,7 +48,7 @@
           <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
           @if($dataMhs->count()!= null)
           @foreach($dataMhs as $item)
-          <div class=" grid grid-cols-2 gap-2">
+          <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div class=" grid-cols-1 grid">
               <span>Status Validasi Laporan</span>
               <select name="status_laporan" id="" class="py-1 px-1">
