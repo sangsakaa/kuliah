@@ -118,12 +118,12 @@
     </div>
     <div class=" bg-white  mt-1  ">
       <p class=" px-2">Note Status :</p>
-      <div class=" grid  sm:flex grid-cols-2 sm:grid-cols-2 ">
+      <div class=" grid  sm:grid grid-cols-2 sm:grid-cols-2 ">
         <div>
-          <p class=" px-4">Valid </p>
+          <p class=" w-32 px-4">Valid </p>
         </div>
         <div>
-          : Sudah Diperika
+          : Sudah Diperiksa
         </div>
         <div>
           <p class=" px-4">Invalid </p>

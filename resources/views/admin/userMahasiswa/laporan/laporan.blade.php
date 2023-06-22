@@ -47,7 +47,7 @@
           <div class=" grid grid-cols-1 sm:grid-cols-2  gap-2">
             <div class=" grid-cols-1 grid">
               <span>Status Validasi </span>
-              <input class="w-full capitalize {{ $item->status_laporan === 'valid' ? 'text-white bg-green-700' : ($item->status_laporan === 'menunggu' ? 'text-white bg-red-700' : 'text-white bg-green-700') }}" type="text" disabled name="status_laporan" value="{{ $item->status_laporan }}">
+              <input class="w-full text-white font-semibold capitalize {{ $item->status_laporan === 'valid' ? ' bg-green-800' : ($item->status_laporan === 'menunggu' ? ' bg-red-700' : ' bg-green-800') }}" type="text" readonly name="status_laporan" value="{{ $item->status_laporan }}">
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi </span>
