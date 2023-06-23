@@ -30,7 +30,7 @@
         <div> Status Laporan :
           dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}}
           <td class="border text-center px-1">
-            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) Telat : dilaporkan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
+            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
             @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
 
             <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
