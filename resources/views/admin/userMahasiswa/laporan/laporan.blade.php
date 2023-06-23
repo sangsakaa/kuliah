@@ -28,12 +28,14 @@
     <div class="px-2 mt-2   bg-white ">
       <div class="px-2 py-2">
         <div> Status Laporan :
-
+          dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}}
           <td class="border text-center px-1">
-            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
-            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
+            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) Telat : dilaporkan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
+            @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
+
+            <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
             @else
-            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
+            <span class=" bg-red-700 text-white px-1 rounded-sm uppercase">telat</span>
             @endif
           </td>
 
@@ -75,31 +77,21 @@
             {{ $message }}
           </p>
           @enderror
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
           @if($item->status_laporan === "valid")
-          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) < 0) <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isToday())
-            @if($item->status_laporan === "menunggu")
-            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @else
-            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @endif
-            @else
-            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @endif
-            @else
-            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
-            @if($item->status_laporan === "valid")
-            <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @elseif($item->status_laporan === "menunggu")
-            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @else
-            <button class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-            @endif
-            @endif
-            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
-            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @elseif($item->status_laporan === "menunggu")
+          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @endif
 
-            @endforeach
+          @else
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @endif
+          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+
+          @endforeach
         </form>
       </div>
     </div>
