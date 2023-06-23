@@ -786,9 +786,6 @@ select {
 .shrink-0 {
   flex-shrink: 0;
 }
-.table-fixed {
-  table-layout: fixed;
-}
 .origin-top-left {
   transform-origin: top left;
 }

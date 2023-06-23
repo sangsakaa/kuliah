@@ -8,8 +8,8 @@
     <div class=" bg-white p-4">
       <div>
         <div class=" w-full grid ">
-          <div class=" hidden sm:block ">
-            <div class="  grid grid-cols-4 sm:grid-cols-4">
+          <div class="  ">
+            <div class="  grid grid-cols-2 sm:grid-cols-4">
               <div>NIM</div>
               <div class="">: {{$data->nim}}
               </div>
@@ -21,24 +21,23 @@
               <div> : Kelompok {{$data->nama_kelompok}}</div>
             </div>
           </div>
-          <div class=" bloc sm:hidden ">
-            <div class=" text-center  grid grid-cols-1 ">
-              <div class="  text-lg"> {{$data->nama_mhs}}</div>
-              <div> {{$data->nim}}</div>
-              <div class=" uppercase"> Kelompok {{$data->nama_kelompok}}</div>
-              <div> {{$data->nama_dosen}}</div>
-              <div>
-                Desa . {{$data->nama_desa}}
-                Kec . {{$data->nama_kecamatan}}
-                <p>Kab . {{$data->nama_kabupaten}}</p>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
     </div>
     <div class="px-2 mt-2   bg-white ">
       <div class="px-2 py-2">
+        <div> Status Laporan :
+
+          <td class="border text-center px-1">
+            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
+            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
+            @else
+            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
+            @endif
+          </td>
+
+        </div>
         <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" method="post" enctype="multipart/form-data">
           @csrf
           <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
@@ -63,7 +62,6 @@
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
           <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
-
           @if(strlen($item->deskripsi_laporan)>499)
           <span class=" text-green-700 uppercase font-semibold text-sm"> Sudah Sesuai</span>
           @else
@@ -78,16 +76,30 @@
           </p>
           @enderror
           @if($item->status_laporan === "valid")
-          <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @elseif($item->status_laporan === "menunggu")
-          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @else
-          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @endif
-          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
-          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) < 0) <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isToday())
+            @if($item->status_laporan === "menunggu")
+            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @else
+            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @endif
+            @else
+            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @endif
+            @else
+            {{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) }} hari
+            @if($item->status_laporan === "valid")
+            <button disabled class="bg-gray-200 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @elseif($item->status_laporan === "menunggu")
+            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @else
+            <button class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            @endif
+            @endif
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
 
-          @endforeach
+            @endforeach
         </form>
       </div>
     </div>
