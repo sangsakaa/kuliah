@@ -91,7 +91,10 @@
             @foreach($dataLap as $item)
             <tr>
               <td class=" border text-center px-1">
-                {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
+
+                <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
+                  {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
+                </a>
               </td>
               <td class="border text-center px-1">
                 {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}

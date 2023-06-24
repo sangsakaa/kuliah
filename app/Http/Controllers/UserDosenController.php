@@ -161,12 +161,15 @@ class UserDosenController extends Controller
                     'laporan_mahasiswa.updated_at',
                     'laporan_mahasiswa.status_laporan',
                     'sesi_laporan_harian.anggota_kelompok_id',
-                    'sesi_laporan_harian.tanggal'
+                'sesi_laporan_harian.tanggal',
+                'sesi_laporan_harian.id',
+                'kelompok.dosen_id'
                 ]
             )
             ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
             ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
             ->orderby('tanggal')
+            ->where('kelompok.dosen_id', $UserPerDosen)
             ->get();
             
         
