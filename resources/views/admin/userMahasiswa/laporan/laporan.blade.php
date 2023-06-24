@@ -32,7 +32,6 @@
           <td class="border text-center px-1">
             @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
             @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
-
             <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
             @else
             <span class=" bg-red-700 text-white px-1 rounded-sm uppercase">telat</span>
@@ -77,13 +76,17 @@
             {{ $message }}
           </p>
           @enderror
-          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
-          @if($item->status_laporan === "valid")
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
           <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @elseif($item->status_laporan === "menunggu")
+          @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
+          @if (isset($item->status_laporan) && ($item->status_laporan === "valid"))
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @elseif (isset($item->status_laporan) && ($item->status_laporan === "menunggu"))
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @else
+          <button disabled class="bg-gray-500 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @endif
+          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
 
           @else
           <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
