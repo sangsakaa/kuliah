@@ -46,8 +46,17 @@
 
           <div class=" grid grid-cols-1 sm:grid-cols-2  gap-2">
             <div class=" grid-cols-1 grid">
-              <span>Status Validasi </span>
-              <input class="w-full text-white font-semibold capitalize {{ $item->status_laporan === 'valid' ? ' bg-green-800' : ($item->status_laporan === 'menunggu' ? ' bg-red-700' : ' bg-green-800') }}" type="text" readonly name="status_laporan" value="{{ $item->status_laporan }}">
+              <div class=" grid-cols-1 grid">
+                <span>Status Validasi Laporan</span>
+                <select name="status_laporan" id="" class="py-1 px-1 text-white <?php echo ($item->status_laporan == 'draf') ? 'bg-yellow-500 text-black' : (($item->status_laporan == 'menunggu') ? 'bg-red-700 text-white' : 'bg-green-700 text-white'); ?>">
+                  <option value="draf" <?php if ($item->status_laporan == 'draf') echo 'selected'; ?>>Draf</option>
+                  <option value="menunggu" <?php if ($item->status_laporan == 'menunggu') echo 'selected'; ?> <?php echo ($item->status_laporan == 'valid' || $item->status_laporan == 'menunggu') ? 'disabled' : ''; ?>>Menunggu</option>
+                  <option class="hidden" value="valid" <?php if ($item->status_laporan == 'valid') echo 'selected'; ?> <?php echo ($item->status_laporan == 'valid' || $item->status_laporan == 'menunggu') ? 'disabled' : ''; ?>>Valid</option>
+                </select>
+
+
+
+              </div>
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi </span>
@@ -77,19 +86,15 @@
           </p>
           @enderror
           @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
-          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
-          @if (isset($item->status_laporan) && ($item->status_laporan === "valid"))
+          @if($item->status_laporan == "valid")
           <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @elseif (isset($item->status_laporan) && ($item->status_laporan === "menunggu"))
-          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @elseif($item->status_laporan == "menunggu")
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @else
-          <button disabled class="bg-gray-500 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @endif
-          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
 
-          @else
-          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @endif
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
           <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>

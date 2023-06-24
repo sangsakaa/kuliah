@@ -139,7 +139,7 @@ class UserPerMhsController extends Controller
         if ($Lap) {
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
-            $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
+            $Lap->status_laporan = $request->status_laporan ?? 'draf';
             $Lap->note_laporan = $request->note_laporan;
             if ($request->hasFile('bukti_laporan')) {
                 // Menghapus file laporan yang lama
@@ -157,7 +157,7 @@ class UserPerMhsController extends Controller
             $Lap->sesi_laporan_harian_id = $sesi_Laporan_Harian;
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
-            $Lap->status_laporan = $request->status_laporan ?? 'menunggu';
+            $Lap->status_laporan = $request->status_laporan ?? 'draf';
             $Lap->note_laporan = $request->note_laporan;
 
             if ($request->hasFile('bukti_laporan')) {
