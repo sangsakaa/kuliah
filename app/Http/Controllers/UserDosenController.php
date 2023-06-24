@@ -37,6 +37,7 @@ class UserDosenController extends Controller
             ->select('sesi_laporan_harian.id', 'nama_kelompok', 'kelompok_id', 'sesi_laporan_harian.anggota_kelompok_id', 'laporan_mahasiswa.created_at', 'tanggal')
             ->where('kelompok.id', $dataDosen->id)
             ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
+            ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->orderby('tanggal');
         if (request('tanggal')) {
             $dataLaporan->where('tanggal', 'like', '%' . request('tanggal') . '%');
@@ -169,6 +170,7 @@ class UserDosenController extends Controller
             ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
             ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
             ->orderby('tanggal')
+            ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->get();
             

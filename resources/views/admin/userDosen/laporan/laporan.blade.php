@@ -27,10 +27,13 @@
         <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
           <div class=" grid-cols-1 grid">
             <span>Status Validasi Laporan</span>
-            <select name="status_laporan" id="" class="py-1 px-1 <?php echo ($item->status_laporan == 'menunggu') ? 'bg-red-700' : ' text-white bg-green-700'; ?>">
-              <option value="menunggu" <?php if ($item->status_laporan == 'menunggu') echo 'selected'; ?>>Menunggu</option>
+            <select name="status_laporan" id="" class="py-1 px-1 text-white <?php echo ($item->status_laporan == 'menunggu') ? 'bg-red-700' : (($item->status_laporan == 'draf') ? 'bg-red-700' : 'text-white bg-green-700'); ?>">
+              <option hidden value="menunggu" <?php if ($item->status_laporan == 'menunggu') echo 'selected'; ?>>Menunggu</option>
               <option value="valid" <?php if ($item->status_laporan == 'valid') echo 'selected'; ?>>Valid</option>
+              <option value="draf" <?php if ($item->status_laporan == 'draf') echo 'selected'; ?>>Draf</option>
             </select>
+
+
 
           </div>
           <div class=" grid grid-cols-1">
