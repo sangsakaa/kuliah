@@ -79,6 +79,7 @@
         <table class=" w-full border border-green-800">
           <thead>
             <tr class="border bg-green-200  text-black text-xs sm:text-sm ">
+              <th class="border border-green-800  uppercase " rowspan="2">no</th>
               <th class="border border-green-800 px-1 uppercase " rowspan="2">Mahasiswa</th>
               <th class="border border-green-800  py-1  uppercase  text-black " colspan="{{ $periodeBulan->count() }}">
                 {{$bulan->isoFormat('MMMM YYYY')}}
@@ -95,7 +96,10 @@
           <tbody class=" text-sm border border-green-800">
             @foreach ($dataRekapSesiPerAnggota as $rekapSesi)
             <tr class=" border border-green-800 text-xs sm:text-sm even:bg-green-100 hover:bg-gray-200 ">
-              <th class="border border-green-800 text-center capitalize py-1 ">
+              <th>
+                {{$loop->iteration}}
+              </th>
+              <th class="border border-green-800 text-left capitalize py-1 ">
                 {{ strtolower($rekapSesi['kelompok']->nama_mhs )}}
               </th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
