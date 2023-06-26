@@ -74,8 +74,7 @@
         </div>
         </table>
       </div>
-
-      <div class=" py-2">
+      <div class="  mt-1">
         <table class=" w-full border border-green-800">
           <thead>
             <tr class="border bg-green-200  text-black text-xs sm:text-sm ">
@@ -99,7 +98,7 @@
               <th>
                 {{$loop->iteration}}
               </th>
-              <th class="border border-green-800 text-left capitalize py-1 ">
+              <th class="border border-green-800 text-left capitalize py-1 px-1 ">
                 {{ strtolower($rekapSesi['kelompok']->nama_mhs )}}
               </th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
@@ -128,43 +127,43 @@
         </table>
       </div>
     </div>
-    <div class=" p-2 mt-4">
+    <div class="  px-2 py-1 ">
       <table class=" w-full">
         <thead>
           <tr class=" capitalize">
-            <th class=" border px-1">Tanggal Kirim</th>
-            <th class=" border px-1">on time</th>
-            <th class=" border px-1">Created_at</th>
-            <th class=" border px-1">Updated_at</th>
-            <th class=" border px-1">Mahasiswa</th>
-            <th class=" border px-1">Status</th>
+            <th class=" border border-black px-1">Tanggal Kirim</th>
+            <th class=" border border-black px-1">on time</th>
+            <th class=" border border-black px-1">Created_at</th>
+            <th class=" border border-black px-1">Updated_at</th>
+            <th class=" border border-black px-1">Mahasiswa</th>
+            <th class=" border border-black px-1">Status</th>
           </tr>
         </thead>
         <tbody>
           @if($dataLap->count()!== null)
           @foreach($dataLap as $item)
-          <tr>
-            <td class=" border text-center px-1">
+          <tr class=" border border-black">
+            <td class=" border border-black text-center px-1">
 
               <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
                 {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
               </a>
             </td>
-            <td class="border text-center px-1">
+            <td class="border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}
             </td>
 
-            <td class=" border text-center px-1">
+            <td class=" border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
             </td>
 
-            <td class=" border text-center px-1">
+            <td class=" border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('dddd, DD MMMM Y') }}
             </td>
-            <td class=" border text-left px-1">
+            <td class=" border border-black text-left px-1">
               {{$item->nama_mhs}}
             </td>
-            <td class=" border text-center px-1 capitalize ">
+            <td class=" border border-black text-center px-1 capitalize ">
               @if($item->status_laporan === 'menunggu')
               <span class="text-red-700 font-semibold">{{$item->status_laporan}}</span>
               @elseif($item->status_laporan === 'valid')
@@ -177,8 +176,8 @@
             </td>
           </tr>
           @endforeach
-          <tr>
-            <td colspan="6" class=" border text-center text-red-700 capitalize text-sm font-semibold">
+          <tr class=" border border-black">
+            <td colspan="6" class=" border border-black text-center text-red-700 capitalize text-sm font-semibold">
               tidak ada laporan
             </td>
           </tr>
