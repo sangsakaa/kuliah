@@ -74,78 +74,20 @@
         </div>
         </table>
       </div>
-      <div class=" mt-4">
-        <table class=" w-full">
-          <thead>
-            <tr class=" capitalize">
-              <th class=" border px-1">Tanggal Kirim</th>
-              <th class=" border px-1">on time</th>
-              <th class=" border px-1">Created_at</th>
-              <th class=" border px-1">Updated_at</th>
-              <th class=" border px-1">Mahasiswa</th>
-              <th class=" border px-1">Status</th>
-            </tr>
 
-          </thead>
-          <tbody>
-            @if($dataLap->count()!== null)
-            @foreach($dataLap as $item)
-            <tr>
-              <td class=" border text-center px-1">
-
-                <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
-                  {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
-                </a>
-              </td>
-              <td class="border text-center px-1">
-                {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}
-              </td>
-
-              <td class=" border text-center px-1">
-                {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
-              </td>
-
-              <td class=" border text-center px-1">
-                {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('dddd, DD MMMM Y') }}
-              </td>
-              <td class=" border text-left px-1">
-                {{$item->nama_mhs}}
-              </td>
-              <td class=" border text-center px-1 capitalize ">
-                @if($item->status_laporan === 'menunggu')
-                <span class="text-red-700 font-semibold">{{$item->status_laporan}}</span>
-                @elseif($item->status_laporan === 'valid')
-                <span class="text-green-700 font-semibold">{{$item->status_laporan}}</span>
-                @elseif($item->status_laporan === null)
-                <span class="text-black">Belum laporan</span>
-                @else
-                {{$item->status_laporan}}
-                @endif
-              </td>
-            </tr>
-            @endforeach
-            <tr>
-              <td colspan="6" class=" border text-center text-red-700 capitalize text-sm font-semibold">
-                tidak ada laporan
-              </td>
-            </tr>
-            @endif
-          </tbody>
-        </table>
-      </div>
-      <div>
+      <div class=" py-2">
         <table class=" w-full border border-green-800">
           <thead>
             <tr class="border bg-green-200  text-black text-xs sm:text-sm ">
-              <th class="border border-green-800 px-1 w-24 uppercase " rowspan="2">Kelompok</th>
-              <th class="border border-green-800 px-1 py-1  uppercase  text-black " colspan="{{ $periodeBulan->count() }}">
+              <th class="border border-green-800 px-1 uppercase " rowspan="2">Mahasiswa</th>
+              <th class="border border-green-800  py-1  uppercase  text-black " colspan="{{ $periodeBulan->count() }}">
                 {{$bulan->isoFormat('MMMM YYYY')}}
 
               </th>
             </tr>
             <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm ">
               @foreach ($periodeBulan as $hari)
-              <th class=" py-1 border w-8 border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
+              <th class=" py-1 border  border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
                                     : "" }}">{{ $hari->day }}</th>
               @endforeach
             </tr>
@@ -153,8 +95,8 @@
           <tbody class=" text-sm border border-green-800">
             @foreach ($dataRekapSesiPerAnggota as $rekapSesi)
             <tr class=" border border-green-800 text-xs sm:text-sm even:bg-green-100 hover:bg-gray-200 ">
-              <th class="border border-green-800 text-center uppercase py-1 ">
-                {{ $rekapSesi['kelompok']->nama_mhs }}
+              <th class="border border-green-800 text-center capitalize py-1 ">
+                {{ strtolower($rekapSesi['kelompok']->nama_mhs )}}
               </th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
               <td class="border border-green-800  {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
@@ -179,11 +121,66 @@
             </tr>
             @endforeach
           </tbody>
+        </table>
       </div>
+    </div>
+    <div class=" p-2 mt-4">
+      <table class=" w-full">
+        <thead>
+          <tr class=" capitalize">
+            <th class=" border px-1">Tanggal Kirim</th>
+            <th class=" border px-1">on time</th>
+            <th class=" border px-1">Created_at</th>
+            <th class=" border px-1">Updated_at</th>
+            <th class=" border px-1">Mahasiswa</th>
+            <th class=" border px-1">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if($dataLap->count()!== null)
+          @foreach($dataLap as $item)
+          <tr>
+            <td class=" border text-center px-1">
+
+              <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
+                {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
+              </a>
+            </td>
+            <td class="border text-center px-1">
+              {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}
+            </td>
+
+            <td class=" border text-center px-1">
+              {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
+            </td>
+
+            <td class=" border text-center px-1">
+              {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('dddd, DD MMMM Y') }}
+            </td>
+            <td class=" border text-left px-1">
+              {{$item->nama_mhs}}
+            </td>
+            <td class=" border text-center px-1 capitalize ">
+              @if($item->status_laporan === 'menunggu')
+              <span class="text-red-700 font-semibold">{{$item->status_laporan}}</span>
+              @elseif($item->status_laporan === 'valid')
+              <span class="text-green-700 font-semibold">{{$item->status_laporan}}</span>
+              @elseif($item->status_laporan === null)
+              <span class="text-black">Belum laporan</span>
+              @else
+              {{$item->status_laporan}}
+              @endif
+            </td>
+          </tr>
+          @endforeach
+          <tr>
+            <td colspan="6" class=" border text-center text-red-700 capitalize text-sm font-semibold">
+              tidak ada laporan
+            </td>
+          </tr>
+          @endif
+        </tbody>
       </table>
     </div>
-
-
-  </div>
   </div>
 </x-app-layout>
