@@ -107,11 +107,12 @@ class UserDosenController extends Controller
         $UserPerDosen = Auth::user()->dosen_id;
         $dataKelompok = Kelompok::query()
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
-            ->select('kelompok.*', 'mahasiswa_id')
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->select('kelompok.*', 'mahasiswa_id', 'nama_mhs')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->get();
         // dd($dataKelompok);
-        $dataSesi  = Sesi_Laporan_Harian::query()
+        $dataSesiLaporanHarian  = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
@@ -127,10 +128,27 @@ class UserDosenController extends Controller
                     'sesi_laporan_harian.tanggal'
                 ]
             )
+            ->where('kelompok.dosen_id', $UserPerDosen)
             ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
-            ->get()
-            ->groupBy('kelompok_id', 'kelompok.nama_kelompok', 'tanggal');
-        // dd($dataSesi);
+            ->get();
+
+        $dataSesi = $dataSesiLaporanHarian->groupBy('kelompok_id');
+        $dataSesiPerAnggota = $dataSesiLaporanHarian->groupBy('nama_mhs');
+        // dd($dataSesiPerAnggota);
+        $dataRekapSesiPerAnggota = $dataKelompok
+            ->keyBy('nama_mhs')
+            ->map(function ($kelompok, $nama_mhs) use ($dataSesiPerAnggota, $periodeBulan) {
+                foreach ($periodeBulan as $hari) {
+                    $sesiPerbulan[] = [
+                        'hari' => $hari,
+                        'data' => isset($dataSesiPerAnggota[$nama_mhs]) ? $dataSesiPerAnggota[$nama_mhs]->firstWhere('tanggal', $hari->toDateString()) : null
+                    ];
+                }
+                return [
+                    'sesiPerBulan' => $sesiPerbulan,
+                    'kelompok' => $kelompok
+                ];
+            });
         $dataRekapSesi = $dataKelompok
             ->keyBy('id')
             ->map(function ($kelompok, $kelompok_id) use ($dataSesi, $periodeBulan) {
@@ -146,6 +164,7 @@ class UserDosenController extends Controller
                     'kelompok' => $kelompok
                 ];
             });
+        
         // dd($dataRekapSesi);
         $dataLap  = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
@@ -182,6 +201,7 @@ class UserDosenController extends Controller
                 'bulan' => $bulan,
                 'periodeBulan' => $periodeBulan,
                 'dataRekapSesi' => $dataRekapSesi,
+                'dataRekapSesiPerAnggota' => $dataRekapSesiPerAnggota,
                 'dataLap' => $dataLap,
                 'tanggal' => $tanggal
         ]
