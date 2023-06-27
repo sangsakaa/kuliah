@@ -31,7 +31,7 @@
         <table class="  w-full">
           <thead>
             <tr>
-              <th class="border border-black px-1">No</th>
+              <th class="border border-black px-1 ">No</th>
               <th class="border border-black px-1">Pembimbing</th>
               <th class="border border-black px-1">Kelompok</th>
               <th class="border border-black px-1">Alamat</th>
@@ -43,7 +43,7 @@
           <tbody>
             @foreach($LapMhs as $list)
             <tr class=" text-sm">
-              <td class="border border-b-2 border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$loop->iteration}}</td>
+              <td class="border border-b-2 border-black px-1 text-center py-2" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$loop->iteration}}</td>
               <td class="border border-b-2 border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{strtolower($list->nama_dosen)}}</td>
               <td class="border border-b-2 border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$list->nama_kelompok}}</td>
               <td class="border border-b-2 border-black px-1  capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">
