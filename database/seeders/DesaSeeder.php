@@ -17,56 +17,41 @@ class DesaSeeder extends Seeder
     public function run()
     {
         $desaKecamatan = [
-            // Desa-desa di Boyolangu
-            'Boyolangu' => [
-                'Banaran',
-                'Baturagung',
-                'Boyolangu',
-                'Bugel',
-                'Bululawang',
-                'Gadingrejo',
-                'Gentungan',
-                'Grogolan',
-                'Jambewangi',
-                'Kebonagung'
+            // Desa-desa di Sendang
+            'Sendang' => [
+                'Kedoyo',
+                'Nyawangan',
+                'Tugu (Krajan)',
+                'Tugu (Soko)',
+                'Ngluntung',
+                
             ],
-            // Desa-desa di Campurdarat
-            'Campurdarat' => [
-                'Jatiduwur',
-                'Jatimulyo',
-                'Jatipurwo',
-                'Jatisari',
-                'Karangjati',
-                'Karangmojo',
-                'Karangsono',
-                'Karangsono Kulon',
-                'Kebak',
-                'Kedawung'
+            // Desa-desa di Ngunut
+            'Ngunut' => [
+                'Kacangan',
+                'Kaliwungu',
+            ],
+            // Desa-desa di Kalidawir
+            'Kalidawir' => [
+                'Krandengan'
+
+            ],
+            // Desa-desa di Rejotangan
+            'Rejotangan' => [
+                'Tenggur'
+
             ],
             // Desa-desa di Gondang
             'Gondang' => [
-                'Jatipuro',
-                'Bujel',
-                'Dawuhan',
-                'Durenan',
+                'Rejosari',
                 'Gondang',
-                'Jugo',
-                'Kanigoro',
-                'Karangbong',
-                'Karanganyar',
-                'Karangduren'
+                
             ],
             'Karangrejo' => [
-                'Karangrejo',
-                'Gadung',
-                'Sidomulyo',
-                'Dawuhan',
-                'Sumberbulu',
-                'Pagerwojo',
-                'Karangsari',
-                'Klakah',
-                'Sumberjambe',
-                'Sidorejo'
+                'Jeli',
+                'Sukorejo',
+                'Gedangan',
+                'Babadan'
             ],
             // Daftar desa di kecamatan lainnya...
         ];

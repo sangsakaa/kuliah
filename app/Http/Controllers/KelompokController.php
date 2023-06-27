@@ -27,6 +27,7 @@ class KelompokController extends Controller
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
+            ->orderbY('nama_kelompok')
             ->get();
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
     }

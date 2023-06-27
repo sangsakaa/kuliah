@@ -18,6 +18,6 @@ class DatabaseSeeder extends Seeder
         // $this->call(ProvinsiSeeder::class);
         // $this->call(KabupatenSeeder::class);
         // $this->call(KecamatanSeeder::class);
-        // $this->call(DesaSeeder::class);
+        $this->call(DesaSeeder::class);
     }
 }
