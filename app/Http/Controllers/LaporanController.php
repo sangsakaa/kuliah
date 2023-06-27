@@ -18,6 +18,7 @@ class LaporanController extends Controller
             ->join('kabupaten', 'kabupaten.id', 'kecamatan.kabupaten_id')
             ->select('kelompok.id', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nama_dosen', 'nama_kelompok')
             // ->join('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
         return view('admin.laporan.laporanUser', compact('LapMhs'));
     }
