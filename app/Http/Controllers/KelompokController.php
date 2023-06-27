@@ -22,13 +22,18 @@ class KelompokController extends Controller
         $dataDosen = Dosen::orderby('nama_dosen')->get();
 
         $dataKelompok = Kelompok::query()
-            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
-            ->orderbY('nama_kelompok')
-            ->get();
+        ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+        ->get();
+
+
+        
+    
+        // dd($dataKelompok);
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
     }
     public function store(Request $request)
