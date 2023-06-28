@@ -97,7 +97,7 @@
                 </td>
                 <td class=" text-center px-1 capitalize border border-black text-sm">
 
-                  {{$team->JmlMahasiswa->count()}} Org
+                  {{$team->JmlMahasiswa->count()}}
                 </td>
                 <td class=" text-center px-1 capitalize border border-black text-sm">
                   @php
@@ -114,7 +114,7 @@
                   @endif
                   @endforeach
                   @endforeach
-                  {{ $jumlahPria }} Org <br>
+                  {{ $jumlahPria }} <br>
                 </td>
                 <td class=" text-center px-1 capitalize border border-black text-sm">
                   @php
@@ -132,7 +132,7 @@
                   @endforeach
                   @endforeach
 
-                  {{ $jumlahWanita }} Org
+                  {{ $jumlahWanita }}
                 </td>
                 <td class=" px-1 capitalize border  border-1 text-center hidden sm:block ">
                   <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
