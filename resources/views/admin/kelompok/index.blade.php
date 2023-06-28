@@ -67,13 +67,21 @@
           <table class="  w-full sm:w-full">
             <thead>
               <tr class=" border border-black">
-                <th class=" border border-black">No</th>
-                <th class=" border border-black">Kelompok</th>
-                <th class=" border border-black">NIDN</th>
-                <th class=" border border-black">Pembimbing</th>
-                <th class=" border border-black">Alamat</th>
-                <th class=" border  hidden sm:block">Act</th>
+                <th rowspan="2" class=" border border-black">No</th>
+                <th rowspan="2" class=" border border-black">Kelompok</th>
+                <th rowspan="2" class=" border border-black">NIDN</th>
+                <th rowspan="2" class=" border border-black">Pembimbing</th>
+                <th rowspan="2" class=" border border-black">Alamat</th>
+                <th class=" border border-black" colspan="3">Keterangan</th>
+                <th rowspan="3" class=" border border-black">Act</th>
               </tr>
+              <tr>
+                <th class=" border border-black">Jml</th>
+                <th class=" border border-black">L</th>
+                <th class=" border border-black">P</th>
+
+              </tr>
+
             </thead>
             <tbody>
               @foreach($dataKelompok as $team)
@@ -87,6 +95,45 @@
                   Kec.{{$team->nama_kecamatan}}
                   Kab.{{$team->nama_kabupaten}}
                 </td>
+                <td class=" text-center px-1 capitalize border border-black text-sm">
+
+                  {{$team->JmlMahasiswa->count()}} Org
+                </td>
+                <td class=" text-center px-1 capitalize border border-black text-sm">
+                  @php
+                  $jumlahPria = 0;
+                  $jumlahWanita = 0;
+                  @endphp
+
+                  @foreach($team->JmlMahasiswa as $list)
+                  @foreach($list->Mahasiswa as $org)
+                  @if($org->jenis_kelamin == 'L')
+                  @php $jumlahPria++; @endphp
+                  @elseif($org->jenis_kelamin == 'P')
+                  @php $jumlahWanita++; @endphp
+                  @endif
+                  @endforeach
+                  @endforeach
+                  {{ $jumlahPria }} Org <br>
+                </td>
+                <td class=" text-center px-1 capitalize border border-black text-sm">
+                  @php
+                  $jumlahPria = 0;
+                  $jumlahWanita = 0;
+                  @endphp
+
+                  @foreach($team->JmlMahasiswa as $list)
+                  @foreach($list->Mahasiswa as $org)
+                  @if($org->jenis_kelamin == 'L')
+                  @php $jumlahPria++; @endphp
+                  @elseif($org->jenis_kelamin == 'P')
+                  @php $jumlahWanita++; @endphp
+                  @endif
+                  @endforeach
+                  @endforeach
+
+                  {{ $jumlahWanita }} Org
+                </td>
                 <td class=" px-1 capitalize border  border-1 text-center hidden sm:block ">
                   <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
                     @csrf
@@ -94,7 +141,6 @@
                     <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
                   </form>
                 </td>
-
               </tr>
               @endforeach
             </tbody>
