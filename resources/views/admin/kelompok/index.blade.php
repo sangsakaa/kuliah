@@ -68,12 +68,12 @@
             <thead>
               <tr class=" border border-black">
                 <th rowspan="2" class=" border border-black">No</th>
-                <th rowspan="2" class=" border border-black">Kelompok</th>
+                <th rowspan="2" class=" border border-black">Kel</th>
                 <th rowspan="2" class=" border border-black">NIDN</th>
                 <th rowspan="2" class=" border border-black">Pembimbing</th>
                 <th rowspan="2" class=" border border-black">Alamat</th>
                 <th class=" border border-black" colspan="3">Keterangan</th>
-                <th rowspan="3" class=" border border-black">Act</th>
+                <th rowspan="3" class=" border border-black hidden sm:block">Act</th>
               </tr>
               <tr>
                 <th class=" border border-black">Jml</th>
