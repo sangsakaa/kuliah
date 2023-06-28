@@ -44,8 +44,8 @@
           </div>
         </form>
       </div>
-      <div class="p-1 sm:p-6 mt-2 bg-white  border-gray-200">
-        <div id="div1" class=" overflow-auto sm:overflow-hidden ">
+      <div id="div1" class="p-1 sm:p-6 mt-2 bg-white  border-gray-200">
+        <div class=" overflow-auto sm:overflow-hidden ">
           <div class=" block sm:hidden w-full text-center">
             <div class=" w-full flex grid-cols-2 gap-2 text-green-700">
               <div class=" py-4">
@@ -100,7 +100,50 @@
             </tbody>
           </table>
         </div>
-        <div>
+        <div class=" block sm:hidden">
+          <table class=" mt-2 w-full">
+            <thead>
+              <tr class=" border">
+
+                <th class=" border border-black px-1">Kecamatan</th>
+                <th class=" border border-black px-1">Jumlah</th>
+                <th class=" border border-black px-1">No</th>
+                <th class=" border border-black px-1">Desa</th>
+                <th class=" border border-black px-1">Kelompok</th>
+                <th class=" border border-black px-1">Dosen</th>
+              </tr>
+            </thead>
+            <tbody>
+              @php
+              $previousKecamatan = null;
+              @endphp
+              @foreach($dataKelompok->groupBy('nama_kecamatan') as $kecamatan => $data)
+              @foreach($data as $item)
+
+              @php
+              $rowspan = $kecamatan === $previousKecamatan ? 0 : $data->count();
+              $previousKecamatan = $kecamatan;
+              @endphp
+              <tr class=" border border-black ">
+
+                @if($rowspan > 0)
+                <td class=" border border-black px-1 text-center" rowspan="{{ $rowspan }}">{{ $kecamatan }}</td>
+                @endif
+                @if($rowspan > 0)
+                <td class=" border border-black px-1 text-center" rowspan="{{ $rowspan }}">{{ $data->count() }}</td>
+                @endif
+                <td class=" border border-black px-1 text-center">{{ $loop->iteration }}</td>
+                <td class=" border border-black px-1 text-center">{{ $item->nama_desa }}</td>
+                <td class=" border border-black px-1 text-center">{{ $item->nama_kelompok }}</td>
+                <td class=" border border-black px-1 text-left capitalize">{{ strtolower($item->nama_dosen) }}</td>
+              </tr>
+              @endforeach
+              @endforeach
+            </tbody>
+          </table>
+
+
+
         </div>
       </div>
     </div>

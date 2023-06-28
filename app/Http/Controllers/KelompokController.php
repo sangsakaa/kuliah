@@ -29,6 +29,7 @@ class KelompokController extends Controller
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
         ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
         ->get();
+        
 
 
         
