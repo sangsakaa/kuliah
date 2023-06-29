@@ -14,7 +14,7 @@
             <input type="hidden" name="supervisi_id" value="{{$supervisi->id}}" class=" py-1">
             @foreach($lapSupervisi as $super)
             <input required type="text" value="{{$super->kondisi_umum}}" name="kondisi_umum" class=" py-1">
-            <label for="">2. Kegiatan Kelompok</label>
+            <label for=""> Foto Supervisi</label>
             <div>
               <img class=" p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
               @error('bukti_laporan_supervisi')
@@ -23,6 +23,7 @@
               </p>
               @enderror
             </div>
+            <label for="">2. Kegiatan Kelompok</label>
             <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div class=" grid grid-cols-1">
                 <label for="">a. Realisasi Kegiatan Sesuai Program</label>
