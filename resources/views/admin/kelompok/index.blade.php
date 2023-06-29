@@ -66,20 +66,19 @@
           </div>
           <table class="  w-full sm:w-full">
             <thead>
-              <tr class=" border border-black">
+              <tr class=" uppercase font-semibold text-xs sm:text-xs border border-black">
                 <th rowspan="2" class=" border border-black">No</th>
                 <th rowspan="2" class=" border border-black">Kel</th>
                 <th rowspan="2" class=" border border-black">NIDN</th>
                 <th rowspan="2" class=" border border-black">Pembimbing</th>
                 <th rowspan="2" class=" border border-black">Alamat</th>
                 <th class=" border border-black" colspan="3">Keterangan</th>
-                <th rowspan="3" class=" border border-black hidden sm:block">Act</th>
+                <th rowspan="2" class=" border border-black   ">Act</th>
               </tr>
-              <tr>
-                <th class=" border border-black">Jml</th>
-                <th class=" border border-black">L</th>
-                <th class=" border border-black">P</th>
-
+              <tr class="uppercase font-semibold text-xs sm:text-xs border border-black">
+                <th class=" w-10 border border-black">Jml</th>
+                <th class=" w-10 border border-black">L</th>
+                <th class=" w-10 border border-black">P</th>
               </tr>
 
             </thead>
@@ -91,15 +90,14 @@
                 <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
                 <td class=" px-1 capitalize border border-black ">{{strtolower($team->nama_dosen)}}</td>
                 <td class=" px-1 capitalize border border-black text-sm">
-                  Desa .{{$team->nama_desa}}
+                  Desa.{{$team->nama_desa}}
                   Kec.{{$team->nama_kecamatan}}
                   Kab.{{$team->nama_kabupaten}}
                 </td>
-                <td class=" text-center px-1 capitalize border border-black text-sm">
-
+                <td class=" text-center capitalize border border-black text-sm">
                   {{$team->JmlMahasiswa->count()}}
                 </td>
-                <td class=" text-center px-1 capitalize border border-black text-sm">
+                <td class=" text-center  capitalize border border-black text-sm">
                   @php
                   $jumlahPria = 0;
                   $jumlahWanita = 0;
@@ -116,7 +114,7 @@
                   @endforeach
                   {{ $jumlahPria }} <br>
                 </td>
-                <td class=" text-center px-1 capitalize border border-black text-sm">
+                <td class=" text-center  capitalize border border-black text-sm">
                   @php
                   $jumlahPria = 0;
                   $jumlahWanita = 0;
@@ -134,7 +132,7 @@
 
                   {{ $jumlahWanita }}
                 </td>
-                <td class=" px-1 capitalize border  border-1 text-center hidden sm:block ">
+                <td class="  capitalize border  border-1 text-center hidden sm:block ">
                   <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
                     @csrf
                     @method('delete')

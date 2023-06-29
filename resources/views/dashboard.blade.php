@@ -120,6 +120,11 @@
                         <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Data Anggota</div>
                     </a>
                 </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/supervisi-dosen">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Supervisi</div>
+                    </a>
+                </div>
 
             </div>
             @endrole

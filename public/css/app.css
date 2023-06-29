@@ -735,6 +735,9 @@ select {
 .w-full {
   width: 100%;
 }
+.w-10 {
+  width: 2.5rem;
+}
 .w-20 {
   width: 5rem;
 }
@@ -755,9 +758,6 @@ select {
 }
 .w-8 {
   width: 2rem;
-}
-.w-10 {
-  width: 2.5rem;
 }
 .w-1\/5 {
   width: 20%;
@@ -858,6 +858,9 @@ select {
 }
 .gap-2 {
   gap: 0.5rem;
+}
+.gap-1 {
+  gap: 0.25rem;
 }
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1662,6 +1665,11 @@ select {
 
   .sm\:text-center {
     text-align: center;
+  }
+
+  .sm\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 
   .sm\:text-sm {

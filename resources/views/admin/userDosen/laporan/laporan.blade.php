@@ -32,9 +32,6 @@
               <option value="valid" <?php if ($item->status_laporan == 'valid') echo 'selected'; ?>>Valid</option>
               <option value="draf" <?php if ($item->status_laporan == 'draf') echo 'selected'; ?>>Draf</option>
             </select>
-
-
-
           </div>
           <div class=" grid grid-cols-1">
             <span>Catatan Validasi Laporan</span>

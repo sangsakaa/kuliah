@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
+use App\Http\Controllers\SupervisiController;
 use App\Http\Controllers\UserDosenController;
 use App\Http\Controllers\UserManagemetController;
 use App\Http\Controllers\UserPerMhsController;
@@ -84,6 +85,13 @@ Route::get('/sesi-validasi-laporan-mhs', [UserDosenController::class, 'validasiL
 Route::get('/daftar-validasi-laporan-mhs/{sesi_Laporan_Harian}', [UserDosenController::class, 'DaftaValidasi'])->middleware(['auth'])->name('daftar-validasi-laporan-mhs');
 Route::get('/data-anggota', [UserDosenController::class, 'dataAnggota'])->middleware(['auth'])->name('data-anggota');
 Route::get('/time-line', [UserDosenController::class, 'timeLine'])->middleware(['auth'])->name('time-line');
+
+
+
+Route::get('/supervisi-dosen', [SupervisiController::class, 'superVisi'])->middleware(['auth'])->name('supervisi-dosen');
+Route::post('/supervisi-dosen', [SupervisiController::class, 'store'])->middleware(['auth']);
+Route::get('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'LapsuperVisi'])->middleware(['auth'])->name('laporan-supervisi-dosen');
+Route::post('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'StoreLapsuperVisi'])->middleware(['auth']);
 
 // LAPORAN
 Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');

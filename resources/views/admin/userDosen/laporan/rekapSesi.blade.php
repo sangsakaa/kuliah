@@ -38,7 +38,11 @@
               <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm ">
                 @foreach ($periodeBulan as $hari)
                 <th class=" py-1 border w-8 border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
-                                    : "" }}">{{ $hari->day }}</th>
+                                    : "" }}">
+                  {{ $hari->day }} <br>
+                  {{$hari->isoFormat('ddd')}}
+                </th>
+
                 @endforeach
               </tr>
             </thead>
@@ -52,7 +56,7 @@
                 <td class="border border-green-800  {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
                   <div class="grid justify-items-center  ">
                     @if (!$sesi['data'])
-                    <span class=" text-red-700 font-semibold">
+                    <span class=" text-red-700 font-semibold ">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                       </svg>
@@ -83,12 +87,15 @@
               <th class="border border-green-800  py-1  uppercase  text-black " colspan="{{ $periodeBulan->count() }}">
                 {{$bulan->isoFormat('MMMM YYYY')}}
 
+
               </th>
             </tr>
             <tr class="border border-green-800 bg-green-200  text-black text-xs sm:text-sm ">
               @foreach ($periodeBulan as $hari)
               <th class=" py-1 border  border-green-800 {{ $hari->isSunday() ? " border-green-800 bg-green-800 text-white "
-                                    : "" }}">{{ $hari->day }}</th>
+                                    : "" }}">
+                {{ $hari->day }}
+              </th>
               @endforeach
             </tr>
           </thead>

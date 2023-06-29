@@ -229,6 +229,9 @@
                     <x-nav-link :href="route('time-line')" :active="request()->routeIs('time-line')">
                         {{ __('Time Line') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('supervisi-dosen')" :active="request()->routeIs('supervisi-dosen')">
+                        {{ __('Supervisi') }}
+                    </x-nav-link>
 
                 </div>
             </div>

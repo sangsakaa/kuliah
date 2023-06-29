@@ -192,9 +192,6 @@ class UserDosenController extends Controller
             ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->get();
-            
-        
-
         return view(
             'admin.userDosen.laporan.rekapSesi',
             ([
@@ -207,6 +204,7 @@ class UserDosenController extends Controller
         ]
         ));
     }
+    
 
     
 }
