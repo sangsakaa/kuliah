@@ -62,6 +62,14 @@ class SupervisiController extends Controller
     }
     public function StoreLapsuperVisi(Request $request, Supervisi $supervisi)
     {
+        $request->validate(
+            [
+                'bukti_laporan_supervisi' => 'max:1042',
+            ],
+            [
+                'bukti_laporan_supervisi.max' => 'Ukuran file bukti laporan tidak boleh melebihi 1 MB.',
+            ]
+        );
         // dd($request);
         $supervisi = (int)$request->supervisi_id;
         // dd($supervisi);

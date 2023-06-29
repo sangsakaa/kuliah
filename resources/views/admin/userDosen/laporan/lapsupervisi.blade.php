@@ -17,6 +17,11 @@
             <label for="">2. Kegiatan Kelompok</label>
             <div>
               <img class=" p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
+              @error('bukti_laporan_supervisi')
+              <p class="text-red-800 font-semibold text-xs italic mt-4">
+                {{ $message }}
+              </p>
+              @enderror
             </div>
             <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div class=" grid grid-cols-1">

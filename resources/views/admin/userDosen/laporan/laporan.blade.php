@@ -45,6 +45,11 @@
         @else
         <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
         @endif
+        @error('bukti_laporan')
+        <p class="text-red-800 font-semibold text-xs italic mt-4">
+          {{ $message }}
+        </p>
+        @enderror
 
         <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000) <span> jumlah : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
         @if(strlen($item->deskripsi_laporan)>499)
