@@ -18,7 +18,7 @@
             <div>
               <img class=" p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
             </div>
-            <div class=" grid grid-cols-1 sm:grid-cols-2 gap-1">
+            <div class=" grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div class=" grid grid-cols-1">
                 <label for="">a. Realisasi Kegiatan Sesuai Program</label>
                 <textarea required name="realisasi_kegiatan" id="" class="w-full    " cols="30" rows="10">{{$super->realisasi_kegiatan}}</textarea>
