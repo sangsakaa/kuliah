@@ -13,6 +13,9 @@
         </form>
       </div>
       <div class=" p-2">
+        <div>
+
+        </div>
         <table class=" w-full">
           <thead>
             <tr class=" border px-1 border-black py-1">
@@ -20,6 +23,7 @@
               <th class=" border px-1 border-black py-1">Kelompok</th>
               <th class=" border px-1 border-black py-1">Nama Dosen</th>
               <th class=" border px-1 border-black py-1">Lokasi</th>
+              <th class=" border px-1 border-black py-1">File</th>
             </tr>
           </thead>
           <tbody>
@@ -36,6 +40,11 @@
                 Desa.{{ $supervisi->nama_desa }}
                 Kec.{{ $supervisi->nama_kecamatan }}
                 Kab.{{ $supervisi->nama_kabupaten }}
+              </td>
+              <td class=" border px-1 border-black py-1 text-center capitalize">
+                <a href="/cetak-laporan-supervisi/{{$supervisi->id}}">
+                  Cetak
+                </a>
               </td>
             </tr>
 

@@ -92,6 +92,7 @@ Route::get('/supervisi-dosen', [SupervisiController::class, 'superVisi'])->middl
 Route::post('/supervisi-dosen', [SupervisiController::class, 'store'])->middleware(['auth']);
 Route::get('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'LapsuperVisi'])->middleware(['auth'])->name('laporan-supervisi-dosen');
 Route::post('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'StoreLapsuperVisi'])->middleware(['auth']);
+Route::get('/cetak-laporan-supervisi/{supervisi}', [SupervisiController::class, 'CetakSupervisi'])->middleware(['auth']);
 
 // LAPORAN
 Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');

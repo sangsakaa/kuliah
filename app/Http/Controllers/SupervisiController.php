@@ -112,4 +112,30 @@ class SupervisiController extends Controller
 
         return redirect()->back();
     }
+    public function CetakSupervisi(Supervisi $supervisi)
+    {
+        $title = $supervisi->join('kelompok', 'kelompok.id', '=', 'supervisi.kelompok_id')
+        ->join('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+        ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
+        ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
+        ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+        ->first();
+        $UserPerDosen = Auth::user()->dosen_id;
+        $lapSupervisi = Kelompok::query()
+            ->join('supervisi', 'kelompok.id', 'supervisi.kelompok_id')
+            ->join('laporan_supervisi', 'supervisi.id', 'laporan_supervisi.supervisi_id')
+            ->select('kelompok.dosen_id', 'kondisi_umum', 'realisasi_kegiatan', 'tidak_realisasi_kegiatan', 'kendala', 'rencana_tindak_lanjut', 'bukti_laporan_supervisi')
+            ->where('kelompok.dosen_id', $UserPerDosen)
+            ->where('laporan_supervisi.supervisi_id', $supervisi->id)
+            ->get();
+        return view(
+            'admin.userDosen.laporan.cetaksupervisi',
+            [
+                'title' => $title,
+                'UserPerDosen' => $UserPerDosen,
+                'lapSupervisi' => $lapSupervisi
+            ]
+        );
+
+    }
 }
