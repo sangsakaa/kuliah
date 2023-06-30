@@ -37,15 +37,19 @@
       <div class=" p-2">
         <h1 class=" uppercase font-semibold">laporan supervisi dosen pembimbing</h1>
         <div class=" grid grid-cols-2">
+          <div>NIDN</div>
+          <div> :
+            {{ $title->nidn }}
+
+          </div>
           <div>Dosen Pembimbing</div>
           <div> :
             {{ $title->nama_dosen }}
 
           </div>
-          <div>Kelompok Dosen Pembimbing</div>
+          <div>Kelompok Bimbingan</div>
           <div> :
             {{ $title->nama_kelompok }}
-
           </div>
 
           <div>Alamat</div>
@@ -73,7 +77,7 @@
             @foreach($lapSupervisi as $lap)
             <tr class=" border border-black px-1">
               <td class=" text-center border border-black px-1">1</td>
-              <td class=" border border-black px-1">Indikator Umumu</td>
+              <td class=" border border-black px-1">Indikator Umum</td>
               <td class=" border border-black px-1">{{$lap->kondisi_umum}}</td>
             </tr>
             <tr class=" border border-black px-1">
@@ -96,7 +100,7 @@
             </tr>
             <tr class=" border border-black px-1">
               <td class=" text-center border border-black px-1">4</td>
-              <td class=" border border-black px-1">rencana_tindak_lanjut Tidak Lanjut</td>
+              <td class=" border border-black px-1">Tidak Lanjut</td>
               <td class=" border border-black px-1">{{$lap->rencana_tindak_lanjut}}</td>
             </tr>
             <tr class=" border border-black px-1">
@@ -116,6 +120,7 @@
             <p>Pembimbing </p>
             <br><br><br>
             <p class=" "> {{ $title->nama_dosen }}</p>
+            <p class=" "> NIDN {{ $title->nidn }}</p>
           </div>
         </div>
       </div>
