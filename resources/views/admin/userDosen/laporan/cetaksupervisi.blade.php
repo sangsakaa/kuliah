@@ -112,11 +112,10 @@
           <div class=" ">
             <p>Mengetahui,
               {{ \Carbon\Carbon::parse(now())->isoFormat('DD MMMM Y') }}
-
             </p>
             <p>Pembimbing </p>
-
-            <p class=" mt-28"> {{ $title->nama_dosen }}</p>
+            <br><br><br>
+            <p class=" "> {{ $title->nama_dosen }}</p>
           </div>
         </div>
       </div>

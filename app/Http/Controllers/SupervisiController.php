@@ -114,13 +114,14 @@ class SupervisiController extends Controller
     }
     public function CetakSupervisi(Supervisi $supervisi)
     {
+        $UserPerDosen = Auth::user()->dosen_id;
         $title = $supervisi->join('kelompok', 'kelompok.id', '=', 'supervisi.kelompok_id')
         ->join('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
         ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
         ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
         ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+            ->where('kelompok.dosen_id', $UserPerDosen)
         ->first();
-        $UserPerDosen = Auth::user()->dosen_id;
         $lapSupervisi = Kelompok::query()
             ->join('supervisi', 'kelompok.id', 'supervisi.kelompok_id')
             ->join('laporan_supervisi', 'supervisi.id', 'laporan_supervisi.supervisi_id')
