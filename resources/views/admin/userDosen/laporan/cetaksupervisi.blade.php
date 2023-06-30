@@ -85,7 +85,7 @@
               <td class=" border border-black px-1">
                 Kegiatan Kelompok : <br>
                 Realisasi Kegiatan Sesui Program</td>
-              <td class=" border border-black px-1">{{$lap->realisasi_kegiatan}}</td>
+              <td class=" border border-black px-1"><br>{{$lap->realisasi_kegiatan}}</td>
             </tr>
             <tr class=" border border-black px-1">
 
