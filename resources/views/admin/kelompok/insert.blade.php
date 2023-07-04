@@ -56,7 +56,6 @@
                   <th class=" border sm:block hidden ">NIM</th>
                   <th class=" border">Nama Mahasiswa</th>
                   <th class=" border">
-
                     <p class=" sm:block">JK</p>
                   </th>
                   <th class=" border">Program Studi</th>

@@ -215,7 +215,6 @@
                     </a>
                 </div>
                 <!-- Navigation Links -->
-
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Beranda') }}
@@ -231,6 +230,9 @@
                     </x-nav-link>
                     <x-nav-link :href="route('supervisi-dosen')" :active="request()->routeIs('supervisi-dosen')">
                         {{ __('Supervisi') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
+                        {{ __('Score') }}
                     </x-nav-link>
 
                 </div>
@@ -285,8 +287,42 @@
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
             </div>
+            <div class="grid grid-cols-1 mt-3 px-4">
+                @role('dosen')
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Beranda') }}
+                </x-nav-link>
+                <x-nav-link :href="route('sesi-validasi-laporan-mhs')" :active="request()->routeIs('sesi-validasi-laporan-mhs')">
+                    {{ __('Validasi Laporan') }}
+                </x-nav-link>
+                <x-nav-link :href="route('data-anggota')" :active="request()->routeIs('data-anggota')">
+                    {{ __('Data Anggota') }}
+                </x-nav-link>
+                <x-nav-link :href="route('time-line')" :active="request()->routeIs('time-line')">
+                    {{ __('Time Line') }}
+                </x-nav-link>
+                <x-nav-link :href="route('supervisi-dosen')" :active="request()->routeIs('supervisi-dosen')">
+                    {{ __('Supervisi') }}
+                </x-nav-link>
+                <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
+                    {{ __('Nilai') }}
+                </x-nav-link>
+                @endrole
+                @role('mahasiswa')
+                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Beranda') }}
+                </x-nav-link>
+                <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
+                    {{ __('Detail Mahasiswa') }}
+                </x-nav-link>
+                <x-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
+                    {{ __('Rekap Laporan Harian') }}
+                </x-nav-link>
+                @endrole
+            </div>
 
             <div class="mt-3 space-y-1">
+
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

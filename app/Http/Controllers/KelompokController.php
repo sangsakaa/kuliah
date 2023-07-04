@@ -56,7 +56,7 @@ class KelompokController extends Controller
         ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
         ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
         ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
-        ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten')
+        ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
             ->find($kelompok->id);
         $dataAnggota = Anggota_Kelompok::query()
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')

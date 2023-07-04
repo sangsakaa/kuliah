@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
+use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\SupervisiController;
 use App\Http\Controllers\UserDosenController;
 use App\Http\Controllers\UserManagemetController;
@@ -97,6 +98,13 @@ Route::get('/cetak-laporan-supervisi/{supervisi}', [SupervisiController::class, 
 // LAPORAN
 Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');
 
+
+
+Route::get('/daftar-nilai', [NilaiController::class, 'DaftarNilai'])->middleware(['auth'])->name('daftar-nilai');
+Route::post('/daftar-nilai', [NilaiController::class, 'StoreDaftar'])->middleware(['auth'])->name('daftar-nilai');
+Route::get('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'nilaiAkhir'])->middleware(['auth'])->name('nilai-peserta-kkn');
+Route::get('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'nilaiAkhir'])->middleware(['auth'])->name('nilai-peserta-kkn');
+Route::post('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'storeNilai'])->middleware(['auth'])->name('nilai-peserta-kkn');
 
 
 // KELOMPOK

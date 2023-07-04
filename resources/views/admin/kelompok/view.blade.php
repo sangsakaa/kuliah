@@ -1,5 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
+    @section('title', ' | Kelompok '.$tittle->nama_kelompok)
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       <span class=" capitalize">KELOMPOK {{$tittle->nama_kelompok}} Kec . {{$tittle->nama_kecamatan}} Desa .{{$tittle->nama_desa}} </span>
     </h2>
@@ -34,6 +35,7 @@
           <div>
             : {{$dataAnggota->count();}}
           </div>
+
           <div>Jumlah</div>
           <div>
             : L : {{$dataAnggota->where('jenis_kelamin', 'L')->count();}}
@@ -49,12 +51,14 @@
               <tr class=" border">
                 <th class=" border">No</th>
                 <th class=" border  ">NIM</th>
+                <th class=" border  ">Username</th>
+                <th class=" border  ">Password</th>
                 <th class=" border">Nama Mahasiswa</th>
                 <th class=" border">
                   <p class=" sm:block">JK</p>
                 </th>
                 <th class=" border">Program Studi</th>
-                <th class=" border">Act</th>
+                <th class=" border hidden">Act</th>
               </tr>
             </thead>
             <tbody>
@@ -62,10 +66,12 @@
               <tr>
                 <th class=" border px-1 ">{{$loop->iteration}}</th>
                 <td class=" border px-1 text-center   ">{{$list->nim}}</td>
+                <td class=" border px-1 text-center   ">{{$list->nim.'@uniwa.ac.id'}}</td>
+                <td class=" border px-1 text-center   ">{{$list->nim}}</td>
                 <td class=" capitalize border px-1 ">{{strtolower($list->nama_mhs)}}</td>
                 <td class=" border px-1 text-center ">{{$list->jenis_kelamin}}</td>
                 <td class=" border px-1 text-center ">{{$list->prodi}}</td>
-                <td class=" border px-1 text-center ">
+                <td class=" border px-1 text-center hidden ">
                   <form action="/detail-kelompok-mahasiswa/{{$list->id}}" method="post">
                     @csrf
                     @method('delete')
