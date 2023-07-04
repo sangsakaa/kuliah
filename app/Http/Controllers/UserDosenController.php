@@ -90,6 +90,7 @@ class UserDosenController extends Controller
             ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', 'kelompok.id')
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
             ->where('dosen_id', $UserPerDosen)
+            ->orderby('nama_mhs')
             ->get();
 
         return view('admin.userDosen.laporan.Anggota', compact('dataDosen', 'dataAnggota'));
