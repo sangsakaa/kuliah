@@ -19,6 +19,7 @@ class NilaiController extends Controller
             ->join('kelompok', 'kelompok.id', '=', 'daftar_nilai.kelompok_id')
             ->join('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->select('daftar_nilai.id', 'nama_kelompok', 'nama_dosen')
+            ->where('dosen_id', $UserPerDosen)
             ->get();
         return view('admin.nilai.daftar', compact('daftarNilai'));
     }

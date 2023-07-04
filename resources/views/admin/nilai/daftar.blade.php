@@ -16,7 +16,7 @@
         <table class=" w-full">
           <thead>
             <tr class=" border ">
-              <th class=" border ">ID</th>
+              <th class=" border ">No</th>
               <th class=" border ">Kelompok</th>
               <th class=" border ">Dosen Pembimbing Lapangan</th>
               <!-- Add more table headers for other columns if needed -->
@@ -25,7 +25,7 @@
           <tbody>
             @foreach ($daftarNilai as $nilai)
             <tr class=" border">
-              <td class=" border text-center">{{ $nilai->id }}</td>
+              <td class=" border text-center">{{ $loop->iteration }}</td>
               <td class=" border text-center"><a href="/nilai-peserta-kkn/{{$nilai->id}}">{{ $nilai->nama_kelompok }}</a></td>
               <td class=" border text-center">{{ $nilai->nama_dosen }}</td>
               <!-- Add more table cells for other columns if needed -->
