@@ -17,9 +17,9 @@
             <label for=""> Foto Supervisi</label>
             <div>
               @if($super->count()!== null)
-              <span class=" text-red-700 font-semibold">uploud File Supervisi</span>
-              @else
               <img class=" p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
+              @else
+              <span class=" text-red-700 font-semibold">uploud File Supervisi</span>
               @endif
               @error('bukti_laporan_supervisi')
               <p class="text-red-800 font-semibold text-xs italic mt-4">
