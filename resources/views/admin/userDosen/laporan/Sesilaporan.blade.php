@@ -1,5 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
+    @section('title', ' | Validasi Laporan ' )
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __('Sesi Validasi Laporan Harian Mahasiswa') }}
     </h2>

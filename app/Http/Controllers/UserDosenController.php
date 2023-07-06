@@ -111,6 +111,7 @@ class UserDosenController extends Controller
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
             ->select('kelompok.*', 'mahasiswa_id', 'nama_mhs')
             ->where('kelompok.dosen_id', $UserPerDosen)
+            ->orderby('nama_mhs')
             ->get();
         // dd($dataKelompok);
         $dataSesiLaporanHarian  = Sesi_Laporan_Harian::query()
