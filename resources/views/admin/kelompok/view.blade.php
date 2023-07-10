@@ -79,7 +79,7 @@
                       <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
                     </form>
                     <!-- Button trigger modal -->
-                    <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-black bg-yellow-300" href="/edit-kelompok-mahasiswa/{{$list->id}}">
+                    <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-red-700" href="/edit-kelompok-mahasiswa/{{$list->id}}">
                       E
                     </a>
                   </div>
