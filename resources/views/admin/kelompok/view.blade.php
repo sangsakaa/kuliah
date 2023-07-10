@@ -72,16 +72,20 @@
                 <td class=" border px-1 text-center ">{{$list->jenis_kelamin}}</td>
                 <td class=" border px-1 text-center ">{{$list->prodi}}</td>
                 <td class=" border px-1 text-center   ">
-                  <div class=" flex gap-1 justify-center">
-                    <form action="/detail-kelompok-mahasiswa/{{$list->id}}" method="post">
-                      @csrf
-                      @method('delete')
-                      <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
-                    </form>
+                  <div class=" flex gap-2 justify-center ">
+                    <div>
+                      <form action="/detail-kelompok-mahasiswa/{{$list->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
+                      </form>
+                    </div>
                     <!-- Button trigger modal -->
-                    <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-red-700" href="/edit-kelompok-mahasiswa/{{$list->id}}">
-                      E
-                    </a>
+                    <div>
+                      <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-red-700" href="/edit-kelompok-mahasiswa/{{$list->id}}">
+                        E
+                      </a>
+                    </div>
                   </div>
 
 
