@@ -1,5 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
+    @section('title', ' | Data Kelompok ')
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
       {{ __('KELOMPOK MAHASISWA') }}
     </h2>
@@ -73,7 +74,7 @@
                 <th rowspan="2" class=" border border-black">Username</th>
                 <th rowspan="2" class=" border border-black">Password</th>
                 <th rowspan="2" class=" border border-black">Pembimbing</th>
-                <th rowspan="2" class=" border border-black hidden">Alamat</th>
+                <th rowspan="2" class=" border border-black ">Alamat</th>
                 <th class=" border border-black" colspan="3">Keterangan</th>
                 <th rowspan="2" class=" border border-black   ">Act</th>
               </tr>
@@ -93,7 +94,7 @@
                 <td class=" px-1  border border-black text-center">{{$team->nidn.'@uniwa.ac.id'}}</td>
                 <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
                 <td class=" px-1 capitalize border border-black ">{{strtolower($team->nama_dosen)}}</td>
-                <td class=" px-1 capitalize border border-black text-sm hidden">
+                <td class=" px-1 capitalize border border-black text-sm ">
                   Desa.{{$team->nama_desa}}
                   Kec.{{$team->nama_kecamatan}}
                   Kab.{{$team->nama_kabupaten}}

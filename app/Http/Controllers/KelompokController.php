@@ -49,7 +49,6 @@ class KelompokController extends Controller
     }
     public function view(Kelompok $kelompok)
     {
-
         $tittle =
             Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
@@ -72,8 +71,7 @@ class KelompokController extends Controller
             Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
         ->select('kelompok.id', 'nama_dosen', 'nama_kelompok',)
-            ->find($kelompok->id);
-
+        ->find($kelompok->id);
         $pesertaTerpilih = Anggota_Kelompok::select('mahasiswa_id');
         $dataMahasiswa = Mahasiswa::first();
         $nim = substr($dataMahasiswa->nim, 0, 4);
@@ -84,7 +82,6 @@ class KelompokController extends Controller
             ->whereNull('anggota_Terpilih.mahasiswa_id')
             ->select('mahasiswa.id', 'nama_mhs', 'prodi', 'jenis_kelamin', 'nim')
             ->orderby('nim')
-
             ->get();
 
 
@@ -106,6 +103,24 @@ class KelompokController extends Controller
 
         Anggota_Kelompok::insert($anggotaKelompok);
 
+        return redirect()->back();
+    }
+    public function edit(Anggota_Kelompok $anggota_Kelompok)
+    {
+
+        $dataMahasiswa = $anggota_Kelompok->join('mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
+        ->find($anggota_Kelompok)
+            ->first();
+        $dataKelompok = Kelompok::orderByRaw('CAST(nama_kelompok AS SIGNED) asc')->get();
+        return view('admin.kelompok.edit', compact('anggota_Kelompok', 'dataKelompok', 'dataMahasiswa'));
+    }
+    public function update(Request $request, Anggota_Kelompok $anggota_Kelompok)
+    {
+        // dd($request);
+        Anggota_Kelompok::where('id', $anggota_Kelompok->id)
+            ->update([
+                'kelompok_id' => $request->kelompok_id,
+            ]);
         return redirect()->back();
     }
     public function DestroAnggota(Anggota_Kelompok $anggota_Kelompok)

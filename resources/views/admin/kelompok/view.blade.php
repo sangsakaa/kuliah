@@ -58,7 +58,7 @@
                   <p class=" sm:block">JK</p>
                 </th>
                 <th class=" border">Program Studi</th>
-                <th class=" border hidden">Act</th>
+                <th class=" border ">Act</th>
               </tr>
             </thead>
             <tbody>
@@ -71,12 +71,20 @@
                 <td class=" capitalize border px-1 ">{{strtolower($list->nama_mhs)}}</td>
                 <td class=" border px-1 text-center ">{{$list->jenis_kelamin}}</td>
                 <td class=" border px-1 text-center ">{{$list->prodi}}</td>
-                <td class=" border px-1 text-center hidden ">
-                  <form action="/detail-kelompok-mahasiswa/{{$list->id}}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
-                  </form>
+                <td class=" border px-1 text-center   ">
+                  <div class=" flex gap-1 justify-center">
+                    <form action="/detail-kelompok-mahasiswa/{{$list->id}}" method="post">
+                      @csrf
+                      @method('delete')
+                      <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
+                    </form>
+                    <!-- Button trigger modal -->
+                    <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-yellow-300" href="/edit-kelompok-mahasiswa/{{$list->id}}">
+                      E
+                    </a>
+                  </div>
+
+
                 </td>
               </tr>
               @endforeach

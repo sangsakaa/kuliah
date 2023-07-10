@@ -110,6 +110,8 @@ Route::post('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'storeN
 // KELOMPOK
 Route::get('/kelompok-mahasiswa', [KelompokController::class, 'index'])->middleware(['auth'])->name('kelompok-mahasiswa');
 Route::post('/kelompok-mahasiswa', [KelompokController::class, 'store']);
+Route::get('/edit-kelompok-mahasiswa/{anggota_Kelompok}', [KelompokController::class, 'edit']);
+Route::patch('/edit-kelompok-mahasiswa/{anggota_Kelompok}', [KelompokController::class, 'update']);
 Route::get('/detail-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'view'])->middleware(['auth']);
 Route::get('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'insert']);
 Route::post('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'storeAnggota']);

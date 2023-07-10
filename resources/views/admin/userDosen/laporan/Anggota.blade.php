@@ -48,7 +48,6 @@
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nama_mhs)}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{$list->jenis_kelamin}}</td>
               <td class=" border border-black px-1 capitalize text-center">
-
                 @if ($list->prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
                 S1 HKI
                 @elseif ($list->prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
@@ -57,6 +56,7 @@
                 {{ $list->prodi }}
                 @endif
               </td>
+
 
             </tr>
             @endforeach
