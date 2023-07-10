@@ -82,7 +82,7 @@
                     </div>
                     <!-- Button trigger modal -->
                     <div>
-                      <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-red-700" href="/edit-kelompok-mahasiswa/{{$list->id}}">
+                      <a class=" hover:bg-yellow-200 font-semibold py-0.5  px-2 text-white bg-blue-700" href="/edit-kelompok-mahasiswa/{{$list->id}}">
                         E
                       </a>
                     </div>

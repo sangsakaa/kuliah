@@ -22,7 +22,14 @@
             </select>
             <label for="" class=" w-1/4">Mahasiswa</label>
             <input type="text" nama="mahasiswa_id" class=" py-1 px-1" value="{{$dataMahasiswa->nama_mhs}}">
-            <button class=" py-1 px-2 bg-blue-700 text-white">update</button>
+            <div class=" flex grid-cols-2  gap-2">
+              <div>
+                <button class=" py-1 px-2 bg-blue-700 text-white">update</button>
+              </div>
+              <div class=" mt-1">
+                <a href="/detail-kelompok-mahasiswa/{{$anggota_Kelompok->kelompok_id}}" class=" mt-2 py-1 px-2 bg-blue-700 text-white">Kembali</a>
+              </div>
+            </div>
           </div>
         </form>
       </div>
