@@ -51,6 +51,7 @@
               <tr class=" border">
                 <th class=" border">No</th>
                 <th class=" border  ">NIM</th>
+                <th class=" border  ">KEL</th>
                 <th class=" border  ">Username</th>
                 <th class=" border  ">Password</th>
                 <th class=" border">Nama Mahasiswa</th>
@@ -66,6 +67,7 @@
               <tr>
                 <th class=" border px-1 ">{{$loop->iteration}}</th>
                 <td class=" border px-1 text-center   ">{{$list->nim}}</td>
+                <td class=" border px-1 text-center   ">{{$list->nama_kelompok}}</td>
                 <td class=" border px-1 text-center   ">{{$list->nim.'@uniwa.ac.id'}}</td>
                 <td class=" border px-1 text-center   ">{{$list->nim}}</td>
                 <td class=" capitalize border px-1 ">{{strtolower($list->nama_mhs)}}</td>

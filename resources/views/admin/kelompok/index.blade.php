@@ -134,15 +134,23 @@
                   @endif
                   @endforeach
                   @endforeach
-
                   {{ $jumlahWanita }}
                 </td>
                 <td class="  capitalize border  border-1 text-center hidden sm:block ">
-                  <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
-                    @csrf
-                    @method('delete')
-                    <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
-                  </form>
+                  <div class=" gap-2 flex justify-center">
+                    <div>
+                      <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
+                      </form>
+                    </div>
+                    <div>
+                      <a class=" hover:bg-yellow-200 font-semibold py-0.5 mt-1 px-2 text-white bg-blue-700" href="/edit-kelompok/{{$team->id}}">
+                        E
+                      </a>
+                    </div>
+                  </div>
                 </td>
               </tr>
               @endforeach

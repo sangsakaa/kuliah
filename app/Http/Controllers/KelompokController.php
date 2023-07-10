@@ -29,13 +29,22 @@ class KelompokController extends Controller
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
         ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
         ->get();
-        
-
-
-        
-    
         // dd($dataKelompok);
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
+    }
+    public function editKelompok(Kelompok $kelompok)
+    {
+        $dataDosen = Dosen::all();
+        $dataDesa = Desa::all();
+
+        return view(
+            'admin.kelompok.edit_kelompok',
+            [
+                'kelompok' => $kelompok,
+                'dataDesa' => $dataDesa,
+                'dataDosen' => $dataDosen
+            ]
+        );
     }
     public function store(Request $request)
     {
@@ -59,7 +68,8 @@ class KelompokController extends Controller
             ->find($kelompok->id);
         $dataAnggota = Anggota_Kelompok::query()
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
-            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'jenis_kelamin', 'nim')
+            ->join('kelompok', 'kelompok.id', 'anggota_kelompok.kelompok_id')
+            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'jenis_kelamin', 'nim', 'nama_kelompok')
             ->where('anggota_kelompok.kelompok_id', $kelompok->id)
             ->orderby('nama_mhs')
             ->get();
@@ -105,14 +115,14 @@ class KelompokController extends Controller
 
         return redirect()->back();
     }
-    public function edit(Anggota_Kelompok $anggota_Kelompok)
+    public function edit(Anggota_Kelompok $anggota_Kelompok, Kelompok $kelompok)
     {
 
-        $dataMahasiswa = $anggota_Kelompok->join('mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
-        ->find($anggota_Kelompok)
-            ->first();
+        $Mhs = $anggota_Kelompok->join('mahasiswa', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
+        ->first();
+
         $dataKelompok = Kelompok::orderByRaw('CAST(nama_kelompok AS SIGNED) asc')->get();
-        return view('admin.kelompok.edit', compact('anggota_Kelompok', 'dataKelompok', 'dataMahasiswa'));
+        return view('admin.kelompok.edit', compact('anggota_Kelompok', 'dataKelompok',  'kelompok', 'Mhs'));
     }
     public function update(Request $request, Anggota_Kelompok $anggota_Kelompok)
     {
@@ -120,6 +130,17 @@ class KelompokController extends Controller
         Anggota_Kelompok::where('id', $anggota_Kelompok->id)
             ->update([
                 'kelompok_id' => $request->kelompok_id,
+            ]);
+        return redirect()->back();
+    }
+    public function updateKelompok(Request $request, Kelompok $kelompok)
+    {
+        // dd($request);
+        Kelompok::where('id', $kelompok->id)
+            ->update([
+                'dosen_id' => $request->dosen_id,
+                'nama_kelompok' => $request->nama_kelompok,
+                'desa_id' => $request->desa_id,
             ]);
         return redirect()->back();
     }

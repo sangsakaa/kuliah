@@ -117,6 +117,9 @@ Route::get('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class
 Route::post('/kolektif-kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'storeAnggota']);
 Route::delete('/detail-kelompok-mahasiswa/{anggota_Kelompok}', [KelompokController::class, 'DestroAnggota']);
 Route::delete('/kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'destroy']);
+// kelompok
+Route::get('/edit-kelompok/{kelompok}', [KelompokController::class, 'editKelompok']);
+Route::patch('/edit-kelompok/{kelompok}', [KelompokController::class, 'updateKelompok']);
 
 
 require __DIR__ . '/auth.php';
