@@ -34,7 +34,7 @@ class KelompokController extends Controller
     }
     public function editKelompok(Kelompok $kelompok)
     {
-        $dataDosen = Dosen::all();
+        $dataDosen = Dosen::orderby('nama_dosen')->get();
         $dataDesa = Desa::all();
 
         return view(
