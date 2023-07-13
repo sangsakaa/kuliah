@@ -443,9 +443,9 @@
                                 @if (Route::has('login'))
                                 <div class="  right-0 px-6 py-4 sm:block">
                                     @auth
-                                    <a href="{{ url('/dashboard') }}" class="text-sm text-gray-200 dark:text-gray-900 ">BERANDA</a>
+                                    <a href="{{ url('/dashboard') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">BERANDA</a>
                                     @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-200 dark:text-gray-900 ">MASUK</a>
+                                    <a href="{{ route('login') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">MASUK</a>
                                     @endauth
                                 </div>
                                 @endif

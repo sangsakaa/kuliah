@@ -5,17 +5,16 @@
             {{ __('Beranda') }}
         </h2>
     </x-slot>
-    <div class=" w-full py-2 px-2 ">
+    @role('super admin')
+    <div class=" w-full  px-2 ">
         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-4 bg-white  border-gray-200">
-                @role('super admin')
                 <div>
                     <div class=" w-full grid grid-cols-1 gap-2 sm:grid-cols-4">
                         <div class=" w-full grid grid-cols-2 bg-red-500 text-white rounded-md">
                             <div class=" px-4 py-2 grid grid-cols-1">
                                 <div>Mahaiswa Putra</div>
                                 <div>{{ $putra }} Mhs </div>
-
                             </div>
                             <div class="grid  px-4  justify-items-end  content-center  "><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-person-bounding-box inline-block" viewBox="0 0 16 16">
                                     <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1h-3zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5zM.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5zm15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5z" />
@@ -36,10 +35,10 @@
                         </div>
                     </div>
                 </div>
-                @endrole
             </div>
         </div>
     </div>
+    @endrole
     <div class=" px-2">
         <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
             <div class="flex justify-center items-center w-1   bg-green-800">
@@ -83,9 +82,9 @@
 
                                 <div>
                                     @foreach($dataDosen as $detail)
-                                    <p>{{$detail->nama_dosen}}</p>
-                                    <p class=" text-sm">{{$detail->nidn}}</p>
-                                    {{$detail->prodi}} ({{$detail->jenis_kelamin}})
+                                    <p>{{$detail->nama_dosen}} - ({{$detail->jenis_kelamin}})</p>
+                                    <p class=" text-sm">NIDN - {{$detail->nidn}}</p>
+
                                     @endforeach
                                 </div>
                                 @endrole
@@ -113,7 +112,7 @@
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
                     <a href="/sesi-validasi-laporan-mhs">
-                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Laporan Harian Mahasiswa</div>
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Val Laporan Mahasiswa</div>
                     </a>
                 </div>
                 <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
@@ -126,12 +125,19 @@
                         <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Supervisi</div>
                     </a>
                 </div>
-
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/daftar-nilai">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Nilai</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/time-line">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Time Line</div>
+                    </a>
+                </div>
             </div>
             @endrole
         </div>
-
-    </div>
     </div>
 
 

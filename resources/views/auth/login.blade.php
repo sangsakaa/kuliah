@@ -1,10 +1,8 @@
 <x-guest-layout>
-
+    @section('title', ' | Login ' )
     <x-auth-card>
         <x-slot name="logo">
-            <center>
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class=" mt-4 sm:pt-4" width="150px" height="150px">
-            </center>
+
             <a href="/">
                 <!-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> -->
             </a>
@@ -19,7 +17,11 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-
+            <center>
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="  sm:mt-4 " width="150px" height="150px">
+                <p>Sistem Informasi Pelaporan</p>
+                <h1>KULIAH KERJA NYATA</h1>
+            </center>
             <!-- Email Address -->
             <div>
                 <x-label for="email" :value="__('Email')" />

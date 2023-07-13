@@ -33,7 +33,7 @@
             <tr>
               <th class="border border-black px-1 ">No</th>
               <th class="border border-black px-1">Pembimbing</th>
-              <th class="border border-black px-1">Kelompok</th>
+              <th class="border border-black px-1">Kel</th>
               <th class="border border-black px-1">Alamat</th>
               <th class="border border-black px-1">No</th>
               <th class="border border-black px-1">Detail Anggota</th>
@@ -47,7 +47,7 @@
               <td class="border border-b-2 border-black px-1 capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{strtolower($list->nama_dosen)}}</td>
               <td class="border border-b-2 border-black px-1 text-center" rowspan="{{count($list->JmlMahasiswa) + 1}}">{{$list->nama_kelompok}}</td>
               <td class="border border-b-2 border-black px-1  capitalize" rowspan="{{count($list->JmlMahasiswa) + 1}}">
-                Desa.{{$list->nama_desa}} - Kec.{{$list->nama_kecamatan}} Kab. {{$list->nama_kabupaten}}
+                Desa.{{$list->nama_desa}} - Kec.{{$list->nama_kecamatan}} <br> Kab. {{$list->nama_kabupaten}}
               </td>
             </tr>
             @foreach($list->JmlMahasiswa as $item)
