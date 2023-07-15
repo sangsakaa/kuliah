@@ -53,9 +53,6 @@
                   <option value="menunggu" <?php if ($item->status_laporan == 'menunggu') echo 'selected'; ?> <?php echo ($item->status_laporan == 'valid' || $item->status_laporan == 'menunggu') ? 'disabled' : ''; ?>>Menunggu</option>
                   <option class="hidden" value="valid" <?php if ($item->status_laporan == 'valid') echo 'selected'; ?> <?php echo ($item->status_laporan == 'valid' || $item->status_laporan == 'menunggu') ? 'disabled' : ''; ?>>Valid</option>
                 </select>
-
-
-
               </div>
             </div>
             <div class=" grid grid-cols-1">
@@ -69,6 +66,7 @@
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
+
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
           <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>

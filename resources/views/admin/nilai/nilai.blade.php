@@ -10,8 +10,13 @@
       <div class=" p-2">
         <form action="/nilai-peserta-kkn/{{$daftarNilai->id}}" method="post">
           @csrf
-          <div class=" grid justify-end">
-            <button class=" bg-blue-700 text-white py-1 px-2">Simpan Nilai</button>
+          <div class=" flex justify-end gap-2 ">
+            <div>
+              <button class=" bg-blue-700 text-white py-1 px-2">Simpan</button>
+            </div>
+            <div class=" mt-1">
+              <a href="/daftar-nilai" class=" bg-blue-700 text-white py-1 mt-1 px-2">Kembali</a>
+            </div>
           </div>
           <input type="text" name="daftar_nilai_id" hidden value="{{$daftarNilai->id}}">
           <table class=" mt-2 w-full">

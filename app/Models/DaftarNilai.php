@@ -9,4 +9,10 @@ class DaftarNilai extends Model
 {
     use HasFactory;
     protected $table = "daftar_nilai";
+    public function nilai()
+    {
+        return $this->hasMany(Nilai::class, 'daftar_nilai_id');
+    }
+
+
 }

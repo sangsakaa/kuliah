@@ -25,6 +25,7 @@
               <th class=" border px-1 border-black py-1">Nama Dosen</th>
               <th class=" border px-1 border-black py-1">Lokasi</th>
               <th class=" border px-1 border-black py-1">File</th>
+              <th class=" border px-1 border-black py-1">Status</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +33,8 @@
             <tr class=" border px-1 border-black py-1">
               <td class=" border px-1 border-black py-1 text-center">
                 <a href="/laporan-supervisi-dosen/{{$supervisi->id}}">
-                  {{ $supervisi->tanggal}}
+
+                  {{ \Carbon\Carbon::parse($supervisi->tanggal)->isoFormat('DD MMMM Y') }}
                 </a>
               </td>
               <td class=" border px-1 border-black py-1 text-center">{{ $supervisi->nama_kelompok }}</td>
@@ -46,6 +48,14 @@
                 <a href="/cetak-laporan-supervisi/{{$supervisi->id}}">
                   Cetak
                 </a>
+              </td>
+              <td class=" border px-1 border-black py-1 text-center capitalize">
+                @if ($supervisi->Super->whereNull('Bukti_laporan_supervisi')->count() == 1)
+                Tuntas
+                @else
+                Belum Tuntas
+                @endif
+
               </td>
             </tr>
 

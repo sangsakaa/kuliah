@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Laporan_Mahasiswa;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Supervisi extends Model
 {
@@ -13,4 +14,8 @@ class Supervisi extends Model
         'supervisi_id',
         // other fields...
     ];
+    public function Super()
+    {
+        return $this->hasMany(Laporan_Supervisi::class, 'supervisi_id');
+    }
 }

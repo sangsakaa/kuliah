@@ -17,10 +17,10 @@
             <input required type="text" value="{{$super->kondisi_umum}}" name="kondisi_umum" class=" py-1">
             <label for=""> Foto Supervisi</label>
             <div>
-              @if($super->count()!== null)
-              <img class=" p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
+              @if($super->bukti_laporan_supervisi === null)
+              <span class="text-red-700 font-semibold">Bukti laporan belum diunggah</span>
               @else
-              <span class=" text-red-700 font-semibold">uploud File Supervisi</span>
+              <img class="p-2" src="{{ asset('storage/' . $super->bukti_laporan_supervisi) }}" alt="" width="500" height="600">
               @endif
               @error('bukti_laporan_supervisi')
               <p class="text-red-800 font-semibold text-xs italic mt-4">
