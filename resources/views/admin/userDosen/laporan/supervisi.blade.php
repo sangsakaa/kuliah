@@ -51,7 +51,7 @@
               </td>
               <td class=" border px-1 border-black py-1 text-center capitalize">
                 @if ($supervisi->Super->whereNull('Bukti_laporan_supervisi')->count() == 1)
-                Tuntas
+                Tuntas Supervisi
                 @else
                 Belum Tuntas
                 @endif
