@@ -46,6 +46,7 @@ class NilaiController extends Controller
             ->where('anggota_kelompok.kelompok_id', $Kelompok->id)
             ->orderby('nama_mhs')
             // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
+            // ->where('daftar_nilai_id', $daftarNilai->id)
             ->get();
         // dd($dataAnggota->toArray());
         return view('admin.nilai.nilai', compact('dataAnggota', 'daftarNilai'));

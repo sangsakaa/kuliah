@@ -135,6 +135,11 @@
                         <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Time Line</div>
                     </a>
                 </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/time-line">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> PKM</div>
+                    </a>
+                </div>
             </div>
             @endrole
         </div>

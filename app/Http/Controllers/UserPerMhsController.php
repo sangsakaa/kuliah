@@ -125,8 +125,8 @@ class UserPerMhsController extends Controller
     {
         // dd($request);
         $request->validate(
-            [
-                'bukti_laporan' => 'max:1042',
+            [`
+                'bukti_laporan' => 'max:5042',
             ],
             [
                 'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh melebihi 1 MB.',

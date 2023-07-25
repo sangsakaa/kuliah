@@ -234,6 +234,9 @@
                     <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
                         {{ __('Score') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
+                        {{ __('PKM') }}
+                    </x-nav-link>
 
                 </div>
             </div>
