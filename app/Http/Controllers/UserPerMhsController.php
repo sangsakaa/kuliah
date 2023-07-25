@@ -124,14 +124,14 @@ class UserPerMhsController extends Controller
 
     {
         // dd($request);
-        $request->validate(
-            [`
-                'bukti_laporan' => 'max:10042',
-            ],
-            [
-                'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh melebihi 1 MB.',
-            ]
-        );
+        // $request->validate(
+        //     [`
+        //         'bukti_laporan' => 'max:5042',
+        //     ],
+        //     [
+        //         'bukti_laporan.max' => 'Ukuran file bukti laporan tidak boleh melebihi 1 MB.',
+        //     ]
+        // );
         $sesi_Laporan_Harian = (int) $request->sesi_laporan_harian_id;
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
