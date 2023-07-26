@@ -39,16 +39,13 @@
           </td> -->
           @foreach ($dataMhs as $mhs)
           @if ($mhs->status_laporan === 'menunggu')
-          <span class=" rounded-md bg-yellow-300 text-black  capitalize font-semibold px-2">
+          <span class=" rounded-md bg-yellow-500 text-black  capitalize font-semibold px-2">
             menunggu validasi dosen
           </span>
           @elseif ($mhs->status_laporan === 'draf')
           belum laporan atau ada revisi
           @endif
           @endforeach
-
-
-
         </div>
         <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" method="post" enctype="multipart/form-data">
           @csrf
