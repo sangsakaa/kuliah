@@ -29,14 +29,25 @@
       <div class="px-2 py-2">
         <div> Status Laporan :
           dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}}
-          <td class="border text-center px-1">
+          <!-- <td class="border text-center px-1">
             @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
             @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
             <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
             @else
             <span class=" bg-red-700 text-white px-1 rounded-sm uppercase">telat</span>
             @endif
-          </td>
+          </td> -->
+          @foreach ($dataMhs as $mhs)
+          @if ($mhs->status_laporan === 'menunggu')
+          <span class=" rounded-md bg-yellow-300 text-black  capitalize font-semibold px-2">
+            menunggu validasi dosen
+          </span>
+          @elseif ($mhs->status_laporan === 'draf')
+          belum laporan atau ada revisi
+          @endif
+          @endforeach
+
+
 
         </div>
         <form action="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}" method="post" enctype="multipart/form-data">

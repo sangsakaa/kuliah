@@ -8,7 +8,6 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-2">
         <div>
-
         </div>
         <table>
           <thead>

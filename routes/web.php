@@ -12,6 +12,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\SiacaController;
 use App\Http\Controllers\SupervisiController;
 use App\Http\Controllers\UserDosenController;
@@ -80,7 +81,11 @@ Route::get('/unduh-file/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'u
 Route::get('/cek-laporan', [SiacaController::class, 'RekapLap'])->middleware(['auth'])->name('cek-laporan');
 
 
-
+// Role Management
+Route::get('/role-management', [RoleManagementController::class, 'roleManagement'])->middleware(['auth'])->name('role-management');
+Route::post('/role-management', [RoleManagementController::class, 'store'])->middleware(['auth']);
+Route::get('/has-role', [RoleManagementController::class, 'HasRole'])->middleware(['auth'])->name('has-role');
+Route::post('/has-role', [RoleManagementController::class, 'storeHasRole'])->middleware(['auth'])->name('has-role');
 
 // User Dosen
 

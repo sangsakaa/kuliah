@@ -20,7 +20,10 @@
           </form>
         </div>
         <div class=" py-1">
-          <a href="" class=" hover:bg-blue-900 bg-blue-600 px-2 py-1 w-full text-white capitalize">Tambah Role</a>
+          <a href="/role-management" class=" hover:bg-blue-900 bg-blue-600 px-2 py-1 w-full text-white capitalize">Tambah Role</a>
+        </div>
+        <div class=" py-1">
+          <a href="/has-role" class=" hover:bg-blue-900 bg-blue-600 px-2 py-1 w-full text-white capitalize">Has Role</a>
         </div>
       </div>
     </div>
