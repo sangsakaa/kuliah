@@ -12,6 +12,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\SiacaController;
 use App\Http\Controllers\SupervisiController;
 use App\Http\Controllers\UserDosenController;
 use App\Http\Controllers\UserManagemetController;
@@ -56,7 +57,7 @@ Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDat
 // userManajement
 Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');
 Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])->middleware(['auth']);
-Route::post('/create-user-dosen', [UserManagemetController::class, 'CreateUserDosen'])->middleware(['auth']);
+Route::post('/data-user', [UserManagemetController::class, 'CreateUserDosen'])->middleware(['auth']);
 
 
 
@@ -75,7 +76,8 @@ Route::get('/unduh-file/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'u
     ->name('unduh.file');
 
 
-
+// Siaca
+Route::get('/cek-laporan', [SiacaController::class, 'RekapLap'])->middleware(['auth'])->name('cek-laporan');
 
 
 
