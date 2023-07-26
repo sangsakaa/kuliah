@@ -18,7 +18,7 @@
             @foreach ($dataLap as $item)
             <tr>
               <td class=" border w-1/2 ">
-                <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="">
+                <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="600">
               </td>
               <td class=" border">
                 <div class=" grid grid-cols-2 ">
