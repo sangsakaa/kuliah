@@ -17,7 +17,7 @@
           <tbody>
             @foreach ($dataLap as $item)
             <tr>
-              <td class=" border ">
+              <td class=" border w-1/2 ">
                 <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="500">
               </td>
               <td class=" border">
