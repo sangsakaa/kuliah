@@ -7,6 +7,9 @@
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-2">
+        <div>
+
+        </div>
         <table>
           <thead>
             <tr>
@@ -18,7 +21,7 @@
             @foreach ($dataLap as $item)
             <tr>
               <td class=" border w-1/2 ">
-                <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="600">
+                <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="600" height="100">
               </td>
               <td class=" border">
                 <div class=" grid grid-cols-2 ">
@@ -28,6 +31,8 @@
                   <div>: {{$item->status_laporan}} </div>
                   <div>Status Laporan </div>
                   <div>: {{$item->nama_mhs}} </div>
+                  <div>Status Laporan </div>
+                  <div>: </div>
                 </div>
                 <div>
                   <p class="  text-left ">{{$item->deskripsi_laporan}}</p>
