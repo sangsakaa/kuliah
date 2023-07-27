@@ -37,7 +37,7 @@
                 <div class=" px-1">
                   <hr class=" border-b-2">
 
-                  {{$item->bukti_laporan}}
+                  {{$item->deskripsi_laporan}}
 
                 </div>
               </td>
