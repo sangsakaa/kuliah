@@ -15,13 +15,11 @@
                 {{ Session::get('success') }}
               </div>
               @endif
-
               @if(Session::has('error'))
               <div id="" class="alert alert-danger">
                 {{ Session::get('error') }}
               </div>
               @endif
-
               <script>
                 // Fungsi untuk menghilangkan notifikasi setelah 5 detik
                 setTimeout(function() {
@@ -31,7 +29,6 @@
                   }
                 }, 5000); // 5000 milidetik = 5 detik
               </script>
-
             </span>
           </div>
           <div>
@@ -49,7 +46,7 @@
                 <select name="model_id" id="" class=" py-1 w-full capitalize">
                   <option value="">Pilih User</option>
                   @foreach($user as $list)
-                  <option value="{{$list->dosen_id}}">{{strtolower($list->name)}}</option>
+                  <option value="{{$list->id}}"> {{$list->id}} - {{strtolower($list->name)}}</option>
                   @endforeach
                 </select>
                 <input type="hidden" name="model_type" value="App\Models\User">
@@ -57,7 +54,6 @@
                   <div id="notification" class=" text-red-700">{{ $message }}</div>
                   @enderror
                 </small>
-
                 <button class=" bg-blue-700 px-1 py-1 text-white w-fit">Create Role</button>
               </div>
             </form>
@@ -67,16 +63,37 @@
           <div>
             <div>
               <span>Role</span>
+              <div class=" grid justify-items-end content-end py-1">
+                <form action="/has-role" method="get">
+                  <input type="text" name="cari" value="{{ request('cari') }}" class=" border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder=" Cari ..">
+                  <button type="submit" class="  bg-green-800 py-1 px-2 rounded-md text-white">
+                    Cari</button>
+                </form>
+              </div>
             </div>
             <table class=" w-full">
               <thead>
                 <tr class=" border">
                   <th class=" border ">Name</th>
                   <th class=" border ">Guard Name</th>
+                  <th class=" border "> model_id</th>
                 </tr>
               </thead>
               <tbody>
-
+                @foreach($dataHasRole as $Hasrole)
+                <tr class=" border">
+                  <td class=" border px-1">{{ $Hasrole->name }}</td>
+                  <td class=" border px-1 text-center">{{ $Hasrole->guard_name }}</td>
+                  <td class=" border px-1 text-center">{{ $Hasrole->model_id }}</td>
+                  <td>
+                    <form action="/has-role/{{$Hasrole->model_id}}" method="post">
+                      @csrf
+                      @method('delete')
+                      <button>Delete</button>
+                    </form>
+                  </td>
+                </tr>
+                @endforeach
               </tbody>
             </table>
           </div>

@@ -86,6 +86,7 @@ Route::get('/role-management', [RoleManagementController::class, 'roleManagement
 Route::post('/role-management', [RoleManagementController::class, 'store'])->middleware(['auth']);
 Route::get('/has-role', [RoleManagementController::class, 'HasRole'])->middleware(['auth'])->name('has-role');
 Route::post('/has-role', [RoleManagementController::class, 'storeHasRole'])->middleware(['auth'])->name('has-role');
+Route::delete('/has-role/{has_Role:model_id}', [RoleManagementController::class, 'RemoveRole'])->middleware(['auth']);
 
 // User Dosen
 

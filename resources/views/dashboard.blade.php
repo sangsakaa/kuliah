@@ -88,6 +88,87 @@
                                     @endforeach
                                 </div>
                                 @endrole
+                                @role('pengawas')
+                                <p class=" capitalize">pengawas</p>
+                                <div>
+                                    <table class="  w-full sm:w-full">
+                                        <thead>
+                                            <tr class=" uppercase font-semibold text-xs sm:text-xs border border-black">
+                                                <th rowspan="2" class=" border border-black">No</th>
+                                                <th rowspan="2" class=" border border-black">Kel</th>
+                                                <th rowspan="2" class=" border border-black">NIDN</th>
+                                                <th rowspan="2" class=" border border-black">Username</th>
+                                                <th rowspan="2" class=" border border-black">Password</th>
+                                                <th rowspan="2" class=" border border-black">Pembimbing</th>
+                                                <th rowspan="2" class=" border border-black ">Alamat</th>
+                                                <th class=" border border-black" colspan="3">Keterangan</th>
+
+                                            </tr>
+                                            <tr class="uppercase font-semibold text-xs sm:text-xs border border-black">
+                                                <th class=" w-10 border border-black">Jml</th>
+                                                <th class=" w-10 border border-black">L</th>
+                                                <th class=" w-10 border border-black">P</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            @foreach($dataKelompok as $team)
+                                            <tr class=" border border-black text-sm">
+                                                <th class=" px-1 capitalize border border-black">{{$loop->iteration}}</th>
+                                                <td class=" px-1 capitalize border border-black text-center">{{$team->nama_kelompok}}</td>
+                                                <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
+                                                <td class=" px-1  border border-black text-center">{{$team->nidn.'@uniwa.ac.id'}}</td>
+                                                <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
+                                                <td class=" px-1 capitalize border border-black ">{{strtolower($team->nama_dosen)}}</td>
+                                                <td class=" px-1 capitalize border border-black text-sm ">
+                                                    Desa.{{$team->nama_desa}}
+                                                    Kec.{{$team->nama_kecamatan}}
+                                                    Kab.{{$team->nama_kabupaten}}
+                                                </td>
+                                                <td class=" text-center capitalize border border-black text-sm">
+                                                    {{$team->JmlMahasiswa->count()}}
+                                                </td>
+                                                <td class=" text-center  capitalize border border-black text-sm">
+                                                    @php
+                                                    $jumlahPria = 0;
+                                                    $jumlahWanita = 0;
+                                                    @endphp
+
+                                                    @foreach($team->JmlMahasiswa as $list)
+                                                    @foreach($list->Mahasiswa as $org)
+                                                    @if($org->jenis_kelamin == 'L')
+                                                    @php $jumlahPria++; @endphp
+                                                    @elseif($org->jenis_kelamin == 'P')
+                                                    @php $jumlahWanita++; @endphp
+                                                    @endif
+                                                    @endforeach
+                                                    @endforeach
+                                                    {{ $jumlahPria }} <br>
+                                                </td>
+                                                <td class=" text-center  capitalize border border-black text-sm">
+                                                    @php
+                                                    $jumlahPria = 0;
+                                                    $jumlahWanita = 0;
+                                                    @endphp
+
+                                                    @foreach($team->JmlMahasiswa as $list)
+                                                    @foreach($list->Mahasiswa as $org)
+                                                    @if($org->jenis_kelamin == 'L')
+                                                    @php $jumlahPria++; @endphp
+                                                    @elseif($org->jenis_kelamin == 'P')
+                                                    @php $jumlahWanita++; @endphp
+                                                    @endif
+                                                    @endforeach
+                                                    @endforeach
+                                                    {{ $jumlahWanita }}
+                                                </td>
+
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                @endrole
                             </div>
                         </div>
                     </div>

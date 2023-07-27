@@ -59,26 +59,9 @@
                 @if (Auth::user()->hasRole('pengawas'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Berandax') }}
+                        {{ __('Beranda') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('sesi-validasi-laporan-mhs')" :active="request()->routeIs('sesi-validasi-laporan-mhs')">
-                        {{ __('Validasi Laporan') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('data-anggota')" :active="request()->routeIs('data-anggota')">
-                        {{ __('Data Anggota') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('time-line')" :active="request()->routeIs('time-line')">
-                        {{ __('Time Line') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('supervisi-dosen')" :active="request()->routeIs('supervisi-dosen')">
-                        {{ __('Supervisi') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
-                        {{ __('Score') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
-                        {{ __('PKM') }}
-                    </x-nav-link>
+
                 </div>
                 @elseif (Auth::user()->hasRole('dosen'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

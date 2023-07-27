@@ -43,7 +43,9 @@
             menunggu validasi dosen
           </span>
           @elseif ($mhs->status_laporan === 'draf')
-          belum laporan atau ada revisi
+          <span class=" rounded-md bg-yellow-500 text-black  capitalize font-semibold px-2">
+            belum laporan atau ada revisi
+          </span>
           @endif
           @endforeach
         </div>
