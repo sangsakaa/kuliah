@@ -36,9 +36,9 @@
                 </div>
                 <div class=" px-1">
                   <hr class=" border-b-2">
-                  <p>
-                    {{$item}}
-                  </p>
+
+                  {{$item->bukti_laporan}}
+
                 </div>
               </td>
             </tr>
