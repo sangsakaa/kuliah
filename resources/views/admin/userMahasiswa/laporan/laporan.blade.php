@@ -86,7 +86,13 @@
           @endif
           <textarea name="deskripsi_laporan" id="" class="w-full" cols="30" rows="10" required>{{ old('deskripsi_laporan', $item->deskripsi_laporan ?? '') }}</textarea>
           <h1>Unggah Bukti Kegiatan <span class=" font-semibold`">( Max : 1 MB)</span></h1>
-          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan" value="{{ asset($item->bukti_laporan) }}">
+          @if(!$item->bukti_laporan)
+          <input type="file" id="fileInput" required accept="image/*" name="bukti_laporan">
+          @else
+          <input type="hidden" name="bukti_laporan" value="{{ $item->bukti_laporan }}">
+          <p>File already uploaded: {{ $item->bukti_laporan }}</p>
+          @endif
+
           @error('bukti_laporan')
           <p class="text-red-800 font-semibold text-xs italic mt-4">
             {{ $message }}
