@@ -53,7 +53,6 @@
           @csrf
           <input class="w-full" type="hidden" name="sesi_laporan_harian_id" value="{{$sesi_Laporan_Harian->id}}">
           @foreach($dataMhs as $item)
-
           <div class=" grid grid-cols-1 sm:grid-cols-2  gap-2">
             <div class=" grid-cols-1 grid">
               <div class=" grid-cols-1 grid">

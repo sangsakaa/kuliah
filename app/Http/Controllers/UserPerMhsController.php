@@ -124,14 +124,14 @@ class UserPerMhsController extends Controller
 
     {
         // dd($request);
-        $request->validate(
-            [`
-                'bukti_laporan' => 'required',
-            ],
-            [
-                'bukti_laporan.required' => 'wajib uploud bukti laporan',
-            ]
-        );
+        // $request->validate(
+        //     [
+        //         'bukti_laporan' => 'required',
+        //     ],
+        //     [
+        //         'bukti_laporan.required' => 'wajib ada foto',
+        //     ]
+        // );
         $sesi_Laporan_Harian = (int) $request->sesi_laporan_harian_id;
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
