@@ -12,29 +12,31 @@
         <table>
           <thead>
             <tr>
-              <th class=" border">Bukti Lap</th>
-              <th class=" border">Detail Lapran</th>
+              <th class=" border-black border">Bukti Lap</th>
+              <th class=" border-black border">Detail Lapran</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($dataLap as $item)
             <tr>
-              <td class=" border w-1/2 ">
+              <td class=" border-black border w-1/2 ">
                 <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="600" height="100">
               </td>
-              <td class=" border">
-                <div class=" grid grid-cols-2 ">
+              <td class=" border-black border  justify-content-around">
+                <div class=" px-1 grid grid-cols-2 ">
                   <div>Lokasi</div>
                   <div> : {{$item->lokasi_praktik}}</div>
                   <div>Status Laporan </div>
                   <div>: {{$item->status_laporan}} </div>
-                  <div>Status Laporan </div>
+                  <div>Nama Mahasiswa </div>
                   <div>: {{$item->nama_mhs}} </div>
-                  <div>Status Laporan </div>
-                  <div>: </div>
+                  <div>Nama Mahasiswa </div>
+                  <div>: {{$item->prodi}} </div>
+
                 </div>
-                <div>
-                  <p class="  text-left ">{{$item->deskripsi_laporan}}</p>
+                <div class=" px-1">
+                  <hr class=" border-b-2">
+                  {{$item}}
                 </div>
               </td>
             </tr>
