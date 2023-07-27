@@ -20,8 +20,8 @@
             <tbody>
               @foreach ($dataLap as $item)
               <tr>
-                <td class=" border-black border w-1/2 ">
-                  <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="600" height="100">
+                <td class=" border-black border  ">
+                  <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="">
                 </td>
                 <td class=" border-black border  justify-content-around">
                   <div class=" px-1 grid grid-cols-2 ">
