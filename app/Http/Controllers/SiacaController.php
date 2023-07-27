@@ -17,10 +17,12 @@ class SiacaController extends Controller
         $UserPermhs = Auth::user()->mahasiswa_id;
 
         $dataLap = Anggota_Kelompok::query()
+            ->join('kelompok', 'kelompok.id', 'anggota_kelompok.kelompok_id')
+            ->join('dosen', 'dosen.id', 'kelompok.dosen_id')
             ->leftJoin('sesi_laporan_harian', 'sesi_laporan_harian.anggota_kelompok_id', '=', 'anggota_kelompok.mahasiswa_id')
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-        ->where('status_laporan', 'valid ');
+        ->where('status_laporan', 'valid ')->orderby('nama_kelompok');
         if (request('cari')) {
             $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%')->orderBy('nama_mhs');
         }

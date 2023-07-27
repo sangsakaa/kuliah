@@ -17,6 +17,9 @@
                 Cari</button>
             </form>
           </div>
+          <div>
+
+          </div>
           <table class=" mt-2 w-full">
             <thead>
               <tr>
@@ -36,10 +39,14 @@
                     <div>: {{$item->nama_mhs}} </div>
                     <div>Program Studi </div>
                     <div>: {{$item->prodi}} </div>
-                    <div>Lokasi</div>
+                    <div>Lokasi / Instansi</div>
                     <div> : {{$item->lokasi_praktik}}</div>
                     <div>Status Laporan </div>
                     <div class=" capitalize text-green-700">: {{$item->status_laporan}} </div>
+                    <div>Nama Kelompok </div>
+                    <div class=" capitalize text-green-700">: {{$item->nama_kelompok}} </div>
+                    <div>Dosen Pembimbing Lapangan </div>
+                    <div class=" capitalize text-green-700">: {{$item->nama_dosen}} </div>
                   </div>
                   <div class=" px-1">
                     <hr class=" border-b-2 border-black">
