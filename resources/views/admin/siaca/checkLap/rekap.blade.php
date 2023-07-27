@@ -30,13 +30,15 @@
                   <div>: {{$item->status_laporan}} </div>
                   <div>Nama Mahasiswa </div>
                   <div>: {{$item->nama_mhs}} </div>
-                  <div>Nama Mahasiswa </div>
+                  <div>Program Studi </div>
                   <div>: {{$item->prodi}} </div>
 
                 </div>
                 <div class=" px-1">
                   <hr class=" border-b-2">
-                  {{$item}}
+                  <p>
+                    {{$item}}
+                  </p>
                 </div>
               </td>
             </tr>
