@@ -20,8 +20,16 @@ class SiacaController extends Controller
             ->leftJoin('sesi_laporan_harian', 'sesi_laporan_harian.anggota_kelompok_id', '=', 'anggota_kelompok.mahasiswa_id')
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-            ->where('status_laporan', 'valid ')
-            ->paginate(10);
-        return view('admin.siaca.checkLap.rekap', compact('dataLap'));
+        ->where('status_laporan', 'valid ');
+        if (request('cari')) {
+            $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%')->orderBy('nama_mhs');
+        }
+
+        return view(
+            'admin.siaca.checkLap.rekap',
+            [
+                'dataLap' => $dataLap->paginate(10)
+            ]
+        );
     }
 }
