@@ -21,8 +21,7 @@ class SiacaController extends Controller
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
             ->where('status_laporan', 'valid ')
-            ->Orwhere('status_laporan', 'menunggu ')
-            ->get();
+            ->paginate(10);
         return view('admin.siaca.checkLap.rekap', compact('dataLap'));
     }
 }

@@ -32,19 +32,19 @@
                   <div>: {{$item->nama_mhs}} </div>
                   <div>Program Studi </div>
                   <div>: {{$item->prodi}} </div>
-
                 </div>
                 <div class=" px-1">
                   <hr class=" border-b-2">
-
                   {{$item->deskripsi_laporan}}
-
                 </div>
               </td>
             </tr>
             @endforeach
           </tbody>
         </table>
+        <div class=" py-1">
+          {{$dataLap}}
+        </div>
       </div>
 
     </div>
