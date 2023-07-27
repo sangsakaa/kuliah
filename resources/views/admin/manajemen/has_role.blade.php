@@ -63,39 +63,54 @@
           <div>
             <div>
               <span>Role</span>
-              <div class=" grid justify-items-end content-end py-1">
+              <div class="grid justify-items-end content-end py-1">
                 <form action="/has-role" method="get">
-                  <input type="text" name="cari" value="{{ request('cari') }}" class=" border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder=" Cari ..">
-                  <button type="submit" class="  bg-green-800 py-1 px-2 rounded-md text-white">
-                    Cari</button>
+                  <input type="text" name="cari" value="{{ request('cari') }}" class="border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder="Cari ..">
+                  <button type="submit" class="bg-green-800 py-1 px-2 rounded-md text-white">
+                    Cari
+                  </button>
                 </form>
               </div>
             </div>
-            <table class=" w-full">
-              <thead>
-                <tr class=" border">
-                  <th class=" border ">Name</th>
-                  <th class=" border ">Guard Name</th>
-                  <th class=" border "> model_id</th>
-                </tr>
-              </thead>
-              <tbody>
-                @foreach($dataHasRole as $Hasrole)
-                <tr class=" border">
-                  <td class=" border px-1">{{ $Hasrole->name }}</td>
-                  <td class=" border px-1 text-center">{{ $Hasrole->guard_name }}</td>
-                  <td class=" border px-1 text-center">{{ $Hasrole->model_id }}</td>
-                  <td>
-                    <form action="/has-role/{{$Hasrole->model_id}}" method="post">
-                      @csrf
-                      @method('delete')
-                      <button>Delete</button>
-                    </form>
-                  </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+
+            <div>
+              <table class="w-full">
+                <thead>
+                  <tr class="border">
+                    <th class="border">Name</th>
+                    <th class="border">Guard Name</th>
+                    <th class="border">model_id</th>
+                    <th class="border">Role_id</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(request('cari') !== null)
+                  @foreach($dataHasRole as $Hasrole)
+                  <tr class="border">
+                    <td class="border px-1">{{ $Hasrole->name }}</td>
+                    <td class="border px-1 text-center">{{ $Hasrole->guard_name }}</td>
+                    <td class="border px-1 text-center">{{ $Hasrole->model_id }}</td>
+                    <td class="border px-1 text-center">{{ $Hasrole->role_name }}</td>
+                    <td>
+                      <form action="/has-role/{{$Hasrole->model_id}}" method="post">
+                        @csrf
+                        @method('delete')
+                        <button>Delete</button>
+                      </form>
+                    </td>
+                  </tr>
+                  @endforeach
+                  @else
+                  <tr>
+                    <td class=" border text-red-700 font-semibold text-center text-sm" colspan="4">
+                      data not found
+                    </td>
+                  </tr>
+                  @endif
+                </tbody>
+              </table>
+            </div>
+
           </div>
         </div>
       </div>

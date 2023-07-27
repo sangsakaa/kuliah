@@ -33,15 +33,21 @@ class RoleManagementController extends Controller
         $dataHasRole = Has_Role::query()
         ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')
         ->join('users', 'users.id', '=', 'model_has_roles.model_id')
-        ->select('users.name', 'model_id',);
+        ->select('users.name', 'model_id', 'role_id', 'roles.name as role_name');
+
         if (request('cari')) {
             $dataHasRole->where('users.name', 'like', '%' . request('cari') . '%');
         }
-        return view(
-            'admin.manajemen.has_role',
-            (['role' => $role, 'user' => $user, 'dataHasRole' => $dataHasRole->get()])
 
-        );
+        $data = $dataHasRole->get();
+
+        return view('admin.manajemen.has_role', [
+            'role' => $role,
+            'user' => $user,
+            'dataHasRole' => $data,
+        ]);
+
+
     }
     public function RemoveRole(Has_Role $has_Role)
 
