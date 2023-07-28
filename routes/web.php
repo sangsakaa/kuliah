@@ -79,6 +79,7 @@ Route::get('/unduh-file/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'u
 
 // Siaca
 Route::get('/cek-laporan', [SiacaController::class, 'RekapLap'])->middleware(['auth'])->name('cek-laporan');
+Route::get('/cek-valid-dosen', [SiacaController::class, 'RekapVal'])->middleware(['auth'])->name('cek-valid-dosen');
 
 
 // Role Management

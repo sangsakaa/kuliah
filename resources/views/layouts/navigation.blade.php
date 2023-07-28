@@ -64,7 +64,6 @@
                     <x-nav-link :href="route('cek-laporan')" :active="request()->routeIs('cek-laporan')">
                         {{ __('Cek Laporan Harian') }}
                     </x-nav-link>
-
                 </div>
                 @elseif (Auth::user()->hasRole('dosen'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -90,13 +89,14 @@
                         {{ __('PKM') }}
                     </x-nav-link>
                 </div>
+                @elseif (Auth::user()->hasRole('siaca'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('cek-valid-dosen')" :active="request()->routeIs('cek-valid-dosen')">
+                        {{ __('Cek Validasi Dosen') }}
+                    </x-nav-link>
+                </div>
                 @endif
                 @endIf
-
-
-                @role('dosen')
-
-                @endrole
             </div>
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -149,7 +149,6 @@
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}

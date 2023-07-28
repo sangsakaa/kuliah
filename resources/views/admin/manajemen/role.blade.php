@@ -47,7 +47,7 @@
             <div>
               <span>Role</span>
             </div>
-            <table class=" w-full">
+            <table class=" mt-2 w-full">
               <thead>
                 <tr class=" border">
                   <th class=" border ">Name</th>

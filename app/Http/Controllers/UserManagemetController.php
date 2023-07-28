@@ -16,10 +16,15 @@ class UserManagemetController extends Controller
 {
     public function UserAdmin(User $user)
     {
-        $AdminUser = User::paginate(10);
+        $AdminUser = User::latest();
         $data = Mahasiswa::all();
+        if (request('cari')) {
+            $AdminUser->where('name', 'like', '%' . request('cari') . '%');
+        }
 
-        return view('admin.pengguna.user', compact('AdminUser', 'user',  'data'));
+        return view('admin.pengguna.user', ([
+            'AdminUser' => $AdminUser->get(), 'user' => $user,  'data' => $data
+        ]));
     }
     public function CreateUserAdmin(Mahasiswa $mahasiswa)
     {
