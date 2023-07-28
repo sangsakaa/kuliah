@@ -33,7 +33,7 @@
                     <img class=" " src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="">
                   </td>
                   <td class=" border-black border ">
-                    <div class=" px-1 grid grid-cols-1 sm:grid-cols-4 ">
+                    <div class=" px-1 grid grid-cols-1 sm:grid-cols-2 ">
                       <div>Nama Mahasiswa </div>
                       <div>: {{$item->nama_mhs}} </div>
                       <div>Program Studi </div>
