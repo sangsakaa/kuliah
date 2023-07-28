@@ -7,6 +7,13 @@
   </x-slot>
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white p-2 shadow-sm sm:rounded-lg">
+      <div class=" grid justify-end p-2">
+        <form action="/cek-valid-dosen" method="get" class=" py-1 ">
+          <input type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" class=" border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
+          <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
+            Cari Tanggal </button>
+        </form>
+      </div>
       <table class=" w-full">
         <thead>
           <tr class=" capitalize">
@@ -23,7 +30,6 @@
           @foreach($dataLap as $item)
           <tr class=" border border-black">
             <td class=" border border-black text-center px-1">
-
               <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
                 {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
               </a>
@@ -31,11 +37,9 @@
             <td class="border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}
             </td>
-
             <td class=" border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
             </td>
-
             <td class=" border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('dddd, DD MMMM Y') }}
             </td>
@@ -55,6 +59,7 @@
             </td>
           </tr>
           @endforeach
+          @else
           <tr class=" border border-black">
             <td colspan="6" class=" border border-black text-center text-red-700 capitalize text-sm font-semibold">
               tidak ada laporan

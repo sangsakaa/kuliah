@@ -85,14 +85,14 @@
                     <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
                         {{ __('Score') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
-                        {{ __('PKM') }}
-                    </x-nav-link>
                 </div>
                 @elseif (Auth::user()->hasRole('siaca'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('cek-valid-dosen')" :active="request()->routeIs('cek-valid-dosen')">
                         {{ __('Cek Validasi Dosen') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('cek-laporan')" :active="request()->routeIs('cek-laporan')">
+                        {{ __('Cek Laporan Harian') }}
                     </x-nav-link>
                 </div>
                 @endif
