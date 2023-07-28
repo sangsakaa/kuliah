@@ -72,6 +72,7 @@ class SiacaController extends Controller
             ->orderby('tanggal')
             ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->where('laporan_mahasiswa.status_laporan', 'menunggu')
+            ->orderby('nama_kelompok')
             ->get();
         return view(
             'admin.siaca.checkLap.rekapVal',
