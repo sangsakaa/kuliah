@@ -75,7 +75,6 @@
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
-
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
           <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
@@ -89,8 +88,7 @@
           @if(!$item->bukti_laporan)
           <input type="file" id="fileInput" required accept="image/*" name="bukti_laporan">
           @else
-          <input type="hidden" name="bukti_laporan" value="{{ $item->bukti_laporan }}">
-          <p>File already uploaded: {{ $item->bukti_laporan }}</p>
+          <input type="file" name="bukti_laporan" value="{{ $item->bukti_laporan }}">
           @endif
 
           @error('bukti_laporan')
