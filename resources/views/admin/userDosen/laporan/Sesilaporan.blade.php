@@ -96,14 +96,10 @@
                 {{$status->status_laporan}}
                 @endif
                 @endforeach
-
                 @if(count($data->laporanMahasiswa) === 0)
                 <span class="text-red-700">Invalid</span>
                 @endif
-
-
             </tr>
-
             @endforeach
             @else
             <tr>

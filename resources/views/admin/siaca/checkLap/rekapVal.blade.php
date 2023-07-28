@@ -23,8 +23,12 @@
               <!-- on time -->
               KEL
             </th>
-            <th class=" border border-black px-1">Created_at</th>
+            <th class=" border border-black px-1">
+              <!-- on time -->
+              DPL
+            </th>
             <th class=" border border-black px-1">Updated_at</th>
+
             <th class=" border border-black px-1">Mahasiswa</th>
             <th class=" border border-black px-1">Status</th>
           </tr>
@@ -45,12 +49,15 @@
               <!-- {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }} -->
               {{$item->nama_kelompok}}
             </td>
-            <td class=" border border-black text-center px-1">
-              {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
+            <td class="border border-black text-center px-1">
+              <!-- {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }} -->
+              {{$item->nama_dosen}}
             </td>
             <td class=" border border-black text-center px-1">
-              {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('dddd, DD MMMM Y') }}
+
+              {{ \Carbon\Carbon::parse($item->updated_at)->isoFormat('H:m') }}
             </td>
+
             <td class=" border border-black text-left px-1">
               {{$item->nama_mhs}}
             </td>

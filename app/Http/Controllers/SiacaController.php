@@ -49,6 +49,8 @@ class SiacaController extends Controller
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
             ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+
             ->select(
                 [
                     'kelompok.nama_kelompok',
@@ -61,7 +63,8 @@ class SiacaController extends Controller
                     'sesi_laporan_harian.anggota_kelompok_id',
                     'sesi_laporan_harian.tanggal',
                     'sesi_laporan_harian.id',
-                    'kelompok.dosen_id'
+                'kelompok.dosen_id',
+                'nama_dosen'
                 ]
             )
             ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
@@ -69,7 +72,6 @@ class SiacaController extends Controller
             ->orderby('tanggal')
             ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->where('laporan_mahasiswa.status_laporan', 'menunggu')
-
             ->get();
         return view(
             'admin.siaca.checkLap.rekapVal',
