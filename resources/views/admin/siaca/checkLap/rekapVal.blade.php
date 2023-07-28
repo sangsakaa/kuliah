@@ -28,7 +28,6 @@
               DPL
             </th>
             <th class=" border border-black px-1">Updated_at</th>
-
             <th class=" border border-black px-1">Mahasiswa</th>
             <th class=" border border-black px-1">Status</th>
           </tr>
