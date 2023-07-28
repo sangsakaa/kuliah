@@ -17,8 +17,12 @@
       <table class=" w-full">
         <thead>
           <tr class=" capitalize">
+            <th class=" border border-black px-1">No</th>
             <th class=" border border-black px-1">Tanggal Kirim</th>
-            <th class=" border border-black px-1">on time</th>
+            <th class=" border border-black px-1">
+              <!-- on time -->
+              KEL
+            </th>
             <th class=" border border-black px-1">Created_at</th>
             <th class=" border border-black px-1">Updated_at</th>
             <th class=" border border-black px-1">Mahasiswa</th>
@@ -30,12 +34,17 @@
           @foreach($dataLap as $item)
           <tr class=" border border-black">
             <td class=" border border-black text-center px-1">
+              {{$loop->iteration}}
+
+            </td>
+            <td class=" border border-black text-center px-1">
               <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
                 {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd, DD MMMM Y') }}
               </a>
             </td>
             <td class="border border-black text-center px-1">
-              {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }}
+              <!-- {{ \Carbon\Carbon::parse($item->tanggal)->diff(\Carbon\Carbon::parse($item->created_at))->format('%d hari') }} -->
+              {{$item->nama_kelompok}}
             </td>
             <td class=" border border-black text-center px-1">
               {{ \Carbon\Carbon::parse($item->created_at)->isoFormat('dddd, DD MMMM Y') }}
