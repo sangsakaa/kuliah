@@ -22,7 +22,7 @@ class SiacaController extends Controller
             ->leftJoin('sesi_laporan_harian', 'sesi_laporan_harian.anggota_kelompok_id', '=', 'anggota_kelompok.mahasiswa_id')
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-        ->where('status_laporan', 'valid ')->orderby('nama_kelompok')->orderby('laporan_mahasiswa.updated_at');
+        ->where('status_laporan', 'valid ')->orderby('laporan_mahasiswa.updated_at');
         if (request('cari')) {
             $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%')->orderBy('nama_mhs');
         }
