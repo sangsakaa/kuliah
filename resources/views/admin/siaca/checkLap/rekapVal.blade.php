@@ -35,7 +35,6 @@
           <tr class=" border border-black">
             <td class=" border border-black text-center px-1">
               {{$loop->iteration}}
-
             </td>
             <td class=" border border-black text-center px-1">
               <a href="/daftar-validasi-laporan-mhs/{{$item->id}}">
@@ -70,7 +69,7 @@
           @endforeach
           @else
           <tr class=" border border-black">
-            <td colspan="6" class=" border border-black text-center text-red-700 capitalize text-sm font-semibold">
+            <td colspan="7" class=" border border-black text-center text-red-700 capitalize text-sm font-semibold">
               tidak ada laporan
             </td>
           </tr>

@@ -68,6 +68,7 @@ class SiacaController extends Controller
             ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
             ->orderby('tanggal')
             ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
+            ->where('laporan_mahasiswa.status_laporan', 'menunggu')
 
             ->get();
         return view(
