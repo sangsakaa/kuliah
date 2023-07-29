@@ -225,6 +225,7 @@
             @endrole
             @role('siaca')
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                 <canvas id="grafikStatusLaporan"></canvas>
 
