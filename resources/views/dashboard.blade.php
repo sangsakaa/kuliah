@@ -224,45 +224,50 @@
             </div>
             @endrole
             @role('siaca')
-            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 ">
-                <div class=" w-full px-2 py-1 text-white text-center uppercase">
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <div>
-                        <canvas id="laporanChart" width="400" height="200"></canvas>
-                    </div>
-                    <script>
-                        // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
-                        var laporanData = @json($dataLap);
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <div style="width: 100%; margin: 0 auto;">
+                    <canvas id="laporanChart" width="400" height="200"></canvas>
+                </div>
 
-                        // Extract required data for the chart
-                        var labels = laporanData.map(item => item.nama_dosen);
-                        var data = laporanData.map(item => item.status_laporan === 'menunggu' ? 1 : 0);
+                <script>
+                    // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
+                    var laporanData = @json($dataLap);
 
-                        // Create the chart
-                        var ctx = document.getElementById('laporanChart').getContext('2d');
-                        var myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: labels,
-                                datasets: [{
-                                    label: 'Status Laporan',
-                                    data: data,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
+                    // Extract required data for the chart
+                    var labels = laporanData.map(item => item.nama_dosen);
+                    var menungguData = laporanData.map(item => item.status_laporan === 'menunggu' ? 1 : 0);
+                    var drafData = laporanData.map(item => item.status_laporan === 'draf' ? 1 : 0);
+
+                    // Create the chart
+                    var ctx = document.getElementById('laporanChart').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: 'Menunggu',
+                                data: menungguData,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Draf',
+                                data: drafData,
+                                backgroundColor: 'rgba(192, 75, 75, 0.2)',
+                                borderColor: 'rgba(192, 75, 75, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
                                 }
                             }
-                        });
-                    </script>
-
-                </div>
+                        }
+                    });
+                </script>
 
             </div>
             @endrole

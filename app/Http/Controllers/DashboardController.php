@@ -52,11 +52,27 @@ class DashboardController extends Controller
         )
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
+            ->groupBy(
+                'nama_dosen',
+                'kelompok.nama_kelompok',
+                'mahasiswa_id',
+                'anggota_kelompok.kelompok_id',
+                'mahasiswa.nama_mhs',
+                'sesi_laporan_harian.created_at',
+                'laporan_mahasiswa.updated_at',
+                'laporan_mahasiswa.status_laporan',
+                'sesi_laporan_harian.anggota_kelompok_id',
+                'sesi_laporan_harian.tanggal',
+                'sesi_laporan_harian.id',
+                'kelompok.dosen_id',
+                'dosen.nama_dosen'
+            ) // Group by 'nama_dosen'
             ->get()
             ->map(function ($item) {
                 $item->status_laporan = $item->status_laporan == 'valid' ? 'menunggu' : 'draf'; // Modified: Convert 'valid' to 'menunggu', otherwise set to 'draf'
                 return $item;
             });
+
 
 
         return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap'));
