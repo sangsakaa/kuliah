@@ -226,9 +226,9 @@
             @role('siaca')
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                <div style="width: 100%; margin: 0 auto;">
-                    <canvas id="laporanChart" width="400" height="200"></canvas>
-                </div>
+
+
+                <canvas id="laporanChart" width="400" height="200"></canvas>
 
                 <script>
                     // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
@@ -259,6 +259,9 @@
 
                         return acc;
                     }, []);
+
+                    // Sort the dataset based on nama_dosen (optional, if you want to display it in a specific order)
+                    dataset.sort((a, b) => a.label.localeCompare(b.label));
 
                     // Create the chart
                     var ctx = document.getElementById('laporanChart').getContext('2d');
