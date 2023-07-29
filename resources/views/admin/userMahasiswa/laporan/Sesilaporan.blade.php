@@ -76,6 +76,7 @@
 
               <th class="border border-green-700 px-2 py-1">Tanggal</th>
               <th class="border border-green-700 px-2 py-1">Jam </th>
+              <th class="border border-green-700 px-2 py-1">updated_at </th>
               <th class="border border-green-700 px-2 py-1">Laporan</th>
               <th class="border border-green-700 px-2 py-1">Status</th>
               <th class="border border-green-700 px-2 py-1">Catatan Pembimbing</th>
@@ -91,6 +92,19 @@
               </td>
               <td class="border border-green-700 px-2 py-1 text-center">
                 {{ \Carbon\Carbon::parse($list->created_at)->isoFormat('H:m') }}
+              </td>
+              <td class="border border-green-700 px-2 py-1 text-center">
+                @php
+                // Ambil waktu sekarang dalam timezone tertentu, misalnya 'Asia/Jakarta'
+                $now = \Carbon\Carbon::now('Asia/Jakarta');
+
+                // Parse waktu dari database atau sumber lainnya ke dalam objek Carbon
+                $created_at = \Carbon\Carbon::parse($list->created_at);
+
+                // Hitung selisih waktu antara waktu sekarang dan waktu dari database
+                $diff = $created_at->diffForHumans($now);
+                @endphp
+                <p> {{ $diff }}</p>
               </td>
               <td class="border border-green-700 px-2 py-1 text-center">
                 <a href="/laporan-mahasiswa/{{$list->id}}">Laporan </a>

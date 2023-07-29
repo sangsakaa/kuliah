@@ -96,6 +96,7 @@ class UserPerMhsController extends Controller
     {
         // dd($sesi_Laporan_Harian);
         $UserPermhs = Auth::user()->mahasiswa_id;
+        // dd($UserPermhs);
         $data = Mahasiswa::query()
         ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
         ->join('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
