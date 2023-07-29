@@ -234,30 +234,39 @@
                     // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
                     var laporanData = @json($dataLap);
 
-                    // Extract required data for the chart
-                    var labels = laporanData.map(item => item.nama_dosen);
-                    var menungguData = laporanData.map(item => item.status_laporan === 'menunggu' ? 1 : 0);
-                    var drafData = laporanData.map(item => item.status_laporan === 'draf' ? 1 : 0);
+                    // Prepare data for the chart
+                    var dataset = laporanData.reduce((acc, item) => {
+                        var existingData = acc.find(d => d.label === item.nama_dosen);
+
+                        if (existingData) {
+                            if (item.status_laporan === 'menunggu') {
+                                existingData.data[0]++;
+                            } else if (item.status_laporan === 'valid') {
+                                existingData.data[1]++;
+                            } else if (item.status_laporan === 'draf') {
+                                existingData.data[2]++;
+                            }
+                        } else {
+                            var newData = {
+                                label: item.nama_dosen,
+                                data: [item.status_laporan === 'menunggu' ? 1 : 0, item.status_laporan === 'valid' ? 1 : 0, item.status_laporan === 'draf' ? 1 : 0],
+                                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                                borderWidth: 1,
+                            };
+                            acc.push(newData);
+                        }
+
+                        return acc;
+                    }, []);
 
                     // Create the chart
                     var ctx = document.getElementById('laporanChart').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: labels,
-                            datasets: [{
-                                label: 'Menunggu',
-                                data: menungguData,
-                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                borderColor: 'rgba(75, 192, 192, 1)',
-                                borderWidth: 1
-                            }, {
-                                label: 'Draf',
-                                data: drafData,
-                                backgroundColor: 'rgba(192, 75, 75, 0.2)',
-                                borderColor: 'rgba(192, 75, 75, 1)',
-                                borderWidth: 1
-                            }]
+                            labels: dataset.map(item => item.label),
+                            datasets: dataset
                         },
                         options: {
                             scales: {
@@ -268,6 +277,7 @@
                         }
                     });
                 </script>
+
 
             </div>
             @endrole
