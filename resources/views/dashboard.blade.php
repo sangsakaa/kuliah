@@ -224,7 +224,7 @@
             </div>
             @endrole
             @role('siaca')
-            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 ">
                 <div class=" w-full px-2 py-1 text-white text-center uppercase">
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <div>
