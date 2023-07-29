@@ -225,66 +225,62 @@
             @endrole
             @role('siaca')
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
-                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
-                <canvas id="laporanChart" width="400" height="200"></canvas>
+                <canvas id="grafikStatusLaporan"></canvas>
 
                 <script>
-                    // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
-                    var laporanData = @json($dataLap);
+                    // Data jumlah status_laporan dari PHP
+                    var dataLaporan = <?php echo json_encode($jumlahStatusLaporan); ?>;
 
-                    // Group data by nama_dosen and status_laporan
-                    var groupedData = laporanData.reduce((acc, item) => {
-                        var existingData = acc.find(d => d.nama_dosen === item.nama_dosen);
+                    // Mengambil nama-nama dosen sebagai label grafik
+                    var namaDosen = Object.keys(dataLaporan);
 
-                        if (existingData) {
-                            existingData[item.status_laporan]++;
-                        } else {
-                            var newData = {
-                                nama_dosen: item.nama_dosen,
-                                menunggu: item.status_laporan === 'menunggu' ? 1 : 0,
-                                valid: item.status_laporan === 'valid' ? 1 : 0,
-                                draf: item.status_laporan === 'draf' ? 1 : 0,
-                            };
-                            acc.push(newData);
-                        }
+                    // Mengambil data jumlah status_laporan valid, menunggu, dan draf untuk setiap dosen
+                    var jumlahValid = [];
+                    var jumlahMenunggu = [];
+                    var jumlahDraf = [];
 
-                        return acc;
-                    }, []);
-
-                    // Sort the grouped data based on nama_dosen (optional, if you want to display it in a specific order)
-                    groupedData.sort((a, b) => a.nama_dosen.localeCompare(b.nama_dosen));
-
-                    // Prepare data for the chart
-                    var dataset = groupedData.map(item => {
-                        return {
-                            label: item.nama_dosen,
-                            data: [item.menunggu, item.valid, item.draf],
-                            backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                            borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
-                            borderWidth: 1,
-                        };
+                    namaDosen.forEach(function(nama) {
+                        jumlahValid.push(dataLaporan[nama].valid);
+                        jumlahMenunggu.push(dataLaporan[nama].menunggu);
+                        jumlahDraf.push(dataLaporan[nama].draf);
                     });
 
-                    // Create the chart
-                    var ctx = document.getElementById('laporanChart').getContext('2d');
+                    // Membuat grafik bar
+                    var ctx = document.getElementById('grafikStatusLaporan').getContext('2d');
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: dataset.map(item => item.label),
-                            datasets: dataset,
+                            labels: namaDosen,
+                            datasets: [{
+                                label: 'Valid',
+                                data: jumlahValid,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Menunggu',
+                                data: jumlahMenunggu,
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Draf',
+                                data: jumlahDraf,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }]
                         },
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: true,
-                                },
-                            },
-                        },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
                     });
                 </script>
-
 
 
             </div>

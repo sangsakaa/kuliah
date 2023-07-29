@@ -29,53 +29,56 @@ class DashboardController extends Controller
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
         $dataLap = Sesi_Laporan_Harian::query()
-        ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
-        ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
-        ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-        ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
-        ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
-        ->select(
-            [
-                'kelompok.nama_kelompok',
-                'mahasiswa_id',
-                'anggota_kelompok.kelompok_id',
-                'mahasiswa.nama_mhs',
-                'sesi_laporan_harian.created_at',
-                'laporan_mahasiswa.updated_at',
-                'laporan_mahasiswa.status_laporan',
-                'sesi_laporan_harian.anggota_kelompok_id',
-                'sesi_laporan_harian.tanggal',
-                'sesi_laporan_harian.id',
-                'kelompok.dosen_id',
-                'dosen.nama_dosen' // Modified: Get the 'nama_dosen' from the 'dosen' table
-            ]
+            ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftJoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftJoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->select(
+            'kelompok.nama_kelompok',
+            'mahasiswa.id as mahasiswa_id',
+            'anggota_kelompok.kelompok_id',
+            'mahasiswa.nama_mhs',
+            'sesi_laporan_harian.created_at',
+            'laporan_mahasiswa.updated_at',
+            'laporan_mahasiswa.status_laporan',
+            'sesi_laporan_harian.anggota_kelompok_id',
+            'sesi_laporan_harian.tanggal',
+            'sesi_laporan_harian.id as sesi_laporan_harian_id',
+            'kelompok.dosen_id',
+            'dosen.nama_dosen'
         )
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
-            ->groupBy(
-                'nama_dosen',
-                'kelompok.nama_kelompok',
-                'mahasiswa_id',
-                'anggota_kelompok.kelompok_id',
-                'mahasiswa.nama_mhs',
-                'sesi_laporan_harian.created_at',
-                'laporan_mahasiswa.updated_at',
-                'laporan_mahasiswa.status_laporan',
-                'sesi_laporan_harian.anggota_kelompok_id',
-                'sesi_laporan_harian.tanggal',
-                'sesi_laporan_harian.id',
-                'kelompok.dosen_id',
-                'dosen.nama_dosen'
-            ) // Group by 'nama_dosen'
-            ->get()
-            ->map(function ($item) {
-                $item->status_laporan = $item->status_laporan == 'valid' ? 'menunggu' : 'draf'; // Modified: Convert 'valid' to 'menunggu', otherwise set to 'draf'
-                return $item;
-            });
+        ->get();
 
+        // Buat array untuk menyimpan jumlah status_laporan setiap dosen
+        $jumlahStatusLaporan = [];
 
+        foreach ($dataLap as $laporan) {
+            $namaDosen = $laporan->nama_dosen;
+            $statusLaporan = $laporan->status_laporan;
 
-        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap'));
+            // Jika nama_dosen belum ada dalam array, tambahkan ke array dan inisialisasi jumlah status_laporan
+            if (!isset($jumlahStatusLaporan[$namaDosen])) {
+                $jumlahStatusLaporan[$namaDosen] = [
+                    'valid' => 0,
+                    'menunggu' => 0,
+                    'draf' => 0
+                ];
+            }
+
+            // Hitung jumlah status_laporan berdasarkan status laporan saat ini
+            if ($statusLaporan === 'valid') {
+                $jumlahStatusLaporan[$namaDosen]['valid']++;
+            } elseif ($statusLaporan === 'menunggu') {
+                $jumlahStatusLaporan[$namaDosen]['menunggu']++;
+            } elseif ($statusLaporan === 'draf') {
+                $jumlahStatusLaporan[$namaDosen]['draf']++;
+            }
+        }
+
+        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan'));
     }
    
 }
