@@ -234,25 +234,18 @@
                     // Get the data from PHP (Laravel) and convert it to a format that Chart.js can understand
                     var laporanData = @json($dataLap);
 
-                    // Prepare data for the chart
-                    var dataset = laporanData.reduce((acc, item) => {
-                        var existingData = acc.find(d => d.label === item.nama_dosen);
+                    // Group data by nama_dosen and status_laporan
+                    var groupedData = laporanData.reduce((acc, item) => {
+                        var existingData = acc.find(d => d.nama_dosen === item.nama_dosen);
 
                         if (existingData) {
-                            if (item.status_laporan === 'menunggu') {
-                                existingData.data[0]++;
-                            } else if (item.status_laporan === 'valid') {
-                                existingData.data[1]++;
-                            } else if (item.status_laporan === 'draf') {
-                                existingData.data[2]++;
-                            }
+                            existingData[item.status_laporan]++;
                         } else {
                             var newData = {
-                                label: item.nama_dosen,
-                                data: [item.status_laporan === 'menunggu' ? 1 : 0, item.status_laporan === 'valid' ? 1 : 0, item.status_laporan === 'draf' ? 1 : 0],
-                                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
-                                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
-                                borderWidth: 1,
+                                nama_dosen: item.nama_dosen,
+                                menunggu: item.status_laporan === 'menunggu' ? 1 : 0,
+                                valid: item.status_laporan === 'valid' ? 1 : 0,
+                                draf: item.status_laporan === 'draf' ? 1 : 0,
                             };
                             acc.push(newData);
                         }
@@ -260,8 +253,19 @@
                         return acc;
                     }, []);
 
-                    // Sort the dataset based on nama_dosen (optional, if you want to display it in a specific order)
-                    dataset.sort((a, b) => a.label.localeCompare(b.label));
+                    // Sort the grouped data based on nama_dosen (optional, if you want to display it in a specific order)
+                    groupedData.sort((a, b) => a.nama_dosen.localeCompare(b.nama_dosen));
+
+                    // Prepare data for the chart
+                    var dataset = groupedData.map(item => {
+                        return {
+                            label: item.nama_dosen,
+                            data: [item.menunggu, item.valid, item.draf],
+                            backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                            borderColor: ['rgba(75, 192, 192, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 99, 132, 1)'],
+                            borderWidth: 1,
+                        };
+                    });
 
                     // Create the chart
                     var ctx = document.getElementById('laporanChart').getContext('2d');
@@ -269,17 +273,18 @@
                         type: 'bar',
                         data: {
                             labels: dataset.map(item => item.label),
-                            datasets: dataset
+                            datasets: dataset,
                         },
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: true
-                                }
-                            }
-                        }
+                                    beginAtZero: true,
+                                },
+                            },
+                        },
                     });
                 </script>
+
 
 
             </div>
