@@ -334,6 +334,40 @@
                 </a>
             </div>
             @endrole
+            @role('dosen')
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/sesi-validasi-laporan-mhs">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Val Laporan Mahasiswa</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/data-anggota">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Data Anggota</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/supervisi-dosen">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Supervisi</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/daftar-nilai">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Nilai</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/time-line">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Time Line</div>
+                    </a>
+                </div>
+                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                    <a href="/time-line">
+                        <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> PKM</div>
+                    </a>
+                </div>
+            </div>
+            @endrole
         </div>
     </div>
 </x-app-layout>
