@@ -210,116 +210,7 @@
         </div>
     </div>
     @endrole
-    @role('siaca')
-    <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-        <canvas id="grafikStatusLaporan"></canvas>
-
-        <script>
-            // Data jumlah status_laporan dari PHP
-            var dataLaporan = <?php echo json_encode($jumlahStatusLaporan); ?>;
-
-            // Mengambil nama-nama dosen sebagai label grafik
-            var namaDosen = Object.keys(dataLaporan);
-
-            // Mengambil data jumlah status_laporan valid, menunggu, dan draf untuk setiap dosen
-            var jumlahValid = [];
-            var jumlahMenunggu = [];
-            var jumlahDraf = [];
-
-            namaDosen.forEach(function(nama) {
-                jumlahValid.push(dataLaporan[nama].valid);
-                jumlahMenunggu.push(dataLaporan[nama].menunggu);
-                jumlahDraf.push(dataLaporan[nama].draf);
-            });
-
-            // Membuat grafik bar
-            var ctx = document.getElementById('grafikStatusLaporan').getContext('2d');
-            var myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: namaDosen,
-                    datasets: [{
-                        label: 'Valid',
-                        data: jumlahValid,
-                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                        borderColor: 'rgba(75, 192, 192, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Menunggu',
-                        data: jumlahMenunggu,
-                        backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                        borderColor: 'rgba(255, 206, 86, 1)',
-                        borderWidth: 1
-                    }, {
-                        label: 'Draf',
-                        data: jumlahDraf,
-                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            });
-        </script>
-
-        <div>
-            <!-- Tambahkan library Chart.js -->
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-            <!-- Buat elemen canvas untuk menampilkan grafik -->
-            <canvas id="grafikLaporan"></canvas>
-
-            <!-- Script untuk inisialisasi grafik -->
-            <!-- Tambahkan library Chart.js -->
-            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-            <!-- Buat elemen canvas untuk menampilkan grafik -->
-            <canvas id="grafikLaporan"></canvas>
-
-            <!-- Script untuk inisialisasi grafik -->
-            <script>
-                var ctx = document.getElementById('grafikLaporan').getContext('2d');
-                var data = @json($data);
-                var statusColors = data.map(function(value) {
-                    return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(0, 128, 0, 0.2)';
-                });
-
-                var myChart = new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: @json($labels),
-                        datasets: [{
-                            label: 'Jumlah Laporan Valid',
-                            data: data,
-                            backgroundColor: statusColors,
-                            borderColor: statusColors.map(function(color) {
-                                return color.replace('0.2', '1');
-                            }),
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
-                    }
-                });
-            </script>
-
-        </div>
-    </div>
-    </div>
-    @endrole
     @endrole
     <div class=" px-2">
         <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
@@ -368,6 +259,116 @@
                 </div>
             </div>
             @endrole
+            @role('siaca')
+            <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                <canvas id="grafikStatusLaporan"></canvas>
+
+                <script>
+                    // Data jumlah status_laporan dari PHP
+                    var dataLaporan = <?php echo json_encode($jumlahStatusLaporan); ?>;
+
+                    // Mengambil nama-nama dosen sebagai label grafik
+                    var namaDosen = Object.keys(dataLaporan);
+
+                    // Mengambil data jumlah status_laporan valid, menunggu, dan draf untuk setiap dosen
+                    var jumlahValid = [];
+                    var jumlahMenunggu = [];
+                    var jumlahDraf = [];
+
+                    namaDosen.forEach(function(nama) {
+                        jumlahValid.push(dataLaporan[nama].valid);
+                        jumlahMenunggu.push(dataLaporan[nama].menunggu);
+                        jumlahDraf.push(dataLaporan[nama].draf);
+                    });
+
+                    // Membuat grafik bar
+                    var ctx = document.getElementById('grafikStatusLaporan').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: namaDosen,
+                            datasets: [{
+                                label: 'Valid',
+                                data: jumlahValid,
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Menunggu',
+                                data: jumlahMenunggu,
+                                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                                borderColor: 'rgba(255, 206, 86, 1)',
+                                borderWidth: 1
+                            }, {
+                                label: 'Draf',
+                                data: jumlahDraf,
+                                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                                borderColor: 'rgba(255, 99, 132, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                </script>
+
+                <div>
+                    <!-- Tambahkan library Chart.js -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <!-- Buat elemen canvas untuk menampilkan grafik -->
+                    <canvas id="grafikLaporan"></canvas>
+
+                    <!-- Script untuk inisialisasi grafik -->
+                    <!-- Tambahkan library Chart.js -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <!-- Buat elemen canvas untuk menampilkan grafik -->
+                    <canvas id="grafikLaporan"></canvas>
+
+                    <!-- Script untuk inisialisasi grafik -->
+                    <script>
+                        var ctx = document.getElementById('grafikLaporan').getContext('2d');
+                        var data = @json($data);
+                        var statusColors = data.map(function(value) {
+                            return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(75, 192, 192, 0.2)';
+                        });
+
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: @json($labels),
+                                datasets: [{
+                                    label: 'Jumlah Laporan Valid',
+                                    data: data,
+                                    backgroundColor: statusColors,
+                                    borderColor: statusColors.map(function(color) {
+                                        return color.replace('0.2', '1');
+                                    }),
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+
+                </div>
+            </div>
         </div>
+        @endrole
+    </div>
     </div>
 </x-app-layout>
