@@ -103,7 +103,7 @@ class DashboardController extends Controller
         // Perhitungan jumlah status_laporan "menunggu" untuk setiap kelompok
         $jumlahMenungguPerKelompok = $RekapLap->groupBy('kelompok_id')
         ->map(function ($laporans) {
-            return $laporans->where('status_laporan', 'menunggu')->count();
+            return $laporans->where('status_laporan', 'valid')->count();
         })
             ->sortByDesc(function ($count) {
                 return $count;

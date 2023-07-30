@@ -291,11 +291,18 @@
                     <canvas id="grafikLaporan"></canvas>
 
                     <!-- Script untuk inisialisasi grafik -->
+                    <!-- Tambahkan library Chart.js -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+                    <!-- Buat elemen canvas untuk menampilkan grafik -->
+                    <canvas id="grafikLaporan"></canvas>
+
+                    <!-- Script untuk inisialisasi grafik -->
                     <script>
                         var ctx = document.getElementById('grafikLaporan').getContext('2d');
                         var data = @json($data);
                         var statusColors = data.map(function(value) {
-                            return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(255, 206, 86, 0.2)';
+                            return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(75, 192, 192, 0.2)';
                         });
 
                         var myChart = new Chart(ctx, {
@@ -303,7 +310,7 @@
                             data: {
                                 labels: @json($labels),
                                 datasets: [{
-                                    label: 'Jumlah Laporan Menunggu',
+                                    label: 'Jumlah Laporan Valid',
                                     data: data,
                                     backgroundColor: statusColors,
                                     borderColor: statusColors.map(function(color) {
@@ -321,6 +328,7 @@
                             }
                         });
                     </script>
+
 
                 </div>
 
