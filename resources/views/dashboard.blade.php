@@ -282,55 +282,53 @@
                         }
                     });
                 </script>
-                <div class=" grid grid-cols-2">
-                    <div>
-                        <!-- Tambahkan library Chart.js -->
-                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                        <!-- Buat elemen canvas untuk menampilkan grafik -->
-                        <canvas id="grafikLaporan"></canvas>
+                <div>
+                    <!-- Tambahkan library Chart.js -->
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                        <!-- Script untuk inisialisasi grafik -->
-                        <script>
-                            var ctx = document.getElementById('grafikLaporan').getContext('2d');
-                            var data = @json($data);
-                            var statusColors = data.map(function(value) {
-                                return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(255, 206, 86, 0.2)';
-                            });
+                    <!-- Buat elemen canvas untuk menampilkan grafik -->
+                    <canvas id="grafikLaporan"></canvas>
 
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: @json($labels),
-                                    datasets: [{
-                                        label: 'Jumlah Laporan Menunggu',
-                                        data: data,
-                                        backgroundColor: statusColors,
-                                        borderColor: statusColors.map(function(color) {
-                                            return color.replace('0.2', '1');
-                                        }),
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        y: {
-                                            beginAtZero: true
-                                        }
+                    <!-- Script untuk inisialisasi grafik -->
+                    <script>
+                        var ctx = document.getElementById('grafikLaporan').getContext('2d');
+                        var data = @json($data);
+                        var statusColors = data.map(function(value) {
+                            return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(255, 206, 86, 0.2)';
+                        });
+
+                        var myChart = new Chart(ctx, {
+                            type: 'bar',
+                            data: {
+                                labels: @json($labels),
+                                datasets: [{
+                                    label: 'Jumlah Laporan Menunggu',
+                                    data: data,
+                                    backgroundColor: statusColors,
+                                    borderColor: statusColors.map(function(color) {
+                                        return color.replace('0.2', '1');
+                                    }),
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
                                     }
                                 }
-                            });
-                        </script>
+                            }
+                        });
+                    </script>
 
-                    </div>
-                    <div>
-                        2
-                    </div>
                 </div>
 
             </div>
 
-            @endrole
         </div>
+
+        @endrole
+    </div>
     </div>
 </x-app-layout>
