@@ -282,9 +282,46 @@
                         }
                     });
                 </script>
+                <div class=" grid grid-cols-2">
+                    <div>
+                        <!-- Tambahkan library Chart.js -->
+                        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+                        <!-- Buat elemen canvas untuk menampilkan grafik -->
+                        <canvas id="grafikLaporan"></canvas>
+
+                        <!-- Script untuk inisialisasi grafik -->
+                        <script>
+                            var ctx = document.getElementById('grafikLaporan').getContext('2d');
+                            var myChart = new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: @json($labels),
+                                    datasets: [{
+                                        label: 'Jumlah Laporan Menunggu',
+                                        data: @json($data),
+                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        borderWidth: 1
+                                    }]
+                                },
+                                options: {
+                                    scales: {
+                                        y: {
+                                            beginAtZero: true
+                                        }
+                                    }
+                                }
+                            });
+                        </script>
+                    </div>
+                    <div>
+                        2
+                    </div>
+                </div>
 
             </div>
+
             @endrole
         </div>
     </div>

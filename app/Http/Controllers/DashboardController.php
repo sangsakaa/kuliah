@@ -77,8 +77,45 @@ class DashboardController extends Controller
                 $jumlahStatusLaporan[$namaDosen]['draf']++;
             }
         }
+        $RekapLap = Sesi_Laporan_Harian::query()
+            ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftJoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftJoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->select(
+                'kelompok.nama_kelompok',
+                'mahasiswa.id as mahasiswa_id',
+                'anggota_kelompok.kelompok_id',
+                'mahasiswa.nama_mhs',
+                'sesi_laporan_harian.created_at',
+                'laporan_mahasiswa.updated_at',
+                'laporan_mahasiswa.status_laporan',
+                'sesi_laporan_harian.anggota_kelompok_id',
+                'sesi_laporan_harian.tanggal',
+                'sesi_laporan_harian.id as sesi_laporan_harian_id',
+                'kelompok.dosen_id',
+                'dosen.nama_dosen'
+            )
+            ->orderBy('tanggal')
+            ->orderBy('nama_kelompok')
+            ->get();
+        // Perhitungan jumlah status_laporan "menunggu" untuk setiap kelompok
+        $jumlahMenungguPerKelompok = $RekapLap->groupBy('kelompok_id')
+        ->map(function ($laporans) {
+            return $laporans->where('status_laporan', 'menunggu')->count();
+        })
+            ->sortByDesc(function ($count) {
+                return $count;
+            });
+        // Data untuk grafik bar
+        $labels = $jumlahMenungguPerKelompok->keys();
+        $data = $jumlahMenungguPerKelompok->values();
 
-        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan'));
+
+        // Buat array untuk menyimpan jumlah status_laporan setiap dosen
+
+        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan', 'labels', 'data'));
     }
    
 }
