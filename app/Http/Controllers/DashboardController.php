@@ -108,9 +108,15 @@ class DashboardController extends Controller
             ->sortByDesc(function ($count) {
                 return $count;
             });
+
         // Data untuk grafik bar
-        $labels = $jumlahMenungguPerKelompok->keys();
+        $labels = $jumlahMenungguPerKelompok->keys()->map(function ($kelompok_id) use ($RekapLap) {
+            $kelompok = $RekapLap->where('kelompok_id', $kelompok_id)->first();
+            return $kelompok ? $kelompok->nama_kelompok . ' - ' . $kelompok->nama_dosen : 'Nama Kelompok Tidak Ditemukan';
+        });
+
         $data = $jumlahMenungguPerKelompok->values();
+
 
 
         // Buat array untuk menyimpan jumlah status_laporan setiap dosen

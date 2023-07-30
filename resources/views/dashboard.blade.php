@@ -293,15 +293,22 @@
                         <!-- Script untuk inisialisasi grafik -->
                         <script>
                             var ctx = document.getElementById('grafikLaporan').getContext('2d');
+                            var data = @json($data);
+                            var statusColors = data.map(function(value) {
+                                return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(255, 206, 86, 0.2)';
+                            });
+
                             var myChart = new Chart(ctx, {
                                 type: 'bar',
                                 data: {
                                     labels: @json($labels),
                                     datasets: [{
                                         label: 'Jumlah Laporan Menunggu',
-                                        data: @json($data),
-                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                        data: data,
+                                        backgroundColor: statusColors,
+                                        borderColor: statusColors.map(function(color) {
+                                            return color.replace('0.2', '1');
+                                        }),
                                         borderWidth: 1
                                     }]
                                 },
@@ -314,6 +321,7 @@
                                 }
                             });
                         </script>
+
                     </div>
                     <div>
                         2
