@@ -263,7 +263,7 @@
             <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 uppercase text-xs ">
                 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                <canvas id="grafikStatusLaporan"></canvas>
+                <canvas id="grafikStatusLaporan" style="width: 600px; height: 400px;"></canvas>
 
                 <script>
                     // Data jumlah status_laporan dari PHP
@@ -310,6 +310,7 @@
                             }]
                         },
                         options: {
+                            indexAxis: 'y', // Display labels on the right side of the x-axis
                             scales: {
                                 y: {
                                     beginAtZero: true
@@ -318,6 +319,7 @@
                         }
                     });
                 </script>
+
 
                 <div>
                     <!-- Tambahkan library Chart.js -->
