@@ -46,9 +46,15 @@ class NilaiController extends Controller
             ->where('anggota_kelompok.kelompok_id', $Kelompok->id)
             ->orderby('nama_mhs')
             // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
-            // ->where('daftar_nilai_id', $daftarNilai->id)
+            
             ->get();
         // dd($dataAnggota->toArray());
+        if ($dataAnggota->count() === 0) {
+            $dataAnggota = Anggota_Kelompok::query()
+                ->join('kelampok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+                ->select('kelompok.dosen_id')
+                ->where('kelompok.dosen_id', $UserPerDosen)->get();
+        }
         return view('admin.nilai.nilai', compact('dataAnggota', 'daftarNilai'));
     }
     public function storeNilai(Request $request)
@@ -62,6 +68,13 @@ class NilaiController extends Controller
             $nilai->save();
         }
 
+        return redirect()->back();
+    }
+    public function destroy(DaftarNilai $daftarNilai)
+    {
+        // dd($daftarNilai);
+        DaftarNilai::destroy('id', $daftarNilai->id);
+        Nilai::where('daftar_nilai_id', $daftarNilai->id)->delete();
         return redirect()->back();
     }
 }

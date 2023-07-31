@@ -21,7 +21,8 @@
               <th rowspan="2" class=" border ">Kelompok</th>
               <th rowspan="2" class=" border ">Dosen Pembimbing Lapangan</th>
               <th rowspan="2" class=" border ">JMl</th>
-              <th colspan="3" class=" border ">Status</th>
+              <th colspan="2" class=" border ">Status</th>
+              <th rowspan="2" class=" border w-3 ">Act</th>
               <!-- Add more table headers for other columns if needed -->
             </tr>
             <tr class=" border  ">
@@ -49,6 +50,13 @@
               </td>
               <td class=" border text-center w-10">
                 {{$nilai->Nilai->whereNull('nilai_akhir')->count(); }}
+              </td>
+              <td>
+                <form action="/daftar-nilai/{{$nilai->id}}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button class=" bg-red-700 text-white px-1 py-1"> Hapus</button>
+                </form>
               </td>
               <!-- Add more table cells for other columns if needed -->
             </tr>

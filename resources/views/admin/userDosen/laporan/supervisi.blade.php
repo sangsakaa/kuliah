@@ -26,6 +26,7 @@
               <th class=" border px-1 border-black py-1">Lokasi</th>
               <th class=" border px-1 border-black py-1">File</th>
               <th class=" border px-1 border-black py-1">Status</th>
+              <th class=" border px-1 border-black w-3">Act</th>
             </tr>
           </thead>
           <tbody>
@@ -56,6 +57,13 @@
                 Belum Tuntas
                 @endif
 
+              </td>
+              <td>
+                <form action="/supervisi-dosen/{{$supervisi->id}}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button class=" bg-red-700 text-white px-1 py-1"> Hapus</button>
+                </form>
               </td>
             </tr>
 

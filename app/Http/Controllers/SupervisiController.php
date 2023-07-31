@@ -137,6 +137,11 @@ class SupervisiController extends Controller
                 'lapSupervisi' => $lapSupervisi
             ]
         );
-
+    }
+    public function destroy(Supervisi $supervisi)
+    {
+        Supervisi::destroy('id', $supervisi->id);
+        Laporan_Supervisi::where('supervisi_id', $supervisi->id)->delete();
+        return redirect()->back();
     }
 }

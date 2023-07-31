@@ -103,7 +103,7 @@ Route::post('/supervisi-dosen', [SupervisiController::class, 'store'])->middlewa
 Route::get('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'LapsuperVisi'])->middleware(['auth'])->name('laporan-supervisi-dosen');
 Route::post('/laporan-supervisi-dosen/{supervisi}', [SupervisiController::class, 'StoreLapsuperVisi'])->middleware(['auth']);
 Route::get('/cetak-laporan-supervisi/{supervisi}', [SupervisiController::class, 'CetakSupervisi'])->middleware(['auth']);
-
+Route::delete('/supervisi-dosen/{supervisi}', [SupervisiController::class, 'destroy'])->middleware(['auth']);
 // LAPORAN
 Route::get('/laporan-harian-mahasiswa', [LaporanController::class, 'LaporanMahasiswa'])->middleware(['auth'])->name('laporan-harian-mahasiswa');
 
@@ -114,6 +114,7 @@ Route::post('/daftar-nilai', [NilaiController::class, 'StoreDaftar'])->middlewar
 Route::get('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'nilaiAkhir'])->middleware(['auth'])->name('nilai-peserta-kkn');
 Route::get('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'nilaiAkhir'])->middleware(['auth'])->name('nilai-peserta-kkn');
 Route::post('/nilai-peserta-kkn/{daftarNilai}', [NilaiController::class, 'storeNilai'])->middleware(['auth'])->name('nilai-peserta-kkn');
+Route::delete('/daftar-nilai/{daftarNilai}', [NilaiController::class, 'destroy'])->middleware(['auth']);
 
 
 // KELOMPOK
