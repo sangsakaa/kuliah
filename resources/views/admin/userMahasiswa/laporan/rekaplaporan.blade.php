@@ -11,6 +11,7 @@
           <thead>
             <tr class=" border  uppercase text-sm bg-slate-200">
               <th class=" px-1 border border-black" rowspan="2">No</th>
+              <th class=" px-1 border border-black" rowspan="2">Hari</th>
               <th class=" px-1 border border-black" rowspan="2">Tanggal</th>
               <th class=" px-1 border border-black" colspan="3"> Status</th>
               <th class=" px-1 border border-black" rowspan="2"> Total</th>
@@ -40,12 +41,15 @@
             @endphp
             <!-- Lakukan apa pun yang ingin Anda tampilkan di sini dengan data laporan untuk setiap tanggal -->
 
-            <tr class=" hover:bg-green-100">
+            <tr class=" hover:bg-green-100 even:bg-gray-100">
               <td class="border border-black text-center">
                 {{$loop->iteration}}
               </td>
               <td class="border border-black text-left px-1">
-                {{ \Carbon\Carbon::parse($tanggal)->isoFormat('dddd , DD MMMM Y') }}
+                {{ \Carbon\Carbon::parse($tanggal)->isoFormat('dddd') }}
+              </td>
+              <td class="border border-black text-left px-1">
+                {{ \Carbon\Carbon::parse($tanggal)->isoFormat('DD MMMM Y') }}
               </td>
               <td class="border border-black text-center">{{ $jumlahValid }}</td>
               <td class="border border-black text-center">{{ $jumlahMenunggu }}</td>
@@ -54,7 +58,7 @@
             </tr>
             @endforeach
             <tr class=" bg-slate-100">
-              <td class="border border-black text-center" colspan="2">Jumlah</td>
+              <td class="border border-black text-center" colspan="3">Jumlah</td>
               <td class="border border-black text-center">{{ $totalValid }}</td>
               <td class="border border-black text-center">{{ $totalMenunggu }}</td>
               <td class="border border-black text-center">{{ $totalDraf }}</td>
