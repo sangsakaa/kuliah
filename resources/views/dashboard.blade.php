@@ -211,7 +211,7 @@
     @endrole
 
     @endrole
-    <div class=" px-2">
+    <div class=" px-2 mt-2">
         <div class="inline-flex overflow-hidden mb-4 w-full bg-white rounded-lg shadow-md">
             <div class="flex justify-center items-center w-1   bg-green-800"></div>
             @role('mahasiswa')
@@ -235,7 +235,7 @@
                     </a>
                 </div>
                 <div>
-                    <div>
+                    <div class=" p-2">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
                         <canvas id="statusChart"></canvas>
@@ -374,8 +374,6 @@
                             }
                         });
                     </script>
-
-
                     <div>
                         <!-- Tambahkan library Chart.js -->
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

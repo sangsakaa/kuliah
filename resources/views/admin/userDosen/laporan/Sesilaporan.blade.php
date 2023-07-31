@@ -44,7 +44,7 @@
           <tbody>
             @if($dataLaporan->count() != null)
             @foreach($dataLaporan as $data)
-            <tr>
+            <tr class=" hover:bg-gray-100">
               <td class=" border border-green-700 px-2 py-1 text-center">{{ $loop->iteration }}</td>
               <td class=" capitalize border border-green-700 px-2 py-1 text-left">
                 <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
@@ -123,10 +123,10 @@
           : Sudah Diperiksa
         </div>
         <div>
-          <p class=" px-4">Invalid </p>
+          <p class=" px-4">Menunggu </p>
         </div>
         <div>
-          : Belum mengirim
+          : Belum di Validasi
         </div>
       </div>
     </div>
