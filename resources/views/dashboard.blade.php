@@ -17,7 +17,7 @@
                     <div class=" p-4">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <select id="namaDosenDropdown" style="font-size: 12px;"></select>
-                        <canvas id="grafikStatusLaporan" style="width: 100px; height: 35px;"></canvas>
+                        <canvas id="grafikStatusLaporan" style="width: 100px; height: 30px;"></canvas>
 
                         <script>
                             // Data jumlah status_laporan dari PHP
