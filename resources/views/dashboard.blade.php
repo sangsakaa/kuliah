@@ -16,8 +16,8 @@
                 <div class="  grid w-full bg-white  gap-2">
                     <div class=" p-4">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                        <select id="namaDosenDropdown"></select>
-                        <canvas id="grafikStatusLaporan"></canvas>
+                        <select id="namaDosenDropdown" style="font-size: 12px;"></select>
+                        <canvas id="grafikStatusLaporan" style="width: 100px; height: 35px;"></canvas>
 
                         <script>
                             // Data jumlah status_laporan dari PHP
@@ -129,10 +129,8 @@
                     <div>
                         <div class=" p-2">
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
                             <canvas id="statusChart"></canvas>
                         </div>
-
                         <script>
                             // Access the chart data passed from the controller
                             var statusChartData = @json($statusChartData);
