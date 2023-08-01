@@ -16,7 +16,8 @@
                 <div class="  grid w-full bg-white  gap-2">
                     <div class=" p-4">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                        <select id="namaDosenDropdown" style="font-size: 12px;"></select>
+                        <select id="namaDosenDropdown" style="font-size: 12px; padding: 1px 1px;"></select>
+
                         <canvas id="grafikStatusLaporan" style="width: 100px; height: 25px;"></canvas>
 
                         <script>
