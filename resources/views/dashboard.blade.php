@@ -173,5 +173,100 @@
             </div>
         </div>
         @endrole
+        @role('dosen')
+        <!-- DOSEN -->
+        <div class=" grid grid-cols-1 gap-2">
+            <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
+                <div class=" p-4">
+                    <p class=" ">Selamat Datang di </p>
+                    <p class="  text-5xl bold "> SIP-K</p>
+                    <p class=" sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
+                <div class=" p-2">
+                    <div>
+                        <div class=" w-full py-2 px-2  grid grid-cols-2 gap-2 sm:grid-cols-4">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/sesi-validasi-laporan-mhs">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Val Laporan</div>
+                                </a>
+                            </div>
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/data-anggota">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Data Anggota</div>
+                                </a>
+                            </div>
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/supervisi-dosen">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Supervisi</div>
+                                </a>
+                            </div>
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/daftar-nilai">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Nilai</div>
+                                </a>
+                            </div>
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/time-line">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> Time Line</div>
+                                </a>
+                            </div>
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                                <a href="/time-line">
+                                    <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase"> PKM</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="  sm:flex grid  bg-gray-200 gap-2 sm:grid-cols-1">
+                <div class=" p-4">
+                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                    <canvas id="statusChartDosen" height="200"></canvas>
+                    <script>
+                        // Assuming $statusChartData contains the data for the chart
+
+                        // Get the canvas element
+                        const statusChartCanvas = document.getElementById('statusChartDosen');
+
+                        // Create the bar chart
+                        const statusChart = new Chart(statusChartCanvas, {
+                            type: 'bar',
+                            data: {
+                                labels: @json($statusChartDataDosen['labels']),
+                                datasets: [{
+                                    label: 'Status Laporan',
+                                    data: @json($statusChartDataDosen['data']),
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)', // Menunggu - Red
+                                        'rgba(54, 162, 235, 0.2)', // Valid - Blue
+                                        'rgba(255, 206, 86, 0.2)', // Draf - Yellow
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                    ],
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+        @endrole
 
 </x-app-layout>
