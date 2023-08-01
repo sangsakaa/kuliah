@@ -170,11 +170,61 @@ class DashboardController extends Controller
             'labels' => ['Menunggu', 'Valid', 'Draf'],
             'data' => [$statusCount['menunggu'], $statusCount['valid'], $statusCount['draf']],
         ];
+        $UserPerDosen = Auth::user()->dosen_id;
+        $dataLapDosen = Sesi_Laporan_Harian::query()
+            ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftJoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftJoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->select(
+                'kelompok.nama_kelompok',
+                'mahasiswa.id as mahasiswa_id',
+                'anggota_kelompok.kelompok_id',
+                'mahasiswa.nama_mhs',
+                'sesi_laporan_harian.created_at',
+                'laporan_mahasiswa.updated_at',
+                'laporan_mahasiswa.status_laporan',
+                'sesi_laporan_harian.anggota_kelompok_id',
+                'sesi_laporan_harian.tanggal',
+                'sesi_laporan_harian.id as sesi_laporan_harian_id',
+                'kelompok.dosen_id',
+                'dosen.nama_dosen'
+            )
+            ->where('kelompok.dosen_id', $UserPerDosen)
+            ->orderBy('tanggal')
+            ->orderBy('nama_kelompok')
+            ->get();
+        // Assuming $dataLapMhs is the data fetched using the query provided in your code
+
+        // Initialize status count
+        $statusCount = [
+            'menunggu' => 0,
+            'valid' => 0,
+            'draf' => 0,
+        ];
+
+        // Calculate count of each status
+        foreach ($dataLapMhs as $data) {
+            if ($data->status_laporan === 'menunggu') {
+                $statusCount['menunggu']++;
+            } elseif ($data->status_laporan === 'valid') {
+                $statusCount['valid']++;
+            } elseif ($data->status_laporan === 'draf') {
+                $statusCount['draf']++;
+            }
+        }
+
+        // Convert the status count data to be used in the chart
+        $statusChartData = [
+            'labels' => ['Menunggu', 'Valid', 'Draf'],
+            'data' => [$statusCount['menunggu'], $statusCount['valid'], $statusCount['draf']],
+        ];
 
 
         // Buat array untuk menyimpan jumlah status_laporan setiap dosen
 
-        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan', 'labels', 'data', 'dataMhs', 'dataLapMhs', 'statusChartData'));
+        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan', 'labels', 'data', 'dataMhs', 'dataLapMhs', 'statusChartData', 'dataLapDosen'));
     }
    
 }
