@@ -85,6 +85,9 @@
                     <x-nav-link :href="route('daftar-nilai')" :active="request()->routeIs('daftar-nilai')">
                         {{ __('Score') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('rekap-laporan-mhs')" :active="request()->routeIs('rekap-laporan-mhs')">
+                        {{ __('Cek Lap') }}
+                    </x-nav-link>
                 </div>
                 @elseif (Auth::user()->hasRole('siaca'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

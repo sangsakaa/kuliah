@@ -195,7 +195,7 @@ class UserDosenController extends Controller
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->get();
         return view(
-            'admin.userDosen.laporan.rekapSesi',
+            'admin.userDosen.laporan.timeline',
             ([
                 'bulan' => $bulan,
                 'periodeBulan' => $periodeBulan,
@@ -205,6 +205,55 @@ class UserDosenController extends Controller
                 'tanggal' => $tanggal
         ]
         ));
+    }
+    public function rekapSesi(Request $request)
+    {
+        try {
+            $tanggal = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tanggal = now();
+        }
+        $bulan = $request->bulan ? Carbon::parse($request->bulan) : now();
+        $periodeBulan = $bulan->startOfMonth()->daysUntil($bulan->copy()->endOfMonth());
+        $UserPerDosen = Auth::user()->dosen_id;
+        $dataLap  = Sesi_Laporan_Harian::query()
+            ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->select(
+                [
+                    'kelompok.nama_kelompok',
+                    'mahasiswa_id',
+                    'anggota_kelompok.kelompok_id',
+                    'mahasiswa.nama_mhs',
+                    'sesi_laporan_harian.created_at',
+                    'laporan_mahasiswa.updated_at',
+                    'laporan_mahasiswa.status_laporan',
+                    'sesi_laporan_harian.anggota_kelompok_id',
+                    'sesi_laporan_harian.tanggal',
+                    'sesi_laporan_harian.id',
+                    'kelompok.dosen_id'
+                ]
+            )
+            // ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
+            // ->where('sesi_laporan_harian.tanggal', $bulan->toDateString())
+            ->orderby('tanggal')
+            ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
+            ->where('kelompok.dosen_id', $UserPerDosen);
+        if (request('tanggal')) {
+            $dataLap->where('tanggal', 'like', '%' . request('tanggal') . '%');
+        }
+        return view(
+            'admin.userDosen.laporan.rekapSesi',
+            ([
+                'bulan' => $bulan,
+                'periodeBulan' => $periodeBulan,
+                'dataLap' => $dataLap->get(),
+                'tanggal' => $tanggal
+            ]
+            )
+        );
     }
     
 

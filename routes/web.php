@@ -95,6 +95,7 @@ Route::get('/sesi-validasi-laporan-mhs', [UserDosenController::class, 'validasiL
 Route::get('/daftar-validasi-laporan-mhs/{sesi_Laporan_Harian}', [UserDosenController::class, 'DaftaValidasi'])->middleware(['auth'])->name('daftar-validasi-laporan-mhs');
 Route::get('/data-anggota', [UserDosenController::class, 'dataAnggota'])->middleware(['auth'])->name('data-anggota');
 Route::get('/time-line', [UserDosenController::class, 'timeLine'])->middleware(['auth'])->name('time-line');
+Route::get('/rekap-laporan-mhs', [UserDosenController::class, 'rekapSesi'])->middleware(['auth'])->name('rekap-laporan-mhs');
 
 
 
