@@ -17,17 +17,16 @@
                     <div class=" p-4">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <select id="namaDosenDropdown" style="font-size: 12px; padding: 1px 1px;"></select>
-
-                        <canvas id="grafikStatusLaporan" style="width: 100px; height: 25px;"></canvas>
+                        <canvas id="grafikStatusLaporan" style="height: 15px;"></canvas>
 
                         <script>
                             // Data jumlah status_laporan dari PHP
                             var dataLaporan = <?php echo json_encode($jumlahStatusLaporan); ?>;
-                            var namaDosen = Object.keys(dataLaporan);
+                            var nama_dosen = Object.keys(dataLaporan);
 
-                            // Populate dropdown options based on namaDosen array
+                            // Populate dropdown options based on nama_dosen array
                             var namaDosenDropdown = document.getElementById('namaDosenDropdown');
-                            namaDosen.forEach(function(nama) {
+                            nama_dosen.forEach(function(nama) {
                                 var option = document.createElement('option');
                                 option.text = nama;
                                 namaDosenDropdown.add(option);
@@ -82,7 +81,7 @@
                                     ],
                                 },
                                 options: {
-                                    indexAxis: 'y', // Display labels on the right side of the x-axis
+                                    indexAxis: 'x', // Display labels on the bottom side of the y-axis
                                     scales: {
                                         y: {
                                             beginAtZero: true,
@@ -92,8 +91,10 @@
                             });
 
                             // Initialize the chart with the first option
-                            updateChart(namaDosen[0]);
+                            updateChart(nama_dosen[0]);
                         </script>
+
+
 
                     </div>
 
