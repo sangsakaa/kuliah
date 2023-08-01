@@ -238,7 +238,7 @@
                     <div class=" p-2">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-                        <canvas id="statusChart"></canvas>
+                        <canvas id="statusChartDosen"></canvas>
                     </div>
 
                     <script>
@@ -246,7 +246,7 @@
                         var statusChartDataDosen = @json($statusChartDataDosen);
 
                         // Create the bar chart
-                        var ctx = document.getElementById('statusChart').getContext('2d');
+                        var ctx = document.getElementById('statusChartDosen').getContext('2d');
                         var statusChart = new Chart(ctx, {
                             type: 'bar',
                             data: {
