@@ -205,7 +205,7 @@ class DashboardController extends Controller
         ];
 
         // Calculate count of each status
-        foreach ($dataLapMhs as $data) {
+        foreach ($dataLapDosen as $data) {
             if ($data->status_laporan === 'menunggu') {
                 $statusCount['menunggu']++;
             } elseif ($data->status_laporan === 'valid') {
