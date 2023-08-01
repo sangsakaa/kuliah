@@ -67,20 +67,22 @@ class SiacaController extends Controller
                 'nama_dosen'
                 ]
             )
-            ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
-            ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
+            // ->whereBetween('sesi_laporan_harian.tanggal', [$periodeBulan->first()->toDateString(), $periodeBulan->last()->toDateString()])
+            // ->where('sesi_laporan_harian.tanggal', $tanggal->toDateString())
             ->orderby('tanggal')
             ->whereNot('laporan_mahasiswa.status_laporan', 'draf')
             ->where('laporan_mahasiswa.status_laporan', 'menunggu')
-            ->orderby('nama_kelompok')
-            ->get();
+        ->orderby('nama_kelompok');
+        if (request('tanggal')) {
+            $dataLap->where('sesi_laporan_harian.tanggal', 'like', '%' . request('tanggal') . '%');
+        }
         return view(
             'admin.siaca.checkLap.rekapVal',
             [
                 'bulan' => $bulan,
                 'periodeBulan' => $periodeBulan,
 
-                'dataLap' => $dataLap,
+                'dataLap' => $dataLap->get(),
                 'tanggal' => $tanggal
             ]
         );
