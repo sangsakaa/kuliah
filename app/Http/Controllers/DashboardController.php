@@ -216,7 +216,7 @@ class DashboardController extends Controller
         }
 
         // Convert the status count data to be used in the chart
-        $statusChartData = [
+        $statusChartDataDosen = [
             'labels' => ['Menunggu', 'Valid', 'Draf'],
             'data' => [$statusCount['menunggu'], $statusCount['valid'], $statusCount['draf']],
         ];
@@ -224,7 +224,7 @@ class DashboardController extends Controller
 
         // Buat array untuk menyimpan jumlah status_laporan setiap dosen
 
-        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan', 'labels', 'data', 'dataMhs', 'dataLapMhs', 'statusChartData', 'dataLapDosen'));
+        return view('/dashboard', compact('putra', 'putri', 'data', 'dataDosen', 'dataKelompok', 'dataLap', 'jumlahStatusLaporan', 'labels', 'data', 'dataMhs', 'dataLapMhs', 'statusChartData', 'dataLapDosen', 'statusChartDataDosen'));
     }
    
 }

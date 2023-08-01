@@ -243,17 +243,17 @@
 
                     <script>
                         // Access the chart data passed from the controller
-                        var statusChartData = @json($statusChartData);
+                        var statusChartDataDosen = @json($statusChartDataDosen);
 
                         // Create the bar chart
                         var ctx = document.getElementById('statusChart').getContext('2d');
                         var statusChart = new Chart(ctx, {
                             type: 'bar',
                             data: {
-                                labels: statusChartData.labels,
+                                labels: statusChartDataDosen.labels,
                                 datasets: [{
                                     label: 'Status Laporan',
-                                    data: statusChartData.data,
+                                    data: statusChartDataDosen.data,
                                     backgroundColor: [
                                         'rgba(255, 99, 132, 0.5)',
                                         'rgba(54, 162, 235, 0.5)',
