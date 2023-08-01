@@ -24,7 +24,7 @@ class SiacaController extends Controller
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
         ->where('status_laporan', 'valid ')
-        ->orderby('sesi_laporan_harian.tanggal');
+        ->orderby('sesi_laporan_harian.tanggal', 'DESC');
         if (request('cari')) {
             $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%');
         }
