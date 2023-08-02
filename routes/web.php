@@ -81,6 +81,7 @@ Route::get('/unduh-file/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'u
 Route::get('/cek-laporan', [SiacaController::class, 'RekapLap'])->middleware(['auth'])->name('cek-laporan');
 Route::get('/cek-valid-dosen', [SiacaController::class, 'RekapVal'])->middleware(['auth'])->name('cek-valid-dosen');
 Route::get('/score-dosen', [SiacaController::class, 'ScoreDosen'])->middleware(['auth'])->name('score-dosen');
+Route::get('/score-mahasiswa', [SiacaController::class, 'ScoreMhs'])->middleware(['auth'])->name('score-mahasiswa');
 
 
 // Role Management
