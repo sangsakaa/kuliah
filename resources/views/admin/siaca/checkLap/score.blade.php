@@ -30,8 +30,8 @@
             </thead>
             <tbody>
               @foreach ($sortedStatusCounts as $statusCount)
-              <tr>
-                <td class="border px-1 text-left">{{ $loop->iteration }}</td>
+              <tr class=" even:bg-gray-200">
+                <th class="border px-1 text-center">{{ $loop->iteration }}</th>
                 <td class="border px-1 text-left">{{ $statusCount['dosen'] }}</td>
                 <td class="border px-1 text-center">{{ $statusCount['valid'] }}</td>
                 <td class="border px-1 text-center">{{ $statusCount['menunggu'] }}</td>
