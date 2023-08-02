@@ -7,7 +7,7 @@
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm ">
       <div class=" p-2">
-
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <h2>Hasil Perhitungan Status Laporan</h2>
         @php
         // Ubah array menjadi objek koleksi Laravel
