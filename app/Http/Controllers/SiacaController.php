@@ -114,7 +114,7 @@ class SiacaController extends Controller
                 ]
             )
             ->orderBy('tanggal')
-            ->where('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu']) // Ubah "status_laporan" yang valid dan menunggu
+            ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
             ->get();
 
@@ -141,13 +141,13 @@ class SiacaController extends Controller
             }
         }
 
-
+        
 
         return view(
             'admin.siaca.checkLap.score',
             [
                 'ScoreDosen' => $ScoreDosen,
-                'statusCounts' => $statusCounts,
+                'statusCounts' => $statusCounts
                 
             ]
         );
