@@ -27,6 +27,7 @@ class SiacaController extends Controller
         ->orderby('sesi_laporan_harian.tanggal', 'DESC');
         if (request('cari')) {
             $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%');
+            $dataLap->Orwhere('nama_dosen', 'like', '%' . request('cari') . '%');
         }
 
         return view(

@@ -13,7 +13,7 @@
                         Pengawas : <p class=" capitalize">{{strtolower(Auth::user()->name)}}</p>
                     </div>
                 </div>
-                <div class="  grid w-full bg-white  gap-2">
+                <div class="  grid w-full  bg-blue-200  gap-2">
                     <div class=" p-4">
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                         <select id="namaDosenDropdown" style="font-size: 12px; padding: 1px 1px;"></select>
