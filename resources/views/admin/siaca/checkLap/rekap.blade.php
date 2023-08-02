@@ -17,7 +17,6 @@
                 Cari</button>
             </form>
           </div>
-
           <div class=" overflow-auto">
             <table class=" mt-2 w-full">
               <thead>

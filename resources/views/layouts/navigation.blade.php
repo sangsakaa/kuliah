@@ -100,6 +100,9 @@
                     <x-nav-link :href="route('cek-laporan')" :active="request()->routeIs('cek-laporan')">
                         {{ __('Cek Laporan Harian') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('score-dosen')" :active="request()->routeIs('score-dosen')">
+                        {{ __('Cek Score') }}
+                    </x-nav-link>
                 </div>
                 @endif
                 @endIf

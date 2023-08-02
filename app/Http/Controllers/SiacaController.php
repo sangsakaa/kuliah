@@ -89,4 +89,67 @@ class SiacaController extends Controller
             ]
         );
     }
+    public function ScoreDosen()
+    {
+        $ScoreDosen = Sesi_Laporan_Harian::query()
+            ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->select(
+                [
+                    'kelompok.nama_kelompok',
+                    'mahasiswa_id',
+                    'anggota_kelompok.kelompok_id',
+                    'mahasiswa.nama_mhs',
+                    'sesi_laporan_harian.created_at',
+                    'laporan_mahasiswa.updated_at',
+                    'laporan_mahasiswa.status_laporan',
+                    'sesi_laporan_harian.anggota_kelompok_id',
+                    'sesi_laporan_harian.tanggal',
+                    'sesi_laporan_harian.id',
+                    'kelompok.dosen_id',
+                    'dosen.nama_dosen'
+                ]
+            )
+            ->orderBy('tanggal')
+            ->where('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu']) // Ubah "status_laporan" yang valid dan menunggu
+            ->orderBy('nama_kelompok')
+            ->get();
+
+        // Inisialisasi array untuk menyimpan perhitungan status laporan untuk setiap dosen
+        $statusCounts = [];
+
+        foreach ($ScoreDosen as $data) {
+            $dosenId = $data->dosen_id;
+
+            // Inisialisasi hitungan jika dosen belum ada dalam array
+            if (!isset($statusCounts[$dosenId])) {
+                $statusCounts[$dosenId] = [
+                    'dosen' => $data->nama_dosen,
+                    'valid' => 0,
+                    'menunggu' => 0
+                ];
+            }
+
+            // Hitung status laporan
+            if ($data->status_laporan === 'valid') {
+                $statusCounts[$dosenId]['valid']++;
+            } elseif ($data->status_laporan === 'menunggu') {
+                $statusCounts[$dosenId]['menunggu']++;
+            }
+        }
+
+
+
+        return view(
+            'admin.siaca.checkLap.score',
+            [
+                'ScoreDosen' => $ScoreDosen,
+                'statusCounts' => $statusCounts,
+                
+            ]
+        );
+    }
 }
