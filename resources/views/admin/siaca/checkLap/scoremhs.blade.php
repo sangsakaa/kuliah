@@ -23,6 +23,8 @@
             <tr class=" uppercase text-sm">
               <th class="border px-1">No</th>
               <th class="border px-1">Dosen</th>
+              <th class="border px-1">KeL</th>
+              <th class="border px-1">DPL</th>
               <th class="border px-1">Total Hari</th>
               <th class="border px-1">Valid</th>
               <th class="border px-1">Draf</th>
@@ -34,7 +36,9 @@
             <tr class=" even:bg-blue-500  ">
               <th class="border px-1 text-center">{{ $loop->iteration }}</th>
 
-              <td class="border px-1 text-left uppercase">{{ strtolower($statusCount['dosen']) }}</td>
+              <td class="border px-1 text-left uppercase">{{ strtolower($statusCount['mhs']) }}</td>
+              <td class="border px-1 text-center">{{ $statusCount['kelompok'] }}</td>
+              <td class="border px-1 text-center capitalize">{{ strtolower($statusCount['dosen'])  }}</td>
               <td class="border px-1 text-center">
                 @php
                 $startDate = \Carbon\Carbon::createFromFormat('d-m-Y', '25-07-2023');
@@ -44,6 +48,7 @@
 
                 <p>{{ $diffInDays }} hari.</p>
               </td>
+
               <td class="border px-1 text-center">{{ $statusCount['valid'] }}</td>
               <td class="border px-1 text-center">{{ $statusCount['draf'] }}</td>
               <td class="border px-1 text-center">{{ $statusCount['valid'] - $statusCount['draf'] }}</td>

@@ -186,11 +186,14 @@ class SiacaController extends Controller
 
         foreach ($ScoreDosen as $data) {
             $dosenId = $data->mahasiswa_id;
-
+            
             // Inisialisasi hitungan jika dosen belum ada dalam array
             if (!isset($statusCounts[$dosenId])) {
                 $statusCounts[$dosenId] = [
-                    'dosen' => $data->nama_mhs,
+                    'mhs' => $data->nama_mhs,
+                    'dosen' => $data->nama_dosen,
+                    'kelompok' => $data->nama_kelompok,
+                    'kelompok' => $data->nama_kelompok,
                     'valid' => 0,
                     'draf' => 0
                 ];
