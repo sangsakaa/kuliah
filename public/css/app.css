@@ -1385,9 +1385,9 @@ select {
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
-.even\:bg-blue-500:nth-child(even) {
+.even\:bg-gray-200:nth-child(even) {
   --tw-bg-opacity: 1;
-  background-color: rgb(59 130 246 / var(--tw-bg-opacity));
+  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .even\:bg-gray-100:nth-child(even) {
   --tw-bg-opacity: 1;
@@ -1400,10 +1400,6 @@ select {
 .even\:bg-blue-400:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-.even\:bg-gray-200:nth-child(even) {
-  --tw-bg-opacity: 1;
-  background-color: rgb(229 231 235 / var(--tw-bg-opacity));
 }
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
