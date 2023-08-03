@@ -10,7 +10,13 @@
 
         @foreach($ScoreDosen as $list)
         <ul>
-          <li>{{$loop->iteration}} .{{$list->nama_mhs}}</li>
+          <li>
+
+
+            {{$loop->iteration}} .
+            {{$list->nama_mhs}}
+            {{$list->status_laporan}}
+          </li>
         </ul>
         @endforeach
       </div>

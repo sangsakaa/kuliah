@@ -226,11 +226,11 @@ class SiacaController extends Controller
     public function CekBelumLap()
     {
         $ScoreDosen = Sesi_Laporan_Harian::query()
-            ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
-            ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
-            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-            ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
-            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->rightjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->rightjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->rightjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->join('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->join('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->select(
                 [
                     'kelompok.nama_kelompok',
