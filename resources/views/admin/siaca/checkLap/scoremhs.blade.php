@@ -64,7 +64,7 @@
               <tr class=" even:bg-gray-100   ">
                 <th class="border px-1 text-center">{{ $loop->iteration }}</th>
 
-                <td class="border px-1 text-left uppercase">{{ strtolower($statusCount['mhs']) }}</td>
+                <td class="border px-1 text-left uppercase text-sm">{{ strtolower($statusCount['mhs']) }}</td>
                 <td class="border px-1 text-center">{{ $statusCount['kelompok'] }}</td>
                 <td class="border px-1 text-center capitalize">{{ strtolower($statusCount['dosen'])  }}</td>
                 <td class="border px-1 text-center">
