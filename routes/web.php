@@ -82,6 +82,7 @@ Route::get('/cek-laporan', [SiacaController::class, 'RekapLap'])->middleware(['a
 Route::get('/cek-valid-dosen', [SiacaController::class, 'RekapVal'])->middleware(['auth'])->name('cek-valid-dosen');
 Route::get('/score-dosen', [SiacaController::class, 'ScoreDosen'])->middleware(['auth'])->name('score-dosen');
 Route::get('/score-mahasiswa', [SiacaController::class, 'ScoreMhs'])->middleware(['auth'])->name('score-mahasiswa');
+Route::get('/cek-tidak-laporan', [SiacaController::class, 'CekBelumLap'])->middleware(['auth'])->name('cek-tidak-laporan');
 
 
 // Role Management

@@ -7,6 +7,7 @@ use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use App\Models\Anggota_Kelompok;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Models\Sesi_Laporan_Harian;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Exceptions\InvalidFormatException;
@@ -29,11 +30,11 @@ class SiacaController extends Controller
             $dataLap->where('nama_mhs', 'like', '%' . request('cari') . '%');
             $dataLap->Orwhere('nama_dosen', 'like', '%' . request('cari') . '%');
         }
-
         return view(
             'admin.siaca.checkLap.rekap',
             [
-                'dataLap' => $dataLap->paginate(10)
+                'dataLap' => $dataLap->paginate(10),
+               
             ]
         );
     }
@@ -179,11 +180,11 @@ class SiacaController extends Controller
             ->orderBy('tanggal')
             ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
-            ->get();
+        ->get();
+
 
         // Inisialisasi array untuk menyimpan perhitungan status laporan untuk setiap dosen
         $statusCounts = [];
-
         foreach ($ScoreDosen as $data) {
             $dosenId = $data->mahasiswa_id;
             
@@ -211,16 +212,57 @@ class SiacaController extends Controller
 
             
         }
-
+        
 
 
         return view(
             'admin.siaca.checkLap.scoremhs',
             [
                 'ScoreDosen' => $ScoreDosen,
-                'statusCounts' => $statusCounts
-
+                'statusCounts' => $statusCounts,
             ]
         );
+    }
+    public function CekBelumLap()
+    {
+        $ScoreDosen = Sesi_Laporan_Harian::query()
+            ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
+            ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->leftjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+            ->select(
+                [
+                    'kelompok.nama_kelompok',
+                    'mahasiswa_id',
+                    'anggota_kelompok.kelompok_id',
+                    'mahasiswa.nama_mhs',
+                    'sesi_laporan_harian.created_at',
+                    'laporan_mahasiswa.updated_at',
+                    'laporan_mahasiswa.status_laporan',
+                    'sesi_laporan_harian.anggota_kelompok_id',
+                    'sesi_laporan_harian.tanggal',
+                    'sesi_laporan_harian.id',
+                    'kelompok.dosen_id',
+                    'dosen.nama_dosen'
+                ]
+            )
+            ->orderBy('tanggal')
+            // ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu'])
+            ->whereNotExists(function ($query) {
+                $query->select(DB::raw(1))
+                    ->from('laporan_mahasiswa as lm')
+                    ->whereColumn('lm.sesi_laporan_harian_id', 'sesi_laporan_harian.id');
+            })
+            ->orderBy('nama_kelompok')
+            ->get();
+
+        return view(
+            'admin.siaca.checkLap.ceklaporan',
+            [
+                'ScoreDosen' => $ScoreDosen  
+            ]
+        );
+        
     }
 }
