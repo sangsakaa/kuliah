@@ -195,7 +195,8 @@ class SiacaController extends Controller
                     'kelompok' => $data->nama_kelompok,
                     'kelompok' => $data->nama_kelompok,
                     'valid' => 0,
-                    'draf' => 0
+                    'draf' => 0,
+                    'menunggu' => 0,
                 ];
             }
 
@@ -204,7 +205,11 @@ class SiacaController extends Controller
                 $statusCounts[$dosenId]['valid']++;
             } elseif ($data->status_laporan === 'draf') {
                 $statusCounts[$dosenId]['draf']++;
+            } elseif ($data->status_laporan === 'menunggu') {
+                $statusCounts[$dosenId]['menunggu']++;
             }
+
+            
         }
 
 

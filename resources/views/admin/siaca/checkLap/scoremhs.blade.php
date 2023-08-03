@@ -42,14 +42,21 @@
           <table class="table w-full">
             <thead>
               <tr class=" uppercase text-sm">
-                <th class="border px-1">No</th>
-                <th class="border px-1">Dosen</th>
-                <th class="border px-1">KeL</th>
-                <th class="border px-1">DPL</th>
-                <th class="border px-1">Total Hari</th>
+                <th rowspan=" 2" class="border px-1">No</th>
+                <th rowspan=" 2" class="border px-1">Dosen</th>
+                <th rowspan=" 2" class="border px-1">KeL</th>
+                <th rowspan=" 2" class="border px-1">DPL</th>
+                <th rowspan=" 2" class="border px-1">Total <br>Hari</th>
+                <th colspan="3" class="border px-1">Status Lap</th>
+                <th rowspan=" 2" class="border px-1">Score</th>
+
+
+              </tr>
+              <tr>
                 <th class="border px-1">Valid</th>
+                <th class="border px-1">Menunggu</th>
                 <th class="border px-1">Draf</th>
-                <th class="border px-1">Score</th>
+
               </tr>
             </thead>
             <tbody>
@@ -71,6 +78,7 @@
                 </td>
 
                 <td class="border px-1 text-center">{{ $statusCount['valid'] }}</td>
+                <td class="border px-1 text-center">{{ $statusCount['menunggu'] }}</td>
                 <td class="border px-1 text-center">{{ $statusCount['draf'] }}</td>
                 <td class="border px-1 text-center">{{ $statusCount['valid'] - $statusCount['draf'] }}</td>
               </tr>
