@@ -59,7 +59,7 @@
               <thead>
                 <tr class=" uppercase text-sm">
                   <th rowspan=" 2" class="border px-1">No</th>
-                  <th rowspan=" 2" class="border px-1">Dosen</th>
+                  <th rowspan=" 2" class="border px-1">Mahasiswa</th>
                   <th rowspan=" 2" class="border px-1">KeL</th>
                   <th rowspan=" 2" class="border px-1">DPL</th>
                   <th rowspan=" 2" class="border px-1">Total <br>Hari</th>
