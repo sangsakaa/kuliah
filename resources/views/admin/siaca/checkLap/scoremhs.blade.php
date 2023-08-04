@@ -34,7 +34,7 @@
 
 
         <div id="" class=" overflow-auto">
-          <div class=" grid grid-cols-2 font-semibold">
+          <div class=" grid grid-cols-1 sm:grid-cols-2 font-semibold">
             <div>
               <span class=" flex">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -43,7 +43,7 @@
                 Hasil Perhitungan Status Laporan
               </span>
             </div>
-            <div class=" flex gap-2 justify-end">
+            <div class=" sm:flex  gap-2  grid-cols-2  sm:grid-cols-2 justify-end  hidden  sm:block">
               <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
                 Cetak
               </button>
@@ -65,6 +65,7 @@
                   <th rowspan=" 2" class="border px-1">Total <br>Hari</th>
                   <th colspan="3" class="border px-1">Status Lap</th>
                   <th rowspan=" 2" class="border px-1">Score</th>
+                  <th rowspan=" 2" class="border px-1">Status</th>
                 </tr>
                 <tr>
                   <th class="border px-1">Valid</th>
@@ -95,6 +96,19 @@
                   <td class="border px-1 text-center">{{ $statusCount['menunggu'] }}</td>
                   <td class="border px-1 text-center">{{ $statusCount['draf'] }}</td>
                   <td class="border px-1 text-center">{{ $statusCount['valid'] - $statusCount['draf'] }}</td>
+                  <td class="border px-1 text-center">
+
+                    @if($statusCount['valid'] - $statusCount['draf'] >= $diffInDays)
+                    <span class=" text-green-700 capitalize">
+                      terpenuhi
+                    </span>
+                    @else
+                    <span class=" text-red-700 capitalize">
+                      dalam pantauan
+                    </span>
+
+                    @endif
+                  </td>
                 </tr>
                 @endforeach
               </tbody>
