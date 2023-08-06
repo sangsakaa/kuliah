@@ -153,7 +153,7 @@ class SiacaController extends Controller
             ]
         );
     }
-    public function ScoreMhs()
+    public function ScoreMhs(Request $request)
     {
         $ScoreDosen = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
@@ -200,7 +200,6 @@ class SiacaController extends Controller
                     'menunggu' => 0,
                 ];
             }
-
             // Hitung status laporan
             if ($data->status_laporan === 'valid') {
                 $statusCounts[$dosenId]['valid']++;
@@ -209,11 +208,22 @@ class SiacaController extends Controller
             } elseif ($data->status_laporan === 'menunggu') {
                 $statusCounts[$dosenId]['menunggu']++;
             }
+            if ($request->cari) {
+                $filteredCounts = [];
+                foreach ($statusCounts as $dosenId => $statusCount) {
+                    if (
+                        stripos($statusCount['mhs'], $request->cari) !== false ||
+                        stripos($statusCount['dosen'], $request->cari) !== false ||
+                        stripos($statusCount['kelompok'], $request->cari) !== false
+                    ) {
+                        $filteredCounts[$dosenId] = $statusCount;
+                    }
+                }
+                return $filteredCounts;
+            }
 
-            
+            // return view('admin.siaca.checkLap.scoremhs', $filteredCounts);
         }
-        
-
 
         return view(
             'admin.siaca.checkLap.scoremhs',

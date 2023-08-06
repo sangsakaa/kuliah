@@ -4,6 +4,86 @@
       {{ __('Score Mahasiswa') }}
     </h2>
   </x-slot>
+  @php
+  // Ubah array menjadi objek koleksi Laravel
+  $statusCounts = collect($statusCounts);
+  // Urutkan objek koleksi berdasarkan perbedaan valid dan menunggu
+  $sortedStatusCounts = $statusCounts->sortByDesc(function($statusCount) {
+  return $statusCount['valid'] - $statusCount['draf'];
+  });
+  @endphp
+  <div class=" w-full py-2 px-2 ">
+    <div class="bg-white overflow-hidden shadow-sm p-2 ">
+      <?php
+      $totalMenunggu = 0; // Inisialisasi variabel untuk menyimpan total 'menunggu'
+      $totalValid = 0; // Inisialisasi variabel untuk menyimpan total 'menunggu'
+      $totalDraf = 0; // Inisialisasi variabel untuk menyimpan total 'menunggu'
+
+      foreach ($sortedStatusCounts as $statusCount) {
+        $totalMenunggu += $statusCount['menunggu'];
+        $totalValid += $statusCount['valid'];
+        $totalDraf += $statusCount['draf'];
+      }
+
+      // echo "Total Menunggu: " . $totalMenunggu; // Cetak total 'menunggu'
+      // echo "Total Valid: " . $totalValid; // Cetak total 'menunggu'
+      ?>
+      <div class=" grid grid-cols-1 sm:grid-cols-8 gap-2">
+        <div class=" bg-red-200 p-2 grid grid-cols-2 rounded-md">
+          <div class=" flex">
+            <span>Menunggu </span>
+
+          </div>
+          <div class="  flex justify-end">
+            <span class="text-3xl">
+              {{$totalMenunggu}}
+            </span> <span>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+
+            </span>
+
+          </div>
+        </div>
+        <div class=" bg-green-200 p-2 grid grid-cols-2 rounded-md">
+          <div class=" flex">
+            <span>Valid </span>
+          </div>
+          <div class="  flex justify-end">
+            <span class="text-3xl">
+              {{$totalValid}}
+            </span>
+            <span class="  ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+
+            </span>
+
+          </div>
+        </div>
+        <div class=" bg-yellow-200 p-2 grid grid-cols-2 rounded-md">
+          <div class=" flex">
+            <span>Draf </span>
+          </div>
+          <div class="  flex justify-end">
+            <span class="text-3xl">
+              {{$totalDraf}}
+            </span>
+            <span class="  ">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+              </svg>
+
+            </span>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
   <script>
     function printContent(el) {
       var fullbody = document.body.innerHTML;
@@ -16,22 +96,6 @@
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm ">
       <div class=" p-2">
-        @php
-        // Ubah array menjadi objek koleksi Laravel
-        $statusCounts = collect($statusCounts);
-        // Urutkan objek koleksi berdasarkan perbedaan valid dan menunggu
-        $sortedStatusCounts = $statusCounts->sortByDesc(function($statusCount) {
-        return $statusCount['valid'] - $statusCount['draf'];
-        });
-        @endphp
-
-
-
-
-
-
-
-
 
         <div id="" class=" overflow-auto">
           <div class=" grid grid-cols-1 sm:grid-cols-2 font-semibold">
@@ -47,11 +111,11 @@
               <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
                 Cetak
               </button>
-              <form action="/score-mahasiswa" method="get">
+              <!-- <form action="/score-mahasiswa" method="get">
                 <input type="text" name="cari" value="{{ request('cari') }}" class=" border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder=" Cari ..">
                 <button type="submit" class="  bg-green-800 py-1 px-2 rounded-md text-white">
                   Cari</button>
-              </form>
+              </form> -->
             </div>
           </div>
           <div id="div1">
