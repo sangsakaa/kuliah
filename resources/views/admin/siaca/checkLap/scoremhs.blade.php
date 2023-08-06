@@ -62,7 +62,7 @@
 
           </div>
         </div>
-        <div class=" bg-blue-400 p-2 grid grid-cols-2 rounded-md">
+        <div class=" bg-blue-600 p-2 grid grid-cols-2 rounded-md">
           <div class=" flex">
             <span>Draf </span>
           </div>
