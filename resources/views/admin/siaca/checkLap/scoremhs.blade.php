@@ -28,7 +28,7 @@
       // echo "Total Menunggu: " . $totalMenunggu; // Cetak total 'menunggu'
       // echo "Total Valid: " . $totalValid; // Cetak total 'menunggu'
       ?>
-      <div class=" grid sm:grid grid-cols-8 sm:grid-cols-1 gap-2">
+      <div class=" grid sm:grid grid-cols-8 sm:grid-cols-3 gap-2">
         <div class=" bg-red-600 p-2 grid grid-cols-2 rounded-md">
           <div class=" flex">
             <span class=" text-white">Menunggu </span>
