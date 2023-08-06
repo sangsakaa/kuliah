@@ -62,15 +62,15 @@
 
           </div>
         </div>
-        <div class=" bg-blue-400 p-2 grid grid-cols-2 rounded-md">
+        <div class=" bg-blue-500 p-2 grid grid-cols-2 rounded-md">
           <div class=" flex">
-            <span>Draf </span>
+            <span class=" text-white">Draf </span>
           </div>
           <div class="  flex justify-end">
-            <span class="text-3xl">
+            <span class="text-3xl text-white">
               {{$totalDraf}}
             </span>
-            <span class="  ">
+            <span class="  text-white ">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
