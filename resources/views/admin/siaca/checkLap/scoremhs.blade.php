@@ -32,7 +32,6 @@
         <div class=" bg-red-200 p-2 grid grid-cols-2 rounded-md">
           <div class=" flex">
             <span>Menunggu </span>
-
           </div>
           <div class="  flex justify-end">
             <span class="text-3xl">
@@ -63,7 +62,7 @@
 
           </div>
         </div>
-        <div class=" bg-yellow-200 p-2 grid grid-cols-2 rounded-md">
+        <div class=" bg-yellow-400 p-2 grid grid-cols-2 rounded-md">
           <div class=" flex">
             <span>Draf </span>
           </div>
