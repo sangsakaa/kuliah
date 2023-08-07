@@ -130,12 +130,11 @@
                   @elseif($sesi['data']->status_laporan === 'draf')
                   D
                   @else
-                  Status Tidak Valid
+                  STV
                   @endif
                   @else
-                  Status Tidak Terdefinisi
+                  STT
                   @endif
-
                   @endif
 
                 </div>
