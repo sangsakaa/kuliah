@@ -128,8 +128,10 @@
                   ];
 
                   // Hitung jumlah setiap status
-                  $status = $sesi['data']->status_laporan;
+                  $status = isset($sesi['data']->status_laporan) ? $sesi['data']->status_laporan : '';
+                  if (array_key_exists($status, $statusCount)) {
                   $statusCount[$status]++;
+                  }
 
                   // Tampilkan semua status dan jumlahnya
                   foreach ($statusCount as $statusKey => $count) {
@@ -149,9 +151,10 @@
                   // Tindakan default jika status tidak dikenali
                   break;
                   }
-                  echo "<p class=' text-xs'>{$statusText} : {$count}</p>";
+                  echo "<p class='text-xs'>{$statusText} : {$count}</p>";
                   }
                   @endphp
+
                   @endif
 
 
