@@ -126,6 +126,7 @@ class UserDosenController extends Controller
                     'anggota_kelompok.kelompok_id',
                     'mahasiswa.nama_mhs',
                     'laporan_mahasiswa.created_at',
+                'laporan_mahasiswa.status_laporan',
                 'sesi_laporan_harian.anggota_kelompok_id',
                     'sesi_laporan_harian.tanggal'
                 ]

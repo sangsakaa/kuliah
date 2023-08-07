@@ -110,22 +110,51 @@
                 {{ strtolower($rekapSesi['kelompok']->nama_mhs )}}
               </th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
+
               <td class="border border-green-800  {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
                 <div class="grid justify-items-center  ">
                   @if (!$sesi['data'])
-                  <span class=" text-red-700 font-semibold">
+                  <span class="text-red-700 font-semibold">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </span>
-
                   @elseif ($sesi['data'])
-                  <span class=" text-green-800">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                    </svg>
-                  </span>
+                  @php
+                  $statusCount = [
+                  'valid' => 0, // Valid
+                  'menunggu' => 0, // Menunggu
+                  'draf' => 0, // Draf
+                  ];
+
+                  // Hitung jumlah setiap status
+                  $status = $sesi['data']->status_laporan;
+                  $statusCount[$status]++;
+
+                  // Tampilkan semua status dan jumlahnya
+                  foreach ($statusCount as $statusKey => $count) {
+                  $statusText = '';
+                  switch ($statusKey) {
+                  case 'valid':
+                  $statusText = 'V';
+                  break;
+                  case 'menunggu':
+                  $statusText = 'M';
+                  break;
+                  case 'draf':
+                  $statusText = 'D';
+                  break;
+                  // Tambahkan case lain jika diperlukan
+                  default:
+                  // Tindakan default jika status tidak dikenali
+                  break;
+                  }
+                  echo "<p class=' text-xs'>{$statusText} : {$count}</p>";
+                  }
+                  @endphp
                   @endif
+
+
                 </div>
               </td>
               @endforeach
