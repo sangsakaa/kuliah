@@ -111,6 +111,8 @@
               </th>
               @foreach ($rekapSesi['sesiPerBulan'] as $sesi)
 
+
+
               <td class="border border-green-800  {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
                 <div class="grid justify-items-center  ">
                   @if (!$sesi['data'])
@@ -120,43 +122,21 @@
                     </svg>
                   </span>
                   @elseif ($sesi['data'])
-                  @php
-                  $statusCount = [
-                  'valid' => 0, // Valid
-                  'menunggu' => 0, // Menunggu
-                  'draf' => 0, // Draf
-                  ];
-
-                  // Hitung jumlah setiap status
-                  $status = isset($sesi['data']->status_laporan) ? $sesi['data']->status_laporan : '';
-                  if (array_key_exists($status, $statusCount)) {
-                  $statusCount[$status]++;
-                  }
-
-                  // Tampilkan semua status dan jumlahnya
-                  foreach ($statusCount as $statusKey => $count) {
-                  $statusText = '';
-                  switch ($statusKey) {
-                  case 'valid':
-                  $statusText = 'V';
-                  break;
-                  case 'menunggu':
-                  $statusText = 'M';
-                  break;
-                  case 'draf':
-                  $statusText = 'D';
-                  break;
-                  // Tambahkan case lain jika diperlukan
-                  default:
-                  // Tindakan default jika status tidak dikenali
-                  break;
-                  }
-                  echo "<p class='text-xs'>{$statusText} : {$count}</p>";
-                  }
-                  @endphp
-
+                  @if(isset($sesi['data']->status_laporan))
+                  @if($sesi['data']->status_laporan === 'valid')
+                  V
+                  @elseif($sesi['data']->status_laporan === 'menunggu')
+                  M
+                  @elseif($sesi['data']->status_laporan === 'draf')
+                  D
+                  @else
+                  Status Tidak Valid
+                  @endif
+                  @else
+                  Status Tidak Terdefinisi
                   @endif
 
+                  @endif
 
                 </div>
               </td>
