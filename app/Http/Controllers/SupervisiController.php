@@ -121,7 +121,8 @@ class SupervisiController extends Controller
         ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
         ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->where('kelompok.dosen_id', $UserPerDosen)
-        ->first();
+        ->find($supervisi->id);
+        // dd($title);
         $lapSupervisi = Kelompok::query()
             ->join('supervisi', 'kelompok.id', 'supervisi.kelompok_id')
             ->join('laporan_supervisi', 'supervisi.id', 'laporan_supervisi.supervisi_id')

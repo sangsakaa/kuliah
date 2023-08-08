@@ -61,6 +61,8 @@
           <div>Tanggal Supervisi</div>
           <div> :
             {{ \Carbon\Carbon::parse($title->tanggal)->isoFormat('DD MMMM Y') }}
+
+
           </div>
         </div>
       </div>
