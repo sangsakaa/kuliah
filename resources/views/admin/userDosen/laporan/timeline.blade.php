@@ -80,7 +80,7 @@
         </table>
       </div>
       <div class="  mt-1">
-        <table class=" w-full border border-green-800">
+        <table class=" w-full border border-green-800 overflow-x-auto">
           <thead>
             <tr class="border bg-green-200  text-black text-xs sm:text-sm ">
               <th class="border border-green-800  uppercase " rowspan="2">no</th>
@@ -116,23 +116,20 @@
               <td class="border border-green-800  {{ $sesi['hari']->isSunday() ? " bg-green-800 text-white" : "" }}">
                 <div class="grid justify-items-center  ">
                   @if (!$sesi['data'])
+
                   <span class="text-red-700 font-semibold">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </span>
                   @elseif ($sesi['data'])
+                  <!-- {{$sesi['data']->status_laporan}} -->
+
                   @if(isset($sesi['data']->status_laporan))
                   @if($sesi['data']->status_laporan === 'valid')
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4  text-green-900 h-4">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-                  </svg>
-
+                  V
                   @elseif($sesi['data']->status_laporan === 'menunggu')
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4   text-yellow-500">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-
+                  M
                   @elseif($sesi['data']->status_laporan === 'draf')
                   D
                   @else

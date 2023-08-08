@@ -137,6 +137,7 @@ class UserDosenController extends Controller
 
         $dataSesi = $dataSesiLaporanHarian->groupBy('kelompok_id');
         $dataSesiPerAnggota = $dataSesiLaporanHarian->groupBy('nama_mhs');
+        // $dataSesiPerAnggota = $dataSesiLaporanHarian->groupBy('status_laporan');
         // dd($dataSesiPerAnggota);
         $dataRekapSesiPerAnggota = $dataKelompok
             ->keyBy('nama_mhs')
