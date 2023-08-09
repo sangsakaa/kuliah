@@ -41,15 +41,18 @@
                   <th class=" border">
                     {{$loop->iteration}}
                   </th>
-                  <td class=" border">
+                  <td class=" border w-1/4">
 
-                    <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="" height="100px" width="100%">
+                    <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="">
                   </td>
                   <td class=" border">
                     {{$list->deskripsi_laporan}}
                   </td>
                   <td class=" border text-center capitalize">
-                    {{$list->nama_mhs}}
+                    <p>{{strtolower($list->nama_mhs)}}</p>
+                    <p> {{$list->status_laporan}}</p>
+                    <p> {{strtolower($list->nama_dosen)}}</p>
+
                   </td>
                   <td class=" border text-center capitalize">
                     <select name="kualitas_lap[]" id="" class=" py-1">
