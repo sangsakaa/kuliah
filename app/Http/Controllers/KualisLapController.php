@@ -84,6 +84,7 @@ class KualisLapController extends Controller
             ->select(
                 'kelompok.nama_kelompok',
                 'mahasiswa.nama_mhs',
+            'dosen.nama_dosen',
                 DB::raw('COUNT(laporan_mahasiswa.id) as total_laporan'),
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.status_laporan = "draf" THEN 1 ELSE 0 END) as jumlah_draf'),
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.status_laporan = "valid" THEN 1 ELSE 0 END) as jumlah_valid'),
@@ -95,14 +96,19 @@ class KualisLapController extends Controller
             DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sts" THEN 1 ELSE 0 END) as sts'),
         )
             ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu'])
-            ->groupBy('mahasiswa.nama_mhs', 'nama_kelompok')
+            ->groupBy('mahasiswa.nama_mhs', 'nama_kelompok', 'nama_dosen')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
-            ->orderby('nama_mhs')
-            ->get();
+        ->orderby('nama_mhs');
+        if (request('cari')) {
+            $cek_lap->where('nama_dosen', 'like', '%' . request('cari') . '%');
+        }
 
 
 
 
-        return view('admin.siaca.checkLap.laporan_fix', compact('cek_lap'));
+        return view(
+            'admin.siaca.checkLap.laporan_fix',
+            ['cek_lap' => $cek_lap->get()]
+        );
     }
 }
