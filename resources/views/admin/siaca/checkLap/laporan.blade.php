@@ -27,7 +27,7 @@
                   <th class=" border px-1 ">No</th>
                   <th class=" border px-1 w-1/3  ">Bukti Laporan</th>
                   <th class=" border px-1 w-1/3 ">Detail Lap</th>
-                  <th class=" border px-1  w-1/3 ">Status</th>
+                  <th class=" border px-1  w-1/4 ">Status</th>
                 </tr>
               </thead>
               <tbody>
