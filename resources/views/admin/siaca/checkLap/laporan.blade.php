@@ -25,24 +25,20 @@
                 <tr>
                   <!-- <th class=" border px-1 w-3 ">ID</th> -->
                   <th class=" border px-1 ">No</th>
-                  <th class=" border px-1 w-1/4 ">Bukti Laporan</th>
+                  <th class=" border px-1  ">Bukti Laporan</th>
                   <th class=" border px-1 ">Detail Lap</th>
-
                   <th class=" border px-1 ">Status</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($cek_lap as $list)
-
                 <tr>
-
                   <input type="hidden" name="id[]" value="{{$list->id}}" readonly class=" text-center  w-11 py-1 px-1">
 
                   <th class=" border">
                     {{$loop->iteration}}
                   </th>
-                  <td class=" border w-1/4">
-
+                  <td class=" border ">
                     <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="">
                   </td>
                   <td class=" border">
@@ -60,12 +56,10 @@
                         <div>Status Laporan </div>
                         <div>
                           : {{strtolower($list->status_laporan)}}
-
                         </div>
                         <div>Tanggal Laporan </div>
                         <div>
                           :
-
                           {{ \Carbon\Carbon::parse($list->tanggal)->isoFormat('dddd , DD MMMM Y') }}
                         </div>
                       </div>
