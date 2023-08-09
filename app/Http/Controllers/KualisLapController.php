@@ -96,7 +96,7 @@ class KualisLapController extends Controller
            
             ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu'])
             ->groupBy('mahasiswa.nama_mhs', 'nama_kelompok')
-            ->orderby('nama_kelompok')
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
 
 
