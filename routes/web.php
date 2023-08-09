@@ -86,8 +86,9 @@ Route::get('/score-mahasiswa', [SiacaController::class, 'ScoreMhs'])->middleware
 Route::get('/cek-tidak-laporan', [SiacaController::class, 'CekBelumLap'])->middleware(['auth'])->name('cek-tidak-laporan');
 
 // cek kualitas Lap 
-Route::get('/cek-kualistas', [KualisLapController::class, 'laporan'])->middleware(['auth'])->name('cek-kualistas');
-Route::patch('/cek-kualistas', [KualisLapController::class, 'updateChec'])->middleware(['auth'])->name('cek-kualistas');
+Route::get('/cek-kualitas', [KualisLapController::class, 'laporan'])->middleware(['auth'])->name('cek-kualistas');
+Route::patch('/cek-kualitas', [KualisLapController::class, 'updateChec'])->middleware(['auth'])->name('cek-kualistas');
+Route::get('/cek-kualitas-fix', [KualisLapController::class, 'RekLap'])->middleware(['auth'])->name('cek-kualitas-fix');
 
 
 
