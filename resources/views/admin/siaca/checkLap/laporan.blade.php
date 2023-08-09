@@ -19,7 +19,7 @@
               </span>
             </div>
           </div>
-          <div class=" ">
+          <div class="  overflow-auto ">
             <table class=" mt-2  w-full ">
               <thead>
                 <tr>
