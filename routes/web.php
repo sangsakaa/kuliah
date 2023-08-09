@@ -8,6 +8,7 @@ use App\Http\Controllers\ProdiController;
 use App\Http\Controllers\TestingController;
 use App\Http\Controllers\KelompokController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KualisLapController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
@@ -83,6 +84,13 @@ Route::get('/cek-valid-dosen', [SiacaController::class, 'RekapVal'])->middleware
 Route::get('/score-dosen', [SiacaController::class, 'ScoreDosen'])->middleware(['auth'])->name('score-dosen');
 Route::get('/score-mahasiswa', [SiacaController::class, 'ScoreMhs'])->middleware(['auth'])->name('score-mahasiswa');
 Route::get('/cek-tidak-laporan', [SiacaController::class, 'CekBelumLap'])->middleware(['auth'])->name('cek-tidak-laporan');
+
+// cek kualitas Lap 
+Route::get('/cek-kualistas', [KualisLapController::class, 'laporan'])->middleware(['auth'])->name('cek-kualistas');
+Route::patch('/cek-kualistas', [KualisLapController::class, 'updateChec'])->middleware(['auth'])->name('cek-kualistas');
+
+
+
 
 
 // Role Management
