@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dosen;
+use App\Models\Kelompok;
 use Illuminate\Http\Request;
 use App\Models\Laporan_Mahasiswa;
 
@@ -75,6 +77,12 @@ class KualisLapController extends Controller
     public function RekLap(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
         // $UserPerDosen = Auth::user()->dosen_id;
+        $dataDosen = Kelompok::query()
+            ->join('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
+
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+            ->orderby('nama_dosen')
+            ->get();
         $cek_lap = Sesi_Laporan_Harian::query()
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
@@ -108,7 +116,10 @@ class KualisLapController extends Controller
 
         return view(
             'admin.siaca.checkLap.laporan_fix',
-            ['cek_lap' => $cek_lap->get()]
+            [
+                'cek_lap' => $cek_lap->get(),
+                'dataDosen' => $dataDosen
+            ]
         );
     }
 }

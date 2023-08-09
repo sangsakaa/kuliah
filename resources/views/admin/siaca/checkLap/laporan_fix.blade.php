@@ -19,17 +19,44 @@
       <div class="px-2 mt-2   bg-white ">
         <div class="px-2 py-2 overflow-auto">
           <div class=" flex gap-2 justify-end py-1">
+
             <form action="/cek-kualitas-fix" method="get">
-              <input type="text" name="cari" value="{{ request('cari') }}" class=" border border-green-800 text-green-800 rounded-md py-1 px-4" placeholder=" Cari ..">
-              <button type="submit" class="  bg-green-800 py-1 px-2 rounded-md text-white">
-                Cari</button>
+              <select name="cari" class="border border-green-800 text-green-800 rounded-md py-1 px-4">
+                <option value="" {{ old('cari') === '' ? 'selected' : '' }}>Pilih Dosen</option>
+                @foreach ($dataDosen as $dosen)
+                <option value="{{ $dosen->nama_dosen }}" {{ old('cari') === $dosen->nama_dosen ? 'selected' : '' }}>
+                  {{ $dosen->nama_kelompok }} - {{ $dosen->nama_dosen }}
+                </option>
+                @endforeach
+              </select>
+
+              <button type="submit" class="bg-green-800 py-1 px-2 rounded-md text-white">
+                Cari
+              </button>
             </form>
+
             <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
               Cetak
             </button>
           </div>
           <div id="div1">
+            <div class=" block sm:hidden py-2">
+              <div class=" w-full flex grid-cols-2 gap-2 text-green-700">
+                <div class=" py-4">
+                  <img src="{{ asset('img/ori.png') }}" alt="Logo" width="110px" height="110px">
+                </div>
+                <div class=" w-full ">
+                  <p class=" text-center text-lg font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
+                  <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
+                  <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
+                  <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
+                </div>
+              </div>
+              <hr class=" border-b-2 border-b-green-700">
+              <hr class=" border-b border-b-green-700">
+            </div>
             <table class=" w-full ">
+
               <thead class="   ">
                 <tr class=" bg-gray-200">
                   <th class=" px-1 border border-green-900 w-5" rowspan=" 2">Kel</th>
