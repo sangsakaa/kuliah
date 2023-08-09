@@ -59,8 +59,9 @@
 
               <thead class="   ">
                 <tr class=" bg-gray-200">
-                  <th class=" px-1 border border-green-900 w-5" rowspan=" 2">Kel</th>
+                  <th class=" px-1 border border-green-900 w-5" rowspan=" 2">No</th>
                   <th class=" px-1 border border-green-900" rowspan=" 2">Nama Mahasiswa</th>
+                  <th class=" px-1 border border-green-900 w-5" rowspan=" 2">Kel</th>
                   <th class=" px-1 border border-green-900" colspan="4">Status Laporan</th>
                   <th class=" px-1 border border-green-900" colspan="4">Status Laporan</th>
                 </tr>
@@ -78,8 +79,9 @@
               <tbody>
                 @foreach($cek_lap as $lap)
                 <tr class=" even:bg-gray-100 hover:bg-green-200">
-                  <td class=" border text-center">{{ $lap->nama_kelompok }}</td>
+                  <td class=" border text-center">{{ $loop->iteration }}</td>
                   <td class=" border">{{ $lap->nama_mhs }}</td>
+                  <td class=" border text-center">{{ $lap->nama_kelompok }}</td>
                   <td class=" border text-center">{{ $lap->total_laporan }}</td>
                   <td class=" border text-center">{{ $lap->jumlah_draf }}</td>
                   <td class=" border text-center">{{ $lap->jumlah_valid }}</td>
