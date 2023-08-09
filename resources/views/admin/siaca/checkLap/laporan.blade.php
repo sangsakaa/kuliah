@@ -7,7 +7,7 @@
   </x-slot>
   <div class="p-2">
     <div class="   bg-white">
-      <div class="px-2 mt-2   bg-white ">
+      <div class="p-2   bg-white ">
         <form action="" method="post">
           @csrf
           @method('patch')
@@ -25,9 +25,9 @@
                 <tr>
                   <!-- <th class=" border px-1 w-3 ">ID</th> -->
                   <th class=" border px-1 ">No</th>
-                  <th class=" border px-1 w-1/3  ">Bukti Laporan</th>
-                  <th class=" border px-1 w-1/3 ">Detail Lap</th>
-                  <th class=" border px-1  w-1/4 ">Status</th>
+                  <th class=" border px-1   ">Bukti Laporan</th>
+                  <th class=" border px-1  ">Detail Lap</th>
+                  <th class=" border px-1  ">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -68,9 +68,8 @@
 
                     </div>
                   </td>
-
                   <td class=" border text-center capitalize">
-                    <select name="kualitas_lap[]" id="" class=" py-1">
+                    <select name="kualitas_lap[]" id="" class=" py-1 text-sm">
                       <option value=""> Belum di Validasi </option>
                       <option value="ss" {{ $list->kualitas_lap == "ss" ? 'selected' : '' }}> 1 sangat sesuai </option>
                       <option value="s" {{ $list->kualitas_lap == "s" ? 'selected' : '' }}> 2 sesuai</option>
