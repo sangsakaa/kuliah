@@ -12,10 +12,12 @@
           <form action="" method="post">
             @csrf
             @method('patch')
-            <div>
+            <div class=" flex gap-2">
               <button class=" bg-blue-700 text-white px-2 py-1">update kualistas Laporan</button>
-              <div>
-                {{$cek_lap->count()}}
+              <div class=" p-1">
+                <span class=" bg-blue-700 px-2 py-1 text-white">
+                  {{$cek_lap->count()}}
+                </span>
               </div>
             </div>
             <table class=" mt-2 w-full">
@@ -47,11 +49,11 @@
                     {{$list->deskripsi_laporan}}
                   </td>
                   <td class=" border text-center capitalize">
-                    {{$list->kualitas_lap}}
+                    {{$list->nama_mhs}}
                   </td>
                   <td class=" border text-center capitalize">
                     <select name="kualitas_lap[]" id="" class=" py-1">
-                      <option value=""> Kosong </option>
+                      <option value=""> Belum di Validasi </option>
                       <option value="sangat sesui" {{ $list->kualitas_lap == "sangat sesui" ? 'selected' : '' }}> 1 sangat sesui </option>
                       <option value=" sesui" {{ $list->kualitas_lap == "sesui" ? 'selected' : '' }}> 2 sesui</option>
                       <option value="tidak sesuai" {{ $list->kualitas_lap == "tidak sesuai" ? 'selected' : '' }}> 3 tidak sesuai </option>
@@ -61,6 +63,11 @@
                   </td>
                 </tr>
                 @endforeach
+                <tr>
+                  <td colspan="5" class=" py-1">
+                    {{$cek_lap}}
+                  </td>
+                </tr>
               </tbody>
             </table>
           </form>
