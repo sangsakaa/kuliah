@@ -27,7 +27,7 @@
                   <th class=" border px-1 ">No</th>
                   <th class=" border px-1 w-1/4 ">Bukti Laporan</th>
                   <th class=" border px-1 ">Detail Lap</th>
-                  <th class=" border px-1 ">Deskripsi Laporan</th>
+
                   <th class=" border px-1 ">Status</th>
                 </tr>
               </thead>
@@ -46,14 +46,28 @@
                     <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="">
                   </td>
                   <td class=" border">
-                    {{$list->deskripsi_laporan}}
-                  </td>
-                  <td class=" border text-center capitalize">
-                    <p>{{strtolower($list->nama_mhs)}}</p>
-                    <p> {{$list->status_laporan}}</p>
-                    <p> {{strtolower($list->nama_dosen)}}</p>
 
+                    <div class=" grid grid-cols-1 ">
+                      <div class=" grid grid-cols-2 capitalize">
+                        <div>Nama Mahasiswa </div>
+                        <div>
+                          : {{strtolower($list->nama_mhs)}}
+                        </div>
+                        <div>DPL </div>
+                        <div>
+                          : {{strtolower($list->nama_dosen)}}
+                        </div>
+                        <div>Status Laporan </div>
+                        <div>
+                          : {{strtolower($list->status_laporan)}}
+                        </div>
+                      </div>
+                      <hr>
+                      <div> {{$list->deskripsi_laporan}}</div>
+
+                    </div>
                   </td>
+
                   <td class=" border text-center capitalize">
                     <select name="kualitas_lap[]" id="" class=" py-1">
                       <option value=""> Belum di Validasi </option>
