@@ -41,7 +41,7 @@
                   </th>
                   <td class=" border">
 
-                    <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="" height="100px" width="100px">
+                    <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="" height="100px" width="100%">
                   </td>
                   <td class=" border">
                     {{$list->deskripsi_laporan}}
