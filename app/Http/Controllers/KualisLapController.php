@@ -43,11 +43,11 @@ class KualisLapController extends Controller
                 ]
             )
             ->orderBy('tanggal')
-            ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu']) // Ubah "status_laporan" yang valid dan menunggu
+            ->whereIn('laporan_mahasiswa.status_laporan', ['valid']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
             ->where('kelompok.dosen_id', $UserPerDosen)
             // ->whereNull('laporan_mahasiswa.kualitas_lap')
-            ->paginate(2);
+            ->get();
 
 
 
@@ -88,15 +88,16 @@ class KualisLapController extends Controller
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.status_laporan = "draf" THEN 1 ELSE 0 END) as jumlah_draf'),
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.status_laporan = "valid" THEN 1 ELSE 0 END) as jumlah_valid'),
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.status_laporan = "menunggu" THEN 1 ELSE 0 END) as jumlah_menunggu'),
-                DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sangat sesui" THEN 1 ELSE 0 END) as ss'),
-                DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sesui" THEN 1 ELSE 0 END) as s'),
-                DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "tidak sesui" THEN 1 ELSE 0 END) as ts'),
-                DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sangat tidak sesuai" THEN 1 ELSE 0 END) as sts'),
-            )
-           
+
+            DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "ss" THEN 1 ELSE 0 END) as ss'),
+            DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "s" THEN 1 ELSE 0 END) as s'),
+            DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "ts" THEN 1 ELSE 0 END) as ts'),
+            DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sts" THEN 1 ELSE 0 END) as sts'),
+        )
             ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu'])
             ->groupBy('mahasiswa.nama_mhs', 'nama_kelompok')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+            ->orderby('nama_mhs')
             ->get();
 
 

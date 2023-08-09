@@ -71,10 +71,10 @@
                   <td class=" border text-center capitalize">
                     <select name="kualitas_lap[]" id="" class=" py-1">
                       <option value=""> Belum di Validasi </option>
-                      <option value="sangat sesui" {{ $list->kualitas_lap == "sangat sesui" ? 'selected' : '' }}> 1 sangat sesui </option>
-                      <option value=" sesui" {{ $list->kualitas_lap == "sesui" ? 'selected' : '' }}> 2 sesui</option>
-                      <option value="tidak sesuai" {{ $list->kualitas_lap == "tidak sesuai" ? 'selected' : '' }}> 3 tidak sesuai </option>
-                      <option value="sangat tidak sesuai" {{ $list->kualitas_lap == "sangat tidak sesuai" ? 'selected' : '' }}> 4 sangat tidak sesuai</option>
+                      <option value="ss" {{ $list->kualitas_lap == "ss" ? 'selected' : '' }}> 1 sangat sesuai </option>
+                      <option value="s" {{ $list->kualitas_lap == "s" ? 'selected' : '' }}> 2 sesuai</option>
+                      <option value="ts" {{ $list->kualitas_lap == "ts" ? 'selected' : '' }}> 3 tidak sesuai </option>
+                      <option value="sts" {{ $list->kualitas_lap == "sts" ? 'selected' : '' }}> 4 sangat tidak sesuai</option>
                     </select>
 
                   </td>
