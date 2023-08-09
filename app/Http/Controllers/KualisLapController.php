@@ -48,7 +48,7 @@ class KualisLapController extends Controller
             ->whereIn('laporan_mahasiswa.status_laporan', ['valid']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
             ->where('kelompok.dosen_id', $UserPerDosen)
-            // ->whereNull('laporan_mahasiswa.kualitas_lap')
+            ->whereNull('laporan_mahasiswa.kualitas_lap')
             ->get();
 
 
