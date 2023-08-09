@@ -31,7 +31,7 @@
             </thead>
             <tbody>
               @foreach($cek_lap as $lap)
-              <tr>
+              <tr class=" even:bg-gray-200">
                 <td class=" border text-center">{{ $lap->nama_kelompok }}</td>
                 <td class=" border">{{ $lap->nama_mhs }}</td>
                 <td class=" border text-center">{{ $lap->total_laporan }}</td>
