@@ -35,8 +35,8 @@ class KualisLapController extends Controller
                     'laporan_mahasiswa.kualitas_lap',
                     'laporan_mahasiswa.bukti_laporan',
                     'laporan_mahasiswa.id',
-                    // 'sesi_laporan_harian.anggota_kelompok_id',
-                    // 'sesi_laporan_harian.tanggal',
+                // 'sesi_laporan_harian.anggota_kelompok_id',
+                'sesi_laporan_harian.tanggal',
                     // 'sesi_laporan_harian.id',
                     'kelompok.dosen_id',
                     'dosen.nama_dosen'

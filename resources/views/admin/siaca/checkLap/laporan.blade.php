@@ -60,6 +60,13 @@
                         <div>Status Laporan </div>
                         <div>
                           : {{strtolower($list->status_laporan)}}
+
+                        </div>
+                        <div>Tanggal Laporan </div>
+                        <div>
+                          :
+
+                          {{ \Carbon\Carbon::parse($list->tanggal)->isoFormat('dddd , DD MMMM Y') }}
                         </div>
                       </div>
                       <hr>
