@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class=" ">
-            <table class=" mt-2 w-fit ">
+            <table class=" mt-2  w-full ">
               <thead>
                 <tr>
                   <!-- <th class=" border px-1 w-3 ">ID</th> -->
