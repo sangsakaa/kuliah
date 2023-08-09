@@ -93,10 +93,10 @@ class KualisLapController extends Controller
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "tidak sesui" THEN 1 ELSE 0 END) as ts'),
                 DB::raw('SUM(CASE WHEN laporan_mahasiswa.kualitas_lap = "sangat tidak sesuai" THEN 1 ELSE 0 END) as sts'),
             )
-            ->orderBy('tanggal')
+           
             ->whereIn('laporan_mahasiswa.status_laporan', ['draf', 'valid', 'menunggu'])
             ->groupBy('mahasiswa.nama_mhs', 'nama_kelompok')
-            ->orderBy('nama_kelompok')
+           
             ->get();
 
 
