@@ -21,9 +21,9 @@
             <table class=" mt-2 w-full">
               <thead>
                 <tr>
-                  <th class=" border px-1 w-3 ">ID</th>
+                  <!-- <th class=" border px-1 w-3 ">ID</th> -->
                   <th class=" border px-1 ">No</th>
-                  <th class=" border px-1 ">Bukti Laporan</th>
+                  <th class=" border px-1 w-1/4 ">Bukti Laporan</th>
                   <th class=" border px-1 ">Detail Lap</th>
                   <th class=" border px-1 ">Deskripsi Laporan</th>
                   <th class=" border px-1 ">Status</th>
@@ -33,9 +33,9 @@
                 @foreach($cek_lap as $list)
 
                 <tr>
-                  <td class=" border w-3 px-2">
-                    <input type="text" name="id[]" value="{{$list->id}}" readonly class=" text-center  w-11 py-1 px-1">
-                  </td>
+
+                  <input type="hidden" name="id[]" value="{{$list->id}}" readonly class=" text-center  w-11 py-1 px-1">
+
                   <th class=" border">
                     {{$loop->iteration}}
                   </th>
