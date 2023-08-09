@@ -6,7 +6,7 @@
     </h2>
   </x-slot>
   <div class="p-2">
-    <div class=" grid  bg-white p-4">
+    <div class=" grid  bg-white">
       <div class="px-2 mt-2   bg-white ">
         <div class="px-2 py-2">
           <form action="" method="post">
