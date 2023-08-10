@@ -22,7 +22,7 @@
 
             <form action="/cek-kualitas-fix" method="get">
               <select name="cari" class="border border-green-800 text-green-800 rounded-md py-1 px-4">
-                <option value="" {{ old('cari') === '' ? 'selected' : '' }}>Pilih Dosen</option>
+                <option value="">Pilih Dosen</option>
                 @foreach ($dataDosen as $dosen)
                 <option value="{{ $dosen->nama_dosen }}" {{ old('cari') === $dosen->nama_dosen ? 'selected' : '' }}>
                   {{ $dosen->nama_kelompok }} - {{ $dosen->nama_dosen }}
@@ -34,6 +34,9 @@
                 Cari
               </button>
             </form>
+
+
+
 
             <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
               Cetak
@@ -55,17 +58,20 @@
               <hr class=" border-b-2 border-b-green-700">
               <hr class=" border-b border-b-green-700">
             </div>
+            <div>
+
+            </div>
             <table class=" w-full ">
 
               <thead class="   ">
-                <tr class=" bg-gray-200">
+                <tr class=" bg-gray-200 text-xs uppercase">
                   <th class=" px-1 border border-green-900 w-5" rowspan=" 2">No</th>
                   <th class=" px-1 border border-green-900" rowspan=" 2">Nama Mahasiswa</th>
                   <th class=" px-1 border border-green-900 w-5" rowspan=" 2">Kel</th>
                   <th class=" px-1 border border-green-900" colspan="4">Status Laporan</th>
-                  <th class=" px-1 border border-green-900" colspan="4">Status Laporan</th>
+                  <th class=" px-1 border border-green-900 w-fit" colspan="5">Status Laporan</th>
                 </tr>
-                <tr class=" bg-gray-200">
+                <tr class=" bg-gray-200 text-xs uppercase">
                   <th class=" px-1 border border-green-900 ">Tot</th>
                   <th class=" px-1 border border-green-900 ">D</th>
                   <th class=" px-1 border border-green-900 ">V</th>
@@ -74,12 +80,13 @@
                   <th class=" px-1 border border-green-900 ">S</th>
                   <th class=" px-1 border border-green-900 ">TS</th>
                   <th class=" px-1 border border-green-900 ">STS</th>
+                  <th class=" px-1 border border-green-900 ">Tot</th>
                 </tr>
               </thead>
               <tbody>
                 @foreach($cek_lap as $lap)
-                <tr class=" even:bg-gray-100 hover:bg-green-200 ">
-                  <td class=" border border-green-900 text-center">{{ $loop->iteration }}</td>
+                <tr class=" even:bg-gray-100 hover:bg-green-200 text-sm ">
+                  <td class=" border border-green-900 text-center py-1">{{ $loop->iteration }}</td>
                   <td class=" border border-green-900">{{ $lap->nama_mhs }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->nama_kelompok }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->total_laporan }}</td>
@@ -90,6 +97,7 @@
                   <td class=" border border-green-900 text-center">{{ $lap->s }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->ts }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->sts }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->sts + $lap->ts + $lap->s + $lap->ss }}</td>
                 </tr>
                 @endforeach
               </tbody>
