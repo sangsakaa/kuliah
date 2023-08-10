@@ -78,7 +78,7 @@
               </thead>
               <tbody>
                 @foreach($cek_lap as $lap)
-                <tr class=" even:bg-gray-100 hover:bg-green-200">
+                <tr class=" even:bg-gray-100 hover:bg-green-200 ">
                   <td class=" border text-center">{{ $loop->iteration }}</td>
                   <td class=" border">{{ $lap->nama_mhs }}</td>
                   <td class=" border text-center">{{ $lap->nama_kelompok }}</td>
