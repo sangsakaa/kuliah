@@ -79,17 +79,17 @@
               <tbody>
                 @foreach($cek_lap as $lap)
                 <tr class=" even:bg-gray-100 hover:bg-green-200 ">
-                  <td class=" border text-center">{{ $loop->iteration }}</td>
-                  <td class=" border">{{ $lap->nama_mhs }}</td>
-                  <td class=" border text-center">{{ $lap->nama_kelompok }}</td>
-                  <td class=" border text-center">{{ $lap->total_laporan }}</td>
-                  <td class=" border text-center">{{ $lap->jumlah_draf }}</td>
-                  <td class=" border text-center">{{ $lap->jumlah_valid }}</td>
-                  <td class=" border text-center">{{ $lap->jumlah_menunggu }}</td>
-                  <td class=" border text-center">{{ $lap->ss }}</td>
-                  <td class=" border text-center">{{ $lap->s }}</td>
-                  <td class=" border text-center">{{ $lap->ts }}</td>
-                  <td class=" border text-center">{{ $lap->sts }}</td>
+                  <td class=" border border-green-900 text-center">{{ $loop->iteration }}</td>
+                  <td class=" border border-green-900">{{ $lap->nama_mhs }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->nama_kelompok }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->total_laporan }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->jumlah_draf }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->jumlah_valid }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->jumlah_menunggu }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->ss }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->s }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->ts }}</td>
+                  <td class=" border border-green-900 text-center">{{ $lap->sts }}</td>
                 </tr>
                 @endforeach
               </tbody>
