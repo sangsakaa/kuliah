@@ -39,10 +39,13 @@
                 <td class=" border justify-center text-center w-1/3 ">
                   <input type="radio" id="hadir[{{ $item->id }}]" value="hadir" name="keterangan[{{ $item->id }}]" {{ $item->keterangan === "hadir" || $item->keterangan === null ? "checked" : "" }}>
                   <label for="hadir[{{ $item->id }}]">H</label>
+
                   <input type="radio" id="izin[{{ $item->id }}]" value="izin" name="keterangan[{{ $item->id }}]" {{ $item->keterangan === "izin" ? "checked" : "" }}>
                   <label for="izin[{{ $item->id }}]">I</label>
+
                   <input type="radio" id="sakit[{{ $item->id }}]" value="sakit" name="keterangan[{{ $item->id }}]" {{ $item->keterangan === "sakit" ? "checked" : "" }}>
                   <label for="sakit[{{ $item->id }}]">S</label>
+
                   <input type="radio" id="alfa[{{ $item->id }}]" value="alfa" name="keterangan[{{ $item->id }}]" {{ $item->keterangan === "alfa" ? "checked" : "" }}>
                   <label for="alfa[{{ $item->id }}]">A</label>
                 </td>

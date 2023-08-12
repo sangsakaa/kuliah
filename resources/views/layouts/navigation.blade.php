@@ -113,22 +113,25 @@
                         {{ __('Beranda') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cek-valid-dosen')" :active="request()->routeIs('cek-valid-dosen')">
-                        {{ __('Cek Validasi Dosen') }}
+                        {{ __('Validasi Dosen') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cek-laporan')" :active="request()->routeIs('cek-laporan')">
-                        {{ __('Cek Laporan Harian') }}
+                        {{ __('Laporan Harian') }}
                     </x-nav-link>
                     <x-nav-link :href="route('score-dosen')" :active="request()->routeIs('score-dosen')">
-                        {{ __('Cek Score') }}
+                        {{ __('Score') }}
                     </x-nav-link>
                     <x-nav-link :href="route('score-mahasiswa')" :active="request()->routeIs('score-mahasiswa')">
-                        {{ __('Cek Score Mhs') }}
+                        {{ __(' Score Mhs') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cek-tidak-laporan')" :active="request()->routeIs('cek-tidak-laporan')">
-                        {{ __('Cek Lap') }}
+                        {{ __('Lap') }}
                     </x-nav-link>
                     <x-nav-link :href="route('cek-kualitas-fix')" :active="request()->routeIs('cek-kualitas-fix')">
-                        {{ __('Cek Lap Valid') }}
+                        {{ __('Lap Valid') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('rekap-sesi-harian')" :active="request()->routeIs('rekap-sesi-harian')">
+                        {{ __('Rekap Presensi') }}
                     </x-nav-link>
                 </div>
                 @endif

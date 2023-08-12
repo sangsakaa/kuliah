@@ -78,4 +78,15 @@ class PresensiController extends Controller
 
         return redirect()->back();
     }
+    public function rekapPresensi()
+    {
+        $dataAnggota = Anggota_Kelompok::query()
+            ->rightjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
+            ->join('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            ->join('daftar_sesi_harian', 'daftar_sesi_harian.anggota_kelompok_id', 'anggota_kelompok.id')
+            // ->select('anggota_kelompok.id', 'nama_mhs', 'keterangan', 'alasan',)
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+            ->get();
+        return view('admin.userMahasiswa.presensi.rekap', compact('dataAnggota'));
+    }
 }
