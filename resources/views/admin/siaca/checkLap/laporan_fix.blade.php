@@ -44,7 +44,7 @@
                   <img src="{{ asset('img/ori.png') }}" alt="Logo" width="110px" height="110px">
                 </div>
                 <div class=" w-full ">
-                  <p class=" text-center text-lg font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
+                  <p class=" text-center text-sm font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
                   <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
                   <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
                   <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
