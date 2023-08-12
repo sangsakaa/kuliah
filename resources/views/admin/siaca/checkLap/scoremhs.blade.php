@@ -139,7 +139,7 @@
               </thead>
               <tbody>
                 @foreach ($sortedStatusCounts as $statusCount)
-                <tr class=" even:bg-gray-100   ">
+                <tr class=" even:bg-gray-100 hover:bg-green-200   ">
                   <th class="border px-1 text-center">{{ $loop->iteration }}</th>
 
                   <td class="border px-1 text-left uppercase text-sm">{{ strtolower($statusCount['mhs']) }}</td>

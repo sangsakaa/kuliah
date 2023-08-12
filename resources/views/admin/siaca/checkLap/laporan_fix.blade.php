@@ -19,7 +19,6 @@
       <div class="px-2 mt-2   bg-white ">
         <div class="px-2 py-2 overflow-auto">
           <div class=" flex gap-2 justify-end py-1">
-
             <form action="/cek-kualitas-fix" method="get">
               <select name="cari" class="border border-green-800 text-green-800 rounded-md py-1 px-4">
                 <option value="">Pilih Dosen</option>
@@ -34,10 +33,6 @@
                 Cari
               </button>
             </form>
-
-
-
-
             <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
               Cetak
             </button>

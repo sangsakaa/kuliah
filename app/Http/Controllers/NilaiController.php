@@ -42,8 +42,9 @@ class NilaiController extends Controller
             ->leftjoin('daftar_nilai', 'daftar_nilai.kelompok_id', 'kelompok.id')
             ->leftjoin('nilai', 'nilai.mahasiswa_id', 'anggota_kelompok.id')
             // anggotanilai
-            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir')
+            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir', 'daftar_nilai_id')
             ->where('anggota_kelompok.kelompok_id', $Kelompok->id)
+            // ->where('daftar_nilai.id', $daftarNilai->id)
             ->orderby('nama_mhs')
             // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
             

@@ -40,6 +40,7 @@
           </thead>
           <tbody>
             @foreach ($daftarNilai as $nilai)
+
             <tr class=" border">
               <td class=" border text-center">{{ $loop->iteration }}</td>
               <td class=" border text-center"><a href="/nilai-peserta-kkn/{{$nilai->id}}">{{ $nilai->nama_kelompok }}</a></td>

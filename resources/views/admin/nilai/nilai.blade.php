@@ -32,9 +32,11 @@
             </thead>
             <tbody>
               @foreach($dataAnggota as $anggota)
+
               <tr class=" border">
                 <td class=" border px-1 text-center">
                   {{ $loop->iteration }}
+                  {{$anggota}}
                 </td>
                 <input type="hidden" name="mahasiswa_id[]" value="{{$anggota->id}}">
                 <td class=" border px-1 capitalize">{{strtolower( $anggota->nama_mhs) }}</td>
