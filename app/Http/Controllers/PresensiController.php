@@ -14,8 +14,6 @@ class PresensiController extends Controller
 {
     public function index()
     {
-
-
         $UserPerMhs = Auth::user()->mahasiswa_id;
         $User = Anggota_Kelompok::where('mahasiswa_id', $UserPerMhs)->first();
         $SesiHarian = Sesi_Harian::query()
@@ -49,7 +47,7 @@ class PresensiController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        dd($request);
         $SesiHarian = new Sesi_Harian();
         $SesiHarian->tanggal = $request->tanggal;
         $SesiHarian->kelompok_id = $request->kelompok_id;
