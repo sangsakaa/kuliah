@@ -47,7 +47,7 @@
                   <p class=" text-center text-sm font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
                   <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
                   <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
-                  <p class=" text-center text-xs ">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
+                  <p class=" text-center text-xs ">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur </p>
                 </div>
               </div>
               <hr class=" border-b-2 border-b-green-700">
