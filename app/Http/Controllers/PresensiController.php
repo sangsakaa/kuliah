@@ -47,7 +47,7 @@ class PresensiController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
         $SesiHarian = new Sesi_Harian();
         $SesiHarian->tanggal = $request->tanggal;
         $SesiHarian->kelompok_id = $request->kelompok_id;
