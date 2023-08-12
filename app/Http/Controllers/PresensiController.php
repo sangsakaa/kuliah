@@ -20,6 +20,8 @@ class PresensiController extends Controller
             ->join('kelompok', 'kelompok.id', 'sesi_harian.kelompok_id')
             ->where('kelompok_id', $User->kelompok_id)
             ->select('sesi_harian.id', 'tanggal', 'nama_kelompok')
+            ->orderby('tanggal')
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
         return view('admin.userMahasiswa.presensi.index', compact('SesiHarian', 'User'));
     }
@@ -34,6 +36,7 @@ class PresensiController extends Controller
             ->select('anggota_kelompok.id', 'nama_mhs', 'keterangan', 'alasan')
             ->where('kelompok_id', $sesi_Harian->kelompok_id)
             ->orderby('nama_mhs')
+            
             ->get();
         if ($dataAnggota->count() === 0) {
             $dataAnggota = Anggota_Kelompok::query()
