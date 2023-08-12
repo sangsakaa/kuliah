@@ -47,7 +47,7 @@
                   <p class=" text-center text-sm font-semibold uppercase">yayasan perjuangan wahidiyah dan pondok pesantren kedunglo</p>
                   <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
                   <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
-                  <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
+                  <p class=" text-center text-xs ">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
                 </div>
               </div>
               <hr class=" border-b-2 border-b-green-700">
@@ -80,7 +80,7 @@
               </thead>
               <tbody>
                 @foreach($cek_lap as $lap)
-                <tr class=" even:bg-gray-100 hover:bg-green-200 text-sm ">
+                <tr class=" even:bg-gray-100 hover:bg-green-200 text-sm  ">
                   <td class=" border border-green-900 text-center py-1">{{ $loop->iteration }}</td>
                   <td class=" border border-green-900 px-1">{{ $lap->nama_mhs }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->nama_kelompok }}</td>

@@ -1743,6 +1743,10 @@ select {
     font-size: 3rem;
     line-height: 1;
   }
+
+  .sm\:hover\:hidden:hover {
+    display: none;
+  }
 }
 @media (min-width: 768px) {
 
