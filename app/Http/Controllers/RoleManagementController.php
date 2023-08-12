@@ -28,7 +28,7 @@ class RoleManagementController extends Controller
     {
 
         $role = Role::all();
-        $user = User::whereNotNull('dosen_id')->orderby('name')
+        $user = User::orderby('name')
             ->get();
         $dataHasRole = Has_Role::query()
         ->join('roles', 'roles.id', '=', 'model_has_roles.role_id')

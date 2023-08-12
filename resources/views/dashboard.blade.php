@@ -127,6 +127,9 @@
                         <a href="/rekap-laporan-mahasiswa">
                             <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan Harian</div>
                         </a>
+                        <a href="/sesi-harian">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Presensi</div>
+                        </a>
                     </div>
                     <div>
                         <div class=" p-2">

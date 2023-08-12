@@ -13,6 +13,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RoleManagementController;
 use App\Http\Controllers\SiacaController;
 use App\Http\Controllers\SupervisiController;
@@ -89,6 +90,12 @@ Route::get('/cek-tidak-laporan', [SiacaController::class, 'CekBelumLap'])->middl
 Route::get('/cek-kualitas', [KualisLapController::class, 'laporan'])->middleware(['auth'])->name('cek-kualistas');
 Route::patch('/cek-kualitas', [KualisLapController::class, 'updateChec'])->middleware(['auth'])->name('cek-kualistas');
 Route::get('/cek-kualitas-fix', [KualisLapController::class, 'RekLap'])->middleware(['auth'])->name('cek-kualitas-fix');
+
+
+Route::get('/sesi-harian', [PresensiController::class, 'index'])->middleware(['auth'])->name('sesi-harian');
+Route::get('/daftar-sesi-harian/{sesi_Harian}', [PresensiController::class, 'show'])->middleware(['auth']);
+Route::post('/sesi-harian', [PresensiController::class, 'store'])->middleware(['auth'])->name('sesi-harian');
+Route::post('/daftar-sesi-harian/{sesi_Harian}', [PresensiController::class, 'storeSesi'])->middleware(['auth']);
 
 
 

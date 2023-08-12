@@ -42,7 +42,23 @@
                     </x-nav-link>
                 </div>
                 @endrole
-                @role('mahasiswa')
+                @if (Auth::check())
+                @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Beranda') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
+                        {{ __('Detail Mahasiswa') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
+                        {{ __('Rekap Laporan Harian') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('sesi-harian')" :active="request()->routeIs('sesi-harian')">
+                        {{ __('Presensi Harian') }}
+                    </x-nav-link>
+                </div>
+                @elseif (Auth::user()->hasRole('mahasiswa'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Beranda') }}
@@ -54,7 +70,9 @@
                         {{ __('Rekap Laporan Harian') }}
                     </x-nav-link>
                 </div>
-                @endrole
+                @endif
+                @endif
+
                 @if (Auth::check())
                 @if (Auth::user()->hasRole('pengawas'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
