@@ -71,7 +71,7 @@
           </div>
         </div>
         <div class=" py-1">
-
+          {{$dataLap}}
         </div>
       </div>
 
