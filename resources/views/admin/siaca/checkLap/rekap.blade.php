@@ -29,7 +29,7 @@
                 @foreach ($dataLap as $item)
                 <tr>
                   <td class=" border-black border w-1/3  ">
-                    <img class=" " src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="">
+                    <img class=" " src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" height=" 100px">
                   </td>
                   <td class=" border-black border ">
                     <div class=" px-1 grid grid-cols-1 sm:grid-cols-2 ">
@@ -56,10 +56,9 @@
                       <div>Tanggal Laporan </div>
                       <div class=" capitalize text-red-700">: {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd , DD MMMM Y') }} </div>
                     </div>
-                    <div class=" px-1">
+                    <div class="  ">
                       <hr class=" border-b-2 border-black">
-                      <textarea name="deskripsi_laporan" id="" class="w-full mt-2 " cols="100" rows="12" required readonly>{{$item->deskripsi_laporan}}
-                      </textarea>
+                      <textarea name="deskripsi_laporan" id="" class="w-full   " cols="100" rows="12" required readonly>{{$item->deskripsi_laporan}}</textarea>
                     </div>
                   </td>
                 </tr>
