@@ -109,8 +109,8 @@ class PresensiController extends Controller
             ->join('kelompok', 'kelompok.id', 'sesi_harian.kelompok_id')
 
             ->select('sesi_harian.id', 'tanggal', 'nama_kelompok')
-            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->orderby('tanggal')
+            ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
         $dataAnggota = Anggota_Kelompok::query()
             ->rightjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
