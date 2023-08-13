@@ -37,7 +37,9 @@
             <tr>
               <td class=" py-1 border  text-center">{{$loop->iteration}}</td>
               <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}" class=" bg-blue-700 px-2  py-1 text-white">absen</a></td>
-              <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}">{{$sesi->tanggal}}</a></td>
+              <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}">
+                  {{ \Carbon\Carbon::parse($sesi->tanggal)->isoFormat('dddd , DD MMMM Y') }}
+                </a></td>
               <td class=" border  text-center">{{$sesi->nama_kelompok}}</td>
             </tr>
             @endforeach
