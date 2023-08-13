@@ -50,10 +50,9 @@
                         {{$item->status_laporan}}
                         @endif
                       </div>
-                      <div>Nama Kelompok </div>
-                      <div class=" capitalize text-green-800">: {{$item->nama_kelompok}} </div>
-                      <div>Dosen Pembimbing Lapangan </div>
-                      <div class=" capitalize text-green-800">: {{$item->nama_dosen}} </div>
+                      <div>Kelompok - DPL </div>
+                      <div class=" capitalize text-green-800">: {{$item->nama_kelompok}} - {{$item->nama_dosen}} </div>
+
                       <div>Tanggal Laporan </div>
                       <div class=" capitalize text-red-700">: {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd , DD MMMM Y') }} </div>
                     </div>
