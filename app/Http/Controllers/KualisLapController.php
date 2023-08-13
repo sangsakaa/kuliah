@@ -49,7 +49,7 @@ class KualisLapController extends Controller
             ->orderBy('nama_kelompok')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->where('laporan_mahasiswa.kualitas_lap', '=', '')
-            ->get();
+            ->paginate(1);
 
 
 

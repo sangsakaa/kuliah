@@ -59,17 +59,19 @@
                     </div>
                     <div class=" px-1">
                       <hr class=" border-b-2 border-black">
-                      {{$item->deskripsi_laporan}}
+                      <textarea name="deskripsi_laporan" id="" class="w-full mt-2 " cols="100" rows="18" required readonly>{{$item->deskripsi_laporan}}
+                      </textarea>
                     </div>
                   </td>
                 </tr>
                 @endforeach
+
               </tbody>
             </table>
           </div>
         </div>
         <div class=" py-1">
-          {{$dataLap}}
+
         </div>
       </div>
 

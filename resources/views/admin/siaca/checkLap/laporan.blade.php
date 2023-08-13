@@ -64,7 +64,10 @@
                         </div>
                       </div>
                       <hr>
-                      <div> {{$list->deskripsi_laporan}}</div>
+                      <div>
+                        <textarea name="deskripsi_laporan" id="" class="w-full mt-2 " cols="100" rows="15" required readonly>{{$list->deskripsi_laporan}}
+                        </textarea>
+                      </div>
 
                     </div>
                   </td>
@@ -76,13 +79,12 @@
                       <option value="ts" {{ $list->kualitas_lap == "ts" ? 'selected' : '' }}> 3 tidak sesuai </option>
                       <option value="sts" {{ $list->kualitas_lap == "sts" ? 'selected' : '' }}> 4 sangat tidak sesuai</option>
                     </select>
-
                   </td>
                 </tr>
                 @endforeach
                 <tr>
                   <td colspan="5" class=" py-1">
-
+                    {{$cek_lap}}
                   </td>
                 </tr>
               </tbody>
