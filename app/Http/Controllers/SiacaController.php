@@ -33,7 +33,7 @@ class SiacaController extends Controller
         return view(
             'admin.siaca.checkLap.rekap',
             [
-                'dataLap' => $dataLap->paginate(10),
+                'dataLap' => $dataLap->paginate(1),
                
             ]
         );
