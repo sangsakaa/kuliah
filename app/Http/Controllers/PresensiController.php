@@ -8,12 +8,19 @@ use App\Models\Sesi_Harian;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+use Carbon\Exceptions\InvalidFormatException;
 
 
 class PresensiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        try {
+            $tanggal = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tanggal = now();
+        }
         $UserPerMhs = Auth::user()->mahasiswa_id;
         $User = Anggota_Kelompok::where('mahasiswa_id', $UserPerMhs)->first();
         $SesiHarian = Sesi_Harian::query()
@@ -23,7 +30,7 @@ class PresensiController extends Controller
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->orderby('tanggal')
             ->get();
-        return view('admin.userMahasiswa.presensi.index', compact('SesiHarian', 'User'));
+        return view('admin.userMahasiswa.presensi.index', compact('SesiHarian', 'User', 'tanggal'));
     }
     public function show(Sesi_Harian $sesi_Harian)
     {
@@ -31,12 +38,20 @@ class PresensiController extends Controller
         $User = Anggota_Kelompok::where('mahasiswa_id', $UserPerMhs)->first();
         $SesiHarian = Sesi_Harian::where('kelompok_id', $User->kelompok_id)->get();
         $dataAnggota = Anggota_Kelompok::query()
-            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
-            ->leftjoin('daftar_sesi_harian', 'daftar_sesi_harian.anggota_kelompok_id', 'anggota_kelompok.id')
-            ->select('anggota_kelompok.id', 'nama_mhs', 'keterangan', 'alasan')
+            ->join('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
+            // ->leftjoin('daftar_sesi_harian', 'daftar_sesi_harian.anggota_kelompok_id', 'anggota_kelompok.id')
+            ->leftjoin('daftar_sesi_harian', function ($join) use ($sesi_Harian) {
+                $join->on('daftar_sesi_harian.anggota_kelompok_id', '=', 'anggota_kelompok.id')
+                    ->where('daftar_sesi_harian.sesi_harian_id', '=', $sesi_Harian->id);
+            })
+            ->select([
+                'anggota_kelompok.id',
+                'nama_mhs',
+                'keterangan',
+                'alasan'
+            ])
             ->where('kelompok_id', $sesi_Harian->kelompok_id)
-            ->orderby('nama_mhs')
-            
+            ->orderby('nama_mhs')      
             ->get();
         if ($dataAnggota->count() === 0) {
             $dataAnggota = Anggota_Kelompok::query()
@@ -51,6 +66,13 @@ class PresensiController extends Controller
     public function store(Request $request)
     {
         // dd($request);
+        $request->validate([
+            'tanggal' => [
+                'required',
+                'date',
+                'before_or_equal:now',
+            ],
+        ]);
         $SesiHarian = new Sesi_Harian();
         $SesiHarian->tanggal = $request->tanggal;
         $SesiHarian->kelompok_id = $request->kelompok_id;

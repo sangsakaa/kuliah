@@ -34,6 +34,7 @@
                   <input type="hidden" name="absen[]" value="{{$item->id}}">
                 </td>
                 <td class=" border px-1  ">
+
                   {{strtolower($item->nama_mhs)}}
                 </td>
                 <td class=" border justify-center text-center w-1/3 ">

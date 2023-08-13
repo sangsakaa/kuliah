@@ -10,8 +10,14 @@
         <form action="/sesi-harian" method="post">
           @csrf
           <input type="hidden" name="kelompok_id" value=" {{$User->kelompok_id}}">
-          <input type="hidden" name="tanggal" value=" {{now()}}">
+          <input type="hidden" name="tanggal" value="{{ $tanggal->toDateString() }}">
           <button class=" bg-blue-700 px-2 py-1 text-white ">Buat Sesi Presensi</button>
+        </form>
+        <form action="/sesi-harian" method="get" class="mr-auto">
+          <input type="date" name="tanggal" class="py-1 dark:bg-dark-bg" value="{{ $tanggal->toDateString() }}">
+          <button class=" bg-red-600 py-1 dark:bg-purple-600 mt-1 my-1 rounded-sm hover:bg-purple-600 text-white px-4 ">
+            Pilih Tanggal
+          </button>
         </form>
       </div>
     </div>
