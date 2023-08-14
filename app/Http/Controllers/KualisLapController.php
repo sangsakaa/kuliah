@@ -52,10 +52,7 @@ class KualisLapController extends Controller
                 $query->where('laporan_mahasiswa.kualitas_lap', '=', '')
                     ->orWhereNull('laporan_mahasiswa.kualitas_lap');
             })
-            ->paginate(1);
-
-
-
+            ->paginate(10);
         return view('admin.siaca.checkLap.laporan', compact('cek_lap'));
     }
     public function updateChec(Request $request)
