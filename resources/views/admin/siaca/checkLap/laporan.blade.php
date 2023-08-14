@@ -38,7 +38,7 @@
                   <th class=" border">
                     {{$loop->iteration}}
                   </th>
-                  <td class=" border ">
+                  <td class=" border w-1/3 ">
                     <img class=" " src="{{ asset('storage/' .$list->bukti_laporan) }}" alt="">
                   </td>
                   <td class=" border">
