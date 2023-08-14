@@ -41,7 +41,7 @@
               <tbody>
                 @if($SesiHarian->count()!= null)
                 @foreach($SesiHarian as $sesi)
-                <tr>
+                <tr class=" hover:bg-green-200 even:bg-gray-200">
                   <td class=" py-1 border  text-center">{{$loop->iteration}}</td>
                   <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}" class=" bg-blue-700 px-2  py-1 text-white">absen</a></td>
                   <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}">
