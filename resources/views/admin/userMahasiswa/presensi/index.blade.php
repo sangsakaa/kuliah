@@ -25,7 +25,7 @@
       <div class=" w-full p-2">
         <table class=" w-full">
           <thead>
-            <tr>
+            <tr class="  uppercase text-sm">
               <th class=" border">No</th>
               <th class=" border">Absen</th>
               <th class=" border">tanggal</th>
@@ -33,6 +33,7 @@
             </tr>
           </thead>
           <tbody>
+            @if($SesiHarian->count()!= null)
             @foreach($SesiHarian as $sesi)
             <tr>
               <td class=" py-1 border  text-center">{{$loop->iteration}}</td>
@@ -43,6 +44,13 @@
               <td class=" border  text-center">{{$sesi->nama_kelompok}}</td>
             </tr>
             @endforeach
+            @else
+            <tr>
+              <td colspan="4" class=" border text-center">
+                <span class=" text-red-700  uppercase text-sm">Belum ada sesi</span>
+              </td>
+            </tr>
+            @endif
           </tbody>
         </table>
 

@@ -8,7 +8,14 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-4">
         <div class=" grid grid-cols-2 gap-2">
+
           <div>
+            <form action="/rekap-sesi-harian" method="get" class="mr-auto">
+              <input type="date" name="tanggal" class="py-1 dark:bg-dark-bg" value="{{ $tanggal->toDateString() }}">
+              <button class=" bg-red-600 py-1 dark:bg-purple-600 mt-1 my-1 rounded-sm hover:bg-purple-600 text-white px-4 ">
+                Pilih Tanggal
+              </button>
+            </form>
             <table class=" w-full">
               <thead>
                 <tr>
@@ -20,6 +27,7 @@
                 </tr>
               </thead>
               <tbody>
+                @if($SesiHarian->count()!= null)
                 @foreach($SesiHarian as $sesi)
                 <tr>
                   <td class=" py-1 border  text-center">{{$loop->iteration}}</td>
@@ -33,6 +41,13 @@
                   <td class=" border  text-center">{{$sesi->nama_kelompok}}</td>
                 </tr>
                 @endforeach
+                @else
+                <tr>
+                  <td colspan="5" class=" border text-center">
+                    <span class=" text-red-700  uppercase text-sm">Belum ada sesi</span>
+                  </td>
+                </tr>
+                @endif
               </tbody>
             </table>
           </div>

@@ -29,6 +29,7 @@ class PresensiController extends Controller
             ->select('sesi_harian.id', 'tanggal', 'nama_kelompok')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->orderby('tanggal')
+            ->where('sesi_harian.tanggal', $tanggal->toDateString())
             ->get();
         return view('admin.userMahasiswa.presensi.index', compact('SesiHarian', 'User', 'tanggal'));
     }
@@ -103,14 +104,19 @@ class PresensiController extends Controller
 
         return redirect()->back();
     }
-    public function rekapPresensi()
+    public function rekapPresensi(Request $request)
     {
+        try {
+            $tanggal = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tanggal = now();
+        }
         $SesiHarian = Sesi_Harian::query()
             ->join('kelompok', 'kelompok.id', 'sesi_harian.kelompok_id')
-
             ->select('sesi_harian.id', 'tanggal', 'nama_kelompok')
             ->orderby('tanggal')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+            ->where('sesi_harian.tanggal', $tanggal->toDateString())
             ->get();
         $dataAnggota = Anggota_Kelompok::query()
             ->rightjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
@@ -120,6 +126,6 @@ class PresensiController extends Controller
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->whereIn('daftar_sesi_harian.keterangan', ['sakit', 'izin', 'alfa'])
             ->get();
-        return view('admin.userMahasiswa.presensi.rekap', compact('dataAnggota', 'SesiHarian'));
+        return view('admin.userMahasiswa.presensi.rekap', compact('dataAnggota', 'SesiHarian', 'tanggal'));
     }
 }
