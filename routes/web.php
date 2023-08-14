@@ -97,6 +97,7 @@ Route::get('/daftar-sesi-harian/{sesi_Harian}', [PresensiController::class, 'sho
 Route::post('/sesi-harian', [PresensiController::class, 'store'])->middleware(['auth'])->name('sesi-harian');
 Route::post('/daftar-sesi-harian/{sesi_Harian}', [PresensiController::class, 'storeSesi'])->middleware(['auth']);
 Route::get('/rekap-sesi-harian', [PresensiController::class, 'rekapPresensi'])->middleware(['auth'])->name('rekap-sesi-harian');
+Route::delete('/rekap-sesi-harian/{sesi_Harian}', [PresensiController::class, 'destroy'])->middleware(['auth']);
 
 
 

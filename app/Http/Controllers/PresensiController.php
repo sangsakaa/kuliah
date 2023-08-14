@@ -141,4 +141,10 @@ class PresensiController extends Controller
             ->get();
         return view('admin.userMahasiswa.presensi.rekap', compact('dataAnggota', 'SesiHarian', 'tanggal'));
     }
+    public function destroy(Sesi_Harian $sesi_Harian)
+    {
+        Sesi_Harian::destroy('id', $sesi_Harian->id);
+        Daftar_Sesi_Harian::where('sesi_harian_id', $sesi_Harian->id)->delete();
+        return redirect()->back();
+    }
 }

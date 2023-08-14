@@ -25,6 +25,7 @@
                   <th rowspan="2" class=" border">tanggal</th>
                   <th rowspan="2" class=" border">Kel</th>
                   <th colspan="4" class=" border">Keterangan</th>
+                  <th rowspan="2" class=" border">Act</th>
 
                 </tr>
                 <tr class="  uppercase text-sm">
@@ -62,11 +63,18 @@
                   <td class=" border  text-center">
                     {{$sesi->Kelompok->where('keterangan','alfa')->count()}}
                   </td>
+                  <td class=" border  text-center">
+                    <form action="rekap-sesi-harian/{{$sesi->id}}" method="post">
+                      @csrf
+                      @method('delete')
+                      <button class=" bg-red-700 py-1 px-2 text-white">H</button>
+                    </form>
+                  </td>
                 </tr>
                 @endforeach
                 @else
                 <tr>
-                  <td colspan="9" class=" border text-center">
+                  <td colspan="10" class=" border text-center">
                     <span class=" text-red-700  uppercase text-sm">Belum ada sesi</span>
                   </td>
                 </tr>
