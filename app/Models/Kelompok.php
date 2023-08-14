@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Sesi_Harian;
 use App\Models\Anggota_Kelompok;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,7 @@ class Kelompok extends Model
     {
         return $this->hasMany(Anggota_Kelompok::class, 'kelompok_id', 'id');
     }
+    
     
     
 }

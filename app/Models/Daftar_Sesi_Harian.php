@@ -13,4 +13,6 @@ class Daftar_Sesi_Harian extends Model
         'sesi_harian_id',
         // other fillable fields...
     ];
+
+    
 }

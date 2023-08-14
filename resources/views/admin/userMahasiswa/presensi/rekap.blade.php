@@ -18,12 +18,23 @@
             </form>
             <table class=" w-full">
               <thead>
-                <tr>
-                  <th class=" border">No</th>
-                  <th class=" border">Absen</th>
-                  <th class=" border">Hari</th>
-                  <th class=" border">Tanggal</th>
-                  <th class=" border">Kel</th>
+                <tr class="  uppercase text-sm">
+                  <th rowspan="2" class=" border">No</th>
+                  <th rowspan="2" class=" border">Absen</th>
+                  <th rowspan="2" class=" border">Hari</th>
+                  <th rowspan="2" class=" border">tanggal</th>
+                  <th rowspan="2" class=" border">Kel</th>
+                  <th colspan="4" class=" border">Keterangan</th>
+
+                </tr>
+                <tr class="  uppercase text-sm">
+
+                  <th class=" border">H</th>
+                  <th class=" border">I</th>
+                  <th class=" border">S</th>
+                  <th class=" border">A</th>
+
+
                 </tr>
               </thead>
               <tbody>
@@ -39,11 +50,23 @@
                       {{ \Carbon\Carbon::parse($sesi->tanggal)->isoFormat('DD MMMM Y') }}
                     </a></td>
                   <td class=" border  text-center">{{$sesi->nama_kelompok}}</td>
+                  <td class=" border  text-center">
+                    {{$sesi->Kelompok->where('keterangan','hadir')->count()}}
+                  </td>
+                  <td class=" border  text-center">
+                    {{$sesi->Kelompok->where('keterangan','izin')->count()}}
+                  </td>
+                  <td class=" border  text-center">
+                    {{$sesi->Kelompok->where('keterangan','sakit')->count()}}
+                  </td>
+                  <td class=" border  text-center">
+                    {{$sesi->Kelompok->where('keterangan','alfa')->count()}}
+                  </td>
                 </tr>
                 @endforeach
                 @else
                 <tr>
-                  <td colspan="5" class=" border text-center">
+                  <td colspan="9" class=" border text-center">
                     <span class=" text-red-700  uppercase text-sm">Belum ada sesi</span>
                   </td>
                 </tr>
