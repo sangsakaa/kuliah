@@ -75,9 +75,22 @@ class PresensiController extends Controller
             ],
         ]);
         $SesiHarian = new Sesi_Harian();
-        $SesiHarian->tanggal = $request->tanggal;
-        $SesiHarian->kelompok_id = $request->kelompok_id;
-        $SesiHarian->save();
+
+        // Pemeriksaan apakah sesi harian sudah ada untuk kelompok_id dan tanggal yang sama
+        $existingSession = Sesi_Harian::where('kelompok_id', $request->kelompok_id)
+        ->whereDate('tanggal', $request->tanggal)
+        ->first();
+
+        if (!$existingSession) {
+            // Jika sesi harian belum ada, lakukan penyimpanan
+            $SesiHarian->tanggal = $request->tanggal;
+            $SesiHarian->kelompok_id = $request->kelompok_id;
+            $SesiHarian->save();
+        } else {
+            // Jika sesi harian sudah ada, berikan pesan atau tindakan yang sesuai
+            // Contoh: return response()->json(['message' => 'Sesi harian sudah ada untuk kelompok ini pada tanggal ini.'], 422);
+        }
+
         return redirect()->back();
     }
     public function storeSesi(Request $request)
