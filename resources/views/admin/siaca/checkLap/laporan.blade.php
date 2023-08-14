@@ -82,11 +82,7 @@
                   </td>
                 </tr>
                 @endforeach
-                <tr>
-                  <td colspan="5" class=" py-1">
-                    {{$cek_lap}}
-                  </td>
-                </tr>
+
               </tbody>
             </table>
           </div>
