@@ -135,9 +135,11 @@ class PresensiController extends Controller
             ->rightjoin('kelompok', 'kelompok.id', '=', 'anggota_kelompok.kelompok_id')
             ->join('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
             ->join('daftar_sesi_harian', 'daftar_sesi_harian.anggota_kelompok_id', 'anggota_kelompok.id')
+            ->join('sesi_harian', 'sesi_harian.id', 'daftar_sesi_harian.sesi_harian_id')
             // ->select('anggota_kelompok.id', 'nama_mhs', 'keterangan', 'alasan',)
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->whereIn('daftar_sesi_harian.keterangan', ['sakit', 'izin', 'alfa'])
+            ->where('sesi_harian.tanggal', $tanggal->toDateString())
             ->get();
         return view('admin.userMahasiswa.presensi.rekap', compact('dataAnggota', 'SesiHarian', 'tanggal'));
     }

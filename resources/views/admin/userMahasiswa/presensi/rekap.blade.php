@@ -24,7 +24,7 @@
                   <th rowspan="2" class=" border">Hari</th>
                   <th rowspan="2" class=" border">tanggal</th>
                   <th rowspan="2" class=" border">Kel</th>
-                  <th colspan="4" class=" border">Keterangan</th>
+                  <th colspan="4" class=" border">Ket</th>
                   <th rowspan="2" class=" border">Act</th>
 
                 </tr>
@@ -50,7 +50,10 @@
                   <td class=" border  text-center"><a href="/daftar-sesi-harian/{{$sesi->id}}">
                       {{ \Carbon\Carbon::parse($sesi->tanggal)->isoFormat('DD MMMM Y') }}
                     </a></td>
-                  <td class=" border  text-center">{{$sesi->nama_kelompok}}</td>
+                  <td class=" border  text-center">{{$sesi->nama_kelompok}}
+
+
+                  </td>
                   <td class=" border  text-center">
                     {{$sesi->Kelompok->where('keterangan','hadir')->count()}}
                   </td>
@@ -83,13 +86,16 @@
             </table>
           </div>
           <div>
+            <div>
+              <span class=" py-2">Rekap Harian</span>
+            </div>
             <table class=" w-full">
               <thead>
                 <tr>
                   <th class=" border px-1 w-5">No</th>
                   <th class=" border px-1">Tanggal</th>
-                  <th class=" border px-1">Kelompok</th>
-                  <th class=" border px-1">Keterangan</th>
+                  <th class=" border px-1">Kel</th>
+                  <th class=" border px-1">Ket</th>
                   <th class=" border px-1">Alasan</th>
                 </tr>
               </thead>
@@ -98,8 +104,8 @@
                 <tr class=" border ">
                   <th class=" border  capitalize px-1">{{ $loop->iteration }}</th>
                   <td class=" border  capitalize px-1">{{ strtolower($anggota->nama_mhs) }}</td>
-                  <td class=" border  capitalize px-1">{{ $anggota->nama_kelompok}}</td>
-                  <td class=" border  capitalize px-1">{{ $anggota->keterangan }}</td>
+                  <td class=" border  text-center capitalize px-1">{{ $anggota->nama_kelompok}}</td>
+                  <td class=" border  text-center capitalize px-1">{{ $anggota->keterangan }}</td>
                   <td class=" border  capitalize px-1">{{ $anggota->alasan }}</td>
                 </tr>
                 @endforeach
