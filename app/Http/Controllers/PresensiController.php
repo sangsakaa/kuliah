@@ -29,7 +29,7 @@ class PresensiController extends Controller
             ->select('sesi_harian.id', 'tanggal', 'nama_kelompok')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->orderby('tanggal')
-            ->where('sesi_harian.tanggal', $tanggal->toDateString())
+            // ->where('sesi_harian.tanggal', $tanggal->toDateString())
             ->get();
         return view('admin.userMahasiswa.presensi.index', compact('SesiHarian', 'User', 'tanggal'));
     }
