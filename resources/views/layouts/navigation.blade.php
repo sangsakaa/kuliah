@@ -121,12 +121,6 @@
                     <x-nav-link :href="route('score-dosen')" :active="request()->routeIs('score-dosen')">
                         {{ __('Score') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('score-mahasiswa')" :active="request()->routeIs('score-mahasiswa')">
-                        {{ __(' Score Mhs') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('cek-tidak-laporan')" :active="request()->routeIs('cek-tidak-laporan')">
-                        {{ __('Lap') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('cek-kualitas-fix')" :active="request()->routeIs('cek-kualitas-fix')">
                         {{ __('Lap Valid') }}
                     </x-nav-link>

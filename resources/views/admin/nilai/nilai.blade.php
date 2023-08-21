@@ -19,39 +19,41 @@
             </div>
           </div>
           <input type="text" name="daftar_nilai_id" hidden value="{{$daftarNilai->id}}">
-          <table class=" mt-2 w-full">
-            <thead>
-              <tr class="  border uppercase text-sm">
-                <th class=" border ">No</th>
-                <th class=" border ">Nama</th>
-                <th class=" border text-center w-15 hidden">Program Studi</th>
-                <th class=" border text-center  w-5 px-1">Kel</th>
-                <th class=" border text-center w-15">nilai</th>
-                <th class=" border text-center w-15">Predikat</th>
-              </tr>
-            </thead>
-            <tbody>
-              @foreach($dataAnggota as $anggota)
+          <div class=" overflow-auto">
+            <table class=" mt-2 w-full">
+              <thead>
+                <tr class="  border uppercase text-sm">
+                  <th class=" border ">No</th>
+                  <th class=" border ">Nama</th>
+                  <th class=" border text-center w-15 hidden">Program Studi</th>
+                  <th class=" border text-center  w-5 px-1">Kel</th>
+                  <th class=" border text-center w-15">nilai</th>
+                  <th class=" border text-center w-15">Index</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($dataAnggota as $anggota)
 
-              <tr class=" border">
-                <td class=" border px-1 text-center">
-                  {{ $loop->iteration }}
-                  {{$anggota}}
-                </td>
-                <input type="hidden" name="mahasiswa_id[]" value="{{$anggota->id}}">
-                <td class=" border px-1 capitalize">{{strtolower( $anggota->nama_mhs) }}</td>
-                <td class=" border px-1 text-center hidden">{{ $anggota->prodi }}</td>
-                <td class=" border px-1 text-center">{{ $anggota->nama_kelompok }}</td>
-                <td class=" border px-1 text-center">
-                  <input value="{{$anggota->nilai_akhir}}" class="sm:text-sm text-xs px-1  w-full text-center" type="text" name="nilai_akhir[{{$anggota->id}}]" default="0" placeholder="min: 50 max:100">
-                </td>
-                <td class=" border px-1 text-center">
-                  @if($anggota->nilai_akhir >= 90 && $anggota->nilai_akhir <= 100) "A" @elseif($anggota->nilai_akhir >= 80 && $anggota->nilai_akhir <= 89) "B" @elseif($anggota->nilai_akhir >= 70 && $anggota->nilai_akhir <= 79) "C" @elseif($anggota->nilai_akhir >= 60 && $anggota->nilai_akhir <= 69) "D" @elseif($anggota->nilai_akhir < 60) "E" @else "Nan" @endif </td>
+                <tr class=" border hover:bg-gray-100">
+                  <td class=" border px-1 text-center">
+                    {{ $loop->iteration }}
+                    <!-- {{$anggota}} -->
+                  </td>
+                  <input type="hidden" name="mahasiswa_id[]" value="{{$anggota->id}}">
+                  <td class=" border px-1 capitalize">{{strtolower( $anggota->nama_mhs) }}</td>
+                  <td class=" border px-1 text-center hidden">{{ $anggota->prodi }}</td>
+                  <td class=" border px-1 text-center">{{ $anggota->nama_kelompok }}</td>
+                  <td class=" border px-1 text-center">
+                    <input value="{{$anggota->nilai_akhir}}" class="sm:text-sm text-xs px-1 py-1  w-full text-center" type="text" name="nilai_akhir[{{$anggota->id}}]" default="0" placeholder="min: 50 max:100">
+                  </td>
+                  <td class=" border px-1 text-center">
+                    @if($anggota->nilai_akhir >= 90 && $anggota->nilai_akhir <= 100) "A" @elseif($anggota->nilai_akhir >= 80 && $anggota->nilai_akhir <= 89) "B" @elseif($anggota->nilai_akhir >= 70 && $anggota->nilai_akhir <= 79) "C" @elseif($anggota->nilai_akhir >= 60 && $anggota->nilai_akhir <= 69) "D" @elseif($anggota->nilai_akhir < 60) "E" @else "Nan" @endif </td>
 
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
         </form>
 
       </div>

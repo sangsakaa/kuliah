@@ -18,8 +18,8 @@
           <thead>
             <tr class=" border ">
               <th rowspan="2" class=" border ">No</th>
-              <th rowspan="2" class=" border ">Kelompok</th>
-              <th rowspan="2" class=" border ">Dosen Pembimbing Lapangan</th>
+              <th rowspan="2" class=" border ">Kel</th>
+              <th rowspan="2" class=" border ">DPL</th>
               <th rowspan="2" class=" border ">JMl</th>
               <th colspan="2" class=" border ">Status</th>
               <th rowspan="2" class=" border w-3 ">Act</th>
@@ -44,7 +44,10 @@
             <tr class=" border">
               <td class=" border text-center">{{ $loop->iteration }}</td>
               <td class=" border text-center"><a href="/nilai-peserta-kkn/{{$nilai->id}}">{{ $nilai->nama_kelompok }}</a></td>
-              <td class=" border text-center">{{ $nilai->nama_dosen }}</td>
+              <td class=" border text-center">
+
+                <a href="/nilai-peserta-kkn/{{$nilai->id}}"> {{ $nilai->nama_dosen }}</a>
+              </td>
               <td class=" border text-center">{{ $nilai->Nilai->count() }}</td>
               <td class=" border text-center w-10">
                 {{ $nilai->Nilai->whereNotNull('nilai_akhir')->count();}}

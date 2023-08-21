@@ -24,7 +24,7 @@ class NilaiController extends Controller
         return view('admin.nilai.daftar', compact('daftarNilai'));
     }
     public function StoreDaftar(Request $request,)
-    {
+    {   
         $UserPerDosen = Auth::user()->dosen_id;
         $Kelompok = Kelompok::where('dosen_id', $UserPerDosen)->first();
         $daftarNilai = new DaftarNilai();
@@ -38,17 +38,17 @@ class NilaiController extends Controller
         $Kelompok = Kelompok::where('dosen_id', $UserPerDosen)->first();
         $dataAnggota = Anggota_Kelompok::query()
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
-            ->join('kelompok', 'kelompok.id', 'anggota_kelompok.kelompok_id')
-            ->leftjoin('daftar_nilai', 'daftar_nilai.kelompok_id', 'kelompok.id')
+            ->leftjoin('kelompok', 'kelompok.id', 'anggota_kelompok.kelompok_id')
+            ->join('daftar_nilai', 'daftar_nilai.kelompok_id', 'kelompok.id')
             ->leftjoin('nilai', 'nilai.mahasiswa_id', 'anggota_kelompok.id')
             // anggotanilai
-            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir', 'daftar_nilai_id')
+            // ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir', 'daftar_nilai_id')
             ->where('anggota_kelompok.kelompok_id', $Kelompok->id)
             // ->where('daftar_nilai.id', $daftarNilai->id)
             ->orderby('nama_mhs')
-            // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
-            
-            ->get();
+        // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
+        ->get();
+        dd($dataAnggota);
         // dd($dataAnggota->toArray());
         if ($dataAnggota->count() === 0) {
             $dataAnggota = Anggota_Kelompok::query()

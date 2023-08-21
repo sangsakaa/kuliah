@@ -9,7 +9,6 @@
     <div class="bg-white overflow-hidden shadow-sm ">
       <div class=" p-2">
 
-        <h2>Hasil Perhitungan Status Laporan</h2>
         @php
         // Ubah array menjadi objek koleksi Laravel
         $statusCounts = collect($statusCounts);
@@ -18,7 +17,12 @@
         return $statusCount['valid'] - $statusCount['menunggu'];
         });
         @endphp
-
+        <div class=" grid grid-cols-2">
+          <h2>Hasil Perhitungan Status Laporan</h2>
+          <div class=" grid justify-end">
+            <a href="/score-mahasiswa" class="  w-fit bg-red-700 text-white py-1 px-2">Score Mahasiswa</a>
+          </div>
+        </div>
         <table class="table w-full">
           <thead>
             <tr class=" uppercase text-sm">

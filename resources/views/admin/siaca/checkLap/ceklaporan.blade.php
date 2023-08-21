@@ -8,11 +8,13 @@
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-2">
-        <table>
+        <a href="/score-mahasiswa" class=" bg-red-700 text-white py-1 px-2">Kembali</a>
+        <table class=" mt-2">
           <thead>
             <tr>
               <th class=" border px-1">NO</th>
               <th class=" border px-1">Nama</th>
+              <th class=" border px-1">DPL</th>
             </tr>
           </thead>
           <tbody>
@@ -23,7 +25,9 @@
               </th>
               <td class=" px-1 border capitalize ">
                 {{strtolower($list->nama_mhs)}}
-                {{$list->status_laporan}}
+              </td>
+              <td class=" px-1 border capitalize ">
+                {{$list->nama_dosen}}
               </td>
             </tr>
             @endforeach

@@ -107,6 +107,7 @@
               </span>
             </div>
             <div class=" sm:flex  gap-2  grid-cols-2  sm:grid-cols-2 justify-end  hidden  sm:block">
+              <a href="/cek-tidak-laporan" class=" bg-red-700 text-white py-1 px-2">Cek Laporan</a>
               <button class="   justify-center text-white   bg-green-800 px-2 py-1 " onclick="printContent('div1')">
                 Cetak
               </button>
