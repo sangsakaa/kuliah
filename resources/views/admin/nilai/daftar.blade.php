@@ -39,8 +39,8 @@
             </tr>
           </thead>
           <tbody>
+            @if($daftarNilai->count() != null)
             @foreach ($daftarNilai as $nilai)
-
             <tr class=" border">
               <td class=" border text-center">{{ $loop->iteration }}</td>
               <td class=" border text-center"><a href="/nilai-peserta-kkn/{{$nilai->id}}">{{ $nilai->nama_kelompok }}</a></td>
@@ -65,6 +65,13 @@
               <!-- Add more table cells for other columns if needed -->
             </tr>
             @endforeach
+            @else
+            <tr class=" border">
+              <td colspan="7" class=" text-center">
+                <span class=" text-red-700 capitalize">Belum ada form nilai</span>
+              </td>
+            </tr>
+            @endif
           </tbody>
         </table>
 

@@ -48,7 +48,7 @@ class NilaiController extends Controller
             ->orderby('nama_mhs')
         // ->groupby('anggota_kelompok.id', 'mahasiswa.nama_mhs', 'mahasiswa.prodi', 'kelompok.nama_kelompok')
         ->get();
-        dd($dataAnggota);
+        // dd($dataAnggota);
         // dd($dataAnggota->toArray());
         if ($dataAnggota->count() === 0) {
             $dataAnggota = Anggota_Kelompok::query()

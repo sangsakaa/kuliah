@@ -57,11 +57,11 @@
 
             </div>
             <table class=" w-full ">
-
               <thead class="   ">
                 <tr class=" bg-gray-200 text-xs uppercase">
                   <th class=" px-1 border border-green-900 w-5" rowspan=" 2">No</th>
                   <th class=" px-1 border border-green-900" rowspan=" 2">Nama Mahasiswa</th>
+                  <th class=" px-1 border border-green-900 " rowspan=" 2">DPL</th>
                   <th class=" px-1 border border-green-900 w-5" rowspan=" 2">Kel</th>
                   <th class=" px-1 border border-green-900" colspan="4">Status Laporan</th>
                   <th class=" px-1 border border-green-900 py-1 w-fit" colspan="5">Status Laporan</th>
@@ -83,6 +83,7 @@
                 <tr class=" even:bg-gray-100 hover:bg-green-200 text-sm  ">
                   <td class=" border border-green-900 text-center py-1">{{ $loop->iteration }}</td>
                   <td class=" border border-green-900 px-1">{{ $lap->nama_mhs }}</td>
+                  <td class=" border border-green-900 px-1">{{ $lap->nama_dosen }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->nama_kelompok }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->total_laporan }}</td>
                   <td class=" border border-green-900 text-center">{{ $lap->jumlah_draf }}</td>
