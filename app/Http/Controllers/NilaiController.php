@@ -42,7 +42,7 @@ class NilaiController extends Controller
             ->join('daftar_nilai', 'daftar_nilai.kelompok_id', 'kelompok.id')
             ->leftjoin('nilai', 'nilai.mahasiswa_id', 'anggota_kelompok.id')
             // anggotanilai
-            // ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir', 'daftar_nilai_id')
+            ->select('anggota_kelompok.id', 'nama_mhs', 'prodi', 'nama_kelompok', 'nilai_akhir', 'daftar_nilai_id')
             ->where('anggota_kelompok.kelompok_id', $Kelompok->id)
             // ->where('daftar_nilai.id', $daftarNilai->id)
             ->orderby('nama_mhs')
@@ -64,11 +64,9 @@ class NilaiController extends Controller
 
         foreach ($request->mahasiswa_id as $mahasiswaId) {
             $nilai = Nilai::firstOrNew(['mahasiswa_id' => $mahasiswaId, 'daftar_nilai_id' => $request->daftar_nilai_id]);
-
             $nilai->nilai_akhir = $request->nilai_akhir[$mahasiswaId];
             $nilai->save();
         }
-
         return redirect()->back();
     }
     public function destroy(DaftarNilai $daftarNilai)
