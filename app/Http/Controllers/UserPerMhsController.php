@@ -210,8 +210,13 @@ class UserPerMhsController extends Controller
 
         return Storage::download($filePath, 'image.jpg', $headers);
     }
-    public function detailLapPerMhs()
+    public function detailLapPerMhs(Request $request)
     {
+        try {
+            $tgl = $request->tanggal ? Carbon::parse($request->tanggal) : now();
+        } catch (InvalidFormatException $ex) {
+            $tgl = now();
+        }
         $UserPermhs = Auth::user()->mahasiswa_id;
         $rekapLap = Sesi_Laporan_Harian::query()
             ->join('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', 'sesi_laporan_harian.id')
@@ -221,7 +226,11 @@ class UserPerMhsController extends Controller
             })
             ->select('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik', 'bukti_laporan')
             // ->groupBy('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
+            ->where('sesi_laporan_harian.tanggal', $tgl->toDateString())
             ->get();
-        return view('admin.userMahasiswa.laporan.detailap', compact('rekapLap'));
+        if (request('tanggal')) {
+            $rekapLap->where('tanggal', 'like', '%' . request('tanggal') . '%');
+        }
+        return view('admin.userMahasiswa.laporan.detailap', compact('rekapLap', 'tgl'));
     }
 }
