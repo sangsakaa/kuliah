@@ -57,6 +57,9 @@
                     <x-nav-link :href="route('sesi-harian')" :active="request()->routeIs('sesi-harian')">
                         {{ __('Presensi ') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('detail-lap-mhs')" :active="request()->routeIs('detail-lap-mhs')">
+                        {{ __('Detail Laporan ') }}
+                    </x-nav-link>
                 </div>
                 @elseif (Auth::user()->hasRole('mahasiswa'))
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
