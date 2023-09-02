@@ -210,4 +210,18 @@ class UserPerMhsController extends Controller
 
         return Storage::download($filePath, 'image.jpg', $headers);
     }
+    public function detailLapPerMhs()
+    {
+        $UserPermhs = Auth::user()->mahasiswa_id;
+        $rekapLap = Sesi_Laporan_Harian::query()
+            ->join('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', 'sesi_laporan_harian.id')
+            ->where('sesi_laporan_harian.anggota_kelompok_id', $UserPermhs)
+            ->where(function ($query) {
+                $query->whereIn('laporan_mahasiswa.status_laporan', ['valid', 'menunggu', 'draf']);
+            })
+            ->select('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
+            // ->groupBy('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
+            ->get();
+        return view('admin.userMahasiswa.laporan.detailap', compact('rekapLap'));
+    }
 }

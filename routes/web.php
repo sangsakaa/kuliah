@@ -72,6 +72,7 @@ Route::get('/sesi-laporan-mahasiswa', [UserPerMhsController::class, 'sesiLap'])-
 Route::post('/sesi-laporan-mahasiswa', [UserPerMhsController::class, 'createSesiLap'])->middleware(['auth'])->name('sesi-laporan-mahasiswa');
 Route::get('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'laporan'])->middleware(['auth'])->name('laporan-mahasiswa');
 Route::post('/laporan-mahasiswa/{sesi_Laporan_Harian}', [UserPerMhsController::class, 'BuatLap'])->middleware(['auth']);
+Route::get('/detail-lap-mhs', [UserPerMhsController::class, 'detailLapPerMhs'])->middleware(['auth'])->name('detail-lap-mhs');
 
 
 Route::get('/rekap-laporan-mahasiswa', [UserPerMhsController::class, 'RekapLapHarian'])->middleware(['auth'])->name('rekap-laporan-mahasiswa');
