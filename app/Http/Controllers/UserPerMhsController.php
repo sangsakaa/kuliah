@@ -219,7 +219,7 @@ class UserPerMhsController extends Controller
             ->where(function ($query) {
                 $query->whereIn('laporan_mahasiswa.status_laporan', ['valid', 'menunggu', 'draf']);
             })
-            ->select('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
+            ->select('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik', 'bukti_laporan')
             // ->groupBy('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
             ->get();
         return view('admin.userMahasiswa.laporan.detailap', compact('rekapLap'));

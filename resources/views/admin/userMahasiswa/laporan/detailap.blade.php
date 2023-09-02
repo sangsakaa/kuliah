@@ -44,12 +44,9 @@
         </div>
         <ul class=" py-1 text-justify">
           <li>
-
-            @if($lap->bukti_laporan == null)
-            <p class=" text-red-600">Tidak Ada Foto</p>
-            @else
             <img class=" p-2" src="{{ asset('storage/' .$lap->bukti_laporan) }}" alt="" width="500" height="600">
-            @endif
+
+
           </li>
           <li>
             {{$lap->deskripsi_laporan}}
