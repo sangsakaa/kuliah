@@ -67,9 +67,9 @@
               <div>Tanggal Laporan </div>
               <div class=" capitalize text-red-700">: {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd , DD MMMM Y') }} </div>
             </div>
-            <div class="  ">
+            <div class=" text-justify  ">
               <hr class=" border-b-2 border-black">
-              <textarea name="deskripsi_laporan" id="" class="w-full   " cols="100" rows="12" required readonly>{{$item->deskripsi_laporan}}</textarea>
+              {{$item->deskripsi_laporan}}
             </div>
           </td>
         </tr>
