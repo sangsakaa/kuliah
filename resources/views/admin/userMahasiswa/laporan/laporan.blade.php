@@ -29,6 +29,7 @@
               </div>
               <div class="">
                 : {{$data->nama_mhs}}
+                {{ strlen($data->nama_mhs) > 18 ? substr($data->nama_mhs, 0, 18) . '...' : $data->nama_mhs }}
               </div>
               <div class=" ">
                 Kelompok
