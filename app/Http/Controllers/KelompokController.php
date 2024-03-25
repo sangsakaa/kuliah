@@ -24,6 +24,7 @@ class KelompokController extends Controller
         $periode = Periode::join('semester', 'semester.id', 'periode.semester_id')
         ->select('periode.id', 'nama_periode', 'nama_semester')
         ->get();
+        // dd($periode);
         $dataKelompok = Kelompok::query()
             ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
@@ -31,9 +32,9 @@ class KelompokController extends Controller
             ->join('semester', 'semester.id', 'periode.semester_id')
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn', 'nama_periode', 'nama_semester')
+            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn', 'nama_periode', 'nama_semester', 'periode_id')
         ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
-            // ->where('periode_id', $periode->last()->id)
+            ->where('periode_id', $periode->last()->id)
         ->get();
         // dd($dataKelompok);
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa', 'periode'));
