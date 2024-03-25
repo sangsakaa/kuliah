@@ -12,9 +12,11 @@ use App\Http\Controllers\KualisLapController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\LaporanMahasiswaController;
+use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RoleManagementController;
+use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SiacaController;
 use App\Http\Controllers\SupervisiController;
 use App\Http\Controllers\UserDosenController;
@@ -153,6 +155,20 @@ Route::delete('/kelompok-mahasiswa/{kelompok}', [KelompokController::class, 'des
 // kelompok
 Route::get('/edit-kelompok/{kelompok}', [KelompokController::class, 'editKelompok']);
 Route::patch('/edit-kelompok/{kelompok}', [KelompokController::class, 'updateKelompok']);
+
+
+// Lokasi
+Route::get('/lokasi-kabupaten', [LokasiController::class, 'index'])->name('kabupaten');
+Route::get('/lokasi-kecamatan/{kabupaten}', [LokasiController::class, 'LokasiKec']);
+Route::get('/lokasi-desa/{kecamatan}', [LokasiController::class, 'LokasiDes']);
+Route::post('/lokasi-kabupaten', [LokasiController::class, 'createKab']);
+Route::post('/lokasi-kecamatan/{kabupaten}', [LokasiController::class, 'createKec']);
+Route::post('/lokasi-desa/{kecamatan}', [LokasiController::class, 'createDes']);
+
+// Periode KKN
+Route::get('/semester', [SemesterController::class, 'index'])->name('semester');
+Route::get('/periode-semester', [SemesterController::class, 'indexPeriode'])->name('periode-semester');
+Route::post('/semester', [SemesterController::class, 'StoreSemester'])->name('semester');
 
 
 require __DIR__ . '/auth.php';

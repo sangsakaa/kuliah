@@ -29,15 +29,24 @@
           <div class=" sm:grid grid grid-cols-1 sm:grid-cols-2 gap-2">
             <input class=" py-1 " type="text" placeholder="nama kelompok" name="nama_kelompok">
             <select name="dosen_id" id="" class=" py-1">
-              <option value="">--Pilih Dosen Pembimbing--</option>
+              <option value=""> -- Pilih Dosen Pembimbing -- </option>
               @foreach($dataDosen as $item)
               <option value="{{$item->id}}">{{$item->nama_dosen}}</option>
               @endforeach
             </select>
             <select name="desa_id" id="" class=" capitalize py-1">
-              <option value="">--Pilih Desa--</option>
+              <option value=""> -- Pilih Desa -- </option>
               @foreach($dataDesa as $item)
               <option value="{{$item->id}}">Desa.{{$item->nama_desa}} Kec .{{$item->nama_kecamatan}} Kab .{{$item->nama_kabupaten}}</option>
+              @endforeach
+            </select>
+            <select name="periode_id" id="" class=" capitalize py-1">
+              <option value=""> -- Pilih Periode -- </option>
+              @foreach($periode as $item)
+              <option value="{{$item->id}}">
+                {{$item->nama_periode}}
+                {{$item->nama_semester}}
+              </option>
               @endforeach
             </select>
             <input class=" py-1 " type="date" placeholder=" tahun" name="tahun">
@@ -49,7 +58,7 @@
         <div class=" overflow-auto sm:overflow-hidden ">
           <div class=" block sm:hidden w-full text-center">
             <div class=" w-full flex grid-cols-2 gap-2 text-green-700">
-              <div class=" py-4">
+              <!-- <div class=" py-4">
                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="110px" height="110px">
               </div>
               <div class=" w-full ">
@@ -57,7 +66,7 @@
                 <p class="text-center text-2xl font-semibold w-full spaced-text  tracking-widest   ">UNIVERSITAS WAHIDIYAH KEDIRI</p>
                 <p class=" text-center  text-4xl  tracking-widest space-x-2  font-black    font-sans    ">KULIAH KERJA NYATA</p>
                 <p class=" text-center text-xs font-semibold">Alamat : Pondok Pesantren Kedunglo Jl.KH. Wachid Hasyim Kota Kediri 64114 Jawa Timur Telp. (0354) 774511, 771018</p>
-              </div>
+              </div> -->
             </div>
             <hr class=" border-b-2 border-b-green-700">
             <hr class=" border-b border-b-green-700">
@@ -70,29 +79,39 @@
               <tr class=" uppercase font-semibold text-xs sm:text-xs border border-black">
                 <th rowspan="2" class=" border border-black">No</th>
                 <th rowspan="2" class=" border border-black">Kel</th>
+                <th rowspan="2" class=" border border-black">Periode</th>
                 <th rowspan="2" class=" border border-black">NIDN</th>
                 <th rowspan="2" class=" border border-black">Username</th>
-                <th rowspan="2" class=" border border-black">Password</th>
                 <th rowspan="2" class=" border border-black">Pembimbing</th>
                 <th rowspan="2" class=" border border-black ">Alamat</th>
                 <th class=" border border-black" colspan="3">Keterangan</th>
                 <th rowspan="2" class=" border border-black   ">Act</th>
               </tr>
-              <tr class="uppercase font-semibold text-xs sm:text-xs border border-black">
+              <tr class="  uppercase font-semibold text-xs sm:text-xs border border-black">
                 <th class=" w-10 border border-black">Jml</th>
                 <th class=" w-10 border border-black">L</th>
                 <th class=" w-10 border border-black">P</th>
               </tr>
-
             </thead>
             <tbody>
+              @if(count($dataKelompok) > 0)
               @foreach($dataKelompok as $team)
               <tr class=" border border-black text-sm">
                 <th class=" px-1 capitalize border border-black">{{$loop->iteration}}</th>
-                <td class=" px-1 capitalize border border-black text-center"><a href="/detail-kelompok-mahasiswa/{{$team->id}}">{{$team->nama_kelompok}}</a></td>
+                <td class=" px-1 capitalize border border-black text-center">
+                  <a href="/detail-kelompok-mahasiswa/{{$team->id}}">
+                    {{$team->nama_kelompok}}</a>
+                </td>
+                <td class=" px-1 capitalize border border-black text-center">
+                  <a href="/detail-kelompok-mahasiswa/{{$team->id}}">
+                    {{$team->nama_periode}}
+                    {{$team->nama_semester}}
+                  </a>
+                </td>
                 <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
-                <td class=" px-1  border border-black text-center">{{$team->nidn.'@uniwa.ac.id'}}</td>
-                <td class=" px-1 capitalize border border-black text-center">{{$team->nidn}}</td>
+                <td class=" px-1  border border-black text-center">{{$team->nidn.'@uniwa.ac.id'}}
+                </td>
+
                 <td class=" px-1 capitalize border border-black ">{{strtolower($team->nama_dosen)}}</td>
                 <td class=" px-1 capitalize border border-black text-sm ">
                   Desa.{{$team->nama_desa}}
@@ -124,7 +143,6 @@
                   $jumlahPria = 0;
                   $jumlahWanita = 0;
                   @endphp
-
                   @foreach($team->JmlMahasiswa as $list)
                   @foreach($list->Mahasiswa as $org)
                   @if($org->jenis_kelamin == 'L')
@@ -137,7 +155,7 @@
                   {{ $jumlahWanita }}
                 </td>
                 <td class="  capitalize border  border-1 text-center hidden sm:block ">
-                  <div class=" gap-2 flex justify-center">
+                  <div class="  justify-center gap-1 flex grid-cols-1">
                     <div>
                       <form action="/kelompok-mahasiswa/{{$team->id}}" method="post">
                         @csrf
@@ -145,15 +163,21 @@
                         <button class=" hover:bg-red-500 font-semibold py-0.5  px-2 text-white bg-red-700">H</button>
                       </form>
                     </div>
-                    <div>
-                      <a class=" hover:bg-yellow-200 font-semibold py-0.5 mt-1 px-2 text-white bg-blue-700" href="/edit-kelompok/{{$team->id}}">
+                    <div class=" gap-2 flex grid-cols-1">
+                      <a class=" hover:bg-yellow-200 font-semibold py-0.5 px-2 text-white bg-blue-700" href="/edit-kelompok/{{$team->id}}">
                         E
                       </a>
                     </div>
                   </div>
-                </td>
               </tr>
               @endforeach
+              @else
+              <tr class=" border border-black">
+                <td colspan="11" class=" text-center capitalize">
+                  <span>tidak ada data</span>
+                </td>
+              </tr>
+              @endif
             </tbody>
           </table>
         </div>

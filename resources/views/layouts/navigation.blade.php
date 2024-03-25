@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="/">
+                    <a href="dashboard">
                         <x-application-logo class=" block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
@@ -22,13 +22,24 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('kabupaten')" :active="request()->routeIs('kabupaten')">
+                        {{ __('Lokasi') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('kelompok-mahasiswa')" :active="request()->routeIs('kelompok-mahasiswa')">
                         {{ __('Data Kelompok') }}
                     </x-nav-link>
                 </div>
+
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('laporan-harian-mahasiswa')" :active="request()->routeIs('laporan-harian-mahasiswa')">
                         {{ __('Laporan') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('periode-semester')" :active="request()->routeIs('periode-semester')">
+                        {{ __('Pengaturan Periode') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">

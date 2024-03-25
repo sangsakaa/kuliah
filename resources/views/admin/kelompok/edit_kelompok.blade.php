@@ -27,10 +27,10 @@
           </div>
           <div class=" grid grid-cols-1">
             <label for="">Desa</label>
-            <select name="desa_id" id="" class="py-1 ">
+            <select name="desa_id" id="" class="py-1 capitalize ">
               @foreach($dataDesa as $kel)
               <option value="{{$kel->id}}" {{$kelompok->desa_id == $kel->id ? 'selected' : ''}}>
-                {{$kel->nama_desa}}
+                Desa {{$kel->nama_desa}} Kec.{{$kel->nama_kecamatan}} Kab. {{$kel->nama_kabupaten}}
               </option>
               @endforeach
             </select>

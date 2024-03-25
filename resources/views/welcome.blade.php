@@ -220,6 +220,10 @@
             position: relative
         }
 
+        .font-new {
+            font-family: sans-serif
+        }
+
         .top-0 {
             top: 0
         }
@@ -426,17 +430,17 @@
                         <div class=" p-6">
                             <center>
                                 <img src="{{ asset('img/logo.png') }}" alt="Logo" width="200px" height="200px">
-                                <div class=" text-gray-600 dark:text-gray-400 text-gede">
-                                    SIP
+                                <div class="  font-new text-gray-600 dark:text-gray-400 text-gede">
+                                    SIP - K
                                 </div>
-                                <div class=" text-gray-600 dark:text-gray-400 text-lg">
+                                <div class=" font-new text-gray-600 dark:text-gray-400 text-lg">
                                     SISTEM INFORMASI PELAPORAN
                                 </div>
-                                <div class=" font-semibold text-gray-600 dark:text-gray-400 text-sedang">
+                                <div class=" font-new font-semibold text-gray-600 dark:text-gray-400 text-sedang">
                                     KULIAH KERJA NYATA
                                 </div>
-                                <div class=" text-gray-600 dark:text-gray-400 text-sedang">
-                                    2023
+                                <div class="font-new text-gray-600 dark:text-gray-400 text-sedang">
+                                    2024
                                 </div>
                             </center>
                             <center>

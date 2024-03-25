@@ -7,6 +7,7 @@ use App\Models\Desa;
 use App\Models\Dosen;
 use App\Models\Kelompok;
 use App\Models\Mahasiswa;
+use App\Models\Periode;
 use Illuminate\Http\Request;
 
 class KelompokController extends Controller
@@ -20,29 +21,38 @@ class KelompokController extends Controller
             ->select('nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'desa.id')
             ->get();
         $dataDosen = Dosen::orderby('nama_dosen')->get();
-
+        $periode = Periode::join('semester', 'semester.id', 'periode.semester_id')
+        ->select('periode.id', 'nama_periode', 'nama_semester')
+        ->get();
         $dataKelompok = Kelompok::query()
             ->leftJoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
+            ->leftjoin('periode', 'periode.id', 'kelompok.periode_id')
+            ->join('semester', 'semester.id', 'periode.semester_id')
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
-            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
+            ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn', 'nama_periode', 'nama_semester')
         ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
+            ->where('periode_id', $periode->last()->id)
         ->get();
         // dd($dataKelompok);
-        return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa'));
+        return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa', 'periode'));
     }
     public function editKelompok(Kelompok $kelompok)
     {
         $dataDosen = Dosen::orderby('nama_dosen')->get();
-        $dataDesa = Desa::all();
+        $dataDesa = Desa::join('kecamatan', 'kecamatan.id', 'desa.kecamatan_id')
+        ->join('kabupaten', 'kabupaten.id', 'kecamatan.kabupaten_id')
+        ->select('desa.id', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten')
+        ->get();
 
         return view(
             'admin.kelompok.edit_kelompok',
             [
                 'kelompok' => $kelompok,
                 'dataDesa' => $dataDesa,
-                'dataDosen' => $dataDosen
+                'dataDosen' => $dataDosen,
+               
             ]
         );
     }
@@ -53,6 +63,7 @@ class KelompokController extends Controller
         $kelompok->dosen_id = $request->dosen_id;
         $kelompok->desa_id = $request->desa_id;
         $kelompok->tahun = $request->tahun;
+        $kelompok->periode_id = $request->periode_id;
         $kelompok->save();
         return redirect()->back();
     }
@@ -84,11 +95,12 @@ class KelompokController extends Controller
         ->find($kelompok->id);
         $pesertaTerpilih = Anggota_Kelompok::select('mahasiswa_id');
         $dataMahasiswa = Mahasiswa::first();
-        $nim = substr($dataMahasiswa->nim, 0, 4);
+        // $nim = substr($dataMahasiswa->nim, 0, 4);
         $dataMHS = Mahasiswa::leftJoinSub($pesertaTerpilih, 'anggota_Terpilih', function ($join) {
             $join->on('anggota_Terpilih.mahasiswa_id', '=', 'mahasiswa.id');
         })
-            ->where('nim', 'like', $nim . '%')
+            ->where('nim', 'like', 2021 . '%')
+           
             ->whereNull('anggota_Terpilih.mahasiswa_id')
             ->select('mahasiswa.id', 'nama_mhs', 'prodi', 'jenis_kelamin', 'nim')
             ->orderby('nim')

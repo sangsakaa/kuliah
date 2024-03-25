@@ -107,15 +107,16 @@ class MahasiswaController extends Controller
     }
     public function dataMahahsiswa()
     {
-        $cari = Mahasiswa::orderBy('nama_mhs');
-        // dd($cari);
+        $cari = Mahasiswa::orderBy('periode_masuk');
+        
         if (request('cari')) {
             $cari->where(function ($query) {
                 $query->where('nama_mhs', 'like', '%' . request('cari') . '%')
                     ->orWhere('prodi', 'like', '%' . request('cari') . '%');
-            })->orderBy('nama_mhs');
+            })
+            ->orderby('periode_masuk');
         }
-        $results = $cari->paginate(10);
+        $results = $cari->paginate(100);
 
         $total = Mahasiswa::count();
         $listMahasiswa = Mahasiswa::all();
