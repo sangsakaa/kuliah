@@ -10,26 +10,26 @@
         <div class=" w-full grid ">
           <div class="  ">
             <div class="text-sm  capitalize sm:grid grid grid-cols-3">
-              <div class=" flex">
+              <div class=" ">
                 Pembimbing
               </div>
               <div class="col-span-2 ">
                 : {{$data->nama_dosen}}
               </div>
-              <div class="flex w-1/4">
+              <div class=" w-1/4">
                 NIM
               </div>
               <div class="col-span-2">
                 :
                 {{$data->nim}}
               </div>
-              <div class="flex w-1/4">
+              <div class=" w-1/4">
                 Nama
               </div>
               <div class="col-span-2">
                 : {{$data->nama_mhs}}
               </div>
-              <div class="flex w-1/4">
+              <div class=" w-1/4">
                 Kelompok
               </div>
               <div class="col-span-2">
