@@ -1,34 +1,51 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Sesi Laporan Harian Mahasiswa') }}
+      {{ __('Laporan Harian') }}
     </h2>
   </x-slot>
   <div class="p-2">
-    <div class=" bg-white p-4">
+    <div class="   p-4 bg-blue-200">
       <div>
         <div class=" w-full grid ">
           <div class="  ">
-            <div class="  grid grid-cols-2 sm:grid-cols-4">
-              <div>NIM</div>
-              <div class="">: {{$data->nim}}
+            <div class="text-sm  capitalize grid grid-cols-3">
+              <div class=" flex">
+                Pembimbing
               </div>
-              <div>Pembimbing</div>
-              <div> : {{$data->nama_dosen}}</div>
-              <div>Nama Mahasiswa</div>
-              <div> : {{$data->nama_mhs}}</div>
-              <div>Nama Kelompok</div>
-              <div> : Kelompok {{$data->nama_kelompok}}</div>
+              <div class="col-span-2 ">
+                : {{$data->nama_dosen}}
+              </div>
+              <div class="flex w-1/4">
+                NIM
+              </div>
+              <div class="col-span-2">
+                :
+                {{$data->nim}}
+              </div>
+              <div class="flex w-1/4">
+                Nama
+              </div>
+              <div class="col-span-2">
+                : {{$data->nama_mhs}}
+              </div>
+              <div class="flex w-1/4">
+                Kelompok
+              </div>
+              <div class="col-span-2">
+                : Kelompok {{$data->nama_kelompok}}
+              </div>
             </div>
+
           </div>
 
         </div>
       </div>
     </div>
-    <div class="px-2 mt-2   bg-white ">
-      <div class="px-2 py-2">
-        <div> Status Laporan :
-          dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}}
+    <div class="px-1 mt-2  text-sm  bg-white ">
+      <div class="px-1 py-2">
+        <div> Tanggal Laporan :
+          dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}} <br>
           <!-- <td class="border text-center px-1">
             @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
             @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
@@ -66,7 +83,10 @@
             </div>
             <div class=" grid grid-cols-1">
               <span>Catatan Validasi </span>
-              <input class="w-full" type="text" placeholder=" Catatan Sesui revisi" readonly name="note_laporan" value="{{$item->note_laporan}}">
+              @if($item->note_laporan <= null) <span>-</span>
+                @else
+                <input class="w-full" type="text" placeholder=" Catatan Sesui revisi" disabled readonly name="note_laporan" value="{{$item->note_laporan}}">
+                @endif
             </div>
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>
@@ -77,7 +97,7 @@
           @else
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
-          <label for="" class="capitalize">Deskripsi Laporan Harian (Min : 500 Max : 1000 Karakter) <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
+          <label for="" class="capitalize">syarat Laporan (Min : 500 Max : 1000 Karakter) <br> <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
           @if(strlen($item->deskripsi_laporan)>499)
           <span class=" text-green-700 uppercase font-semibold text-sm"> Sudah Sesuai</span>
           @else
