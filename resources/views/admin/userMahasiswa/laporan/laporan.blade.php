@@ -15,7 +15,7 @@
               </div>
               <div class=" ">
                 :
-                {{ strlen($data->nama_dosen) > 20 ? substr($data->nama_dosen, 0, 20) . '...' : $data->nama_dosen }}
+                {{ strlen($data->nama_dosen) > 15 ? substr($data->nama_dosen, 0, 15) . '...' : $data->nama_dosen }}
               </div>
               <div class=" ">
                 NIM
