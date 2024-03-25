@@ -48,14 +48,14 @@
       <div class="px-1 py-2">
         <div> Tanggal Laporan :
           dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}} <br>
-          <!-- <td class="border text-center px-1">
+          <td class="border text-center px-1">
             @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
             @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
             <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
             @else
             <span class=" bg-red-700 text-white px-1 rounded-sm uppercase">telat</span>
             @endif
-          </td> -->
+          </td>
           @foreach ($dataMhs as $mhs)
           @if ($mhs->status_laporan === 'menunggu')
           <span class=" rounded-md bg-yellow-500 text-black  capitalize font-semibold px-2">
@@ -127,11 +127,15 @@
           @else
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @endif
-
           @endif
-          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
-          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
-
+          <br>
+          <div class=" py-4">
+            <span class="  py-4">
+              <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+              <a class="bg-blue-700 text-white px-2 py-1 mt-2 pointer-events-none" style="color: gray;">Kirim</a>
+              <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+            </span>
+          </div>
           @endforeach
         </form>
       </div>
