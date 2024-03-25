@@ -9,7 +9,7 @@
       <div>
         <div class=" w-full grid ">
           <div class="  ">
-            <div class="text-sm  capitalize  grid grid-cols-3">
+            <div class="text-sm  capitalize  grid sm:grid grid-cols-2 sm:grid-cols-3">
               <div class=" ">
                 Pembimbing
               </div>
