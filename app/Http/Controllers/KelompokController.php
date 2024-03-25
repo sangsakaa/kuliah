@@ -33,7 +33,7 @@ class KelompokController extends Controller
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn', 'nama_periode', 'nama_semester')
         ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
-            ->where('periode_id', $periode->last()->id)
+            // ->where('periode_id', $periode->last()->id)
         ->get();
         // dd($dataKelompok);
         return view('admin.kelompok.index', compact('dataKelompok', 'dataDosen', 'dataDesa', 'periode'));
