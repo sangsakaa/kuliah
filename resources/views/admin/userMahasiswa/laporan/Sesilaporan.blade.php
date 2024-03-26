@@ -86,9 +86,9 @@
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
       <div class="  px-2 py-2 rounded-md">
-        @if(session('error'))
+        @if(session('succes'))
         <div class="bg-red-400 alert alert-danger">
-          {{ session('error') }}
+          {{ session('succes') }}
         </div>
         @endif
       </div>
