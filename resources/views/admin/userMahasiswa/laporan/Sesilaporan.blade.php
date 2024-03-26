@@ -169,7 +169,7 @@
           </tbody>
         </table>
         @if($DataSesiLap->count() != null)
-        y<a href="/laporan-mahasiswa/{{$list->id}}">
+        <a href="/laporan-mahasiswa/{{$list->id}}">
           <div class="  flex gap-2 ">
             <div class=" bg-blue-200 rounded-md ">
               <div class="flex justify-center items-center">
@@ -243,7 +243,9 @@
           </div>
         </a>
         @else
-        s
+        <div class=" grid justify-center">
+          <span class=" text-red-800 uppercase">Sesi Laporan Belum dibuat</span>
+        </div>
         @endif
 
       </div>
