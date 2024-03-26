@@ -85,8 +85,12 @@
   </div>
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
-      <div class=" bg-red-400 px-2 py-2 rounded-md">
-
+      <div class="  px-2 py-2 rounded-md">
+        @if(session('error'))
+        <div class="bg-red-400 alert alert-danger">
+          {{ session('error') }}
+        </div>
+        @endif
       </div>
       <div>
         <div class=" ">
