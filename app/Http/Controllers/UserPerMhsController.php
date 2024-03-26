@@ -103,7 +103,7 @@ class UserPerMhsController extends Controller
             $sesiLap->save();
         }
 
-        return redirect()->back()->with('error', 'sesi laporan berhasil di buat');
+        return redirect()->back();
     }
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
