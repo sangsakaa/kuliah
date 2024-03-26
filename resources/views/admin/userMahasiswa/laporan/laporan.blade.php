@@ -54,8 +54,10 @@
           <span class="bg-green-800 text-white px-1 rounded-sm uppercase">On time</span>
           @endif
           @else
-          <span class="bg-red-700 text-white px-1 rounded-sm uppercase">Terlambat</span>
+          <span class="bg-red-700 text-white px-1 rounded-sm uppercase">xTerlambat</span>
           @endif
+
+
           <div class=" grid grid-cols-2">
             <div class=" grid grid-cols-1">
 
