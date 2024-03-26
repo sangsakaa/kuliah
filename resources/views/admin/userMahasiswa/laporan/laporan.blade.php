@@ -54,7 +54,7 @@
           <span class="bg-green-800 text-white px-1 rounded-sm uppercase">On time</span>
           @endif
           @else
-          <span class="bg-red-700 text-white px-1 rounded-sm uppercase">xTerlambat</span>
+          <span class="bg-green-800 text-white px-1 rounded-sm uppercase">On time</span>
           @endif
 
 
