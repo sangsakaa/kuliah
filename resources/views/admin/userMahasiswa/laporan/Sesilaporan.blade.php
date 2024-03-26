@@ -170,7 +170,7 @@
             <!-- Tambahkan baris lainnya di sini -->
           </tbody>
         </table>
-        @if($list->id->count() === null)
+        @if($list->id->count() === 0)
         <a href="/laporan-mahasiswa/{{$list->id}}">
           <div class="  flex gap-2 ">
             <div class=" bg-blue-200 rounded-md ">
