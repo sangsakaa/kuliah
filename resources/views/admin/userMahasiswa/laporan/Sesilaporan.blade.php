@@ -171,7 +171,7 @@
           </tbody>
         </table>
         @if(is_array($list->id) && count($list->id) === 0)
-        <a href="/laporan-mahasiswa/{{$list->id}}">
+        <!-- <a href="/laporan-mahasiswa/{{$list->id}}">
           <div class="  flex gap-2 ">
             <div class=" bg-blue-200 rounded-md ">
               <div class="flex justify-center items-center">
@@ -243,7 +243,8 @@
               </div>
             </div>
           </div>
-        </a>
+        </a> -->
+        x
         @else
         y
         @endif
