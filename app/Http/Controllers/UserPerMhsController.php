@@ -86,10 +86,23 @@ class UserPerMhsController extends Controller
     public function createSesiLap(Request $request)
     {
         $UserPermhs = Auth::user()->mahasiswa_id;
-        $sesiLap = new Sesi_Laporan_Harian();
-        $sesiLap->anggota_kelompok_id = $UserPermhs;
-        $sesiLap->tanggal = $request->tanggal;
-        $sesiLap->save();
+        // Check if a record already exists for the specified date
+        $existingRecord = Sesi_Laporan_Harian::where('anggota_kelompok_id', $UserPermhs)
+            ->whereDate('tanggal', $request->tanggal)
+            ->first();
+
+        if ($existingRecord) {
+            // Record already exists for this date
+            // You can handle this case accordingly, such as showing an error message
+            // or updating the existing record, depending on your application's logic
+        } else {
+            // Create a new record since none exists for this date
+            $sesiLap = new Sesi_Laporan_Harian();
+            $sesiLap->anggota_kelompok_id = $UserPermhs;
+            $sesiLap->tanggal = $request->tanggal;
+            $sesiLap->save();
+        }
+
         return redirect()->back()->with('error', 'sesi laporan berhasil di buat');
     }
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
@@ -125,19 +138,20 @@ class UserPerMhsController extends Controller
 
     {
         // dd($request);
-        // $request->validate(
-        //     [
-        //         'bukti_laporan' => 'required',
-        //     ],
-        //     [
-        //         'bukti_laporan.required' => 'wajib ada foto',
-        //     ]
-        // );
+        $request->validate(
+            [
+                // 'bukti_laporan' => 'required',
+            ],
+            [
+                'deskripsi_laporan' => 'required|unique:deskripsi_laporan',
+            ]
+        );
         $sesi_Laporan_Harian = (int) $request->sesi_laporan_harian_id;
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
 
         if ($Lap) {
+            
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
             $Lap->status_laporan = $request->status_laporan ?? 'draf';
@@ -151,6 +165,7 @@ class UserPerMhsController extends Controller
                 $path = $file->storeAs('public/bukti_laporan', $filename);
                 $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
+            
 
             $Lap->save();
         } else {
@@ -167,6 +182,7 @@ class UserPerMhsController extends Controller
                 $path = $file->storeAs('public/bukti_laporan', $filename);
                 $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
+            
             $Lap->save();
         }
 

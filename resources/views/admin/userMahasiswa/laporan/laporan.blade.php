@@ -38,24 +38,37 @@
                 : Kelompok {{$data->nama_kelompok}}
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
     </div>
     <div class="px-1 mt-2  text-sm  bg-white ">
       <div class="px-1 py-2">
         <div> Tanggal Laporan :
-          dibuat : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}} <br>
-          <td class="border text-center px-1">
-            @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0) <span class=" bg-red-700 text-white px-1 uppercase">Telat</span> laporan : {{\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y')}}
-            @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
-            <span class=" bg-green-800 text-white px-1 rounded-sm uppercase"> on time</span>
-            @else
-            <span class=" bg-red-700 text-white px-1 rounded-sm uppercase">telat</span>
-            @endif
-          </td>
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
+          <span class="bg-red-700 text-white px-1 uppercase">Terlambat</span>
+          @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::tomorrow()) == 0)
+          <span class="bg-red-700 text-white px-1 rounded-sm uppercase">Forbidden</span>
+          @else
+          <span class="bg-green-800 text-white px-1 rounded-sm uppercase">On time</span>
+          @endif
+          @else
+          <span class="bg-red-700 text-white px-1 rounded-sm uppercase">Terlambat</span>
+          @endif
+          <div class=" grid grid-cols-2">
+            <div class=" grid grid-cols-1">
+
+              <div>dibuat : </div>
+              <div>{{\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isoformat('dddd D MMMM Y')}}</div>
+            </div>
+            <div class=" grid grid-cols-1">
+              <div>Laporan : </div>
+              <div>{{ \Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isoformat('dddd D MMMM Y') }}</div>
+            </div>
+
+          </div>
+
           @foreach ($dataMhs as $mhs)
           @if ($mhs->status_laporan === 'menunggu')
           <span class=" rounded-md bg-yellow-500 text-black  capitalize font-semibold px-2">
@@ -118,24 +131,46 @@
             {{ $message }}
           </p>
           @enderror
-          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
+          <!-- @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
           @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
           @if($item->status_laporan == "valid")
-          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          <div>
+            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          </div>
           @elseif($item->status_laporan == "menunggu")
           <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
           @else
-          <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
-          @endif
-          @endif
-          <br>
-          <div class=" py-4">
-            <span class="  py-4">
-              <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
-              <a class="bg-blue-700 text-white px-2 py-1 mt-2 pointer-events-none" style="color: gray;">Kirim</a>
-              <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
-            </span>
+          <div>
+            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
           </div>
+          @endif
+          @endif -->
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
+          {{-- Jika laporan untuk hari berikutnya --}}
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->isSameDay(\Carbon\Carbon::now()))
+          {{-- Jika laporan untuk hari ini --}}
+          @if($item->status_laporan == "valid")
+          <div>
+            <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          </div>
+          @elseif($item->status_laporan == "menunggu")
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+          @else
+          <div>
+            <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
+            <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/laporan-mahasiswa/{{$sesi_Laporan_Harian->id}}">Batal</a>
+          </div>
+          @endif
+          @else
+          {{-- Jika laporan untuk hari sebelumnya --}}
+          <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          @endif
+
           @endforeach
         </form>
       </div>
