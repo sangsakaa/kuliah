@@ -95,6 +95,7 @@ class UserPerMhsController extends Controller
             // Record already exists for this date
             // You can handle this case accordingly, such as showing an error message
             // or updating the existing record, depending on your application's logic
+            return redirect()->back()->with('warning', 'Sesi Laporan sudah dibuat');
         } else {
             // Create a new record since none exists for this date
             $sesiLap = new Sesi_Laporan_Harian();

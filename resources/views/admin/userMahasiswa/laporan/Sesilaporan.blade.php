@@ -83,20 +83,19 @@
       </div>
     </div>
   </div>
+  @if(session('succes'))
+  <div class="bg-red-700 text-white grid justify-center mt-2 ">
+    <span class=" px-2 py-1">{{ session('succes') }}</span>
+  </div>
+  @endif
+  @if(session('warning'))
+  <div class="bg-yellow-200  grid justify-center mt-2 ">
+    <span class=" px-2 py-1">{{ session('warning') }}</span>
+  </div>
+  @endif
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
-      <div class="  px-2 py-2 rounded-md">
-        @if(session('succes'))
-        <div class="bg-red-400 alert alert-danger">
-          {{ session('succes') }}
-        </div>
-        @endif
-      </div>
       <div>
-        <div class=" ">
-          <div class=" grid grid-cols-1 sm:grid-cols-1">
-          </div>
-        </div>
         <table hidden class="w-full border border-green-700">
           <thead>
             <tr>
