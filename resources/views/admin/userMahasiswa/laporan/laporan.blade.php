@@ -169,6 +169,7 @@
           @else
           {{-- Jika laporan untuk hari sebelumnya --}}
           <button disabled class="bg-red-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
+          <a class="bg-blue-700 text-white px-2 py-1 mt-2" href="/sesi-laporan-mahasiswa">Kembali</a>
           @endif
 
           @endforeach
