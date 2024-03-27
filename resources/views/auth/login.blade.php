@@ -8,16 +8,21 @@
         </a>
 
         <!-- Session Status -->
-
+        <style>
+            .font-new {
+                font-family: sans-serif
+            }
+        </style>
         <x-auth-session-status class="mb-4" :status="session('status')" />
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-1" :errors="$errors" />
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <center>
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="   sm:mt-4 " width="150px" height="150px">
-                <p class=" font-semibold  font-sans  uppercase">Sistem Informasi Pelaporan</p>
-                <h1 class=" font-semibold">KULIAH KERJA NYATA</h1>
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="   sm:mt-4  py-4" width="120px" height="120px">
+                <p class=" font-semibold  font-serif  uppercase text-3xl">SIP - K</p>
+                <p class="  font-serif  uppercase">Sistem Informasi Pelaporan</p>
+                <p class=" font-semibold  text-2xl font-new">KULIAH KERJA NYATA</p>
             </center>
             <!-- Email Address -->
             <div>
@@ -37,6 +42,7 @@
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
+
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
@@ -46,6 +52,10 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
+            </div>
+            <div class=" grid justify-center py-4">
+                <p>Bacalah Selalu Dalam Hati</p>
+                <p>"Yaa Sayyidii Yaa Rasulallah"</p>
             </div>
         </form>
     </x-auth-card>
