@@ -45,7 +45,7 @@
     <div class="px-1 mt-2  text-sm  bg-white ">
       <div class="px-1 py-2">
         <div> Tanggal Laporan :
-          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) > 0)
+          @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)) >= 0)
           <span class="bg-red-700 text-white px-1 uppercase">Terlambat</span>
           @elseif (\Carbon\Carbon::parse($sesi_Laporan_Harian->created_at)->isSameDay(\Carbon\Carbon::now()))
           @if (\Carbon\Carbon::parse($sesi_Laporan_Harian->tanggal)->diffInDays(\Carbon\Carbon::tomorrow()) == 0)

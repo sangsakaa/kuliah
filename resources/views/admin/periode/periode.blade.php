@@ -7,7 +7,7 @@
   <div class=" w-full py-2 px-2 gap-2 grid  ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg ">
       <div class=" p-4">
-        <form action="/semester" method="post">
+        <form action="/periode-semester" method="post">
           @csrf
           <div class=" grid grid-cols-1">
             <label for="">Semester</label>
@@ -21,7 +21,7 @@
           </div>
           <div class=" grid grid-cols-1">
             <label for=""> nama_periode</label>
-            <input type="text" name="nama_periode" placeholder=" Nama Kabupaten Baru" class=" px-1 py-1">
+            <input type="text" name="nama_periode" placeholder=" Nama Periode" class=" px-1 py-1">
           </div>
           <div class=" py-1">
             <button class=" bg-blue-700 px-2 py-1 text-white">Simpan</button>

@@ -28,4 +28,14 @@ class SemesterController extends Controller
         $periode_semester = Periode::join('semester', 'semester.id', 'periode.semester_id')->select('nama_semester', 'nama_periode')->get();
         return view('admin.periode.periode', compact('semester', 'periode_semester'));
     }
+    public function StorePeriode(Request $request)
+    {
+        // dd('ok');
+        // $semester = Semester::latest()->first();
+        $semester = new Periode();
+        $semester->semester_id = $request->semester_id;
+        $semester->nama_periode = $request->nama_periode;
+        $semester->save();
+        return redirect()->back();
+    }
 }

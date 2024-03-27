@@ -169,6 +169,7 @@ Route::post('/lokasi-desa/{kecamatan}', [LokasiController::class, 'createDes']);
 Route::get('/semester', [SemesterController::class, 'index'])->name('semester');
 Route::get('/periode-semester', [SemesterController::class, 'indexPeriode'])->name('periode-semester');
 Route::post('/semester', [SemesterController::class, 'StoreSemester'])->name('semester');
+Route::post('/periode-semester', [SemesterController::class, 'StorePeriode'])->name('periode-semester');
 
 
 require __DIR__ . '/auth.php';
