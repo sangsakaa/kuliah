@@ -103,47 +103,47 @@
         </div>
         @endrole
         @role('mahasiswa')
-        <div class=" grid grid-cols-1 gap-2">
+        <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2">
             <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
                 <div class=" p-4">
                     <p class=" ">Selamat Datang di </p>
-                    <p class="  text-5xl bold "> SIP-K</p>
-                    <p class=" sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
+                    <p class=" font-serif   text-4xl bold "> SIP-K</p>
+                    <p class=" font-serif sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
                     <div>
                         @foreach($dataMhs as $detail)
-                        <p>{{$detail->nama_mhs}}</p>
-                        <p class=" text-sm">{{$detail->nim}}</p>
-                        {{$detail->prodi}} ({{$detail->jenis_kelamin}})
+                        <p>{{$detail->nama_mhs}} </p>
+                        <p class=" text-sm">{{$detail->nim}} - {{$detail->prodi}}</p>
                         @endforeach
                     </div>
                 </div>
             </div>
+            <div class=" py-2">
+                <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+                    @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
+                    <div class="grid grid-cols-2 gap-2">
+                        <a href="/sesi-laporan-mahasiswa">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan</div>
+                        </a>
+                        <a href="/rekap-laporan-mahasiswa">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan</div>
+                        </a>
+                        <a href="/sesi-harian">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Presensi</div>
+                    </div>
+                    @elseif (Auth::user()->hasRole('mahasiswa'))
+                    <div class=" grid grid-cols-2 gap-2">
+                        <a href="/sesi-laporan-mahasiswa">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan </div>
+                        </a>
+                        <a href="/rekap-laporan-mahasiswa">
+                            <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan </div>
+                        </a>
+                    </div>
+                    @endif
+                </div>
+            </div>
             <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
                 <div class=" p-4">
-                    <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
-                        @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
-                        <div class="grid grid-cols-2 gap-2">
-                            <a href="/sesi-laporan-mahasiswa">
-                                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan</div>
-                            </a>
-                            <a href="/rekap-laporan-mahasiswa">
-                                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan</div>
-                            </a>
-                            <a href="/sesi-harian">
-                                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Presensi</div>
-                        </div>
-                        @elseif (Auth::user()->hasRole('mahasiswa'))
-                        <div class=" grid grid-cols-2 gap-2">
-                            <a href="/sesi-laporan-mahasiswa">
-                                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Sesi laporan </div>
-                            </a>
-                            <a href="/rekap-laporan-mahasiswa">
-                                <div class=" w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">Rekap laporan </div>
-                            </a>
-                        </div>
-                        @endif
-
-                    </div>
                     <div>
                         <div class=" p-2">
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
