@@ -619,6 +619,9 @@ select {
 .z-50 {
   z-index: 50;
 }
+.float-right {
+  float: right;
+}
 .m-4 {
   margin: 1rem;
 }

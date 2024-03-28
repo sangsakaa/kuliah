@@ -1,6 +1,6 @@
 <x-app-layout>
   <x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight sm:text-left text-center">
+    <h2 class="font-semibold text-xl text-gray-800 leading-tight sm:text-left text-center uppercase">
       {{ __('Sesi Laporan Harian') }}
     </h2>
   </x-slot>
@@ -23,7 +23,6 @@
             </div>
           </div>
           <div class=" block sm:hidden ">
-
             <div>
               <div class=" w-full grid ">
                 <div class="  ">
@@ -65,9 +64,8 @@
     </div>
   </div>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-    <div class=" flex grid-cols-2 sm:grid-cols-2 px-2 gap-1">
+    <div class=" flex grid-cols-2 sm:grid-cols-2 px-2 gap-1 p-2">
       <a href="/dashboard" class=" py-2 px-2 text-white bg-blue-700 flex" title="Beranda">
-
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
         </svg>
@@ -80,17 +78,17 @@
           <button class="  px-2 py-1 bg-blue-700 text-white">Buat Laporan</button>
         </form>
       </div>
+      <div class=" py-2 ">
+        <span class=" py-2 text-sm">Tgl :
+          {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('l, d F Y') }}
+        </span>
+      </div>
       <div class=" sm:justify-end justify-start flex gap-2">
         <form action="/sesi-laporan-mahasiswa" method="get" class=" py-1 ">
           <input hidden type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" disabled class="  border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
           <!-- <button type="submit" class=" px-2 py-1   bg-blue-700  text-white">
             Cari </button> -->
         </form>
-      </div>
-      <div class=" py-2">
-        <span class=" py-2">Tgl :
-          {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('l, d F Y') }}
-        </span>
       </div>
     </div>
   </div>
@@ -104,6 +102,7 @@
     <span class=" px-2 py-1">{{ session('warning') }}</span>
   </div>
   @endif
+
   <div class=" py-1 mt-2 bg-white">
     <div class=" overflow-auto p-4">
       <div>
