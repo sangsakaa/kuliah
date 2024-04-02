@@ -66,7 +66,10 @@
               @foreach($dataAnggota as $list)
               <tr>
                 <th class=" border px-1 ">{{$loop->iteration}}</th>
-                <td class=" border px-1 text-center   ">{{$list->nim}}</td>
+                <td class=" border px-1 text-center   ">
+
+                  {{$list->nim}}
+                </td>
                 <td class=" border px-1 text-center   ">{{$list->nama_kelompok}}</td>
                 <td class=" border px-1 text-center   ">{{$list->nim.'@uniwa.ac.id'}}</td>
                 <td class=" border px-1 text-center   ">{{$list->nim}}</td>

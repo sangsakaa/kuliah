@@ -35,8 +35,13 @@
             <div class=" w-full py-1">
                 {{ $slot }}
             </div>
+            <!-- Page Footer -->
+            <x-footer />
         </main>
     </div>
+
 </body>
+
+
 
 </html>
