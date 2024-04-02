@@ -160,7 +160,7 @@
                             </div>
                     </div>
                     @elseif (Auth::user()->hasRole('mahasiswa'))
-                    <div class=" grid grid-cols-2 gap-2">
+                    <div class="flex  gap-2 justify-center items-center">
                         <a href="/sesi-laporan-mahasiswa">
                             <div class=" flex w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
                                 <span class=" py-1">
