@@ -32,14 +32,13 @@
 
         <!-- Page Content -->
         <main>
-            <div class=" w-full py-1">
+            <div class=" w-full ">
                 {{ $slot }}
             </div>
             <!-- Page Footer -->
             <x-footer />
         </main>
     </div>
-
 </body>
 
 

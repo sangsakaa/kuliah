@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-    <div class=" w-full py-2 px-2 ">
+    <div class=" w-full mt-2 px-2  ">
         <div class=" overflow-hidden shadow-sm sm:rounded-lg">
             @role('pengawas')
             <div class=" grid grid-cols-1 gap-2">
@@ -103,22 +103,33 @@
         </div>
         @endrole
         @role('mahasiswa')
+        <style>
+            .new-font {
+                font-family: sans-serif;
+            }
+        </style>
         <div class=" grid grid-cols-1 sm:grid-cols-1 gap-2">
-            <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
+            <div class="  sm:flex grid  bg-sky-200 gap-2 sm:grid-cols-1">
                 <div class=" p-4">
-                    <p class=" ">Selamat Datang di </p>
-                    <p class=" font-serif   text-4xl bold "> SIP-K</p>
+                    <p class=" font-serif ">Selamat Datang di </p>
+                    <p class=" font-serif   text-4xl bold new-font "> SIP-K</p>
                     <p class=" font-serif sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
                     <div>
                         @foreach($dataMhs as $detail)
-                        <p>{{$detail->nama_mhs}} </p>
+                        <p class=" font-semibold">{{$detail->nama_mhs}} </p>
                         <p class=" text-sm">{{$detail->nim}} - {{$detail->prodi}}</p>
                         @endforeach
                     </div>
                 </div>
             </div>
-            <div class=" py-2">
-                <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
+            <div class="  sm:flex grid  bg-sky-200 gap-2 sm:grid-cols-1">
+                <div class=" p-4 capitalize">
+                    <p>Note :</p>
+                    <p>1. Jam pelaporan mulai dari 19:00 - 21:00 WIB</p>
+                </div>
+            </div>
+            <div class=" ">
+                <div class=" w-full  px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
                     @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
                     <div class="flex  gap-2 justify-center items-center">
                         <a href="/sesi-laporan-mahasiswa">
@@ -190,8 +201,8 @@
                     @endif
                 </div>
             </div>
-            <div class="  sm:flex grid  bg-blue-200 gap-2 sm:grid-cols-1">
-                <div class=" p-4">
+            <div class="  sm:flex grid  bg-sky-200 gap-1 sm:grid-cols-1">
+                <div class=" px-4 ">
                     <div>
                         <div class=" p-2">
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -200,7 +211,6 @@
                         <script>
                             // Access the chart data passed from the controller
                             var statusChartData = @json($statusChartData);
-
                             // Create the bar chart
                             var ctx = document.getElementById('statusChart').getContext('2d');
                             var statusChart = new Chart(ctx, {
@@ -484,5 +494,4 @@
             </div>
         </div>
         @endrole
-
 </x-app-layout>
