@@ -120,7 +120,7 @@
             <div class=" py-2">
                 <div class=" w-full py-2 px-2  grid grid-cols-1 gap-2 sm:grid-cols-4">
                     @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
-                    <div class="flex  gap-2 items-center">
+                    <div class="flex  gap-2 justify-center items-center">
                         <a href="/sesi-laporan-mahasiswa">
                             <div class=" flex bg-blue-800 px-2 py-1 text-white text-center uppercase">
                                 <span class=" py-1">
