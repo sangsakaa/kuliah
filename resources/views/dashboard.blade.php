@@ -122,7 +122,7 @@
                     @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
                     <div class="grid grid-cols-2 gap-2">
                         <a href="/sesi-laporan-mahasiswa">
-                            <div class="  bg-blue-800 px-2 py-1 text-white text-center uppercase">
+                            <div class=" flex bg-blue-800 px-2 py-1 text-white text-center uppercase">
                                 <div class=" flex w-full bg-blue-800 px-2 py-1 text-white text-center uppercase">
                                     <span class=" py-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
