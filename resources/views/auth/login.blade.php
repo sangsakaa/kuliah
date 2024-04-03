@@ -19,8 +19,8 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <center>
-                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="   sm:mt-4  py-4" width="120px" height="120px">
-                <p class=" font-semibold  font-serif  uppercase text-3xl">SIP - K</p>
+                <img src="{{ asset('img/logo.png') }}" alt="Logo" class="     " width="120px" height="120px">
+                <p class=" font-semibold  font-new  uppercase text-3xl">SIP - K</p>
                 <p class="  font-serif  uppercase">Sistem Informasi Pelaporan</p>
                 <p class=" font-semibold  text-2xl font-new">KULIAH KERJA NYATA</p>
             </center>
@@ -52,10 +52,6 @@
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
-            </div>
-            <div class=" grid justify-center py-4">
-                <p>Bacalah Selalu Dalam Hati</p>
-                <p>"Yaa Sayyidii Yaa Rasulallah"</p>
             </div>
         </form>
     </x-auth-card>

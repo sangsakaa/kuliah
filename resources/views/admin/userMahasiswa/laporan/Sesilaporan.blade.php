@@ -63,6 +63,17 @@
       </div>
     </div>
   </div>
+  <div class="  mb-2  flex justify-center items-center">
+    <div class=" bg-sky-300 rounded-md">
+      <div class=" py-2  px-2">
+        <span class=" py-2 px-2 text-sm">Tanggal :
+          {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('l, d F Y | H:i') }}
+
+        </span>
+      </div>
+    </div>
+
+  </div>
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class=" flex grid-cols-2 sm:grid-cols-2 px-2 gap-1 p-2">
       <a href="/dashboard" class=" py-2 px-2 text-white bg-blue-700 flex" title="Beranda">
@@ -78,11 +89,7 @@
           <button class="  px-2 py-1 bg-blue-700 text-white">Buat Laporan</button>
         </form>
       </div>
-      <div class=" py-2 ">
-        <span class=" py-2 text-sm">Tgl :
-          {{ \Carbon\Carbon::parse($tanggal)->translatedFormat('l, d F Y') }}
-        </span>
-      </div>
+
       <div class=" sm:justify-end justify-start flex gap-2">
         <form action="/sesi-laporan-mahasiswa" method="get" class=" py-1 ">
           <input hidden type="date" name="tanggal" value="{{ $tanggal->toDateString() }}" disabled class="  border border-green-800 text-green-800   dark:bg-dark-bg py-1 " placeholder=" Cari ..">
@@ -124,7 +131,6 @@
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12">
                   <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
                 </svg>
-
               </span>
               @elseif($status->status_laporan === null)
               <span class="text-black">
@@ -138,7 +144,6 @@
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 text-red-700">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
               </svg>
-
               @endif
             </div>
             <div class=" bg-blue-200  rounded-md w-full">
@@ -198,17 +203,17 @@
               </div>
             </div>
           </div>
+          @if ($list->laporanMahasiswa != null)
+          @foreach($list->laporanMahasiswa as $status)
           <div class="py-2 ">
-            @foreach($list->laporanMahasiswa as $status)
-            <div class=" py-2 px-2 bg-yellow-500">
+            <div class="py-2 px-2 bg-yellow-500">
               <span>
-
                 Note : {{$status->note_laporan}}
-
               </span>
             </div>
-            @endforeach
           </div>
+          @endforeach
+          @endif
           @endforeach
         </a>
         @else
@@ -216,15 +221,14 @@
           <span class=" text-red-700 uppercase font-semibold">Sesi Laporan Belum dibuat</span>
         </div>
         @endif
-
       </div>
     </div>
   </div>
   <div class=" p-2">
     <div class=" mt-2 py-2 px-2 rounded-md bg-blue-200">
-      <p>Keterang : </p>
-      <p>
-        1. Waktu pelaporan belum terlambat, jika telat belum lebih dari 24 Jam
+      <p>Keterangan : </p>
+      <p class=" px-2">
+        Waktu pelaporan belum terlambat, jika telat belum lebih dari 24 Jam
       </p>
     </div>
   </div>

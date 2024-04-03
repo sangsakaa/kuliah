@@ -60,7 +60,7 @@
                         {{ __('Beranda') }}
                     </x-nav-link>
                     <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
-                        {{ __('Detail Mahasiswa') }}
+                        {{ __('Laporan') }}
                     </x-nav-link>
                     <x-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
                         {{ __('Rekap Laporan ') }}
@@ -78,7 +78,7 @@
                         {{ __('Beranda') }}
                     </x-nav-link>
                     <x-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
-                        {{ __('Detail Mahasiswa') }}
+                        {{ __('Laporan') }}
                     </x-nav-link>
                     <x-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
                         {{ __('Rekap Laporan ') }}
@@ -196,11 +196,40 @@
             <div class="px-4">
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-
             </div>
-
-
             <div class="mt-3 space-y-1">
+                @if (Auth::check())
+                @if (Auth::user()->hasRole('mahasiswa') && Auth::user()->hasRole('ketua kelompok'))
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Beranda') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
+                    {{ __('Laporan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
+                    {{ __('Rekap Laporan ') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('sesi-harian')" :active="request()->routeIs('sesi-harian')">
+                    {{ __('Presensi ') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('detail-lap-mhs')" :active="request()->routeIs('detail-lap-mhs')">
+                    {{ __('Detail Laporan ') }}
+                </x-responsive-nav-link>
+                @elseif (Auth::user()->hasRole('mahasiswa'))
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Beranda') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('sesi-laporan-mahasiswa')" :active="request()->routeIs('sesi-laporan-mahasiswa')">
+                    {{ __('Detail Mahasiswa') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('rekap-laporan-mahasiswa')" :active="request()->routeIs('rekap-laporan-mahasiswa')">
+                    {{ __('Rekap Laporan ') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('detail-lap-mhs')" :active="request()->routeIs('detail-lap-mhs')">
+                    {{ __('Detail Laporan ') }}
+                </x-responsive-nav-link>
+                @endif
+                @endif
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -209,6 +238,7 @@
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
+
 
             </div>
         </div>

@@ -422,14 +422,14 @@
 </head>
 
 <body class="antialiased">
-    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+    <div class="relative flex items-top justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="  m-4 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-1">
                     <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
-                        <div class=" p-6">
+                        <div class=" p-6 grid justify-center items-center">
                             <center>
-                                <img src="{{ asset('img/logo.png') }}" alt="Logo" width="200px" height="200px">
+                                <img src="{{ asset('img/logo.png') }}" alt="Logo" width="100px" height="100px">
                                 <div class="  font-new text-gray-600 dark:text-gray-400 text-gede">
                                     SIP - K
                                 </div>
