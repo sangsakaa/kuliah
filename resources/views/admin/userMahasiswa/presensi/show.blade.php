@@ -13,7 +13,7 @@
     <div class="bg-white overflow-hidden shadow-sm mt-2 ">
       <div class=" w-full p-2">
         <form action="/daftar-sesi-harian/{{$sesi_Harian->id}}" method="post">
-          <button class=" bg-blue-700 px-2 py-1 text-white ">Simpan Presensi</button>
+          <button class=" bg-blue-700 px-2 py-1 text-white ">Simpan</button>
           <a href="/sesi-harian" class=" bg-blue-700 px-2  py-1 text-white">kembali</a>
           @csrf
 

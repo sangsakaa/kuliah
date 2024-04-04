@@ -62,7 +62,6 @@
           <h1>Unggah Bukti Kegiatan</h1>
           <input type="file" id="fileInput" accept="image/*" capture="camera">
           <button class=" bg-blue-700 text-white px-2 mt-2" type="submit">Uploud</button>
-
         </form>
       </div>
 

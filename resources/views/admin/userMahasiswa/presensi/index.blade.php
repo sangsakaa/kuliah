@@ -6,23 +6,30 @@
   </x-slot>
   <div class=" w-full py-2  ">
     <div class="bg-white overflow-hidden shadow-sm ">
-      <div class=" p-2">
-        <form action="/sesi-harian" method="post">
-          @csrf
-          <input type="hidden" name="kelompok_id" value=" {{$User->kelompok_id}}">
-          <input type="hidden" name="tanggal" value="{{ $tanggal->toDateString() }}">
-          <button class=" bg-blue-700 px-2 py-1 text-white ">Buat Sesi Presensi</button>
-        </form>
-        <form action="/sesi-harian" method="get" class="mr-auto">
-          <input type="date" name="tanggal" class="py-1 dark:bg-dark-bg" value="{{ $tanggal->toDateString() }}">
-          <button class=" bg-red-600 py-1 dark:bg-purple-600 mt-1 my-1 rounded-sm hover:bg-purple-600 text-white px-4 ">
-            Pilih Tanggal
-          </button>
-        </form>
+      <div class=" p-2 flex grid-cols-2 gap-2 justify-center items-center sm:justify-start sm:items-start">
+        <div class=" ">
+          <form action="/sesi-harian" method="post">
+            @csrf
+            <input type="hidden" name="kelompok_id" value=" {{$User->kelompok_id}}">
+            <input type="hidden" name="tanggal" value="{{ $tanggal->toDateString() }}">
+            <button class=" bg-blue-700 px-2 py-1 text-white ">Sesi Presensi</button>
+          </form>
+        </div>
+        <div class=" ">
+          <form action="/sesi-harian" method="get">
+            <input type="date" name="tanggal" class="py-1 dark:bg-dark-bg" value="{{ $tanggal->toDateString() }}">
+            <button class=" bg-red-600 py-1 dark:bg-purple-600  rounded-sm hover:bg-purple-600 text-white px-2 ">
+              Cari
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <div class="bg-white overflow-hidden shadow-sm mt-2 ">
       <div class=" overflow-auto w-full p-2">
+        <div class=" py-2 block sm:hidden justify-center items-center grid">
+          Daftar Laporan Presensi Harian
+        </div>
         <table class=" w-full">
           <thead>
             <tr class="  uppercase text-sm">
@@ -32,16 +39,12 @@
               <th rowspan="2" class=" border">tanggal</th>
               <th rowspan="2" class=" border">Kel</th>
               <th colspan="4" class=" border">Keterangan</th>
-
             </tr>
             <tr class="  uppercase text-sm">
-
               <th class=" border">H</th>
               <th class=" border">I</th>
               <th class=" border">S</th>
               <th class=" border">A</th>
-
-
             </tr>
           </thead>
           <tbody>
@@ -73,7 +76,7 @@
             @endforeach
             @else
             <tr>
-              <td colspan="8" class=" border text-center">
+              <td colspan="9" class=" border text-center">
                 <span class=" text-red-700  uppercase text-sm">Belum ada sesi</span>
               </td>
             </tr>
