@@ -72,17 +72,7 @@
           <p>M : Menunggu</p>
           <p>D : Draf</p>
         </div>
-
       </div>
-
-
     </div>
   </div>
-
-  </div>
-
-
-
-
-
 </x-app-layout>

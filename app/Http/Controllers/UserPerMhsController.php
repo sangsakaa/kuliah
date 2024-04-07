@@ -243,7 +243,7 @@ class UserPerMhsController extends Controller
             })
             ->select('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik', 'bukti_laporan')
             // ->groupBy('tanggal', 'sesi_laporan_harian.id', 'sesi_laporan_harian.anggota_kelompok_id', 'status_laporan', 'deskripsi_laporan', 'lokasi_praktik')
-            ->where('sesi_laporan_harian.tanggal', $tgl->toDateString())
+            // ->where('sesi_laporan_harian.tanggal', $tgl->toDateString())
             ->get();
         if (request('tanggal')) {
             $rekapLap->where('tanggal', 'like', '%' . request('tanggal') . '%');
