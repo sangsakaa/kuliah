@@ -44,6 +44,7 @@
             <img class=" " src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" height=" 100px">
             @else
             <span class=" py-2 px-2 justify-center grid">
+              <img class=" " src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" height=" 100px">
               Tidak Ada Bukti Lapor
             </span>
             @endif
