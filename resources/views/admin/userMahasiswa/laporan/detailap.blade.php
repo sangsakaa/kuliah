@@ -51,9 +51,7 @@
           </div>
           <div class="  ">
             <div class=" text-center">
-
               <p>Lokasi / Instansi</p>
-
               <p>{{$item->lokasi_praktik}}</p>
               <p>Tanggal : {{ \Carbon\Carbon::parse($item->tanggal)->isoFormat('dddd , DD MMMM Y') }}</p>
             </div>

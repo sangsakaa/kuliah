@@ -16,6 +16,7 @@ use App\Http\Controllers\LokasiController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\RoleManagementController;
+use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SiacaController;
 use App\Http\Controllers\SupervisiController;
@@ -39,6 +40,7 @@ Route::get('/', function () {
 });
 
 
+
 Route::get('/setting', [MahasiswaController::class, 'index'])->middleware(['auth'])->name('setting');
 Route::get('/mahasiswa', [MahasiswaController::class, 'dataMahahsiswa'])->middleware(['auth'])->name('mahasiswa');
 Route::get('/sinkronisasi', [MahasiswaController::class, 'sinkronisasi']);
@@ -59,6 +61,10 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 
 // LAPORAN MAHASISWA
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
+
+// SCREENING
+Route::get('/screening-mahasiswa', [ScreeningController::class, 'index'])->name('screening-mahasiswa');
+
 // userManajement
 Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');
 Route::post('/create-user', [UserManagemetController::class, 'CreateUserAdmin'])->middleware(['auth']);

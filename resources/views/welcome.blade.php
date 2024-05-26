@@ -450,6 +450,10 @@
                                     <a href="{{ url('/dashboard') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">BERANDA</a>
                                     @else
                                     <a href="{{ route('login') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">MASUK</a>
+
+                                    <P>
+                                        <a href="{{ route('screening-mahasiswa') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">SCREENING</a>
+                                    </P>
                                     @endauth
                                 </div>
                                 @endif

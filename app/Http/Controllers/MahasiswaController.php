@@ -25,6 +25,7 @@ class MahasiswaController extends Controller
 
 
         $total = count($data);
+        // dd($data);
         return view('setting', ['listMahasiswa' => $data, 'total' => $total]);
     }
     public function deteksiDuplikasi()
@@ -79,11 +80,13 @@ class MahasiswaController extends Controller
                 'nim' => $data['nim'],
                 'nama_mhs' => $data['nama_mahasiswa'],
                 'jenis_kelamin' => $data['jenis_kelamin'],
+                
                 'tgl_lahir' => substr($data['tanggal_lahir'], 6) . '-' . substr($data['tanggal_lahir'], 3, 2) . '-' . substr($data['tanggal_lahir'], 0, 2), // '12-04-2000'
                 'agama' => $data['nama_agama'],
                 'prodi' => $data['nama_program_studi'],
                 'status' => $data['nama_status_mahasiswa'],
                 'periode_masuk' => $data['id_periode'],
+                
             ];
         };
         $lisMahasiswa = array_map($mapToMahasiswa, $lisMahasiswa);
