@@ -68,7 +68,8 @@
                     Nama
                   </div>
                   <div class="">
-                    : {{$detail->nama_mhs}} - {{$detail->prodi}}
+                    : {{$detail->nama_mhs}} <br>
+                    {{$detail->prodi}}
                     <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}" class="w-full border border-gray-300 p-2">
                   </div>
                 </div>
@@ -121,6 +122,7 @@
 
                         <label for="">Tidak</label>
                       </td>
+
                     </tr>
                     <tr>
                       <td class=" border" colspan="3">
@@ -135,39 +137,37 @@
 
               </div>
               <div class=" overflow-auto">
-                <div class=" px-5">
-                  <div>
-                    <table class="table-auto w-full border-collapse border border-gray-300">
-                      <thead>
-                        <tr>
-                          <th class="border border-gray-300 px-4 py-2">Pertanyaan</th>
-                          <th class="border border-gray-300 px-4 py-2">Jawaban</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        @foreach($jawaban as $item)
-                        @if($item->mahasiswa_id == $mahasiswa->first()->id)
-                        <tr>
-                          <td class="border border-gray-300 px-4 py-2">{{$item->soal}}</td>
-                          <td class="border border-gray-300 px-4 py-2 capitalize">{{$item->jawaban}}</td>
-                        </tr>
-                        @endif
-                        @endforeach
-                      </tbody>
-                    </table>
-
-                  </div>
-
-                </div>
               </div>
               @endif
               @endforeach
             </div>
           </div>
         </div>
-
         @endif
+        <div class=" px-5">
+          <div>
+            <table class="table-auto w-full border-collapse border border-gray-300">
+              <thead>
+                <tr>
+                  <th class="border border-gray-300 px-4 py-2">Pertanyaan</th>
+                  <th class="border border-gray-300 px-4 py-2">Jawaban</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($jawaban as $item)
+                @if($item->mahasiswa_id == $mahasiswa->first()->id)
+                <tr>
+                  <td class="border border-gray-300 px-4 py-2">{{$item->soal}}</td>
+                  <td class="border border-gray-300 px-4 py-2 capitalize">{{$item->jawaban}}</td>
+                </tr>
+                @endif
+                @endforeach
+              </tbody>
+            </table>
 
+          </div>
+
+        </div>
       </div>
     </div>
   </form>
