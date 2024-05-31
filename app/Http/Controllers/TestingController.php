@@ -14,7 +14,7 @@ class TestingController extends Controller
     private $token = null;
     private function getToken()
     {
-        $response = Http::post('http://sia-uniwa.ddns.net:8100/ws/live2.php', [
+        $response = Http::post(env('feeder_url'), [
             'act' => 'GetToken',
             'username' => env('PDDIKTI_USERNAME'),
             'password' => env('PDDIKTI_PASSWORD')
@@ -58,7 +58,7 @@ class TestingController extends Controller
     private function GetListMahasiswa()
     {
         if (!$this->token) $this->getToken();
-        $response = Http::post('http://sia-uniwa.ddns.net:8100/ws/live2.php', [
+        $response = Http::post(env('feeder_url'), [
             'act' => 'GetListMahasiswa',
             'token' => $this->token,
             'filter' => "",

@@ -13,7 +13,7 @@ class ProdiController extends Controller
     private $token = null;
     private function getToken()
     {
-        $response = Http::post('http://sia-uniwa.ddns.net:8100/ws/live2.php', [
+        $response = Http::post(env('feeder_url'), [
             'act' => 'GetToken',
             'username' => env('PDDIKTI_USERNAME'),
             'password' => env('PDDIKTI_PASSWORD')
@@ -60,7 +60,7 @@ class ProdiController extends Controller
     private function GetProdi()
     {
         if (!$this->token) $this->getToken();
-        $response = Http::post('http://sia-uniwa.ddns.net:8100/ws/live2.php', [
+        $response = Http::post(env('feeder_url'), [
             'act' => 'GetProdi',
             'token' => $this->token,
             'filter' => "",
