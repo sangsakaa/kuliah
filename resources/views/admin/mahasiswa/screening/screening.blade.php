@@ -141,6 +141,9 @@
                   </tbody>
                 </table>
                 <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
+                <button class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " onclick="printContent('surat-ket')">
+                  Cetak Kartu Kesehatan
+                </button>
                 </table>
 
               </div>
@@ -158,7 +161,7 @@
         @foreach($mahasiswa as $detail)
         @if($detail->id == request('cari') || is_null(request('cari')))
         @else
-        <div class=" px-5">
+        <div id="surat-ket" class=" px-5">
           <div>
             <table class="table-auto w-full border-collapse border border-gray-300">
               <thead>
@@ -186,5 +189,15 @@
       </div>
     </div>
   </form>
+  <script>
+    function printContent(el) {
+      var fullbody = document.body.innerHTML;
+      var printContent = document.getElementById(el).innerHTML;
+      document.body.innerHTML = printContent;
+      window.print();
+      document.body.innerHTML = fullbody;
+    }
+  </script>
+
 
 </x-app-layout>
