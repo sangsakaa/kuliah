@@ -69,6 +69,16 @@
                   </div>
                   <div class="">
                     : {{$detail->nama_mhs}} <br>
+
+                    <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}" class="w-full border border-gray-300 p-2">
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="w-16 ">
+                    Prodi
+                  </div>
+                  <div class="">
+                    :
                     {{$detail->prodi}}
                     <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}" class="w-full border border-gray-300 p-2">
                   </div>
@@ -90,7 +100,6 @@
                     <?php
                     $dateOfBirth = \Carbon\Carbon::parse($detail->tgl_lahir);
                     $age = $dateOfBirth->age;
-
                     echo "$age"
                     ?>
 
@@ -104,7 +113,6 @@
                     <tr class=" border bg-gray-50">
                       <th>Pertanyaan</th>
                       <th>Jawaban</th>
-
                     </tr>
                   </thead>
                   <tbody>
@@ -116,9 +124,9 @@
                         <input type="text" hidden name="screening_id[]" value="{{$list->id}}" class="w-full border border-gray-300 p-2">
                       </td>
                       <td class=" border ">
-                        <input type="radio" name="jawaban[{{$list->id}}]" value="ya" class=" border border-gray-300 p-2">
+                        <input type="radio" name="jawaban[{{$list->id}}]" value="ya" class=" border border-gray-300 p-2" {{isset($jawaban[$list->id]) ? $jawaban[$list->id]->jawaban == 'ya' ? 'checked' : '' : ''}}>
                         <label for="">Ya</label> <br>
-                        <input type="radio" name="jawaban[{{$list->id}}]" value="tidak" class=" border border-gray-300 p-2">
+                        <input type="radio" name="jawaban[{{$list->id}}]" value="tidak" class=" border border-gray-300 p-2" {{isset($jawaban[$list->id]) ? $jawaban[$list->id]->jawaban == 'tidak' ? 'checked' : '' : ''}}>
 
                         <label for="">Tidak</label>
                       </td>
@@ -144,6 +152,12 @@
           </div>
         </div>
         @endif
+        @if($mahasiswa->isEmpty())
+        <p>No data available.</p>
+        @else
+        @foreach($mahasiswa as $detail)
+        @if($detail->id == request('cari') || is_null(request('cari')))
+        @else
         <div class=" px-5">
           <div>
             <table class="table-auto w-full border-collapse border border-gray-300">
@@ -164,10 +178,11 @@
                 @endforeach
               </tbody>
             </table>
-
           </div>
-
         </div>
+        @endif
+        @endforeach
+        @endif
       </div>
     </div>
   </form>

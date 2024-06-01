@@ -28,10 +28,16 @@ class ScreeningController extends Controller
         }
         $jawaban = jawaban_screening::query()
             ->join('mahasiswa', 'mahasiswa.id', 'jawaban_screening.mahasiswa_id')
-            ->rightjoin('screening', 'jawaban_screening.screening_id', 'screening.id')
+            ->join('screening', 'jawaban_screening.screening_id', 'screening.id')
+            ->where('mahasiswa.nim', request('cari'))
             // ->select('nim')
             // ->where('nim', 20205110109)
-            ->get();
+            ->get()
+            ->mapWithKeys(function ($jawaban) {
+                return [
+                    $jawaban->screening_id => $jawaban
+                ];
+            });
 
         return view(
             'admin.mahasiswa.screening.screening',
