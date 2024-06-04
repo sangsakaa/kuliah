@@ -322,13 +322,13 @@
                 <div>
                   Mengetahui,<br>
                   Ketua RT/RW/Klinik,
-                  <p class=" mt-16">..................................................</p>
+                  <p class=" mt-20">..................................................</p>
                 </div>
                 <div class=" text-xs">
                   Kediri, {{ now()->locale('id')->isoFormat('LL') }} <br>
                   <!-- <br> yang membuat pernyataan <br> -->
                   Mahasiswa,
-                  <p class=" mt-16 underline">{{$mahasiswa->first()->nama_mhs}}
+                  <p class=" mt-20 underline">{{$mahasiswa->first()->nama_mhs}}
 
                   <p class=" ">NIM {{$mahasiswa->first()->nim}}
                   </p>
