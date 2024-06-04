@@ -321,7 +321,7 @@
               <div class=" grid grid-cols-2 mt-4">
                 <div>
                   Mengetahui,<br>
-                  Ketua RT/RW/Klinik,
+                  Ketua RT/RW/Klinik,OK,
                   <p class=" mt-20">..................................................</p>
                 </div>
                 <div class=" text-xs">
