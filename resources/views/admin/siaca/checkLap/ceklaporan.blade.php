@@ -12,7 +12,7 @@
         <table class=" mt-2">
           <thead>
             <tr>
-              <th class=" border px-1">NO</th>
+              <th class=" border px-1">No</th>
               <th class=" border px-1">Nama</th>
               <th class=" border px-1">DPL</th>
             </tr>
