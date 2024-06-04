@@ -243,7 +243,6 @@
                                                                                                 ?>
                   </div>
                 </div>
-
               </div>
               <div class=" ">
                 <span class="font-semibold">2. Kondisi Khusus Peserta</span>
@@ -278,7 +277,6 @@
                     </tbody>
                   </table>
                 </div>
-
                 <span class="font-semibold">3. Riwayat Penyakit Peserta dalam 6 bulan terakhir</span>
                 <div class=" pl-4">
                   <table class="  table-auto w-full border-collapse border border-gray-300 text-sm capitalize">
