@@ -67,6 +67,7 @@ Route::get('/screening-mahasiswa', [ScreeningController::class, 'index'])->name(
 Route::post('/screening-mahasiswa', [ScreeningController::class, 'screeningJawab']);
 Route::get('/form-screening-mahasiswa', [ScreeningController::class, 'create'])->name('form-screening-mahasiswa');
 Route::post('/form-screening-mahasiswa', [ScreeningController::class, 'store']);
+Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::class, 'destroy']);
 
 // userManajement
 Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');

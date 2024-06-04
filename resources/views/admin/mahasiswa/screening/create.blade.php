@@ -33,6 +33,7 @@
             <tr class=" border">
               <th>Pentanyaan</th>
               <th>Kategori</th>
+              <th>Act</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +41,13 @@
             <tr class=" border">
               <td>{{$list->soal}}</td>
               <td>{{$list->kategori}}</td>
+              <td>
+                <form action="/form-screening-mahasiswa/{{$list->id}}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button class=" bg-red-500 text-white px-2">H</button>
+                </form>
+              </td>
             </tr>
             @endforeach
           </tbody>

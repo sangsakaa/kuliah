@@ -67,6 +67,11 @@ class ScreeningController extends Controller
         $screening->save();
         return redirect()->back();
     }
+    public function destroy(screening $screening)
+    {
+        screening::destroy($screening->id);
+        return redirect()->back();
+    }
     public function screeningJawab(Request $request)
     {
         // dd($request);
