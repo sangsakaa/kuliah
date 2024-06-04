@@ -33,11 +33,12 @@ class ScreeningController extends Controller
             // ->select('nim')
             // ->where('nim', 20205110109)
             ->get()
-            ->mapWithKeys(function ($jawaban) {
+            ->mapWithKeys(function ($jawaban,) {
                 return [
-                    $jawaban->screening_id => $jawaban
+                $jawaban->screening_id => $jawaban
                 ];
             });
+        // dd($jawaban);
 
         return view(
             'admin.mahasiswa.screening.screening',
