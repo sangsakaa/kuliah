@@ -199,7 +199,7 @@
                 Dengan Hormat, <br> sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
               </p>
               <span class="font-semibold">1. Data Pribadi</span>
-              <div class="grid grid-cols-2 text-sm">
+              <div class="grid grid-cols-2 text-xs">
                 <div class="flex">
                   <div class="w-32 ">
                     NIM
@@ -324,7 +324,7 @@
                   Ketua RT/RW/Klinik,
                   <p class=" mt-16">..................................................</p>
                 </div>
-                <div>
+                <div class=" text-xs">
                   Kediri, {{ now()->locale('id')->isoFormat('LL') }} <br>
                   <!-- <br> yang membuat pernyataan <br> -->
                   Mahasiswa,
