@@ -49,6 +49,24 @@ class ScreeningController extends Controller
             ]
         );
     }
+    public function create()
+    {
+        $screening = screening::all();
+
+        return view(
+            'admin.mahasiswa.screening.create',
+            compact('screening')
+        );
+    }
+    public function store(Request $request)
+    {
+        // dd($request);
+        $screening = new screening();
+        $screening->soal = $request->soal;
+        $screening->kategori = $request->kategori;
+        $screening->save();
+        return redirect()->back();
+    }
     public function screeningJawab(Request $request)
     {
         // dd($request);
