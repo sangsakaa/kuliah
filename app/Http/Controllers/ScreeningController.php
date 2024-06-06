@@ -13,7 +13,22 @@ use Illuminate\Routing\Controller;
 
 class ScreeningController extends Controller
 {
-    public function index(Request $request)
+    public function index()
+    {
+        $dataScreening = jawaban_screening::query()
+            ->join('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
+            ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban')
+            ->get();
+
+        // Mengelompokkan data berdasarkan mahasiswa_id
+        $groupedData = $dataScreening->groupBy('mahasiswa_id');
+        return view(
+            'admin.mahasiswa.screening.index',
+            compact('dataScreening', 'groupedData')
+
+        );
+    }
+    public function screening(Request $request)
     {
 
         $mahasiswa = Mahasiswa::query();

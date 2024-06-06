@@ -63,11 +63,13 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
 
 // SCREENING
-Route::get('/screening-mahasiswa', [ScreeningController::class, 'index'])->name('screening-mahasiswa');
+Route::get('/daftar-screening-mahasiswa', [ScreeningController::class, 'index'])->name('daftar-screening-mahasiswa');
+Route::get('/screening-mahasiswa', [ScreeningController::class, 'screening'])->name('screening-mahasiswa');
 Route::post('/screening-mahasiswa', [ScreeningController::class, 'screeningJawab']);
 Route::get('/form-screening-mahasiswa', [ScreeningController::class, 'create'])->name('form-screening-mahasiswa');
 Route::post('/form-screening-mahasiswa', [ScreeningController::class, 'store']);
 Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::class, 'destroy']);
+Route::delete('/form-screening-mahasiswa/{mahasiswa_id}', [ScreeningController::class, 'destroy']);
 
 // userManajement
 Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');
