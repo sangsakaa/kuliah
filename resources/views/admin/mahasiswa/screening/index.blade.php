@@ -12,6 +12,7 @@
             <tr class=" border">
               <th class=" border ">No</th>
               <th class=" border text-left ">Daftar Mahasiswa</th>
+              <th class=" border text-left ">Program Studi</th>
               <th class=" border ">Action</th>
             </tr>
           </thead>
@@ -25,6 +26,9 @@
               </th>
               <td class=" px-2">
                 {{$data[0]->nama_mhs}}
+              </td>
+              <td class=" px-2">
+                {{$data[0]->prodi}}
               </td>
               <td class=" text-center">
 
