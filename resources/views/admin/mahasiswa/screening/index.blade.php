@@ -8,7 +8,7 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" px-4 py-4">
         <div>
-          <div class=" grid grid-cols-7 gap-2">
+          <div class=" grid sm:grid-cols-7 gap-2">
             @foreach($countProdi as $prodi => $counts)
             <div class=" p-2 border rounded-md ">
               <p>Program Studi: <br> {{ $prodi }}</p>
