@@ -7,7 +7,38 @@
   <div class=" w-full py-2 px-2 ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" px-4 py-4">
-        <table class=" w-full">
+        <div>
+          <div class=" grid grid-cols-7 gap-2">
+            @foreach($countProdi as $prodi => $counts)
+            <div class=" p-2 border rounded-md ">
+              <p>Program Studi: <br> {{ $prodi }}</p>
+              <p>Jumlah Mahasiswa {{ $counts['unique_mahasiswa_id'] }}</p>
+            </div>
+            @endforeach
+          </div>
+          <div>
+            <table hidden class="border-collapse border border-gray-500">
+              <thead>
+                <tr>
+                  <th class="border border-gray-500 ">Program Studi</th>
+                  <th class="border border-gray-500 ">Jumlah Mahasiswa</th>
+                </tr>
+              </thead>
+              <tbody>
+                @foreach($countProdi as $prodi => $counts)
+                <tr>
+                  <td class="border border-gray-500 ">{{ $prodi }}</td>
+                  <td class="border border-gray-500 ">{{ $counts['unique_mahasiswa_id'] }}</td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr class=" mt-1 border-2 border-black">
+        <hr class=" mt-0.5 border-black">
+
+        <table class=" mt-2 w-full">
           <thead>
             <tr class=" border">
               <th class=" px-2 border ">No</th>
@@ -45,6 +76,7 @@
 
           </tbody>
         </table>
+
 
       </div>
     </div>

@@ -24,10 +24,26 @@ class ScreeningController extends Controller
         ->sortBy('prodi')
         ->sortBy('nama_mhs')
         ->groupBy('mahasiswa_id');
+        // Menghitung jumlah mahasiswa berdasarkan prodi
+        $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {
+            $mahasiswaIdCount = $items->unique('mahasiswa_id')->count();
+            return [
+
+                'unique_mahasiswa_id' => $mahasiswaIdCount
+            ];
+        });
+
+
+        // Menampilkan nama prodi dengan jumlahnya
+        
+
+
+
+        
 
         return view(
             'admin.mahasiswa.screening.index',
-            compact('dataScreening', 'groupedData')
+            compact('dataScreening', 'groupedData', 'countProdi')
 
         );
     }
