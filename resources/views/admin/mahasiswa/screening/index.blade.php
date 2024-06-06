@@ -10,10 +10,10 @@
         <table class=" w-full">
           <thead>
             <tr class=" border">
-              <th class=" border ">No</th>
-              <th class=" border text-left ">Daftar Mahasiswa</th>
-              <th class=" border text-left ">Program Studi</th>
-              <th class=" border ">Action</th>
+              <th class=" px-2 border ">No</th>
+              <th class=" px-2 border text-left ">Daftar Mahasiswa</th>
+              <th class=" px-2 border text-left ">Program Studi</th>
+              <th class=" px-2 border ">Action</th>
             </tr>
           </thead>
           <tbody>
