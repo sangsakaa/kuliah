@@ -10,14 +10,19 @@
         <table class=" w-full">
           <thead>
             <tr class=" border">
-              <th>Daftar Mahasiswa</th>
-              <th>Action</th>
+              <th class=" border ">No</th>
+              <th class=" border text-left ">Daftar Mahasiswa</th>
+              <th class=" border ">Action</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($groupedData as $mahasiswaId => $data)
             @if ($data->isNotEmpty())
             <tr class=" border even:bg-gray-100 hover:bg-green-200">
+
+              <th class=" px-2">
+                {{$loop->iteration}}
+              </th>
               <td class=" px-2">
                 {{$data[0]->nama_mhs}}
               </td>

@@ -18,8 +18,7 @@ class ScreeningController extends Controller
         $dataScreening = jawaban_screening::query()
             ->join('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
             ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban')
-            ->get();
-
+        ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening->groupBy('mahasiswa_id');
         return view(
@@ -27,6 +26,12 @@ class ScreeningController extends Controller
             compact('dataScreening', 'groupedData')
 
         );
+    }
+    public function destroy_screening($mahasiswa_id)
+    {
+        jawaban_screening::where('mahasiswa_id', $mahasiswa_id)->delete();
+        return redirect()->back();
+
     }
     public function screening(Request $request)
     {
