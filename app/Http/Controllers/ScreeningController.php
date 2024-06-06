@@ -20,7 +20,11 @@ class ScreeningController extends Controller
             ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi')
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
-        $groupedData = $dataScreening->groupBy('mahasiswa_id');
+        $groupedData = $dataScreening
+        ->sortBy('prodi')
+        ->sortBy('nama_mhs')
+        ->groupBy('mahasiswa_id');
+
         return view(
             'admin.mahasiswa.screening.index',
             compact('dataScreening', 'groupedData')
