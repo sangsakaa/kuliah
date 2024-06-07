@@ -138,7 +138,7 @@ class UserPerMhsController extends Controller
     public function BuatLap(Request $request, Sesi_Laporan_Harian $sesi_Laporan_Harian)
 
     {
-        // dd($request);
+        
         $request->validate(
             [
                 // 'bukti_laporan' => 'required',
@@ -166,8 +166,6 @@ class UserPerMhsController extends Controller
                 $path = $file->storeAs('public/bukti_laporan', $filename);
                 $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
             }
-            
-
             $Lap->save();
         } else {
             $Lap = new Laporan_Mahasiswa();
@@ -176,14 +174,12 @@ class UserPerMhsController extends Controller
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
             $Lap->status_laporan = $request->status_laporan ?? 'draf';
             $Lap->note_laporan = $request->note_laporan;
-
             if ($request->hasFile('bukti_laporan')) {
                 $file = $request->file('bukti_laporan');
                 $filename = $file->getClientOriginalName();
                 $path = $file->storeAs('public/bukti_laporan', $filename);
                 $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
-            }
-            
+            }  
             $Lap->save();
         }
 
@@ -207,7 +203,7 @@ class UserPerMhsController extends Controller
     }
     public function unduhFile(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
-        dd($sesi_Laporan_Harian);
+        // dd($sesi_Laporan_Harian);
         $laporan = Laporan_Mahasiswa::findOrFail($sesi_Laporan_Harian->id);
 
         // Get the image file path based on the session and laporan ID
@@ -217,7 +213,7 @@ class UserPerMhsController extends Controller
         if (!Storage::exists($filePath)) {
             abort(404);
         }
-        dd($filePath);
+        // dd($filePath);
 
         // Generate a download response with the appropriate content type
         $headers = [

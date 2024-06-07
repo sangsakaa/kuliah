@@ -188,7 +188,7 @@
               <hr class=" mt-0.5 border border-black">
             </div>
             <div class=" ">
-              <div class=" mt-2 text-md-center  text-center  uppercase  font-serif">
+              <div class=" mt-2 text-md-center  text-center  uppercase  text-sm font-serif">
                 <p class="  font-semibold">Surat pernyataan kesehatan diri</p>
                 <p class="  font-semibold">peserta kuliah kerja nyata (KKN)</p>
                 <p class="  font-semibold">universitas wahidiyah kediri</p>
@@ -197,7 +197,7 @@
                 Dengan Hormat, <br> sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
               </p>
               <span class="font-semibold">1. Data Pribadi</span>
-              <div class="grid grid-cols-2 text-xs">
+              <div class=" px-4 grid grid-cols-2 text-xs">
                 <div class="flex">
                   <div class="w-32 ">
                     NIM
@@ -245,7 +245,7 @@
               <div class=" ">
                 <span class="font-semibold">2. Kondisi Khusus Peserta</span>
                 <div class=" pl-4">
-                  <table class="  table-auto w-full border-collapse border border-gray-300 text-sm capitalize">
+                  <table class=" text-xs  table-auto w-full border-collapse border border-gray-300  capitalize">
                     <thead>
                       <tr class="bg-gray-100">
                         <th class="border border-gray-300 px-2 py-1">Pertanyaan</th>
@@ -277,7 +277,7 @@
                 </div>
                 <span class="font-semibold">3. Riwayat Penyakit Peserta dalam 6 bulan terakhir</span>
                 <div class=" pl-4">
-                  <table class="  table-auto w-full border-collapse border border-gray-300 text-sm capitalize">
+                  <table class="  table-auto w-full border-collapse border border-gray-300 text-xs capitalize">
                     <thead>
                       <tr class="bg-gray-100">
                         <th class="border border-gray-300 px-2 py-1">Pertanyaan</th>
@@ -310,19 +310,19 @@
               </div>
               <div class="  text-justify text-sm  mt-4">
                 <p class=" ">
-                  <span class=" pl-16">Saya menyatakan dengan sebenar-benarnya bahwa seluruh pernyataan yang saya nyatakan</span> dalam Surat dan jawaban-jawaban Pernyataan Kesehatan Diri ini telah diberikan secara benar, lengkap dan sesuai dengan keadaan/kondisi yang sebenarnya.
+                  <span class="  pl-12">Saya menyatakan dengan sebenar-benarnya bahwa seluruh pernyataan yang saya nyatakan</span> dalam Surat dan jawaban-jawaban Pernyataan Kesehatan Diri ini telah diberikan secara benar, lengkap dan sesuai dengan keadaan/kondisi yang sebenarnya.
                 </p>
                 <p>
-                  <span class=" pl-16">Apabila ada pernyataan atau jawaban saya yang bertentangan</span> dengan keadaan sebenarnya atau adanya penyembunyian fakta-fakta/keterangan-keterangan yang seharusnya di kemukakan dalam Surat Pernyataan ini, maka saya sanggup menerima sanksi sesuai peraturan yang berlaku.
+                  <span class="  pl-12">Apabila ada pernyataan atau jawaban saya yang bertentangan</span> dengan keadaan sebenarnya atau adanya penyembunyian fakta-fakta/keterangan-keterangan yang seharusnya di kemukakan dalam Surat Pernyataan ini, maka saya sanggup menerima sanksi sesuai peraturan yang berlaku.
                 </p>
               </div>
-              <div class=" grid grid-cols-2 mt-4">
+              <div class=" text-xs grid grid-cols-2 mt-4">
                 <div>
                   Mengetahui,<br>
-                  Ketua RT/RW/Klinik,OK,
+                  Ketua RT/RW/Klinik,
                   <p class=" mt-20">..................................................</p>
                 </div>
-                <div class=" text-xs">
+                <div class=" ">
                   Kediri, {{ now()->locale('id')->isoFormat('LL') }} <br>
                   <!-- <br> yang membuat pernyataan <br> -->
                   Mahasiswa,
@@ -332,7 +332,7 @@
                   </p>
                 </div>
               </div>
-              <div class=" mt-6 px-4">
+              <div class=" text-xs mt-6 px-4">
                 <ul class=" list-disc">
                   <li>
                     Peserta yang berstatus bukan santri Ponpes Kedunglo mengetahui ketua RT/RW
