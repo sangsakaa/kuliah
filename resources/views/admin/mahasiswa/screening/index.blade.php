@@ -8,16 +8,20 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" px-4 py-4">
         <div>
-          <div class=" flex  gap-2">
+          <div class=" hidden  grid-cols-4  gap-2">
             @foreach($countProdi as $prodi => $counts)
             <div class=" p-2 border rounded-md ">
-              <p>Program Studi: <br> {{ $prodi }}</p>
+              <p>Program Studi: <br>{{$loop->iteration}}
+                {{ $prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini' ? 'PG PAUD' : ($prodi === 'S1 Pendidikan Bahasa Inggris' ? 'Pend. Bahasa Inggris' : $prodi) }}
+
+
+              </p>
               <p>Jumlah Mahasiswa {{ $counts['unique_mahasiswa_id'] }}</p>
             </div>
             @endforeach
           </div>
           <div>
-            <table hidden class="border-collapse border border-gray-500">
+            <table class="border-collapse border border-gray-500">
               <thead>
                 <tr>
                   <th class="border border-gray-500 ">Program Studi</th>
@@ -33,6 +37,37 @@
                 @endforeach
               </tbody>
             </table>
+            <table class="border-collapse border border-gray-500">
+              <thead>
+                <tr>
+                  @foreach($countProdi as $prodi => $counts)
+                  <th class="border border-gray-500">
+
+
+                    @if ($prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
+                    S1 HKI
+                    @elseif ($prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
+                    S1 PG PAUD
+                    @elseif ($prodi === 'S1 Pendidikan Bahasa Inggris')
+                    S1 PG PAUD
+                    @else
+                    {{ $prodi }}
+                    @endif
+
+                  </th>
+                  @endforeach
+
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  @foreach($countProdi as $prodi => $counts)
+                  <td class="border border-gray-500">{{ $counts['unique_mahasiswa_id'] }}</td>
+                  @endforeach
+                </tr>
+              </tbody>
+            </table>
+
           </div>
         </div>
         <hr class=" mt-1 border-2 border-black">
@@ -81,4 +116,5 @@
       </div>
     </div>
   </div>
+
 </x-app-layout>

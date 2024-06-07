@@ -1,8 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-
-      @section('title', ' | SCREENING '.$mahasiswa->first()->nama_mhs )
+      @section('title', ' | SCREENING ' . ($mahasiswa->first()->nama_mhs ?? ''))
     </h2>
   </x-slot>
   <div class=" w-full py-2 px-2 ">
@@ -18,7 +17,7 @@
               Cari By NIM </button>
           </div>
         </form>
-        <div class=" grid ">
+        <div class=" grid  ">
           <div class=" grid ">
             @if($mahasiswa->isEmpty())
             <p>No data available.</p>
