@@ -22,7 +22,7 @@ class ScreeningController extends Controller
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
         ->sortBy('prodi')
-        ->sortBy('nama_mhs')
+        // ->sortBy('nama_mhs')
         ->groupBy('mahasiswa_id');
         // Menghitung jumlah mahasiswa berdasarkan prodi
         $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {

@@ -8,20 +8,39 @@
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" px-4 py-4">
         <div>
-          <div class=" hidden  grid-cols-4  gap-2">
-            @foreach($countProdi as $prodi => $counts)
-            <div class=" p-2 border rounded-md ">
-              <p>Program Studi: <br>{{$loop->iteration}}
-                {{ $prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini' ? 'PG PAUD' : ($prodi === 'S1 Pendidikan Bahasa Inggris' ? 'Pend. Bahasa Inggris' : $prodi) }}
 
+          <div class="grid sm:grid-cols-6 gap-2">
+            @foreach($countProdi as $prodi => $counts)
+            <div class="p-2 border rounded-md 
+                @if(strpos($prodi, 'Teknik') !== false) bg-blue-200 
+                @elseif(strpos($prodi, 'Pendidikan') !== false) bg-pink-200 
+                @elseif(strpos($prodi, 'Akuntansi') !== false || strpos($prodi, 'Manajemen') !== false) bg-yellow-200
+                @endif">
+              <p class="text-xs">
+                @if ($prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
+                Pend. PG PAUD
+                @elseif ($prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
+                Pend. Hukum Keluarga Islam
+                @elseif ($prodi === 'S1 Pendidikan Matematika')
+                Pend. Matematika
+                @elseif ($prodi === 'S1 Pendidikan Bahasa Inggris')
+                Pend. Bahasa Inggris
+                @elseif ($prodi === 'S1 Pendidikan Kimia')
+                Pend. Kimia
+                @else
+                {{ $prodi }}
+                @endif
 
               </p>
-              <p>Jumlah Mahasiswa {{ $counts['unique_mahasiswa_id'] }}</p>
+              <p class="text-sm">Jumlah Mahasiswa : {{ $counts['unique_mahasiswa_id'] }}</p>
             </div>
             @endforeach
           </div>
+
+
+
           <div>
-            <table class="border-collapse border border-gray-500">
+            <table hidden class="border-collapse border border-gray-500">
               <thead>
                 <tr>
                   <th class="border border-gray-500 ">Program Studi</th>
@@ -37,7 +56,7 @@
                 @endforeach
               </tbody>
             </table>
-            <table class="border-collapse border border-gray-500">
+            <table hidden class="border-collapse border border-gray-500">
               <thead>
                 <tr>
                   @foreach($countProdi as $prodi => $counts)
