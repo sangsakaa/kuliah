@@ -246,7 +246,7 @@
                     Tinggi Badan
                   </div>
                   <div class=" capitalize">
-                    : ...........................cm
+                    : .......cm
                   </div>
                 </div>
                 <div class="flex">
@@ -254,7 +254,7 @@
                     Berat Badan
                   </div>
                   <div class=" capitalize">
-                    : ...........................kg
+                    : .......kg
                   </div>
                 </div>
               </div>
@@ -281,7 +281,7 @@
                           if (!is_null($item->keterangan)) {
                             echo $item->keterangan;
                           } else {
-                            echo ".........................................";
+                            echo "..............................";
                           }
                           ?>
                         </td>
@@ -313,7 +313,7 @@
                           if (!is_null($item->keterangan)) {
                             echo $item->keterangan;
                           } else {
-                            echo ".........................................";
+                            echo "..............................";
                           }
                           ?>
                         </td>
@@ -333,12 +333,12 @@
                 </p>
               </div>
               <div class=" text-xs grid grid-cols-2 mt-4">
-                <div>
+                <div class="    pl-20">
                   Mengetahui,<br>
                   Ketua RT/RW/Klinik,
                   <p class=" mt-20">..................................................</p>
                 </div>
-                <div class=" ">
+                <div class="  pl-48  ">
                   Kediri, {{ now()->locale('id')->isoFormat('LL') }} <br>
                   <!-- <br> yang membuat pernyataan <br> -->
                   Mahasiswa,
@@ -348,7 +348,7 @@
                   </p>
                 </div>
               </div>
-              <div class=" text-xs mt-6 px-4">
+              <div class="  text-xs mt-6 px-4">
                 <ul class=" list-disc">
                   <li>
                     Peserta yang berstatus
