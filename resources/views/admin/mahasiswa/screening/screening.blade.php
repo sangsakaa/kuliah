@@ -351,10 +351,17 @@
               <div class=" text-xs mt-6 px-4">
                 <ul class=" list-disc">
                   <li>
-                    Peserta yang berstatus bukan santri Ponpes Kedunglo mengetahui ketua RT/RW
+                    Peserta yang berstatus
+                    <span class=" font-semibold underline">
+                      bukan santri
+                    </span> Ponpes Kedunglo mengetahui ketua RT/RW
                   </li>
                   <li>
-                    Peserta yang berstatus santri Ponpes Kedunglo mengetahui ketua Klinik Wahidiyah
+                    Peserta yang berstatus
+                    <span class="  font-semibold underline">
+                      santri
+                    </span>
+                    Ponpes Kedunglo mengetahui ketua Klinik Wahidiyah
                   </li>
                 </ul>
               </div>
