@@ -196,7 +196,7 @@
               <p class=" text-sm text-justify">
                 Dengan Hormat, <br> Sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
               </p>
-              <span class="font-semibold">1. Data Pribadi</span>
+              <span class="font-semibold  text-sm">1. Data Pribadi</span>
               <div class=" px-4 grid grid-cols-2 text-xs">
                 <div class="flex">
                   <div class="w-32 ">
@@ -259,7 +259,7 @@
                 </div>
               </div>
               <div class=" ">
-                <span class="font-semibold">2. Kondisi Khusus Peserta</span>
+                <span class="font-semibold text-sm">2. Kondisi Khusus Peserta</span>
                 <div class=" pl-4">
                   <table class=" text-xs  table-auto w-full border-collapse border border-gray-300  capitalize">
                     <thead>
@@ -291,7 +291,7 @@
                     </tbody>
                   </table>
                 </div>
-                <span class="font-semibold">3. Riwayat Penyakit Peserta dalam 6 bulan terakhir</span>
+                <span class="font-semibold text-sm">3. Riwayat Penyakit Peserta dalam 6 bulan terakhir</span>
                 <div class=" pl-4">
                   <table class="  table-auto w-full border-collapse border border-gray-300 text-xs capitalize">
                     <thead>
