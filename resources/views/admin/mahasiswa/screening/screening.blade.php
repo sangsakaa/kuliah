@@ -187,7 +187,7 @@
               <hr class=" mt-2 border-b-2 border-black">
               <hr class=" mt-0.5 border border-black">
             </div>
-            <div class=" ">
+            <div class=" font-serif ">
               <div class=" mt-2 text-md-center  text-center  uppercase  text-sm font-serif">
                 <p class="  font-semibold">Surat pernyataan kesehatan diri</p>
                 <p class="  font-semibold">peserta kuliah kerja nyata (KKN)</p>
