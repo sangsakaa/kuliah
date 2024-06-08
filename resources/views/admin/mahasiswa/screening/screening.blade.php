@@ -234,11 +234,27 @@
                     Tgl Lahir
                   </div>
                   <div class=" capitalize">
-                    : {{ \Carbon\Carbon::parse($detail->tgl_lahir)->isoFormat(' DD MMMM Y') }}| <?php
-                                                                                                $dateOfBirth = \Carbon\Carbon::parse($detail->tgl_lahir);
-                                                                                                $age = $dateOfBirth->age;
-                                                                                                echo "$age"
-                                                                                                ?>
+                    : {{ \Carbon\Carbon::parse($detail->tgl_lahir)->isoFormat(' DD MMMM Y') }} | <?php
+                                                                                                  $dateOfBirth = \Carbon\Carbon::parse($detail->tgl_lahir);
+                                                                                                  $age = $dateOfBirth->age;
+                                                                                                  echo "$age"
+                                                                                                  ?>
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="w-32 ">
+                    Tinggi Badan
+                  </div>
+                  <div class=" capitalize">
+                    : ...........................cm
+                  </div>
+                </div>
+                <div class="flex">
+                  <div class="w-32 ">
+                    Berat Badan
+                  </div>
+                  <div class=" capitalize">
+                    : ...........................kg
                   </div>
                 </div>
               </div>
