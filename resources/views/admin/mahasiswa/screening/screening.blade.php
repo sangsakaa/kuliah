@@ -194,7 +194,7 @@
                 <p class="  font-semibold">universitas wahidiyah kediri</p>
               </div>
               <p class=" text-sm text-justify">
-                Dengan Hormat, <br> sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
+                Dengan Hormat, <br> Sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
               </p>
               <span class="font-semibold">1. Data Pribadi</span>
               <div class=" px-4 grid grid-cols-2 text-xs">
