@@ -338,7 +338,7 @@
                   Ketua RT/RW/Klinik,
                   <p class=" mt-20">..................................................</p>
                 </div>
-                <div class="  pl-48  ">
+                <div class="   pl-32  ">
                   Kediri, {{ now()->locale('id')->isoFormat('LL') }} <br>
                   <!-- <br> yang membuat pernyataan <br> -->
                   Mahasiswa,
