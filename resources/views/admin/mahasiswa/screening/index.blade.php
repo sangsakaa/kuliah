@@ -96,6 +96,7 @@
           <thead>
             <tr class=" border">
               <th class=" px-2 border ">No</th>
+              <th class=" px-2 border text-left ">NIM</th>
               <th class=" px-2 border text-left ">Daftar Mahasiswa</th>
               <th class=" px-2 border text-left ">Program Studi</th>
               <th class=" px-2 border ">Action</th>
@@ -109,6 +110,9 @@
               <th class=" px-2">
                 {{$loop->iteration}}
               </th>
+              <td class=" px-2">
+                {{$data[0]->nim}}
+              </td>
               <td class=" px-2">
                 {{$data[0]->nama_mhs}}
               </td>

@@ -17,7 +17,7 @@ class ScreeningController extends Controller
     {
         $dataScreening = jawaban_screening::query()
             ->join('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
-            ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi')
+            ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi', 'nim')
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
