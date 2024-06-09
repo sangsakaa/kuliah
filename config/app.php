@@ -25,6 +25,7 @@ use Illuminate\Notifications\NotificationServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
 use Illuminate\Foundation\Providers\FoundationServiceProvider;
 use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
+use PDF;
 
 return [
 
@@ -223,6 +224,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         
         
 
@@ -242,6 +244,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        
         
     ])->toArray(),
 
