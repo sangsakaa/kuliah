@@ -378,6 +378,4 @@
       document.body.innerHTML = fullbody;
     }
   </script>
-
-
 </x-app-layout>

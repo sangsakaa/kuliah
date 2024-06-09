@@ -112,6 +112,7 @@ class ScreeningController extends Controller
 
         $dompdf->render();
         $dompdf->stream('data-pdf.pdf', ['Attachment' => false]);
+        
     }
     public function screening(Request $request)
     {

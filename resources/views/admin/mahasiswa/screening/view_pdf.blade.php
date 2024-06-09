@@ -20,7 +20,7 @@
   }
 
   * {
-    font-family: 'DejaVu Sans', sans-serif !important;
+    font-family: 'Times New Roman', Times, serif !important;
   }
 
   .bio {
@@ -35,20 +35,59 @@
   .nama {
     margin-top: 70px;
   }
+
+  body {
+    font-family: Arial, sans-serif;
+    font-size: smaller;
+  }
 </style>
 <div>
-  <div class=" font-serif ">
-    <center>
-      Surat Pernyataan Kesehatan Diri <br>
-      peserta Kuliah Kerja Nyata (KKN) <br>
-      Universitas Wahidiyah Kediri
-    </center>
 
-  </div>
+  <!-- <img  width="100px" height="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}"> -->
+  <style>
+    .font-new {
+      font-family: sans-serif
+    }
+
+    .sekretariat {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .kop-1 {
+      font-size: 19px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .kop {
+      text-align: center;
+    }
+  </style>
+  <table class="  kop">
+    <tr>
+      <td>
+        <img height="100px" width="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
+      </td>
+      <td>
+        <span class=" kop-1">
+          Yayasan Perjuangan Wahidiyah dan Pondok Pesantren Kedunglo <br>
+          Universitas Wahidiyah <br>
+          Panitia Pelaksanaan Kuliah Kerja Nyata (KKN) <br>
+        </span>
+        <span class="sekretariat ">SK Kemendikbud RI. Nomor 608/E/O/2014 Tanggal 17 Oktober 2014</span> <br>
+        <span class=" sekretariat">Sekretariat : Pon-Pes Kedunglo Jl KH. Wahid Hasyim Kota Kediri Jawa Timur 64114 Telp. (0354) 771018 <br>
+          Email: rektorat@uniwa.ac.id </span>
+      </td>
+    </tr>
+  </table>
+  <hr>
+  Surat Pernyataan Kesehatan Diri <br>
+  peserta Kuliah Kerja Nyata (KKN) <br>
+  Universitas Wahidiyah Kediri
   <p class=" justified-text">
     Dengan Hormat, <br> Sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
   </p>
-
   <table class=" bio">
     <tr>
       <td>NIM </td>
@@ -57,7 +96,6 @@
       <td>
         : {{ \Carbon\Carbon::parse($mahasiswa->first()->tgl_lahir)->isoFormat(' DD MMMM Y') }}
       </td>
-
     </tr>
     <tr>
       <td>Nama Lengkap </td>
