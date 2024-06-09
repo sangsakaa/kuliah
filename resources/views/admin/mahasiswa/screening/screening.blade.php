@@ -44,13 +44,12 @@
         @if(!$mahasiswa->isEmpty())
         <div class="w-full py-4 px-4 gap-2">
           <div class="grid">
-
             <div class="grid">
               @foreach($mahasiswa as $detail)
               @if($detail->id == request('cari') || is_null(request('cari')))
               @else
               <span class="font-semibold">1. Data Pribadi</span>
-              <div class="grid grid-cols-1">
+              <div class="grid grid-cols-1 sm:grid-cols-2">
                 <div class="flex">
                   <div class="w-16 ">
                     NIM
@@ -88,23 +87,14 @@
                     Tgl Lahir
                   </div>
                   <div class=" capitalize">
-                    : {{ \Carbon\Carbon::parse($detail->tgl_lahir)->isoFormat(' DD MMMM Y') }}
+                    : {{ \Carbon\Carbon::parse($detail->tgl_lahir)->isoFormat(' DD MMMM Y') }} | <?php
+                                                                                                  $dateOfBirth = \Carbon\Carbon::parse($detail->tgl_lahir);
+                                                                                                  $age = $dateOfBirth->age;
+                                                                                                  echo "$age"
+                                                                                                  ?>
                   </div>
                 </div>
-                <div class="flex">
-                  <div class="w-16 ">
-                    Usia
-                  </div>
-                  <div class=" capitalize">
-                    :
-                    <?php
-                    $dateOfBirth = \Carbon\Carbon::parse($detail->tgl_lahir);
-                    $age = $dateOfBirth->age;
-                    echo "$age"
-                    ?>
 
-                  </div>
-                </div>
               </div>
               <div class=" overflow-auto">
                 <span class="font-semibold">2. Kondisi Khusus Peserta</span>
@@ -143,6 +133,7 @@
                 <button class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " onclick="printContent('surat-ket')">
                   Cetak Kartu Kesehatan
                 </button>
+                <a class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">pdf</a>
                 </table>
 
               </div>
@@ -161,7 +152,7 @@
         @foreach($mahasiswa as $detail)
         @if($detail->id == request('cari') || is_null(request('cari')))
         @else
-        <div id="surat-ket" class=" text-xs sm:text-xs font-serif px-5">
+        <div id="surat-ket" class=" hidden text-xs sm:text-xs font-serif px-5">
           <div>
             <div class="  gap-2 ">
               <div class=" flex">
@@ -210,6 +201,15 @@
                     @endif
                   </div>
                 </div>
+
+                <div class="flex">
+                  <div class="w-32 ">
+                    Tinggi Badan
+                  </div>
+                  <div class=" capitalize">
+                    : .......cm
+                  </div>
+                </div>
                 <div class="flex">
                   <div class="w-32 ">
                     Nama
@@ -219,6 +219,15 @@
                     <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}" class="w-full border border-gray-300 p-2">
                   </div>
                 </div>
+                <div class="flex">
+                  <div class="w-32 ">
+                    Berat Badan
+                  </div>
+                  <div class=" capitalize">
+                    : .......kg
+                  </div>
+                </div>
+
                 <div class="flex">
                   <div class="w-32 ">
                     Prodi
@@ -241,22 +250,8 @@
                                                                                                   ?>
                   </div>
                 </div>
-                <div class="flex">
-                  <div class="w-32 ">
-                    Tinggi Badan
-                  </div>
-                  <div class=" capitalize">
-                    : .......cm
-                  </div>
-                </div>
-                <div class="flex">
-                  <div class="w-32 ">
-                    Berat Badan
-                  </div>
-                  <div class=" capitalize">
-                    : .......kg
-                  </div>
-                </div>
+
+
               </div>
               <div class=" ">
                 <span class="font-semibold text-sm">2. Kondisi Khusus Peserta</span>
@@ -264,9 +259,9 @@
                   <table class=" text-xs  table-auto w-full border-collapse border border-gray-300  capitalize">
                     <thead>
                       <tr class="bg-gray-100">
-                        <th class="border border-gray-300 px-2 py-1">Pertanyaan</th>
-                        <th class="border border-gray-300 px-2 py-1">Jawaban</th>
-                        <th class="border border-gray-300 px-2 py-1">Keterangan</th>
+                        <th class="border border-gray-300 px-1 py-1">Pertanyaan</th>
+                        <th class="border border-gray-300 px-1 py-1">Jawaban</th>
+                        <th class="border border-gray-300 px-1 py-1">Keterangan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -274,9 +269,9 @@
                       @foreach($jawaban as $item)
                       @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 2)
                       <tr>
-                        <td class="border border-gray-300 px-2 py-1">{{$item->soal}}</td>
-                        <td class="border border-gray-300 px-2 py-1 capitalize">{{$item->jawaban}}</td>
-                        <td class="border border-gray-300 px-2 py-1 capitalize">
+                        <td class="border border-gray-300 px-1 py-1  w-2/3">{{$item->soal}}</td>
+                        <td class="border border-gray-300 px-1 py-1 capitalize text-center ">{{$item->jawaban}}</td>
+                        <td class="border border-gray-300 px-1 py-1 capitalize">
                           <?php
                           if (!is_null($item->keterangan)) {
                             echo $item->keterangan;
@@ -296,9 +291,9 @@
                   <table class="  table-auto w-full border-collapse border border-gray-300 text-xs capitalize">
                     <thead>
                       <tr class="bg-gray-100">
-                        <th class="border border-gray-300 px-2 py-1">Pertanyaan</th>
-                        <th class="border border-gray-300 px-2 py-1">Jawaban</th>
-                        <th class="border border-gray-300 px-2 py-1">Keterangan</th>
+                        <th class="border border-gray-300 px-1 py-1">Pertanyaan</th>
+                        <th class="border border-gray-300 px-1 py-1">Jawaban</th>
+                        <th class="border border-gray-300 px-1 py-1">Keterangan</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -306,9 +301,9 @@
                       @foreach($jawaban as $item)
                       @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 3)
                       <tr>
-                        <td class="border border-gray-300  px-2 py-1">{{$item->soal}}</td>
-                        <td class="border border-gray-300  px-2 py-1 capitalize">{{$item->jawaban}}</td>
-                        <td class="border border-gray-300  px-2 py-1 capitalize">
+                        <td class="border border-gray-300  px-1 py-1   w-2/3 ">{{$item->soal}}</td>
+                        <td class="border border-gray-300  px-1 py-1 capitalize text-center ">{{$item->jawaban}}</td>
+                        <td class="border border-gray-300  px-1 py-1 capitalize">
                           <?php
                           if (!is_null($item->keterangan)) {
                             echo $item->keterangan;

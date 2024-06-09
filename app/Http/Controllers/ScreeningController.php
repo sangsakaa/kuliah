@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
+
 use App\Models\Mahasiswa;
 use App\Models\screening;
 
 use Illuminate\Http\Request;
 use App\Models\jawaban_screening;
+use App\Models\Kecamatan;
+use Dompdf\Dompdf;
 use Illuminate\Routing\Controller;
 
 
@@ -32,15 +34,6 @@ class ScreeningController extends Controller
                 'unique_mahasiswa_id' => $mahasiswaIdCount
             ];
         });
-
-
-        // Menampilkan nama prodi dengan jumlahnya
-        
-
-
-
-        
-
         return view(
             'admin.mahasiswa.screening.index',
             compact('dataScreening', 'groupedData', 'countProdi')
@@ -51,18 +44,80 @@ class ScreeningController extends Controller
     {
         jawaban_screening::where('mahasiswa_id', $mahasiswa_id)->delete();
         return redirect()->back();
+    }
+    public function view_pdf($nim)
+    {
+        $soal = screening::query()
+            // ->rightjoin('jawaban_screening', 'jawaban_screening.screening_id', 'screening.id')
+            // ->select('screening.id', 'jawaban', 'soal ')
+            ->get();
+        $mahasiswa = Mahasiswa::where('nim', $nim);
+        $jawaban = jawaban_screening::query()
+            ->join('mahasiswa', 'mahasiswa.id', 'jawaban_screening.mahasiswa_id')
+            ->join('screening', 'jawaban_screening.screening_id', 'screening.id')
+            ->where('mahasiswa.nim', $nim)
+            // ->select('nim')
+            // ->where('nim', 20205110109)
+            ->get()
+            ->mapWithKeys(function ($jawaban,) {
+                return [
+                    $jawaban->screening_id => $jawaban
+                ];
+            });
+        // dd($jawaban);
 
+        return view(
+            'admin.mahasiswa.screening.view_pdf',
+            [
+                'mahasiswa' => $mahasiswa->get(),
+                'soal' => $soal,
+                'jawaban' => $jawaban
+            ]
+        );
+    }
+
+
+    public function download_pdf($nim)
+    {
+
+        $dompdf = new Dompdf();
+        $soal = screening::query()
+            // ->rightjoin('jawaban_screening', 'jawaban_screening.screening_id', 'screening.id')
+            // ->select('screening.id', 'jawaban', 'soal ')
+            ->get();
+        $mahasiswa = Mahasiswa::where('nim', $nim);
+        $jawaban = jawaban_screening::query()
+            ->join('mahasiswa', 'mahasiswa.id', 'jawaban_screening.mahasiswa_id')
+            ->join('screening', 'jawaban_screening.screening_id', 'screening.id')
+            ->where('mahasiswa.nim', $nim)
+            // ->select('nim')
+            // ->where('nim', 20205110109)
+            ->get()
+            ->mapWithKeys(function ($jawaban,) {
+                return [
+                    $jawaban->screening_id => $jawaban
+                ];
+            });
+        $html = view(
+            'admin.mahasiswa.screening.view_pdf',
+            [
+                'mahasiswa' => $mahasiswa->get(),
+                'soal' => $soal,
+                'jawaban' => $jawaban
+            ]
+        )->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        $dompdf->render();
+        $dompdf->stream('data-pdf.pdf', ['Attachment' => false]);
     }
     public function screening(Request $request)
     {
-
-        $mahasiswa = Mahasiswa::query();
         $soal = screening::query()
             // ->rightjoin('jawaban_screening', 'jawaban_screening.screening_id', 'screening.id')
-            // ->select('screening.id', 'jawaban', 'soal')
+            // ->select('screening.id', 'jawaban', 'soal ')
             ->get();
-        
-
+        $mahasiswa = Mahasiswa::query();
         if (request('cari') !== null) {
             $mahasiswa->where('nim', '=', request('cari'));
         }
