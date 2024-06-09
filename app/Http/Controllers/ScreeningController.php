@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 
-use App\Models\Mahasiswa;
-use App\Models\screening;
-
-use Illuminate\Http\Request;
-use App\Models\jawaban_screening;
-use App\Models\Kecamatan;
 use Dompdf\Dompdf;
+use App\Models\Mahasiswa;
+
+use App\Models\screening;
+use Illuminate\Http\Request;
+
+use App\Models\jawaban_screening;
 use Illuminate\Routing\Controller;
+
 
 
 class ScreeningController extends Controller
