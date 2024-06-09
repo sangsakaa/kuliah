@@ -19,6 +19,10 @@
     padding-left: 20px;
   }
 
+  * {
+    font-family: DejaVu Sans !important;
+  }
+
   .bio {
 
     width: 100%;
