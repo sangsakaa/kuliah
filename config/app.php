@@ -29,6 +29,8 @@ use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
 use Illuminate\Foundation\Providers\FoundationServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
+use PDF;
+
 
 
 
@@ -230,11 +232,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         
-        
-        
-        
-        
-
     ],
 
     /*
@@ -252,8 +249,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         
-        
-        
+
         
     ])->toArray(),
 

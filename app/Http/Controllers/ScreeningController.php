@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 
 use Dompdf\Dompdf;
 use App\Models\Mahasiswa;
-
 use App\Models\screening;
 use Illuminate\Http\Request;
 
