@@ -20,7 +20,7 @@
   }
 
   * {
-    font-family: DejaVu Sans !important;
+    font-family: sans-serif !important;
   }
 
   .bio {
