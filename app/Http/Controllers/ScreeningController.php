@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Dompdf\Dompdf;
+use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Mahasiswa;
 
 use App\Models\screening;
