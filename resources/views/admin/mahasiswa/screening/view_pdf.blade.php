@@ -57,6 +57,8 @@
 
   }
 </style>
+
+
 <div>
 
   <!-- <img  width="100px" height="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}"> -->
@@ -169,16 +171,16 @@
     @foreach($jawaban as $item)
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 2)
     <tr>
-      <td class="px-1 py-1 w-2/3">{{$item->soal}}</td>
+      <td class="px-1 py-1 ">{{$item->soal}}</td>
       <td class="px-1 py-1 capitalize text-center simbol ">
         @if($item->jawaban == 'ya')
-        ✓
-        &copy;
+        Ya
         @endif
       </td>
       <td class="px-1 py-1 capitalize text-center ">
         @if($item->jawaban == 'tidak')
-        ✓
+        Tidak
+
         @endif
       </td>
       <td class="px-1 py-1 capitalize">
@@ -222,12 +224,12 @@
       <td class="border border-gray-300  px-1 py-1   w-2/3 ">{{$item->soal}}</td>
       <td class="px-1 py-1 capitalize text-center simbol ">
         @if($item->jawaban == 'ya')
-        ✓
+        Ya
         @endif
       </td>
       <td class="px-1 py-1 capitalize text-center simbol">
         @if($item->jawaban == 'tidak')
-        ✓
+        Tidak
         @endif
       </td>
       <td class="border border-gray-300  px-1 py-1 capitalize">
