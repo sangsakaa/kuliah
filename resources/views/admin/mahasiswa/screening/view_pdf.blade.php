@@ -1,9 +1,16 @@
 <style>
   table {
     border-collapse: collapse;
+    padding-left: 17px;
   }
 
-  .soal th,
+  .soal th {
+    text-align: center;
+    border: 1px solid black;
+    padding: 2px;
+    background-color: rgba(0, 128, 0, 0.5);
+  }
+
   .soal td {
     border: 1px solid black;
     padding: 2px;
@@ -40,6 +47,15 @@
     font-family: Arial, sans-serif;
     font-size: smaller;
   }
+
+  .jawab {
+    text-align: center;
+  }
+
+  .symbol {
+    font-family: 'Arial', sans-serif;
+
+  }
 </style>
 <div>
 
@@ -55,16 +71,32 @@
     }
 
     .kop-1 {
-      font-size: 19px;
+      font-size: 14px;
       text-align: center;
       font-weight: bold;
+      text-transform: uppercase;
     }
 
     .kop {
       text-align: center;
+
+    }
+
+    center {
+      font-weight: bold;
+    }
+
+    hr {
+      border: double 3px;
+    }
+
+    .title {
+      font-weight: bold;
+      padding-left: none;
+      padding-top: 10px;
     }
   </style>
-  <table class="  kop">
+  <table class=" kop">
     <tr>
       <td>
         <img height="100px" width="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
@@ -82,12 +114,18 @@
     </tr>
   </table>
   <hr>
-  Surat Pernyataan Kesehatan Diri <br>
-  peserta Kuliah Kerja Nyata (KKN) <br>
-  Universitas Wahidiyah Kediri
+  <center>
+    Surat Pernyataan Kesehatan Diri <br>
+    peserta Kuliah Kerja Nyata (KKN) <br>
+    Universitas Wahidiyah Kediri
+  </center>
   <p class=" justified-text">
     Dengan Hormat, <br> Sehubungan dengan Persyatan Peserta KKN yang ditetapkan Panitia KKN UNIWA, dengan ini saya memberikan pertanyaan-pertanyaan atau informasi sebagai berikut :
   </p>
+  <span class=" title">
+
+    1. Data Pribadi
+  </span>
   <table class=" bio">
     <tr>
       <td>NIM </td>
@@ -111,22 +149,38 @@
     </tr>
   </table>
 </div>
-2. Kondisi Khusus Peserta
-<table class=" bio soal table text-xs table-auto w-full  custom-border capitalize">
+<span class=" title">
+
+  2. Kondisi Khusus Peserta
+</span>
+<table class="bio soal table text-xs table-auto w-full custom-border capitalize">
   <thead>
     <tr>
-      <th class="tanya px-1 py-1">Pertanyaan</th>
-      <th class="px-1 py-1">Jawaban</th>
-      <th class="px-1 py-1">Keterangan</th>
+      <th class="tanya px-1 py-1" rowspan="2">Pertanyaan</th>
+      <th class="px-1 py-1" colspan="2">Jawaban</th>
+      <th class="px-1 py-1" rowspan="2">Keterangan</th>
+    </tr>
+    <tr>
+      <th class="px-1 py-1">Ya</th>
+      <th class="px-1 py-1">Tidak</th>
     </tr>
   </thead>
   <tbody>
-    <!-- Tabel untuk kategori 2 -->
     @foreach($jawaban as $item)
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 2)
     <tr>
       <td class="px-1 py-1 w-2/3">{{$item->soal}}</td>
-      <td class="px-1 py-1 capitalize text-center ">{{$item->jawaban}}</td>
+      <td class="px-1 py-1 capitalize text-center simbol ">
+        @if($item->jawaban == 'ya')
+        ✓
+        &copy;
+        @endif
+      </td>
+      <td class="px-1 py-1 capitalize text-center ">
+        @if($item->jawaban == 'tidak')
+        ✓
+        @endif
+      </td>
       <td class="px-1 py-1 capitalize">
         <?php
         if (!is_null($item->keterangan)) {
@@ -141,14 +195,24 @@
     @endforeach
   </tbody>
 </table>
-3. Riwayat Penyakit Peserta dalam 6 bulan terakhir
+
+<span class=" title">
+  <br>
+  3. Riwayat Penyakit Peserta dalam 6 bulan terakhir
+</span>
 <table class=" bio  soal table text-xs table-auto w-full border-collapse custom-border capitalize">
   <thead>
-    <tr class="bg-gray-100">
-      <th class="tanya border border-gray-300 px-1 py-1">Pertanyaan</th>
-      <th class="border border-gray-300 px-1 py-1">Jawaban</th>
-      <th class="border border-gray-300 px-1 py-1">Keterangan</th>
-    </tr>
+    <thead>
+      <tr>
+        <th class="tanya px-1 py-1" rowspan="2">Pertanyaan</th>
+        <th class="px-1 py-1" colspan="2">Jawaban</th>
+        <th class="px-1 py-1" rowspan="2">Keterangan</th>
+      </tr>
+      <tr>
+        <th class="px-1 py-1">Ya</th>
+        <th class="px-1 py-1">Tidak</th>
+      </tr>
+    </thead>
   </thead>
   <tbody>
     <!-- Tabel untuk kategori 3 -->
@@ -156,7 +220,16 @@
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 3)
     <tr>
       <td class="border border-gray-300  px-1 py-1   w-2/3 ">{{$item->soal}}</td>
-      <td class="border border-gray-300  px-1 py-1 capitalize text-center ">{{$item->jawaban}}</td>
+      <td class="px-1 py-1 capitalize text-center simbol ">
+        @if($item->jawaban == 'ya')
+        ✓
+        @endif
+      </td>
+      <td class="px-1 py-1 capitalize text-center simbol">
+        @if($item->jawaban == 'tidak')
+        ✓
+        @endif
+      </td>
       <td class="border border-gray-300  px-1 py-1 capitalize">
         <?php
         if (!is_null($item->keterangan)) {
