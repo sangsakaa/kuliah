@@ -62,8 +62,11 @@
                                     {{ __('Daftar Screening ') }}
                                 </x-dropdown-link>
                             </div>
-
-
+                            <div>
+                                <x-dropdown-link :href="route('validasi-screening')" :active="request()->routeIs('validasi-screening')">
+                                    {{ __('Validasi Dokumen Screening') }}
+                                </x-dropdown-link>
+                            </div>
                         </x-slot>
                     </x-dropdown>
                 </div>

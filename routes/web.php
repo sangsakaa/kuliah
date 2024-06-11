@@ -71,9 +71,13 @@ Route::post('/form-screening-mahasiswa', [ScreeningController::class, 'store']);
 Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::class, 'destroy']);
 Route::delete('/daftar-screening-mahasiswa/{mahasiswa_id}', [ScreeningController::class, 'destroy_screening']);
 
+Route::get('/validasi-screening', [ScreeningController::class, 'ValidasiScreening'])->name('validasi-screening');
+
 
 Route::get('/pdf/screen/{nim}', [ScreeningController::class, 'download_pdf']);
 Route::get('/view-pdf/screen', [ScreeningController::class, 'view_pdf']);
+Route::post('screening-mahasiswa', [ScreeningController::class, 'uploudFile']);
+
 
 // userManajement
 Route::get('/data-user', [UserManagemetController::class, 'UserAdmin'])->middleware(['auth'])->name('data-user');

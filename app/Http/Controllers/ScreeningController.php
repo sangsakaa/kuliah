@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\file_screening;
 use Dompdf\Dompdf;
 use App\Models\Mahasiswa;
 use App\Models\screening;
 use Illuminate\Http\Request;
-
 use App\Models\jawaban_screening;
 use Illuminate\Routing\Controller;
-
-
-
+use Illuminate\Support\Facades\Storage;
 class ScreeningController extends Controller
 {
     public function index()
@@ -212,8 +209,59 @@ class ScreeningController extends Controller
         }
 
         return redirect()->back();
+    }
+    public function uploudFile(Request $request)
+    {
+        $request->validate([
+            'mahasiswa_id' => 'required',
+            'file' => 'required|file|max:10240',
+        ]);
 
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
 
-        
+            // Dapatkan nama file asli
+            $fileName = $file->getClientOriginalName();
+
+            // Tambahkan timestamp untuk memastikan nama file unik
+            $timestamp = time();
+            $fileName = $timestamp . '_' . $fileName;
+
+            // Simpan file ke dalam direktori 'screenings' di dalam folder penyimpanan default
+            $file->storeAs('screenings', $fileName, 'public');
+
+            // Periksa apakah ada entri yang sudah ada dalam database
+            $existingEntry = file_screening::where('mahasiswa_id', $request->mahasiswa_id)->first();
+
+            if ($existingEntry) {
+                // Jika entri sudah ada, perbarui dengan data baru
+                $existingEntry->file = $fileName;
+                $existingEntry->save();
+
+                return redirect()->back()->with('success', 'File berhasil diperbarui.');
+            } else {
+                // Jika tidak ada entri, buat entri baru
+                $screening = new file_screening(); // Pastikan Anda mengganti namespace dengan namespace yang benar
+                $screening->mahasiswa_id = $request->mahasiswa_id;
+                $screening->file = $fileName;
+                $screening->save();
+
+                return redirect()->back()->with('success', 'File berhasil diunggah.');
+            }
+        } else {
+            // Tindakan jika tidak ada file yang diunggah
+            return redirect()->back()->with('error', 'Tidak ada file yang diunggah.');
+        }
+    }
+    public function ValidasiScreening()
+    {
+        $dataScreening = file_screening::query()
+            ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
+            ->get();
+        return view(
+            'admin.mahasiswa.screening.validasi_screening',
+            compact('dataScreening')
+
+        );
     }
 }

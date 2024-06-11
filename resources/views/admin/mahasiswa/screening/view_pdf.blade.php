@@ -97,6 +97,11 @@
       padding-left: none;
       padding-top: 10px;
     }
+
+    .text-tengah {
+      text-align: center;
+      font-weight: bold;
+    }
   </style>
   <table class=" kop">
     <tr>
@@ -172,12 +177,12 @@
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 2)
     <tr>
       <td class="px-1 py-1 ">{{$item->soal}}</td>
-      <td class="px-1 py-1 capitalize text-center simbol ">
+      <td class=" text-tengah px-1 py-1 capitalize text-center simbol ">
         @if($item->jawaban == 'ya')
         Ya
         @endif
       </td>
-      <td class="px-1 py-1 capitalize text-center ">
+      <td class=" text-tengah px-1 py-1 capitalize text-center ">
         @if($item->jawaban == 'tidak')
         Tidak
 
@@ -188,7 +193,7 @@
         if (!is_null($item->keterangan)) {
           echo $item->keterangan;
         } else {
-          echo "...................";
+          echo "..........................";
         }
         ?>
       </td>
@@ -237,7 +242,7 @@
         if (!is_null($item->keterangan)) {
           echo $item->keterangan;
         } else {
-          echo "...................";
+          echo "..........................";
         }
         ?>
       </td>
