@@ -452,7 +452,7 @@
                                     <a href="{{ route('login') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">MASUK</a>
 
                                     <P>
-                                        <a href="{{ route('screening-mahasiswa') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">SCREENING</a>
+                                        <a href="{{ route('screening-mahasiswa') }}" class="text-sm bg-white  text-gray-900 px-6 dark:text-gray-900 ">DAFTAR</a>
                                     </P>
                                     @endauth
                                 </div>
