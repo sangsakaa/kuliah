@@ -36,7 +36,7 @@
       </div>
     </div>
   </div>
-  <form action="/screening-mahasiswa" method="post">
+  <form action="/screening-mahasiswa-jawab" method="post">
     @csrf
     <div class="w-full py-2 px-2">
       <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -67,7 +67,6 @@
                   </div>
                   <div class="">
                     : {{$detail->nama_mhs}} <br>
-
                     <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}" class="w-full border border-gray-300 p-2">
                   </div>
                 </div>
@@ -137,31 +136,29 @@
             </div>
           </div>
         </div>
+        @endif
+      </div>
+    </div>
   </form>
-  @endif
-
-  <div class=" grid ">
+  <div>
     @if($mahasiswa->isEmpty())
     <p>No data available.</p>
     @else
     @foreach($mahasiswa as $detail)
     @if($detail->id == request('cari') || is_null(request('cari')))
     @else
-    <div class=" ">
-      <div class="p-2">
-        <form action="/screening-mahasiswa" method="post" enctype="multipart/form-data">
-          @csrf
-          <input hidden type="text" name="mahasiswa_id" value="{{$mahasiswa->first()->id}}" id="">
-          <input type="file" name="file" id="">
-          <p class="py-2">
-            <button class="bg-red-600 dark:bg-purple-600 py-2 rounded-sm hover:bg-purple-600 text-white px-4">
-              Upload File
-            </button>
-          </p>
-        </form>
-      </div>
+    <div class=" p-2">
+      <form action="/uploud-screening-mahasiswa" method="post" enctype="multipart/form-data">
+        @csrf
+        <input type="text" name="mahasiswa_id" value="{{$detail->id}}">
+        <input type="file" name="file">
+        <p class=" py-2">
+          <button class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 ">Uploud File</button>
+        </p>
+      </form>
     </div>
     @endif
     @endforeach
     @endif
+  </div>
 </x-app-layout>

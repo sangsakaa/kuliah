@@ -65,18 +65,25 @@ Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDat
 // SCREENING
 Route::get('/daftar-screening-mahasiswa', [ScreeningController::class, 'index'])->name('daftar-screening-mahasiswa');
 Route::get('/screening-mahasiswa', [ScreeningController::class, 'screening'])->name('screening-mahasiswa');
-Route::post('/screening-mahasiswa', [ScreeningController::class, 'screeningJawab']);
+
+Route::post('/screening-mahasiswa-jawab', [ScreeningController::class, 'screeningJawab']);
+
 Route::get('/form-screening-mahasiswa', [ScreeningController::class, 'create'])->name('form-screening-mahasiswa');
+
 Route::post('/form-screening-mahasiswa', [ScreeningController::class, 'store']);
+
 Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::class, 'destroy']);
+
 Route::delete('/daftar-screening-mahasiswa/{mahasiswa_id}', [ScreeningController::class, 'destroy_screening']);
 
+
+
+
+
 Route::get('/validasi-screening', [ScreeningController::class, 'ValidasiScreening'])->name('validasi-screening');
-
-
 Route::get('/pdf/screen/{nim}', [ScreeningController::class, 'download_pdf']);
 Route::get('/view-pdf/screen', [ScreeningController::class, 'view_pdf']);
-Route::post('screening-mahasiswa', [ScreeningController::class, 'uploudFile']);
+Route::post('uploud-screening-mahasiswa', [ScreeningController::class, 'uploudFile']);
 
 
 // userManajement

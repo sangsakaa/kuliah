@@ -113,6 +113,7 @@ class ScreeningController extends Controller
     }
     public function screening(Request $request)
     {
+        // dd($request);
         $soal = screening::query()
             // ->rightjoin('jawaban_screening', 'jawaban_screening.screening_id', 'screening.id')
             // ->select('screening.id', 'jawaban', 'soal ')
@@ -140,7 +141,8 @@ class ScreeningController extends Controller
             [
                 'mahasiswa' => $mahasiswa->get(),
                 'soal' => $soal,
-                'jawaban' => $jawaban
+                'jawaban' => $jawaban,
+               
             ]
         );
     }
@@ -169,7 +171,6 @@ class ScreeningController extends Controller
     }
     public function screeningJawab(Request $request)
     {
-        // dd($request);
         $data = $request->validate([
             'mahasiswa_id' => 'required|integer',
             'screening_id' => 'required|array',
@@ -179,12 +180,10 @@ class ScreeningController extends Controller
             'keterangan' => 'required|array',
             'keterangan.*' => 'nullable|string',
         ]);
-
         $mahasiswaId = $data['mahasiswa_id'];
         $screeningIds = $data['screening_id'];
         $jawabans = $data['jawaban'];
         $keterangans = $data['keterangan'];
-
         foreach ($screeningIds as $index => $screeningId) {
             // Find the existing record if it exists
             $existingRecord = jawaban_screening::where('mahasiswa_id', $mahasiswaId)
@@ -207,7 +206,6 @@ class ScreeningController extends Controller
                 ]);
             }
         }
-
         return redirect()->back();
     }
     public function uploudFile(Request $request)
@@ -216,10 +214,11 @@ class ScreeningController extends Controller
             'mahasiswa_id' => 'required',
             'file' => 'required|file|max:10240',
         ]);
+        
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-
+            // dd($request);
             // Dapatkan nama file asli
             $fileName = $file->getClientOriginalName();
 
@@ -264,4 +263,5 @@ class ScreeningController extends Controller
 
         );
     }
+    
 }
