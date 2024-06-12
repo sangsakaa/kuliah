@@ -137,8 +137,7 @@
           </div>
         </div>
         @endif
-      </div>
-    </div>
+
   </form>
   <div>
     @if($mahasiswa->isEmpty())
@@ -150,7 +149,7 @@
     <div class=" p-2">
       <form action="/uploud-screening-mahasiswa" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="text" name="mahasiswa_id" value="{{$detail->id}}">
+        <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}">
         <input type="file" name="file">
         <p class=" py-2">
           <button class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 ">Uploud File</button>
