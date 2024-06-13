@@ -193,17 +193,22 @@
           </div>
           @endforeach
           @else
-          <tr>
+          @if($jawaban->count() >= 1 ) <tr>
             <form action="/uploud-screening-mahasiswa" method="post" enctype="multipart/form-data">
               @csrf
               <input hidden type="text" name="mahasiswa_id" value="{{$detail->id}}">
               <input type="file" name="file">
-              <p class=" py-2">
-                <button class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 ">Uploud File</button>
+              <p class="py-2">
+                <button class="bg-red-600 dark:bg-purple-600 py-2 rounded-sm hover:bg-purple-600 text-white px-4">Upload File</button>
               </p>
             </form>
             <td colspan="3" class="text-center">Data belum diupload</td>
           </tr>
+          @else
+          <tr>
+            <td colspan="3" class="text-center">Data belum diisi dan form upload tidak tersedia</td>
+          </tr>
+          @endif
           @endif
         </div>
         @endif

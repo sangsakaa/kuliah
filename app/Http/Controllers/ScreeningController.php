@@ -43,9 +43,9 @@ class ScreeningController extends Controller
         $screenings = file_screening::where('mahasiswa_id', $mahasiswa_id)->get();
 
         foreach ($screenings as $screening) {
+            // dd($screening);
             // Hapus file dari folder public/screenings
-            Storage::delete('public/screenings/' . $screening->file_name);
-
+            Storage::delete('public/screenings/' . $screening->file);
             // Hapus record dari database
             $screening->delete();
         }
