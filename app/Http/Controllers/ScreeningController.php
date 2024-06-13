@@ -40,6 +40,15 @@ class ScreeningController extends Controller
     public function destroy_screening($mahasiswa_id)
     {
         jawaban_screening::where('mahasiswa_id', $mahasiswa_id)->delete();
+        $screenings = file_screening::where('mahasiswa_id', $mahasiswa_id)->get();
+
+        foreach ($screenings as $screening) {
+            // Hapus file dari folder public/screenings
+            Storage::delete('public/screenings/' . $screening->file_name);
+
+            // Hapus record dari database
+            $screening->delete();
+        }
         return redirect()->back();
     }
     public function view_pdf($nim)
@@ -108,12 +117,16 @@ class ScreeningController extends Controller
         // $dompdf->setPaper('legal', 'portrait');
 
         $dompdf->render();
-        $dompdf->stream($nim . ' - ' . $mahasiswa->first()->nama_mhs . '.pdf', ['Attachment' => false]);
+        $dompdf->stream($nim . ' - ' . $mahasiswa->first()->nama_mhs . '.pdf', ['Attachment' => true]);
         
     }
     public function screening(Request $request)
     {
         // dd($request);
+        $dataScreening = file_screening::query()
+            ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
+            ->where('mahasiswa.nim', request('cari'))
+            ->get();
         $soal = screening::query()
             // ->rightjoin('jawaban_screening', 'jawaban_screening.screening_id', 'screening.id')
             // ->select('screening.id', 'jawaban', 'soal ')
@@ -142,6 +155,7 @@ class ScreeningController extends Controller
                 'mahasiswa' => $mahasiswa->get(),
                 'soal' => $soal,
                 'jawaban' => $jawaban,
+                'dataScreening' => $dataScreening
                
             ]
         );
@@ -224,7 +238,7 @@ class ScreeningController extends Controller
 
             // Tambahkan timestamp untuk memastikan nama file unik
             $timestamp = time();
-            $fileName = $timestamp . '_' . $fileName;
+            $fileName = $fileName;
 
             // Simpan file ke dalam direktori 'screenings' di dalam folder penyimpanan default
             $file->storeAs('screenings', $fileName, 'public');

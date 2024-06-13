@@ -7,16 +7,8 @@
   <div class=" w-full p-2 ">
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
       <div class=" p-6">
-        <!-- @foreach($dataScreening as $item)
-        <ul>
-          <li>
-            <a href="{{ Storage::url('screenings/' . $item['file']) }}" target="_blank">
-              Lihat File: {{ $item['file'] }}
-            </a>
-          </li>
-        </ul>
-        @endforeach -->
-        </ul>
+
+
         <table class=" w-full">
           <thead class=" border">
             <tr>
