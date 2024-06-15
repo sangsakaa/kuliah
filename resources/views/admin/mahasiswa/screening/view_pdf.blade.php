@@ -102,6 +102,14 @@
       text-align: center;
       font-weight: bold;
     }
+
+    .ya {
+      text-align: center;
+    }
+
+    .tidak {
+      text-align: center;
+    }
   </style>
   <table class=" kop">
     <tr>
@@ -177,12 +185,12 @@
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 2)
     <tr>
       <td class="px-1 py-1 ">{{$item->soal}}</td>
-      <td class=" text-tengah px-1 py-1 capitalize text-center simbol ">
+      <th class=" text-tengah px-1 py-1 capitalize text-center simbol ">
         @if($item->jawaban == 'ya')
         Ya
         @endif
-      </td>
-      <td class=" text-tengah px-1 py-1 capitalize text-center ">
+      </th>
+      <td class=" tidak text-tengah px-1 py-1 capitalize text-center ">
         @if($item->jawaban == 'tidak')
         Tidak
 
@@ -227,12 +235,12 @@
     @if($item->mahasiswa_id == $mahasiswa->first()->id && $item->kategori == 3)
     <tr>
       <td class="border border-gray-300  px-1 py-1   w-2/3 ">{{$item->soal}}</td>
-      <td class="px-1 py-1 capitalize text-center simbol ">
+      <th class="px-1 py-1 capitalize text-center simbol ">
         @if($item->jawaban == 'ya')
         Ya
         @endif
-      </td>
-      <td class="px-1 py-1 capitalize text-center simbol">
+      </th>
+      <td class=" ya px-1 py-1 capitalize text-center simbol">
         @if($item->jawaban == 'tidak')
         Tidak
         @endif

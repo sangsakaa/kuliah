@@ -270,12 +270,39 @@ class ScreeningController extends Controller
     {
         $dataScreening = file_screening::query()
             ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
+            ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file')
             ->get();
         return view(
             'admin.mahasiswa.screening.validasi_screening',
             compact('dataScreening')
 
         );
+    }
+    public function UpdateStatusScreening(file_screening $file_screenig)
+    {
+        return view(
+            'admin.mahasiswa.screening.update_validasi_screening',
+            compact('file_screenig')
+
+        );
+    }
+    public function uploudFileStatus(file_screening $file_screenig, Request $request)
+    {
+        // dd($request->all());
+        $request->validate([
+            'mahasiswa_id' => 'required|exists:mahasiswa,id',
+            'file' => 'required|string',
+            'status_file' => 'required|string',
+        ]);
+        // Temukan record yang akan di-update
+        $fileScreening = file_screening::findOrFail($file_screenig->id);
+        // Update data
+        $fileScreening->update([
+            'mahasiswa_id' => $file_screenig->mahasiswa_id,
+            'file' => $file_screenig->mahasiswa_id,
+            'status_file' => $request->input('status_file'),
+        ]);
+        return redirect('/validasi-screening');
     }
     
 }
