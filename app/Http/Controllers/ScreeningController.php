@@ -25,7 +25,7 @@ class ScreeningController extends Controller
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
         ])
             ->orderByRaw("FIELD(status_file, 'Invalid', '') DESC")
-            ->orderByRaw("FIELD(prodi, 'S1 Akuntansi', 'S1 Manajemen','S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)','S1 Pendidikan Bahasa Inggris','S1 Pendidikan Matemaika','S1 Pendidikan Kimia') DESC")
+            ->orderByRaw("FIELD(prodi, 'S1 Akuntansi', 'S1 Manajemen', 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)', 'S1 Pendidikan Bahasa Inggris', 'S1 Pendidikan Matematika', 'S1 Pendidikan Kimia') DESC")
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
