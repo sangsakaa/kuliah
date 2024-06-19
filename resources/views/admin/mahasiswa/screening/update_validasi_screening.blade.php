@@ -26,6 +26,11 @@
 
         </form>
       </div>
+      <div class=" px-4 py-2">
+        <iframe src="{{ Storage::url('screenings/' . $file_screenig->file) }}" style="width: 100%; height: 600px;" class=" px-2 py-1 text-white">
+          Your browser does not support iframes.
+        </iframe>
+      </div>
     </div>
   </div>
 </x-app-layout>
