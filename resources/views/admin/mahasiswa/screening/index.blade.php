@@ -141,32 +141,29 @@
                 </div>
               </td>
               <td>
-                <div class="  grid justify-center gap-2">
+                <div class="  flex justify-center gap-2">
                   <form action="/daftar-screening-mahasiswa/{{$data[0]->mahasiswa_id}}" method="post">
                     @csrf
                     @method('delete')
-                    <button class=" bg-red-700 px-2 py-1 text-white" title="hapus file">Hapus form</button>
+                    <button class=" bg-red-700 px-2 py-1 text-white" title="hapus file">HF</button>
                   </form>
                   <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" py-1  bg-yellow-500 text-white " title="Validasi File">
                     <span class="  px-4">
-                      Validasi
+                      V
                     </span>
                   </a>
                   <form action="/hapus-data-file/{{$data[0]->idfile}}" method="post">
                     @csrf
                     @method('delete')
-                    <button class=" bg-red-700 px-2 py-1 text-white" title="hapus file">Hapus Files</button>
+                    <button class=" bg-red-700 px-2 py-1 text-white" title="hapus file">HF</button>
                   </form>
                 </div>
               </td>
             </tr>
             @endif
             @endforeach
-
           </tbody>
         </table>
-
-
       </div>
     </div>
   </div>
