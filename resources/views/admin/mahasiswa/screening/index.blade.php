@@ -107,11 +107,13 @@
                 {{$loop->iteration}}
               </th>
               <td class=" px-2">
-                <a href="{{ Storage::url('screenings/' . $data[0]->file) }}" target="_blank" class=" hover:bg-blue-400 bg-blue-700 px-2 py-1 text-white">
+                <a href="{{ $data[0]->file ? Storage::url('screenings/' . $data[0]->file) : '#' }}" target="{{ $data[0]->file ? '_blank' : '_self' }}" class="{{ $data[0]->file ? 'hover:bg-blue-400 bg-blue-700' : 'bg-red-500' }} px-2 py-1 text-white">
                   <span>
                     Dokumen
                   </span>
                 </a>
+
+
               </td>
               <td class=" px-2">
                 {{$data[0]->nama_mhs}} <br>
