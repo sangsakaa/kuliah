@@ -131,7 +131,7 @@
                   </svg>
                   @else
                   <!-- Display a message indicating the file has not been uploaded -->
-                  <span class="text-gray-500">File belum di-upload</span>
+                  <span class="text-gray-500">File sudah di uploud</span>
                   @endif
                 </div>
               </td>
@@ -152,8 +152,6 @@
                     </svg>
                   </a>
                 </div>
-
-
               </td>
 
             </tr>
