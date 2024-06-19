@@ -35,7 +35,11 @@
                   </a>
                 </div>
               </td>
-              <td>{{ $item->nama_mhs }}</td>
+              <td>
+                {{ $item->nama_mhs }} <br>
+                {{ $item->nim }}
+
+              </td>
 
               <td>{{ $item->prodi }}</td>
               <td class=" grid justify-items-center ">
