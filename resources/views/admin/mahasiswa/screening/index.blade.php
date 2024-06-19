@@ -145,7 +145,7 @@
                     @method('delete')
                     <button class=" bg-red-700 px-2 py-1 text-white" title="hapus file">Hapus form</button>
                   </form>
-                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" py-1 bg-purple-600 text-white " title="Validasi File">
+                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" py-1  bg-yellow-500 text-white " title="Validasi File">
                     <span class="  px-4">
                       Validasi
                     </span>
