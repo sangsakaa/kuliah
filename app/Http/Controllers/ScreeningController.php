@@ -27,7 +27,7 @@ class ScreeningController extends Controller
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
-            ->sortBy('status_file', SORT_ASC)
+            ->sortBy('status_file', SORT_DESC)
             // ->whereNotNull('file')
         ->groupBy('mahasiswa_id');
         // Menghitung jumlah mahasiswa berdasarkan prodi
