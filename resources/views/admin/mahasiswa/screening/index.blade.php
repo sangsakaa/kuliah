@@ -1,7 +1,7 @@
 <x-app-layout>
   <x-slot name="header">
     <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-      {{ __('Daftar screening') }}
+      {{ __('Daftar Pedaftar') }}
     </h2>
   </x-slot>
   <div class=" w-full py-2 px-2 ">
@@ -15,6 +15,7 @@
                 @if(strpos($prodi, 'Teknik') !== false) bg-blue-200 
                 @elseif(strpos($prodi, 'Pendidikan') !== false) bg-pink-200 
                 @elseif(strpos($prodi, 'Akuntansi') !== false || strpos($prodi, 'Manajemen') !== false) bg-yellow-200
+                @elseif(strpos($prodi, 'S1 Agroteknologi') !== false || strpos($prodi, 'S1 Agribisnis') !== false) bg-green-200
                 @endif">
               <p class="text-xs">
                 @if ($prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
