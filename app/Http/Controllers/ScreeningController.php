@@ -16,7 +16,14 @@ class ScreeningController extends Controller
     {
         $dataScreening = jawaban_screening::query()
             ->join('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
-            ->select('mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi', 'nim')
+            ->join('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
+            ->select([
+                'mahasiswa.nama_mhs',
+                'jawaban_screening.mahasiswa_id',
+                'jawaban_screening.jawaban',
+                'prodi',
+                'nim', 'file', 'status_file', 'file_screening.id as idfile'
+            ])
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
@@ -299,10 +306,10 @@ class ScreeningController extends Controller
         // Update data
         $fileScreening->update([
             'mahasiswa_id' => $file_screenig->mahasiswa_id,
-            'file' => $file_screenig->mahasiswa_id,
+            'file' => $file_screenig->file,
             'status_file' => $request->input('status_file'),
         ]);
-        return redirect('/validasi-screening');
+        return redirect('/daftar-screening-mahasiswa');
     }
     
 }

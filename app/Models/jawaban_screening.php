@@ -15,4 +15,9 @@ class jawaban_screening extends Model
         'jawaban',
         'keterangan',
     ];
+    public function mahasiswa()
+    {
+        return $this->belongsTo(file_screening::class, 'mahasiswa_id');
+    }
+    
 }

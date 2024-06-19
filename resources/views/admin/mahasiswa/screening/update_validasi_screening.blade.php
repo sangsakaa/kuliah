@@ -12,17 +12,17 @@
           @method('patch')
           <input hidden type="text" name="mahasiswa_id" class=" py-1" value="{{$file_screenig->mahasiswa_id}}">
           <input hidden type="text" name="file" class=" py-1" value="{{$file_screenig->file}}">
-          <label for="">Status file</label>
-          <select name="status_file" id="" class="py-1 w-1/3">
+          <label for="">Status file</label> <br>
+          <select name="status_file" id="" class="py-1 sm:w-1/3 w-full mb-2">
             <option value="">-- Pilih Status Anak --</option>
             <option value="Valid" {{ old('status_file', $file_screenig->status_file) == 'Valid' ? 'selected' : '' }}>
-              diTerima
+              Valid
             </option>
             <option value="Invalid" {{ old('status_file', $file_screenig->status_file) == 'Invalid' ? 'selected' : '' }}>
-              diTolak
+              Invalid
             </option>
-          </select>
-          <button class=" bg-purple-700 px-2 py-1 text-white">Update</button>
+          </select> <br>
+          <button class="  bg-purple-700 px-2 py-1 text-white">Update</button>
 
         </form>
       </div>

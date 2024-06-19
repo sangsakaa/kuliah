@@ -14,4 +14,9 @@ class file_screening extends Model
         'file',
         'status_file',
     ];
+    public function Mahasiswa()
+    {
+        return $this->belongsTo(jawaban_screening::class, 'mahasiswa_id');
+    }
+   
 }
