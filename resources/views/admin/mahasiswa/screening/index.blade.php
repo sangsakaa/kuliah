@@ -186,7 +186,7 @@
             @endforeach
             <tr>
               <td colspan="5">
-                {{$dataScreening->links()}}
+
               </td>
             </tr>
           </tbody>
