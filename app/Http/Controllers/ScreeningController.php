@@ -24,7 +24,7 @@ class ScreeningController extends Controller
                 'prodi',
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
             ])
-            ->orderByRaw("FIELD(file, NULL) ASC")
+            
             ->orderByRaw("FIELD(status_file, 'Invalid', '') DESC")
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
