@@ -24,7 +24,7 @@ class ScreeningController extends Controller
                 'prodi',
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
         ])
-        ->paginate(10);
+        ->paginate(20);
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
             ->sortBy('file')
