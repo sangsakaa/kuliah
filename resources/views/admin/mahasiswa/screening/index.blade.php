@@ -92,9 +92,9 @@
           <thead>
             <tr class=" border">
               <th class=" px-2 border ">No</th>
-              <th class=" px-2 border text-left ">NIM</th>
+              <th class=" px-2 border text-left ">File</th>
               <th class=" px-2 border text-left ">Daftar Mahasiswa</th>
-              <th class=" px-2 border text-left ">Program Studi</th>
+
               <th class=" px-2 border ">Status File</th>
               <th class=" px-2 border ">Action</th>
             </tr>
@@ -103,19 +103,22 @@
             @foreach ($groupedData as $mahasiswaId => $data)
             @if ($data->isNotEmpty())
             <tr class=" border even:bg-gray-100 hover:bg-green-200">
-
               <th class=" px-2">
                 {{$loop->iteration}}
               </th>
               <td class=" px-2">
-                {{$data[0]->nim}}
+                <a href="{{ Storage::url('screenings/' . $data[0]->file) }}" target="_blank" class=" hover:bg-blue-400 bg-blue-700 px-2 py-1 text-white">
+                  <span>
+                    Dokumen
+                  </span>
+                </a>
               </td>
               <td class=" px-2">
-                {{$data[0]->nama_mhs}}
-              </td>
-              <td class=" px-2">
+                {{$data[0]->nama_mhs}} <br>
                 {{$data[0]->prodi}}
+
               </td>
+
               <td class=" px-2">
 
                 <div class=" justify-items-center grid">
@@ -146,14 +149,13 @@
                       </svg>
                     </button>
                   </form>
-                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" text-yellow-400" title="Validasi File">
+                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" text-blue-700 " title="Validasi File">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
                     </svg>
                   </a>
                 </div>
               </td>
-
             </tr>
             @endif
             @endforeach
