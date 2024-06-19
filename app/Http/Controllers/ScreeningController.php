@@ -16,7 +16,7 @@ class ScreeningController extends Controller
     {
         $dataScreening = jawaban_screening::query()
             ->join('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
-            ->join('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
+            ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
             ->select([
                 'mahasiswa.nama_mhs',
                 'jawaban_screening.mahasiswa_id',

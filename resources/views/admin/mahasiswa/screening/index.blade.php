@@ -132,9 +132,12 @@
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
+                  @elseif ($data[0]->status_file == '')
+                  <span class="text-gray-500">File belum di uploud</span>
                   @else
+
                   <!-- Display a message indicating the file has not been uploaded -->
-                  <span class="text-gray-500">File sudah di uploud</span>
+                  <span class="text-gray-500">xFile sudah di uploud</span>
                   @endif
                 </div>
               </td>
