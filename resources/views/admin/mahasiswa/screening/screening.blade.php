@@ -203,7 +203,7 @@
               </svg>
               @else
               <!-- Display a message indicating the file has not been uploaded -->
-              <span class="text-gray-500">File belum di-upload</span>
+              <span class="text-gray-500">File sudah di-upload</span>
               @endif
 
             </div>
@@ -219,7 +219,7 @@
                 <button class="bg-red-600 dark:bg-purple-600 py-2 rounded-sm hover:bg-purple-600 text-white px-4">Upload File</button>
               </p>
             </form>
-            <td colspan="3" class="text-center">Data belum diupload</td>
+            <td colspan="3" class="text-center">Data sudah di submit dan file belum diupload</td>
           </tr>
           @else
           <tr>
