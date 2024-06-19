@@ -75,6 +75,7 @@ Route::post('/form-screening-mahasiswa', [ScreeningController::class, 'store']);
 Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::class, 'destroy']);
 
 Route::delete('/daftar-screening-mahasiswa/{mahasiswa_id}', [ScreeningController::class, 'destroy_screening']);
+Route::delete('/hapus-data-file/{file_screenig}', [ScreeningController::class, 'HapusFile']);
 
 
 

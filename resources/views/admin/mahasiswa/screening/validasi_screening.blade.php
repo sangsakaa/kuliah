@@ -57,6 +57,12 @@
               </td>
               <td class=" text-center">
                 <a class=" bg-purple-700 px-2 py-1 text-white" href="/update-validasi-pendaftaran/{{$item->id}}">Validasi</a>
+                <form action="/hapus-data-file/{{$item->id}}" method="post">
+                  @csrf
+                  @method('delete')
+                  <button class=" bg-red-700 px-2 py-1 text-white">Hapus File</button>
+
+                </form>
               </td>
             </tr>
             @endforeach

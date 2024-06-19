@@ -311,5 +311,19 @@ class ScreeningController extends Controller
         ]);
         return redirect('/daftar-screening-mahasiswa');
     }
+    public function HapusFile(file_screening $file_screenig)
+    {
+
+        // dd($file_screenig);
+        $screenings = file_screening::where('mahasiswa_id', $file_screenig->mahasiswa_id)->get();
+        foreach ($screenings as $screening) {
+            // dd($screening);
+            // Hapus file dari folder public/screenings
+            Storage::delete('public/screenings/' . $screening->file);
+            // Hapus record dari database
+            $screening->delete();
+        }
+        return redirect()->back();
+    }
     
 }
