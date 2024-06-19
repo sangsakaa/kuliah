@@ -24,12 +24,14 @@ class ScreeningController extends Controller
                 'prodi',
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
         ])
-           
+            ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
-            ->sortBy('file_screening.id as idfile', SORT_DESC)
+
+            
         ->groupBy('mahasiswa_id');
+        // dd($groupedData);
         // Menghitung jumlah mahasiswa berdasarkan prodi
         $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {
             $mahasiswaIdCount = $items->unique('mahasiswa_id')->count();
