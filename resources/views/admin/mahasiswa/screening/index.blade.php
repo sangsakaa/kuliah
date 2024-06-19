@@ -161,13 +161,14 @@
                       </svg>
                     </button>
                   </form>
-                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class=" py-1 px-2  bg-blue-700 text-white " title="Validasi File">
-                    <span class=" bg-green-600 py-1">
+                  <a href="/update-validasi-pendaftaran/{{$data[0]->idfile}}" class="{{ $data[0]->idfile ? 'bg-blue-700 text-white' : 'bg-red-600 text-white' }} py-1 px-2" title="Validasi File">
+                    <span>
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                     </span>
                   </a>
+
                   <form action="/hapus-data-file/{{$data[0]->idfile}}" method="post">
                     @csrf
                     @method('delete')
