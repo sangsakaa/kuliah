@@ -24,6 +24,8 @@ class ScreeningController extends Controller
                 'prodi',
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
         ])
+            ->whereNot('status_file', 'Valid')
+            ->orWhereNull('status_file')
             ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
