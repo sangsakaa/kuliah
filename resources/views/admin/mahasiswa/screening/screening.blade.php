@@ -220,7 +220,7 @@
               </p>
             </form>
             <td colspan="3" class="text-center">Data sudah di submit dan file belum diupload <br>
-              <b>Wajib melampirkan Bukti Pembaran</b>
+              <b>Wajib melampirkan Bukti Pembayaran</b>
             </td>
           </tr>
           @else
