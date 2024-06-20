@@ -142,14 +142,16 @@
                 </table>
                 @if(count($dataScreening) > 0)
                 @foreach($dataScreening as $item)
-
                 <button disabled type="submit" class="mt-4 bg-red-700 text-white p-2 rounded">Submit</button>
                 @endforeach
                 @else
                 <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
                 @endif
-
+                @if($jawaban->count() >= 1 )
                 <a target="_blank" class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">Cetak Kartu Pendaftaran</a>
+                @else
+                <span class=" bold">Kartu Akan muncul Ketikan form sudah terisi</span>
+                @endif
                 </table>
               </div>
               <div class=" overflow-auto">
