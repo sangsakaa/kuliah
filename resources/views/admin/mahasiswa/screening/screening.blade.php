@@ -143,17 +143,17 @@
                 <div class=" w-full  flex grid-cols-1 gap-2">
                   @if(count($dataScreening) > 0)
                   @foreach($dataScreening as $item)
-                  <span class="  flex bold text-red-700 m-2   ">
+                  <span class="  grid grid-cols-2 bold text-red-700 m-2   ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    jawaban terkunci
+                    Jawaban Terkunci
                   </span>
                   @endforeach
                   @else
                   @if($jawaban->count() <= 1 ) <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
                     @else
-                    <span class="  flex bold text-red-700 m-2 py-2   ">
+                    <span class="  bold text-red-700 m-2 py-2   ">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                       </svg>
