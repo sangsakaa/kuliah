@@ -31,7 +31,7 @@ class ScreeningController extends Controller
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening  
         ->groupBy('mahasiswa_id');
-
+        $jumlahTotalList = $groupedData->count();
         $jumlahTotal = jawaban_screening::query()
             ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
             // ->where('status_file', 'valid')
@@ -57,7 +57,7 @@ class ScreeningController extends Controller
         });
         return view(
             'admin.mahasiswa.screening.index',
-            compact('dataScreening', 'groupedData', 'countProdi', 'jumlahTotal', 'jumlahTotalValid')
+            compact('dataScreening', 'groupedData', 'countProdi', 'jumlahTotal', 'jumlahTotalValid', 'jumlahTotalList')
 
         );
     }
