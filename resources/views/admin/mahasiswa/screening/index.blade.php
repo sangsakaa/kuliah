@@ -113,11 +113,11 @@
                       Dokumen
                     </span>
                   </a>
-
-
                 </td>
                 <td class=" px-2">
-                  {{$data[0]->nama_mhs}} <br>
+                  {{$data[0]->nim}} -
+                  {{$data[0]->nama_mhs}}
+                  <br>
                   {{$data[0]->prodi}}
 
                 </td>
