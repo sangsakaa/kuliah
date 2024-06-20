@@ -140,19 +140,28 @@
                     @endforeach
                   </tbody>
                 </table>
-                @if(count($dataScreening) > 0)
-                @foreach($dataScreening as $item)
-                <button disabled type="submit" class="mt-4 bg-red-700 text-white p-2 rounded">Submit</button>
-                @endforeach
-                @else
-                <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
-                @endif
-                @if($jawaban->count() >= 1 )
-                <a target="_blank" class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">Cetak Kartu Pendaftaran</a>
-                @else
-                <span class=" bold">Kartu Akan muncul Ketikan form sudah terisi</span>
-                @endif
-                </table>
+                <div class=" w-full  flex grid-cols-1 gap-2">
+                  @if(count($dataScreening) > 0)
+                  @foreach($dataScreening as $item)
+                  <button disabled type="submit" class="mt-4 bg-red-700 text-white p-2 rounded">Submit</button>
+                  @endforeach
+                  @else
+                  @if($jawaban->count() <= 1 ) <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
+                    @else
+                    <span class="  flex bold text-red-700 m-2   ">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                      jawaban terkunci
+                    </span>
+                    @endif
+                    @endif
+                    @if($jawaban->count() >= 1 )
+                    <a target="_blank" class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">Cetak Kartu Pendaftaran</a>
+                    @else
+                    <span class=" bold  mt-6 mx-4">Kartu Akan muncul Ketikan form sudah terisi</span>
+                    @endif
+                </div>
               </div>
               <div class=" overflow-auto">
               </div>
