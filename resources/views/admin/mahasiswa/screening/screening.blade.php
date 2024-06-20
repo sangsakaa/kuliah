@@ -197,7 +197,6 @@
               {{ $item->nim }} :
               {{ $item->nama_mhs }}
             </div>
-            <div> Prodi </div>
             <div> {{ $item->prodi }}</div>
             <div>
               @if ($item->status_file == 'Valid')
