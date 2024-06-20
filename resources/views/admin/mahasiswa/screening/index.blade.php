@@ -37,6 +37,9 @@
             @endforeach
           </div>
           <div>
+            {{$jumlahTotal}}
+          </div>
+          <div>
             <table hidden class="border-collapse border border-gray-500">
               <thead>
                 <tr>

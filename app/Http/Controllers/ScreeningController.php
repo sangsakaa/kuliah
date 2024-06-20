@@ -29,10 +29,10 @@ class ScreeningController extends Controller
             ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
         ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
-        $groupedData = $dataScreening
-
-            
+        $groupedData = $dataScreening  
         ->groupBy('mahasiswa_id');
+        $jumlahTotal = $groupedData->count();
+
         // dd($groupedData);
         // Menghitung jumlah mahasiswa berdasarkan prodi
         $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {
@@ -44,7 +44,7 @@ class ScreeningController extends Controller
         });
         return view(
             'admin.mahasiswa.screening.index',
-            compact('dataScreening', 'groupedData', 'countProdi',)
+            compact('dataScreening', 'groupedData', 'countProdi', 'jumlahTotal')
 
         );
     }
