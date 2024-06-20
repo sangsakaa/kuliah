@@ -107,7 +107,6 @@
                                                                                                   ?>
                   </div>
                 </div>
-
               </div>
               <div class=" overflow-auto">
                 <span class="font-semibold">2. Kondisi Khusus Peserta</span>
@@ -140,35 +139,39 @@
                     @endforeach
                   </tbody>
                 </table>
+                @if(count($dataScreening) > 0)
+                @foreach($dataScreening as $item)
                 <div class=" w-full  flex grid-cols-1 gap-2">
-                  @if(count($dataScreening) > 0)
-                  @foreach($dataScreening as $item)
                   <span class="  flex text-red-700 m-2   ">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                     </svg>
-                    Jawaban Terkunci
+                    Jawaban
                   </span>
                   @endforeach
                   @else
                   @if($jawaban->count() <= 1 ) <button type="submit" class="mt-4 bg-blue-500 text-white p-2 rounded">Submit</button>
                     @else
-                    <span class="  bold text-red-700 m-2 py-2   ">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                      </svg>
-                      jawaban terkunci
-                    </span>
+                    <div class=" flex gap-2  ">
+                      <div>
+                        <span class="  flex text-red-700 m-2   ">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                          </svg>
+                          jawaban
+                        </span>
+                      </div>
+                      <div class="mt-2">
+                        @if($jawaban->count() >= 1 )
+                        <a target="_blank" class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">Cetak Kartu Pendaftaran</a>
+                        @else
+                        <span class=" bold  mt-6 mx-4 font-semibold">Kartu Akan muncul Ketikan form sudah terisi</span>
+                        @endif
+                      </div>
+                    </div>
                     @endif
-                    @endif
-                    @if($jawaban->count() >= 1 )
-                    <a target="_blank" class=" bg-red-600  dark:bg-purple-600 py-2  rounded-sm hover:bg-purple-600 text-white px-4 " href="pdf/screen/{{$mahasiswa->first()->nim}}">Cetak Kartu Pendaftaran</a>
-                    @else
-                    <span class=" bold  mt-6 mx-4 font-semibold">Kartu Akan muncul Ketikan form sudah terisi</span>
                     @endif
                 </div>
-              </div>
-              <div class=" overflow-auto">
               </div>
               @endif
               @endforeach
@@ -191,33 +194,39 @@
         <div>
           @if(count($dataScreening) > 0)
           @foreach($dataScreening as $item)
-          <div class=" grid grid-cols-1 text-xs">
+          <div class=" justify-items-center grid grid-cols-1 text-xs">
             <div>
-              {{ $item->nim }} :
+              {{ $item->nim }} -
               {{ $item->nama_mhs }}
             </div>
             <div> {{ $item->prodi }}</div>
+            @if ($item->status_file == 'Valid')
             <div>
-              @if ($item->status_file == 'Valid')
               <!-- Display a green check icon -->
-              <span class=" flex">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </span>
+              <div class=" justify-items-center grid">
+                <span class=" flex">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+              </div>
+              <div>
+                <span class="">
+                  Data anda Sudah Valid
+                </span>
+              </div>
               @elseif ($item->status_file == 'Invalid')
               <!-- Display a red cross icon -->
               <span class=" flex">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-
               </span>
               @else
               <!-- Display a message indicating the file has not been uploaded -->
-              <span class="text-gray-500">File sudah di-upload</span>
-              @endif
+              <span class="text-red-700">File sudah di-upload <br> menunggu validasi</span>
             </div>
+            @endif
           </div>
           @endforeach
           @else

@@ -164,7 +164,8 @@ class UserPerMhsController extends Controller
                 $file = $request->file('bukti_laporan');
                 $filename = $file->getClientOriginalName();
                 $path = $file->storeAs('public/bukti_laporan', $filename);
-                $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
+                $date = date('d-m-y');
+                $Lap->bukti_laporan = 'bukti_laporan/' . $date . $filename;
             }
             $Lap->save();
         } else {
@@ -177,8 +178,9 @@ class UserPerMhsController extends Controller
             if ($request->hasFile('bukti_laporan')) {
                 $file = $request->file('bukti_laporan');
                 $filename = $file->getClientOriginalName();
+                $date = date('d-m-y');
                 $path = $file->storeAs('public/bukti_laporan', $filename);
-                $Lap->bukti_laporan = 'bukti_laporan/' . $filename;
+                $Lap->bukti_laporan = 'bukti_laporan/' . $date . $filename;
             }  
             $Lap->save();
         }
