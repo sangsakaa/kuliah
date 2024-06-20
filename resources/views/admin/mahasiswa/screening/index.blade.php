@@ -37,7 +37,8 @@
             @endforeach
           </div>
           <div>
-            {{$jumlahTotal}}
+            Jumlah total : {{$jumlahTotal}}
+            Jumlah Valid : {{$jumlahTotalValid}}
           </div>
           <div>
             <table hidden class="border-collapse border border-gray-500">
