@@ -219,11 +219,15 @@
                 <button class="bg-red-600 dark:bg-purple-600 py-2 rounded-sm hover:bg-purple-600 text-white px-4">Upload File</button>
               </p>
             </form>
-            <td colspan="3" class="text-center">Data sudah di submit dan file belum diupload</td>
+            <td colspan="3" class="text-center">Data sudah di submit dan file belum diupload <br>
+              <b>Wajib melampirkan Bukti Pembaran</b>
+            </td>
           </tr>
           @else
           <tr>
-            <td colspan="3" class="text-center">Data belum diisi dan form upload tidak tersedia</td>
+            <td colspan="3" class="text-center">
+              Data belum diisi dan form upload tidak tersedia
+            </td>
           </tr>
           @endif
           @endif
