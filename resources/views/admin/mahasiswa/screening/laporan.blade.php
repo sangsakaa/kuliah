@@ -94,9 +94,9 @@
   }
 
   input {
-    width: 100%;
-    padding: 10px;
-    margin: 5px;
+    width: 90%;
+    padding: 20px;
+    margin: 10px;
     box-sizing: border-box;
 
   }
@@ -133,7 +133,7 @@
       <tr>
         <th>No</th>
         <th>Nama Mahasiswa</th>
-        <th>NIM</th>
+
         <th>Prodi</th>
         <th>Tanggal Pendaftaran</th>
         <th>Status File</th>
@@ -143,8 +143,8 @@
       @foreach($groupedData as $key => $pendaftaran)
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $pendaftaran[0]->nama_mhs }}</td>
-        <td>{{ $pendaftaran[0]->nim }}</td>
+        <td>{{ $pendaftaran[0]->nim }} - {{ $pendaftaran[0]->nama_mhs }}</td>
+
         <td>{{ $pendaftaran[0]->prodi }}</td>
         <td>{{ $pendaftaran[0]->created_at }}</td>
         <td>{{ $pendaftaran[0]->status_file }}</td>
