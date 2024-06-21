@@ -93,7 +93,7 @@
     color: white;
   }
 </style>
-<div class="container">
+<div hidden class="container">
   <div class="header">
     <div class="kop-1">
       <img class="logo" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
@@ -110,7 +110,6 @@
     </div>
   </div>
 </div>
-
 <hr class="line2">
 <div>
   <p class=" label-lap">
