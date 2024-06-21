@@ -146,13 +146,20 @@
         <td>{{ $pendaftaran[0]->nama_mhs }}</td>
         <td>{{ $pendaftaran[0]->nim }}</td>
         <td>{{ $pendaftaran[0]->prodi }}</td>
-        <td>{{ $pendaftaran[0]->created_at }}</td>
+        <td>
+          <div>
+            Daftar : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->format('d-m-Y') }}
+          </div>
+          <div>
+            Uploud : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
+          </div>
+
+        </td>
         <td>{{ $pendaftaran[0]->status_file }}</td>
       </tr>
       @endforeach
     </tbody>
   </table>
-
   <script>
     function filterTable() {
       const searchInput = document.getElementById('search').value.toLowerCase();
@@ -174,4 +181,5 @@
       });
     }
   </script>
+
 </div>

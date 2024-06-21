@@ -344,11 +344,12 @@ class ScreeningController extends Controller
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
             ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
             ->select([
-                'mahasiswa.nama_mhs',
-                'jawaban_screening.mahasiswa_id',
-                'jawaban_screening.jawaban',
-                'prodi',
-                'nim', 'file', 'status_file', 'file_screening.id as idfile'
+                'mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi', 'nim',
+                'file',
+                'status_file',
+                'file_screening.id as idfile',
+                'jawaban_screening.created_at as tgl_daftar',
+                'file_screening.created_at as tgl_update_file'
             ])
             ->orderby('prodi')
             ->orderby('nama_mhs')
