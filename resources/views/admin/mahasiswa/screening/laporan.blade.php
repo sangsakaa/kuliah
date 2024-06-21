@@ -92,6 +92,14 @@
     background-color: #4CAF50;
     color: white;
   }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    box-sizing: border-box;
+
+  }
 </style>
 <!-- <div hidden class="container">
   <div class="header">
@@ -119,24 +127,51 @@
   </p>
 </div>
 <div>
-  <table class="table">
-    <tr>
-      <th>No</th>
-      <th>Nama</th>
-      <th>NIM</th>
-      <th>Prodi</th>
-      <th>Tanggal Daftar</th>
-      <th>Status</th>
-    </tr>
-    @foreach($groupedData as $key => $pendaftaran)
-    <tr>
-      <td>{{ $loop->iteration }}</td>
-      <td>{{ $pendaftaran[0]->nama_mhs }}</td>
-      <td>{{ $pendaftaran[0]->nim }}</td>
-      <td>{{ $pendaftaran[0]->prodi }}</td>
-      <td>{{ $pendaftaran[0]->created_at }}</td>
-      <td>{{ $pendaftaran[0]->status_file }}</td>
-    </tr>
-    @endforeach
+  <input type="text" id="search" placeholder="Cari mahasiswa..." onkeyup="filterTable()">
+  <table class=" table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Mahasiswa</th>
+        <th>NIM</th>
+        <th>Prodi</th>
+        <th>Tanggal Pendaftaran</th>
+        <th>Status File</th>
+      </tr>
+    </thead>
+    <tbody id="dataTable">
+      @foreach($groupedData as $key => $pendaftaran)
+      <tr>
+        <td>{{ $loop->iteration }}</td>
+        <td>{{ $pendaftaran[0]->nama_mhs }}</td>
+        <td>{{ $pendaftaran[0]->nim }}</td>
+        <td>{{ $pendaftaran[0]->prodi }}</td>
+        <td>{{ $pendaftaran[0]->created_at }}</td>
+        <td>{{ $pendaftaran[0]->status_file }}</td>
+      </tr>
+      @endforeach
+    </tbody>
   </table>
+
+  <script>
+    function filterTable() {
+      const searchInput = document.getElementById('search').value.toLowerCase();
+      const tableRows = document.querySelectorAll('#dataTable tr');
+
+      tableRows.forEach(row => {
+        const cells = row.getElementsByTagName('td');
+        const namaMhs = cells[1].textContent.toLowerCase();
+        const nim = cells[2].textContent.toLowerCase();
+        const prodi = cells[3].textContent.toLowerCase();
+        const createdAt = cells[4].textContent.toLowerCase();
+        const statusFile = cells[5].textContent.toLowerCase();
+
+        if (namaMhs.includes(searchInput) || nim.includes(searchInput) || prodi.includes(searchInput) || createdAt.includes(searchInput) || statusFile.includes(searchInput)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+  </script>
 </div>
