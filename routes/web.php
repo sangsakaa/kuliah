@@ -77,6 +77,8 @@ Route::delete('/form-screening-mahasiswa/{screening}', [ScreeningController::cla
 Route::delete('/daftar-screening-mahasiswa/{mahasiswa_id}', [ScreeningController::class, 'destroy_screening']);
 Route::delete('/hapus-data-file/{file_screenig}', [ScreeningController::class, 'HapusFile']);
 
+Route::get('/laporan', [ScreeningController::class, 'LaporanPDF']);
+
 
 
 

@@ -42,10 +42,6 @@ class ScreeningController extends Controller
         ->where('status_file', 'valid')
         ->distinct('jawaban_screening.mahasiswa_id')
         ->count('jawaban_screening.mahasiswa_id');
-
-
-
-
         // dd($groupedData);
         // Menghitung jumlah mahasiswa berdasarkan prodi
         $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {
@@ -341,6 +337,14 @@ class ScreeningController extends Controller
             $screening->delete();
         }
         return redirect()->back();
+    }
+    public function LaporanPDF()
+    {
+        $dataScreening = file_screening::query()
+            ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
+            ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim', 'file_screening.created_at')
+            ->get();
+        return view('admin.mahasiswa.screening.laporan', compact('dataScreening'));
     }
     
 }
