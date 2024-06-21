@@ -56,7 +56,7 @@
   }
 
   .table {
-    width: 100%;
+    width: 95%;
     border-collapse: collapse;
   }
 
@@ -177,7 +177,6 @@
         const prodi = cells[3].textContent.toLowerCase();
         const createdAt = cells[4].textContent.toLowerCase();
         const statusFile = cells[5].textContent.toLowerCase();
-
         if (namaMhs.includes(searchInput) || nim.includes(searchInput) || prodi.includes(searchInput) || createdAt.includes(searchInput) || statusFile.includes(searchInput)) {
           row.style.display = '';
         } else {
