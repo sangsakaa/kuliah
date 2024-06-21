@@ -129,14 +129,14 @@
       <th>Tanggal Daftar</th>
       <th>Status</th>
     </tr>
-    @foreach($dataScreening as $key => $pendaftaran)
+    @foreach($groupedData as $key => $pendaftaran)
     <tr>
-      <td>{{ $key + 1 }}</td>
-      <td>{{ $pendaftaran->nama_mhs }}</td>
-      <td>{{ $pendaftaran->nim }}</td>
-      <td>{{ $pendaftaran->prodi }}</td>
-      <td>{{ $pendaftaran->created_at }}</td>
-      <td>{{ $pendaftaran->status_file }}</td>
+      <td>{{ $loop->iteration }}</td>
+      <td>{{ $pendaftaran[0]->nama_mhs }}</td>
+      <td>{{ $pendaftaran[0]->nim }}</td>
+      <td>{{ $pendaftaran[0]->prodi }}</td>
+      <td>{{ $pendaftaran[0]->created_at }}</td>
+      <td>{{ $pendaftaran[0]->status_file }}</td>
     </tr>
     @endforeach
   </table>
