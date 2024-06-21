@@ -340,9 +340,19 @@ class ScreeningController extends Controller
     }
     public function LaporanPDF()
     {
-        $dataScreening = file_screening::query()
-            ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
-            ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim', 'file_screening.created_at')
+        $dataScreening = jawaban_screening::query()
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
+            ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
+            ->select([
+                'mahasiswa.nama_mhs',
+                'jawaban_screening.mahasiswa_id',
+                'jawaban_screening.jawaban',
+                'prodi',
+                'nim', 'file', 'status_file', 'file_screening.id as idfile'
+            ])
+            // ->whereNot('status_file', 'Valid')
+            ->orWhereNull('status_file')
+            ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
             ->get();
         return view('admin.mahasiswa.screening.laporan', compact('dataScreening'));
     }
