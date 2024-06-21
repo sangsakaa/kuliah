@@ -353,7 +353,7 @@ class ScreeningController extends Controller
             ->orderby('prodi')
             ->orderby('nama_mhs')
             // ->whereNot('status_file', 'Valid')
-            ->orWhereNull('status_file')
+            // ->orWhereNull('status_file')
             ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
             ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
