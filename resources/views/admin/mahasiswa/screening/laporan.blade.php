@@ -160,7 +160,20 @@
           </div>
 
         </td>
-        <td>{{ $pendaftaran[0]->status_file }}</td>
+        <td>
+          <?php
+          // Asumsikan $pendaftaran adalah array dari objek dan kita ingin mengecek status_file dari objek pertama
+          $status_file = $pendaftaran[0]->status_file;
+
+          if ($status_file == 'Valid') {
+            echo "Diterima";
+          } elseif ($status_file == 'Invalid') {
+            echo "Ditolak";
+          } else {
+            echo "Belum Uploud";
+          }
+          ?>
+        </td>
       </tr>
       @endforeach
     </tbody>
