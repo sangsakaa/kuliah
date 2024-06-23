@@ -87,8 +87,8 @@ Route::get('/validasi-screening', [ScreeningController::class, 'ValidasiScreenin
 Route::get('/pdf/screen/{nim}', [ScreeningController::class, 'download_pdf']);
 Route::get('/view-pdf/screen', [ScreeningController::class, 'view_pdf']);
 Route::post('uploud-screening-mahasiswa', [ScreeningController::class, 'uploudFile']);
-Route::get('/update-validasi-pendaftaran/{file_screenig}', [ScreeningController::class, 'UpdateStatusScreening']);
-Route::patch('/update-validasi-pendaftaran/{file_screenig}', [ScreeningController::class, 'uploudFileStatus']);
+Route::get('/update-validasi-pendaftaran/{file_screenig}', [ScreeningController::class, 'UpdateStatusScreening'])->middleware(['auth']);
+Route::patch('/update-validasi-pendaftaran/{file_screenig}', [ScreeningController::class, 'uploudFileStatus'])->middleware(['auth']);
 
 
 // userManajement
