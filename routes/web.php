@@ -83,7 +83,7 @@ Route::get('/laporan', [ScreeningController::class, 'LaporanPDF']);
 
 
 
-Route::get('/validasi-screening', [ScreeningController::class, 'ValidasiScreening'])->name('validasi-screening');
+Route::get('/validasi-screening', [ScreeningController::class, 'ValidasiScreening'])->name('validasi-screening')->middleware(['auth']);
 Route::get('/pdf/screen/{nim}', [ScreeningController::class, 'download_pdf']);
 Route::get('/view-pdf/screen', [ScreeningController::class, 'view_pdf']);
 Route::post('uploud-screening-mahasiswa', [ScreeningController::class, 'uploudFile']);

@@ -22,7 +22,7 @@
           </thead>
           <tbody class=" border sm:overflow-auto">
             @foreach($dataScreening as $item)
-            <tr class=" hover:bg-green-200">
+            <tr class=" hover:bg-green-200 border">
               <th>
                 {{$loop->iteration}}
               </th>
@@ -38,9 +38,7 @@
               <td>
                 {{ $item->nama_mhs }} <br>
                 {{ $item->nim }}
-
               </td>
-
               <td>{{ $item->prodi }}</td>
               <td>
                 <!-- Check if the status_file is valid -->

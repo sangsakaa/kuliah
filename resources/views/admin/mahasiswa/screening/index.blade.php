@@ -174,7 +174,6 @@
                         </svg>
                       </span>
                     </a>
-
                     <form action="/hapus-data-file/{{$data[0]->idfile}}" method="post">
                       @csrf
                       @method('delete')
