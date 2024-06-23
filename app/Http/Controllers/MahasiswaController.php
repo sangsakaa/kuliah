@@ -144,8 +144,8 @@ class MahasiswaController extends Controller
         $response = Http::post(env('feeder_url'), [
             'act' => 'GetListMahasiswa',
             'token' => $this->token,
-            // 'filter' => "nama_status_mahasiswa = 'AKTIF'",
-            'filter' => "id_periode >= '20201'",
+            'filter' => "nama_status_mahasiswa = 'AKTIF'",
+            // 'filter' => "id_periode >= '20201'",
             'order' =>  'nama_program_studi,id_periode,nama_mahasiswa',
             'limit' => 0
         ]);
