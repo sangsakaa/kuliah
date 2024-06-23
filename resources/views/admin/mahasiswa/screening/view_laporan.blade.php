@@ -198,6 +198,14 @@
       @endforeach
     </tbody>
   </table>
+  <style>
+    .ttd {
+      width: 400px;
+      margin-top: 0px;
+      float: right;
+    }
+  </style>
+  <img class="ttd" height="100px" width="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/ttd.jpeg'))) }}" alt="Logo">
   <script>
     function filterTable() {
       const searchInput = document.getElementById('search').value.toLowerCase();
