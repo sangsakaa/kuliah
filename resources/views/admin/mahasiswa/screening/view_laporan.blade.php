@@ -172,7 +172,7 @@
           </div>
           <div>
             @if ($pendaftaran[0]->tgl_update_file)
-            Uploud file : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
+            Uploud : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
             @else
             Belum upload file
             @endif
