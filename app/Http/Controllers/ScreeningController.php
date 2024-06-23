@@ -388,10 +388,18 @@ class ScreeningController extends Controller
         // Mengelompokkan data berdasarkan mahasiswa_id
         $groupedData = $dataScreening
             ->groupBy('mahasiswa_id');
+        $countProdi = $dataScreening->groupBy('prodi')->map(function ($items, $key) {
+            $mahasiswaIdCount = $items->unique('mahasiswa_id')->count();
+
+            return [
+                'unique_mahasiswa_id' => $mahasiswaIdCount
+            ];
+        });
         $html = view(
             'admin.mahasiswa.screening.view_laporan',
             [
                 'groupedData' => $groupedData,
+                'countProdi' => $countProdi,
             ]
         )->render();
         $dompdf->loadHtml($html);
@@ -407,6 +415,7 @@ class ScreeningController extends Controller
             . ' - ' . 'Laporan-pedaftaran' . '.pdf',
             ['Attachment' => false]
         );
+        
     }
     
 }
