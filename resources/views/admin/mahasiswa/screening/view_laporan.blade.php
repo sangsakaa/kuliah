@@ -184,12 +184,14 @@
         border-radius: 5px;
         background-color: #87CEEB;
         /* skyblue */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
         padding: 10px;
         /* Optional: Add some padding for better appearance */
       }
+
+      /* Optional: Add some padding for better appearance */
     </style>
   </div>
 
