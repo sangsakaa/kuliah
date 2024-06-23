@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\file_screening;
+use Carbon\Carbon;
 use Dompdf\Dompdf;
 use App\Models\Mahasiswa;
 use App\Models\screening;
 use Illuminate\Http\Request;
+use App\Models\file_screening;
 use App\Models\jawaban_screening;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Storage;
+
 class ScreeningController extends Controller
 {
     public function index()
@@ -361,6 +363,50 @@ class ScreeningController extends Controller
         $groupedData = $dataScreening
         ->groupBy('mahasiswa_id');
         return view('admin.mahasiswa.screening.laporan', compact('groupedData'));
+    }
+    public function download_laporan_pdf()
+    {
+
+        $dompdf = new Dompdf();
+        $dataScreening = jawaban_screening::query()
+            ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
+            ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
+            ->select([
+                'mahasiswa.nama_mhs', 'jawaban_screening.mahasiswa_id', 'jawaban_screening.jawaban', 'prodi', 'nim',
+                'file',
+                'status_file',
+                'file_screening.id as idfile',
+                'jawaban_screening.created_at as tgl_daftar',
+                'file_screening.created_at as tgl_update_file'
+            ])
+            ->orderby('prodi')
+            ->orderby('nama_mhs')
+            // ->whereNot('status_file', 'Valid')
+            // ->orWhereNull('status_file')
+            ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
+            ->get();
+        // Mengelompokkan data berdasarkan mahasiswa_id
+        $groupedData = $dataScreening
+            ->groupBy('mahasiswa_id');
+        $html = view(
+            'admin.mahasiswa.screening.view_laporan',
+            [
+                'groupedData' => $groupedData,
+            ]
+        )->render();
+        $dompdf->loadHtml($html);
+        $dompdf->setPaper('A4', 'portrait');
+        // $dompdf->setPaper('A4', 'landscape');
+        // $dompdf->setPaper('legal', 'portrait');
+        $date = Carbon::now();
+        $formattedDate = $date->format('l, d-F-Y');
+
+        $dompdf->render();
+        $dompdf->stream(
+            \Carbon\Carbon::parse($formattedDate)->isoFormat(' DD MMMM Y')
+            . ' - ' . 'Laporan-pedaftaran' . '.pdf',
+            ['Attachment' => false]
+        );
     }
     
 }

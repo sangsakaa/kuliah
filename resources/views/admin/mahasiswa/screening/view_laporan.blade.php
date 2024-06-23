@@ -56,8 +56,9 @@
   }
 
   .table {
-    width: 95%;
+    width: 100%;
     border-collapse: collapse;
+    font-size: smaller;
   }
 
   .table th,
@@ -118,7 +119,7 @@
 
   }
 </style>
-<table hidden class=" kop">
+<table class=" kop">
   <tr>
     <td>
       <img height="100px" width="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
@@ -138,20 +139,19 @@
 <hr class="line2">
 <div>
   <p class=" label-lap">
-    laporan harian pendaftaran
-    <br>
-    Kegiatan Kuliah Kerja Nyata (KKN) Universitas Wahidiyah
+    <span class="kop-1">laporan pendaftaran
+      <br>
+      Kuliah Kerja Nyata (KKN) Universitas Wahidiyah
+    </span>
   </p>
 </div>
 <div>
-  <input type="text" id="search" placeholder="Cari mahasiswa..." onkeyup="filterTable()">
+
   <table class=" table">
     <thead>
       <tr>
         <th>No</th>
         <th>Nama Mahasiswa</th>
-        <th>NIM</th>
-        <th>Prodi</th>
         <th>Tanggal Pendaftaran</th>
         <th>Status File</th>
       </tr>
@@ -160,9 +160,12 @@
       @foreach($groupedData as $key => $pendaftaran)
       <tr>
         <td>{{ $loop->iteration }}</td>
-        <td>{{ $pendaftaran[0]->nama_mhs }}</td>
-        <td>{{ $pendaftaran[0]->nim }}</td>
-        <td>{{ $pendaftaran[0]->prodi }}</td>
+        <td>
+          {{ $pendaftaran[0]->nim }} -
+          {{ $pendaftaran[0]->nama_mhs }}
+          <br>
+          {{ $pendaftaran[0]->prodi }}
+        </td>
         <td>
           <div>
             Daftar : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->format('d-m-Y') }}

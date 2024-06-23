@@ -61,14 +61,20 @@
               </td>
               <td class=" text-center">
                 <div class=" flex gxrid-cols-2 gap-2">
-                  <a class=" bg-purple-700 px-2 py-1 text-white" href="/update-validasi-pendaftaran/{{$item->id}}">Validasi</a>
+                  <a class=" bg-purple-700 px-2 py-1 text-white" href="/update-validasi-pendaftaran/{{$item->id}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </a>
                   <form action="/hapus-data-file/{{$item->id}}" method="post">
                     @csrf
                     @method('delete')
                     <button class="bg-red-700 px-2 py-1 text-white" @if($item->status_file == 'Valid')
                       disabled
                       @endif>
-                      Hapus File
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                      </svg>
                     </button>
                   </form>
 

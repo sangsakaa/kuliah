@@ -40,6 +40,7 @@
             Jumlah total : {{$jumlahTotal}}
             Jumlah Valid : {{$jumlahTotalValid}}
             Jumlah Belum Uploud : {{$jumlahTotalList}}
+            <a class=" justify-endf float-right py-1 px-2 bg-purple-700 text-white rounded-md" target="_blank" href="/download-laporan">download Laporan</a>
           </div>
           <div>
             <table hidden class="border-collapse border border-gray-500">
