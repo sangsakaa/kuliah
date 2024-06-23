@@ -29,7 +29,7 @@ use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
 use Illuminate\Foundation\Providers\FoundationServiceProvider;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Providers\ConsoleSupportServiceProvider;
-use PDF;
+
 
 
 

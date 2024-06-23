@@ -68,6 +68,7 @@
                                 <th class=" px-2 border text-center">#</th>
                                 <th class=" px-2 border text-center">NIM</th>
                                 <th class=" px-2 border text-center">Nama</th>
+                                <th class=" px-2 border text-center">tgl_lahir</th>
                                 <th class=" px-2 border text-center">JK</th>
                                 <th class=" px-2  border text-center"> Agama</th>
                                 <th class="  border text-center">Program Studi</th>
@@ -81,10 +82,13 @@
                                 <td class=" border text-center">{{ $loop->iteration }}</td>
                                 <td class=" border px-2 ">{{ $mahasiswa['nim'] }}</td>
                                 <td class=" border   px-2">{{ $mahasiswa['nama_mahasiswa'] }}</td>
+                                <td class=" border   px-2 text-center">{{ $mahasiswa['tanggal_lahir'] }}</td>
                                 <td class=" border   px-2 text-center">{{ $mahasiswa['jenis_kelamin'] }}</td>
                                 <td class=" border text-center">{{ $mahasiswa['nama_agama'] }}</td>
                                 <td class=" border text-center">{{ $mahasiswa['nama_program_studi'] }}</td>
-                                <td class=" border text-center">{{ $mahasiswa['id_periode'] }}</td>
+                                <td class=" border text-center">
+                                    {{ $mahasiswa['id_periode'] }}
+                                </td>
                                 <td class=" border text-center">
                                     @if($mahasiswa['nama_status_mahasiswa'] == 'Lulus')
                                     <div class=" text-red-700">

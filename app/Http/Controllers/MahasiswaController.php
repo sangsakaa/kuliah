@@ -69,10 +69,30 @@ class MahasiswaController extends Controller
     }
     public function sinkronisasi()
     {
+        // try {
+        //     $lisMahasiswa = $this->getMahasiswa();
+        // } catch (ConnectionException $ex) {
+        //     return  redirect()->back()->with('error', 'tidak terhubung dengan server');
+        // }
+        // $mapToMahasiswa = function ($data) {
+        //     return [
+        //         'nim' => $data['nim'],
+        //         'nama_mhs' => $data['nama_mahasiswa'],
+        //         'jenis_kelamin' => $data['jenis_kelamin'], 
+        //         'tgl_lahir' => substr($data['tanggal_lahir'], 6) . '-' . substr($data['tanggal_lahir'], 3, 2) . '-' . substr($data['tanggal_lahir'], 0, 2), // '12-04-2000'
+        //         'agama' => $data['nama_agama'],
+        //         'prodi' => $data['nama_program_studi'],
+        //         'status' => $data['nama_status_mahasiswa'],
+        //         'periode_masuk' => $data['id_periode'],
+
+        //     ];
+        // };
+        // $lisMahasiswa = array_map($mapToMahasiswa, $lisMahasiswa);
+        // Mahasiswa::upsert($lisMahasiswa, ['nim'], ['status']);
         try {
-            $lisMahasiswa = $this->getMahasiswa();
+            $lisMahasiswaBaru = $this->getMahasiswa();
         } catch (ConnectionException $ex) {
-            return  redirect()->back()->with('error', 'tidak terhubung dengan server');
+            return redirect()->back()->with('error', 'tidak terhubung dengan server');
         }
 
         $mapToMahasiswa = function ($data) {
@@ -80,18 +100,43 @@ class MahasiswaController extends Controller
                 'nim' => $data['nim'],
                 'nama_mhs' => $data['nama_mahasiswa'],
                 'jenis_kelamin' => $data['jenis_kelamin'],
-                
                 'tgl_lahir' => substr($data['tanggal_lahir'], 6) . '-' . substr($data['tanggal_lahir'], 3, 2) . '-' . substr($data['tanggal_lahir'], 0, 2), // '12-04-2000'
                 'agama' => $data['nama_agama'],
                 'prodi' => $data['nama_program_studi'],
                 'status' => $data['nama_status_mahasiswa'],
                 'periode_masuk' => $data['id_periode'],
-                
             ];
         };
-        $lisMahasiswa = array_map($mapToMahasiswa, $lisMahasiswa);
-        Mahasiswa::upsert($lisMahasiswa, ['nim'], ['status']);
-        return  redirect()->back();
+
+        $lisMahasiswaBaru = array_map($mapToMahasiswa, $lisMahasiswaBaru);
+
+        // Ambil data mahasiswa yang ada di database
+        $mahasiswaDB = Mahasiswa::all()->keyBy('nim')->toArray();
+
+        $updateData = [];
+
+        foreach ($lisMahasiswaBaru as $mahasiswaBaru) {
+            $nim = $mahasiswaBaru['nim'];
+            if (isset($mahasiswaDB[$nim])) {
+                // Jika mahasiswa sudah ada di database, cek apakah ada perubahan
+                $mahasiswaDBItem = $mahasiswaDB[$nim];
+                $perbedaan = array_diff_assoc($mahasiswaBaru, $mahasiswaDBItem);
+
+                if (!empty($perbedaan)) {
+                    // Jika ada perbedaan, tambahkan data ke array update
+                    $updateData[] = $mahasiswaBaru;
+                }
+            } else {
+                // Jika mahasiswa belum ada di database, tambahkan data ke array update
+                $updateData[] = $mahasiswaBaru;
+            }
+        }
+
+        // Lakukan upsert (insert atau update) data mahasiswa
+        Mahasiswa::upsert($updateData, ['nim'], ['nama_mhs', 'jenis_kelamin', 'tgl_lahir', 'agama', 'prodi', 'status', 'periode_masuk']);
+
+        return redirect()->back()->with('success', 'Data mahasiswa telah diperbarui');
+       
     }
     private function getMahasiswa()
     {
@@ -99,10 +144,12 @@ class MahasiswaController extends Controller
         $response = Http::post(env('feeder_url'), [
             'act' => 'GetListMahasiswa',
             'token' => $this->token,
-            'filter' => "nama_status_mahasiswa = 'AKTIF'",
+            // 'filter' => "nama_status_mahasiswa = 'AKTIF'",
+            'filter' => "id_periode >= '20201'",
             'order' =>  'nama_program_studi,id_periode,nama_mahasiswa',
             'limit' => 0
         ]);
+
         // dd($response);
         $hapusNimNull = function ($data) {
             return $data['nim'] != null;
@@ -120,7 +167,7 @@ class MahasiswaController extends Controller
             })
             ->orderby('periode_masuk');
         }
-        $results = $cari->paginate(100);
+        $results = $cari->paginate(10);
 
         $total = Mahasiswa::count();
         $listMahasiswa = Mahasiswa::all();

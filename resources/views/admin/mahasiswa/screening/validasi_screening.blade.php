@@ -60,7 +60,7 @@
                 @endif
               </td>
               <td class=" text-center">
-                <a hidden class=" bg-purple-700 px-2 py-1 text-white" href="/update-validasi-pendaftaran/{{$item->id}}">Validasi</a>
+                <a class=" bg-purple-700 px-2 py-1 text-white" href="/update-validasi-pendaftaran/{{$item->id}}">Validasi</a>
                 <form action="/hapus-data-file/{{$item->id}}" method="post">
                   @csrf
                   @method('delete')
