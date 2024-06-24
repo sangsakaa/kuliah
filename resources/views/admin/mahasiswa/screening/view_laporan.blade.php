@@ -145,7 +145,8 @@
   </p>
 </div>
 <div>
-  <table class=" table">
+  <p>Pendaftar dengan Status Valid</p>
+  <table class="table">
     <thead>
       <tr>
         <th>No</th>
@@ -154,10 +155,12 @@
         <th>Status File</th>
       </tr>
     </thead>
-    <tbody id="dataTable">
+    <tbody id="dataTableValid">
+      @php $no = 1; @endphp
       @foreach($groupedData as $key => $pendaftaran)
+      @if ($pendaftaran[0]->status_file == 'Valid')
       <tr>
-        <td>{{ $loop->iteration }}</td>
+        <td>{{ $no++ }}</td>
         <td>
           {{ $pendaftaran[0]->nim }} -
           {{ $pendaftaran[0]->nama_mhs }}
@@ -174,28 +177,63 @@
             @else
             Belum upload file
             @endif
-
           </div>
-
         </td>
         <td>
-          <?php
-          // Asumsikan $pendaftaran adalah array dari objek dan kita ingin mengecek status_file dari objek pertama
-          $status_file = $pendaftaran[0]->status_file;
-
-          if ($status_file == 'Valid') {
-            echo "Diterima";
-          } elseif ($status_file == 'Invalid') {
-            echo "Ditolak";
-          } else {
-            echo "Belum Uploud";
-          }
-          ?>
+          Diterima
         </td>
       </tr>
+      @endif
       @endforeach
     </tbody>
   </table>
+  <p>Pendaftar dengan Status belum Uploud file</p>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Mahasiswa</th>
+        <th>Tanggal Pendaftaran</th>
+        <th>Status File</th>
+      </tr>
+    </thead>
+    <tbody id="dataTableNull">
+      @php $no = 1; @endphp
+      @foreach($groupedData as $key => $pendaftaran)
+      @if (is_null($pendaftaran[0]->status_file) || $pendaftaran[0]->status_file != 'Valid')
+      <tr>
+        <td>{{ $no++ }}</td>
+        <td>
+          {{ $pendaftaran[0]->nim }} -
+          {{ $pendaftaran[0]->nama_mhs }}
+          <br>
+          {{ $pendaftaran[0]->prodi }}
+        </td>
+        <td>
+          <div>
+            Daftar : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->format('d-m-Y') }}
+          </div>
+          <div>
+            @if ($pendaftaran[0]->tgl_update_file)
+            Uploud : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
+            @else
+            Belum upload file
+            @endif
+          </div>
+        </td>
+        <td>
+          @if ($pendaftaran[0]->status_file == 'Invalid')
+          Ditolak
+          @else
+          Belum Upload
+          @endif
+        </td>
+      </tr>
+      @endif
+      @endforeach
+    </tbody>
+  </table>
+
   <style>
     .ttd {
       width: 400px;
