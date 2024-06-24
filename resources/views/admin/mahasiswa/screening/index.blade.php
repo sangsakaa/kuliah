@@ -40,7 +40,10 @@
             Jumlah total : {{$jumlahTotal}}
             Jumlah Valid : {{$jumlahTotalValid}}
             Jumlah Belum Uploud : {{$jumlahTotalList}}
-            <a class=" justify-endf float-right py-1 px-2 bg-purple-700 text-white rounded-md" target="_blank" href="/download-laporan">download Laporan</a>
+            <div class="  flex gap-2">
+              <a class=" justify-endf float-right py-1 px-2 bg-purple-700 text-white rounded-md" target="_blank" href="/download-laporan">download Laporan</a>
+              <a class=" justify-endf float-right py-1 px-2 bg-purple-700 text-white rounded-md" target="_blank" href="/laporan">Cek Laporan</a>
+            </div>
           </div>
           <div>
             <table hidden class="border-collapse border border-gray-500">
@@ -84,12 +87,10 @@
                 <tr>
                   @foreach($countProdi as $prodi => $counts)
                   <td class="border border-gray-500">{{ $counts['unique_mahasiswa_id'] }}</td>
-
                   @endforeach
                 </tr>
               </tbody>
             </table>
-
           </div>
         </div>
         <hr class=" mt-1 border-2 border-black">
