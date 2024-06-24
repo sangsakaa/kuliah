@@ -33,22 +33,29 @@
     margin-top: 5px;
   }
 
-
-
   hr.line2 {
 
     /* Mengatur margin khusus untuk elemen <hr> dengan kelas "line2" */
     border-style: double;
+    border-width: 2.5px;
+
   }
 
-  p.label-lap {
+  span.label-lap {
     text-align: center;
     font-size: 14px;
-
     margin-bottom: 10px;
-    text-transform: capitalize;
-
+    text-transform: uppercase;
+    /* Combine the text-transform properties */
+    font-weight: bold;
+    display: flex;
+    /* Add this line */
+    justify-content: center;
+    /* Add this line */
+    align-items: center;
+    /* Add this line if you want vertical centering too */
   }
+
 
   .th {
     background-color: green;
@@ -64,7 +71,7 @@
   .table th,
   .table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 3px;
     text-align: left;
   }
 
@@ -117,11 +124,15 @@
   .kop {
     text-align: center;
   }
+
+  td.number {
+    text-align: center;
+  }
 </style>
-<table class=" kop">
+<table class="kop">
   <tr>
     <td>
-      <img height="100px" width="100px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
+      <img height="99px" width="99px" src="data:image/png;base64,{{ base64_encode(file_get_contents(public_path('/img/logo.png'))) }}" alt="Logo">
     </td>
     <td>
       <span class=" kop-1">
@@ -129,23 +140,22 @@
         Universitas Wahidiyah <br>
         Panitia Pelaksanaan Kuliah Kerja Nyata (KKN) <br>
       </span>
-      <span class="sekretariat ">SK Kemendikbud RI. Nomor 608/E/O/2014 Tanggal 17 Oktober 2014</span> <br>
-      <span class=" sekretariat">Sekretariat : Pon-Pes Kedunglo Jl KH. Wahid Hasyim Kota Kediri Jawa Timur 64114 Telp. (0354) 771018 <br>
-        Email: rektorat@uniwa.ac.id </span>
+      <span class="sekretariat ">SK Kemendikbud RI. Nomor 608/E/O/2014 Tanggal 17 Oktober 2014 <br>Sekretariat : Pon-Pes Kedunglo Jl KH. Wahid Hasyim Kota Kediri Jawa Timur 64114 Telp. (0354) 771018 <br>Email: rektorat@uniwa.ac.id</span>
     </td>
   </tr>
 </table>
+
 <hr class="line2">
 <div>
-  <p class=" label-lap">
-    <span class="kop-1">laporan pendaftaran
-      <br>
-      Kuliah Kerja Nyata (KKN) Universitas Wahidiyah
-    </span>
-  </p>
+  <span class=" label-lap">laporan pendaftaran
+    <br>
+    Kuliah Kerja Nyata (KKN) Universitas Wahidiyah <br>
+    Tanggal Download {{\Carbon\Carbon::parse(now())->isoFormat(' DD MMMM Y')}}
+  </span>
+
 </div>
 <div>
-  <p>Pendaftar dengan Status Valid</p>
+  <span>Pendaftar dengan Status Valid</span>
   <table class="table">
     <thead>
       <tr>
@@ -160,7 +170,7 @@
       @foreach($groupedData as $key => $pendaftaran)
       @if ($pendaftaran[0]->status_file == 'Valid')
       <tr>
-        <td>{{ $no++ }}</td>
+        <td class="number">{{ $no++ }}</td>
         <td>
           {{ $pendaftaran[0]->nim }} -
           {{ $pendaftaran[0]->nama_mhs }}
@@ -169,17 +179,17 @@
         </td>
         <td>
           <div>
-            Daftar : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->format('d-m-Y') }}
+            Daftar : {{\Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->isoFormat(' DD MMMM Y')}}
           </div>
           <div>
             @if ($pendaftaran[0]->tgl_update_file)
-            Uploud : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
+            Uploud : {{\Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->isoFormat(' DD MMMM Y')}}
             @else
             Belum upload file
             @endif
           </div>
         </td>
-        <td>
+        <td class="number">
           Diterima
         </td>
       </tr>
@@ -187,7 +197,7 @@
       @endforeach
     </tbody>
   </table>
-  <p>Pendaftar dengan Status belum Uploud file</p>
+  <span>Pendaftar dengan Status belum Uploud file</span>
   <table class="table">
     <thead>
       <tr>
@@ -202,7 +212,7 @@
       @foreach($groupedData as $key => $pendaftaran)
       @if (is_null($pendaftaran[0]->status_file) || $pendaftaran[0]->status_file != 'Valid')
       <tr>
-        <td>{{ $no++ }}</td>
+        <td class="number">{{ $no++ }}</td>
         <td>
           {{ $pendaftaran[0]->nim }} -
           {{ $pendaftaran[0]->nama_mhs }}
@@ -211,17 +221,19 @@
         </td>
         <td>
           <div>
-            Daftar : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->format('d-m-Y') }}
+            Daftar :
+            {{\Carbon\Carbon::parse($pendaftaran[0]->tgl_daftar)->isoFormat(' DD MMMM Y')}}
           </div>
           <div>
             @if ($pendaftaran[0]->tgl_update_file)
-            Uploud : {{ \Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->format('d-m-Y') }}
+            Uploud :
+            {{\Carbon\Carbon::parse($pendaftaran[0]->tgl_update_file)->isoFormat(' DD MMMM Y')}}
             @else
             Belum upload file
             @endif
           </div>
         </td>
-        <td>
+        <td class="number">
           @if ($pendaftaran[0]->status_file == 'Invalid')
           Ditolak
           @else
@@ -233,11 +245,10 @@
       @endforeach
     </tbody>
   </table>
-
   <style>
     .ttd {
       width: 400px;
-      height: 130px;
+      height: 140px;
       margin-top: 0px;
       float: right;
     }

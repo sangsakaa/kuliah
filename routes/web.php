@@ -63,7 +63,7 @@ Route::get('/get-test', [TestingController::class, 'sinkronisasi']);
 Route::get('/laporan-mahasiswa', [LaporanMahasiswaController::class, 'LaporanDataMahasiswa']);
 
 // SCREENING
-Route::get('/daftar-screening-mahasiswa', [ScreeningController::class, 'index'])->name('daftar-screening-mahasiswa');
+Route::get('/daftar-screening-mahasiswa', [ScreeningController::class, 'index'])->name('daftar-screening-mahasiswa')->middleware(['auth']);
 Route::get('/screening-mahasiswa', [ScreeningController::class, 'screening'])->name('screening-mahasiswa');
 
 Route::post('/screening-mahasiswa-jawab', [ScreeningController::class, 'screeningJawab']);
