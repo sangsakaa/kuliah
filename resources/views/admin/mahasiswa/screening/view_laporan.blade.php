@@ -116,7 +116,6 @@
 
   .kop {
     text-align: center;
-
   }
 </style>
 <table class=" kop">
@@ -146,55 +145,6 @@
   </p>
 </div>
 <div>
-  <div>
-    @foreach($countProdi as $prodi => $counts)
-    <div class="p-2 border rounded-md 
-                @if(strpos($prodi, 'Teknik') !== false) bg-blue-200 
-                @elseif(strpos($prodi, 'Pendidikan') !== false) bg-pink-200 
-                @elseif(strpos($prodi, 'Akuntansi') !== false || strpos($prodi, 'Manajemen') !== false) bg-yellow-200
-                @elseif(strpos($prodi, 'S1 Agroteknologi') !== false || strpos($prodi, 'S1 Agribisnis') !== false) bg-green-200
-                @endif">
-      <p class="text-xs">
-        @if ($prodi === 'S1 Pendidikan Guru Pendidikan Anak Usia Dini')
-        Pend. PG PAUD
-        @elseif ($prodi === 'S1 Hukum Keluarga Islam (Ahwal Syakhshiyyah)')
-        Pend. Hukum Keluarga Islam
-        @elseif ($prodi === 'S1 Pendidikan Matematika')
-        Pend. Matematika
-        @elseif ($prodi === 'S1 Pendidikan Bahasa Inggris')
-        Pend. Bahasa Inggris
-        @elseif ($prodi === 'S1 Pendidikan Kimia')
-        Pend. Kimia
-        @else
-      <div class="unique-mahasiswa">
-        {{ $prodi }} :
-        <!-- Your content goes here -->
-        {{ $counts['unique_mahasiswa_id'] }}
-      </div>
-      @endif
-
-
-      </p>
-    </div>
-    @endforeach
-    <style>
-      .unique-mahasiswa {
-        border: 1px solid #000;
-        /* You can adjust the border color and thickness as needed */
-        border-radius: 5px;
-        background-color: #87CEEB;
-        /* skyblue */
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 5px;
-        padding: 10px;
-        /* Optional: Add some padding for better appearance */
-      }
-
-      /* Optional: Add some padding for better appearance */
-    </style>
-  </div>
-
   <table class=" table">
     <thead>
       <tr>
@@ -249,6 +199,7 @@
   <style>
     .ttd {
       width: 400px;
+      height: 130px;
       margin-top: 0px;
       float: right;
     }
@@ -274,5 +225,4 @@
       });
     }
   </script>
-
 </div>
