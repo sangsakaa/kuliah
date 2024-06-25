@@ -293,6 +293,7 @@ class ScreeningController extends Controller
         $dataScreening = file_screening::query()
             ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
             ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim')
+            ->where('status_file', 'Valid')
             ->get();
         return view(
             'admin.mahasiswa.screening.validasi_screening',
