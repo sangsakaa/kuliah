@@ -393,7 +393,7 @@ class ScreeningController extends Controller
         ->groupBy('mahasiswa_id');
 
 
-        return view('admin.mahasiswa.screening.laporan', compact('groupedData', 'results'));
+        return view('admin.mahasiswa.screening.laporan', compact('groupedData',));
     }
     public function download_laporan_pdf()
     {
