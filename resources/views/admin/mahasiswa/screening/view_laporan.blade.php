@@ -152,7 +152,30 @@
     Kuliah Kerja Nyata (KKN) Universitas Wahidiyah <br>
     Tanggal Download {{\Carbon\Carbon::parse(now())->isoFormat(' DD MMMM Y')}}
   </span>
-
+</div>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Kelompok</th>
+        <th>Total</th>
+        <th>Valid Count</th>
+        <th>Invalid Count</th>
+        <th>Null Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach($results as $kelompok => $result)
+      <tr>
+        <td>Kelompok {{ $kelompok ??'' }}</td>
+        <td>{{ $result['total'] }}</td>
+        <td>{{ $result['valid_count'] }}</td>
+        <td>{{ $result['invalid_count'] }}</td>
+        <td>{{ $result['null_count'] }}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
 </div>
 <div>
   <span>Pendaftar dengan Status Valid</span>
