@@ -198,6 +198,21 @@
                 </div>
                 @endif
                 @endif
+                @if (Auth::check())
+                @if (Auth::user()->hasRole('validator'))
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Beranda') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('daftar-screening-mahasiswa')" :active="request()->routeIs('daftar-screening-mahasiswa')">
+                        {{ __('Validasi Perserta') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('validasi-screening')" :active="request()->routeIs('validasi-screening')">
+                        {{ __('Validasi File') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @endif
 
                 @if (Auth::check())
                 @if (Auth::user()->hasRole('pengawas'))
