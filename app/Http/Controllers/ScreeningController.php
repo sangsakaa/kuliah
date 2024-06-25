@@ -436,11 +436,12 @@ class ScreeningController extends Controller
         ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
         ->select(
             'kelompok',
+            'status_file',
             DB::raw('count(*) as total'),
             DB::raw('sum(case when status_file = "Valid" then 1 else 0 end) as valid_count'),
             DB::raw('sum(case when status_file = "Invalid" then 1 else 0 end) as invalid_count'),
             DB::raw('sum(case when status_file is null then 1 else 0 end) as null_count')
-        )->groupBy('kelompok')
+        )->groupBy('kelompok', 'status_file')
         ->orderby('kelompok')
         ->get();
 

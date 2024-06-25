@@ -128,6 +128,14 @@
   td.number {
     text-align: center;
   }
+
+  td.rekap {
+    text-align: center;
+  }
+
+  th.rekap-rekap {
+    text-align: center;
+  }
 </style>
 <table class="kop">
   <tr>
@@ -157,21 +165,21 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Kelompok</th>
-        <th>Total</th>
-        <th>Valid Count</th>
-        <th>Invalid Count</th>
-        <th>Null Count</th>
+        <th class="rekap-rekap">Kelompok</th>
+        <th class="rekap-rekap">Total</th>
+        <th class="rekap-rekap">Valid Count</th>
+        <th class="rekap-rekap">Invalid Count</th>
+        <th class="rekap-rekap">Null Count</th>
       </tr>
     </thead>
     <tbody>
       @foreach($results as $kelompok => $result)
-      <tr>
+      <tr class=" ">
         <td>Kelompok {{ $kelompok ??'' }}</td>
-        <td>{{ $result['total'] }}</td>
-        <td>{{ $result['valid_count'] }}</td>
-        <td>{{ $result['invalid_count'] }}</td>
-        <td>{{ $result['null_count'] }}</td>
+        <td class="rekap">{{ $result['total'] }}</td>
+        <td class="rekap">{{ $result['valid_count'] }}</td>
+        <td class="rekap">{{ $result['invalid_count'] }}</td>
+        <td class="rekap">{{ $result['null_count'] }}</td>
       </tr>
       @endforeach
     </tbody>
