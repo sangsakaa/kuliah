@@ -22,7 +22,21 @@
               <option value="Invalid" {{ old('status_file', $file_screenig->status_file) == 'Invalid' ? 'selected' : '' }}>
                 Invalid
               </option>
-            </select> <br>
+            </select>
+            <select name="kelompok" id="" class="py-1 w-full">
+              <option value="">-- Pilih Kelompok --</option>
+              <option value="1" @selected($file_screenig->kelompok == 1)>-- Kelompok 1 --</option>
+              <option value="2" @selected($file_screenig->kelompok == 2)>-- Kelompok 2 --</option>
+              <option value="3" @selected($file_screenig->kelompok == 3)>-- Kelompok 3 --</option>
+              <option value="4" @selected($file_screenig->kelompok == 4)>-- Kelompok 4 --</option>
+              <option value="5" @selected($file_screenig->kelompok == 5)>-- Kelompok 5 --</option>
+              <option value="6" @selected($file_screenig->kelompok == 6)>-- Kelompok 6 --</option>
+              <option value="7" @selected($file_screenig->kelompok == 7)>-- Kelompok 7 --</option>
+              <option value="8" @selected($file_screenig->kelompok == 8)>-- Kelompok 8 --</option>
+              <option value="9" @selected($file_screenig->kelompok == 9)>-- Kelompok 9 --</option>
+            </select>
+
+            <br>
             <button class="  bg-purple-700 px-2 py-1 text-white">Update</button>
             <a href="/daftar-screening-mahasiswa" class="  bg-purple-700 px-2 py-1 text-white">Kembali</a>
           </form>

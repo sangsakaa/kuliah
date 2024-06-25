@@ -103,6 +103,7 @@
                 <th class=" px-2 border text-left ">File</th>
                 <th class=" px-2 border text-left ">Daftar Mahasiswa</th>
 
+                <th class=" px-2 border ">Kelompok</th>
                 <th class=" px-2 border ">Status File</th>
                 <th class=" px-2 border ">Action</th>
               </tr>
@@ -127,6 +128,9 @@
                   <br>
                   {{$data[0]->prodi}}
 
+                </td>
+                <td class=" text-center">
+                  {{$data[0]->kelompok}}
                 </td>
 
                 <td class=" px-2">

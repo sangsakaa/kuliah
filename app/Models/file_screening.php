@@ -13,6 +13,7 @@ class file_screening extends Model
         'mahasiswa_id',
         'file',
         'status_file',
+        'kelompok',
     ];
     public function Mahasiswa()
     {

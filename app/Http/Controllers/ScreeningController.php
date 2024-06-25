@@ -23,7 +23,7 @@ class ScreeningController extends Controller
                 'mahasiswa.nama_mhs',
                 'jawaban_screening.mahasiswa_id',
                 'jawaban_screening.jawaban',
-                'prodi',
+            'prodi', 'kelompok',
                 'nim', 'file', 'status_file', 'file_screening.id as idfile'
         ])
             ->whereNot('status_file', 'Valid')
@@ -249,6 +249,7 @@ class ScreeningController extends Controller
         $request->validate([
             'mahasiswa_id' => 'required',
             'file' => 'required|file|max:10240',
+            'kelompok' => 'required',
         ]);
         
 
@@ -278,6 +279,7 @@ class ScreeningController extends Controller
                 // Jika tidak ada entri, buat entri baru
                 $screening = new file_screening(); // Pastikan Anda mengganti namespace dengan namespace yang benar
                 $screening->mahasiswa_id = $request->mahasiswa_id;
+                $screening->kelompok = $request->kelompok;
                 $screening->file = $fileName;
                 $screening->save();
 
@@ -292,7 +294,7 @@ class ScreeningController extends Controller
     {
         $dataScreening = file_screening::query()
             ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
-            ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim')
+            ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim', 'kelompok')
             ->where('status_file', 'Valid')
             ->get();
         return view(
@@ -316,15 +318,36 @@ class ScreeningController extends Controller
             'mahasiswa_id' => 'required|exists:mahasiswa,id',
             'file' => 'required|string',
             'status_file' => 'required|string',
+            // 'kelompok' => 'required|string',
         ]);
+
         // Temukan record yang akan di-update
         $fileScreening = file_screening::findOrFail($file_screenig->id);
-        // Update data
-        $fileScreening->update([
-            'mahasiswa_id' => $file_screenig->mahasiswa_id,
-            'file' => $file_screenig->file,
-            'status_file' => $request->input('status_file'),
-        ]);
+
+        // Update data jika ada perubahan
+        $updateData = [];
+
+        if ($fileScreening->mahasiswa_id !== $request->input('mahasiswa_id')
+        ) {
+            $updateData['mahasiswa_id'] = $request->input('mahasiswa_id');
+        }
+        if ($fileScreening->file !== $request->input('file')) {
+            $updateData['file'] = $request->input('file');
+        }
+        if ($fileScreening->kelompok !== $request->input('kelompok')
+        ) {
+            $updateData['kelompok'] = $request->input('kelompok');
+        }
+        if ($fileScreening->status_file !== $request->input('status_file')) {
+            $updateData['status_file'] = $request->input('status_file');
+        }
+
+        // Lakukan update hanya jika ada perubahan data
+        if (!empty($updateData)) {
+            $fileScreening->update($updateData);
+        }
+
+        
         return redirect('/daftar-screening-mahasiswa');
     }
     public function HapusFile(file_screening $file_screenig)

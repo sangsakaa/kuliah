@@ -15,6 +15,7 @@
               <th>No</th>
               <th>File</th>
               <th>Mahasiswa</th>
+              <th>kelompok</th>
               <th>Prodi</th>
               <th>Status File</th>
               <th>Act</th>
@@ -39,6 +40,7 @@
                 {{ $item->nama_mhs }} <br>
                 {{ $item->nim }}
               </td>
+              <td class=" text-center">{{ $item->kelompok }}</td>
               <td>{{ $item->prodi }}</td>
               <td>
                 <!-- Check if the status_file is valid -->
@@ -76,8 +78,8 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
                       </svg>
                     </button>
-                  </form>
 
+                  </form>
                 </div>
               </td>
             </tr>
