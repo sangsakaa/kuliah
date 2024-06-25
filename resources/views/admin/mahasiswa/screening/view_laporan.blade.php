@@ -165,8 +165,12 @@
   <table class="table">
     <thead>
       <tr>
-        <th class="rekap-rekap">Kelompok</th>
-        <th class="rekap-rekap">Total</th>
+        <th class="rekap-rekap" rowspan="2">No</th>
+        <th class="rekap-rekap" rowspan="2">No</th>
+        <th class="rekap-rekap" rowspan="2">Total</th>
+        <th class="rekap-rekap" colspan="3">Status Pendaftaran</th>
+      </tr>
+      <tr>
         <th class="rekap-rekap">Valid Count</th>
         <th class="rekap-rekap">Invalid Count</th>
         <th class="rekap-rekap">Null Count</th>
@@ -175,6 +179,9 @@
     <tbody>
       @foreach($results as $kelompok => $result)
       <tr class=" ">
+        <td class="rekap">
+          {{$loop->iteration}}
+        </td>
         <td>Kelompok {{ $kelompok ??'' }}</td>
         <td class="rekap">{{ $result['total'] }}</td>
         <td class="rekap">{{ $result['valid_count'] }}</td>
