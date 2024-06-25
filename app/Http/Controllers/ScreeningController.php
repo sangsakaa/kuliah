@@ -354,10 +354,14 @@ class ScreeningController extends Controller
                 'jawaban_screening.created_at as tgl_daftar',
                 'file_screening.created_at as tgl_update_file'
             ])
-            ->orderby('prodi')
-            ->orderby('nama_mhs')
-            // ->whereNot('status_file', 'Valid')
+            // ->whereNot('status_file', 'Valid', null)
             // ->orWhereNull('status_file')
+            ->orderByRaw("CASE 
+            WHEN status_file = 'Invalid' THEN 1 
+            WHEN status_file IS NULL THEN 2 
+            WHEN status_file = 'Valid' THEN 3 
+            ELSE 4 
+        END")
             ->orderByRaw('CASE WHEN file IS NULL THEN 1 ELSE 0 END, file DESC')
             ->get();
         // Mengelompokkan data berdasarkan mahasiswa_id
