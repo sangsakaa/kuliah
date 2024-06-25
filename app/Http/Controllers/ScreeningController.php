@@ -441,6 +441,7 @@ class ScreeningController extends Controller
             DB::raw('sum(case when status_file = "Invalid" then 1 else 0 end) as invalid_count'),
             )
             ->groupBy('kelompok')
+        ->orderby('kelompok')
         ->get();
         $html = view(
             'admin.mahasiswa.screening.view_laporan',
