@@ -393,7 +393,7 @@ class ScreeningController extends Controller
         ->groupBy('mahasiswa_id');
 
 
-        return view('admin.mahasiswa.screening.laporan', compact('groupedData'));
+        return view('admin.mahasiswa.screening.laporan', compact('groupedData', 'results'));
     }
     public function download_laporan_pdf()
     {
@@ -432,35 +432,22 @@ class ScreeningController extends Controller
             ];
         });
         $rekapPendaftaran =
-        jawaban_screening::leftjoin('mahasiswa', 'mahasiswa.id', '=', 'jawaban_screening.mahasiswa_id')
-        ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
+        file_screening::query()
+        // ->leftjoin('file_screening', 'file_screening.mahasiswa_id', 'jawaban_screening.mahasiswa_id')
         ->select(
             'kelompok',
-            'status_file',
             DB::raw('count(*) as total'),
             DB::raw('sum(case when status_file = "Valid" then 1 else 0 end) as valid_count'),
             DB::raw('sum(case when status_file = "Invalid" then 1 else 0 end) as invalid_count'),
-            DB::raw('sum(case when status_file is null then 1 else 0 end) as null_count')
-        )->groupBy('kelompok', 'status_file')
-        ->orderby('kelompok')
+            )
+            ->groupBy('kelompok')
         ->get();
-
-        $results = $rekapPendaftaran->mapToGroups(function ($item, $key) {
-            return [$item->kelompok => $item];
-        })->map(function ($items, $key) {
-            return [
-                'total' => $items->count(),
-                'valid_count' => $items->where('status_file', 'Valid')->count(),
-                'invalid_count' => $items->where('status_file', 'Invalid')->count(),
-                'null_count' => $items->where('status_file', null)->count()
-            ];
-        });
         $html = view(
             'admin.mahasiswa.screening.view_laporan',
             [
                 'groupedData' => $groupedData,
                 'countProdi' => $countProdi,
-                'results' => $results
+                'results' => $rekapPendaftaran
             ]
         )->render();
         $dompdf->loadHtml($html);
