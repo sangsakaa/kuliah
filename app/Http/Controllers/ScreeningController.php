@@ -297,6 +297,7 @@ class ScreeningController extends Controller
             ->join('mahasiswa', 'file_screening.mahasiswa_id', 'mahasiswa.id')
             ->select('file_screening.file', 'file_screening.id', 'prodi', 'nama_mhs', 'status_file', 'nim', 'kelompok')
             ->where('status_file', 'Valid')
+            ->orderby('kelompok')
             ->get();
         return view(
             'admin.mahasiswa.screening.validasi_screening',
