@@ -70,25 +70,52 @@ class MahasiswaController extends Controller
     public function sinkronisasi()
     {
         // try {
-        //     $lisMahasiswa = $this->getMahasiswa();
+        //     $lisMahasiswaBaru = $this->getMahasiswa();
         // } catch (ConnectionException $ex) {
-        //     return  redirect()->back()->with('error', 'tidak terhubung dengan server');
+        //     return redirect()->back()->with('error', 'tidak terhubung dengan server');
         // }
+
         // $mapToMahasiswa = function ($data) {
         //     return [
         //         'nim' => $data['nim'],
         //         'nama_mhs' => $data['nama_mahasiswa'],
-        //         'jenis_kelamin' => $data['jenis_kelamin'], 
+        //         'jenis_kelamin' => $data['jenis_kelamin'],
         //         'tgl_lahir' => substr($data['tanggal_lahir'], 6) . '-' . substr($data['tanggal_lahir'], 3, 2) . '-' . substr($data['tanggal_lahir'], 0, 2), // '12-04-2000'
         //         'agama' => $data['nama_agama'],
         //         'prodi' => $data['nama_program_studi'],
         //         'status' => $data['nama_status_mahasiswa'],
         //         'periode_masuk' => $data['id_periode'],
-
         //     ];
         // };
-        // $lisMahasiswa = array_map($mapToMahasiswa, $lisMahasiswa);
-        // Mahasiswa::upsert($lisMahasiswa, ['nim'], ['status']);
+
+        // $lisMahasiswaBaru = array_map($mapToMahasiswa, $lisMahasiswaBaru);
+
+        // // Ambil data mahasiswa yang ada di database
+        // $mahasiswaDB = Mahasiswa::all()->keyBy('nim')->toArray();
+
+        // $updateData = [];
+
+        // foreach ($lisMahasiswaBaru as $mahasiswaBaru) {
+        //     $nim = $mahasiswaBaru['nim'];
+        //     if (isset($mahasiswaDB[$nim])) {
+        //         // Jika mahasiswa sudah ada di database, cek apakah ada perubahan
+        //         $mahasiswaDBItem = $mahasiswaDB[$nim];
+        //         $perbedaan = array_diff_assoc($mahasiswaBaru, $mahasiswaDBItem);
+
+        //         if (!empty($perbedaan)) {
+        //             // Jika ada perbedaan, tambahkan data ke array update
+        //             $updateData[] = $mahasiswaBaru;
+        //         }
+        //     } else {
+        //         // Jika mahasiswa belum ada di database, tambahkan data ke array update
+        //         $updateData[] = $mahasiswaBaru;
+        //     }
+        // }
+
+        // // Lakukan upsert (insert atau update) data mahasiswa
+        // Mahasiswa::upsert($updateData, ['nim'], ['nama_mhs', 'jenis_kelamin', 'tgl_lahir', 'agama', 'prodi', 'status', 'periode_masuk']);
+
+        // return redirect()->back()->with('success', 'Data mahasiswa telah diperbarui');
         try {
             $lisMahasiswaBaru = $this->getMahasiswa();
         } catch (ConnectionException $ex) {
@@ -114,9 +141,19 @@ class MahasiswaController extends Controller
         $mahasiswaDB = Mahasiswa::all()->keyBy('nim')->toArray();
 
         $updateData = [];
+        $nimMap = [];
 
         foreach ($lisMahasiswaBaru as $mahasiswaBaru) {
             $nim = $mahasiswaBaru['nim'];
+            // Cek apakah NIM sudah ada di database atau dalam updateData
+            while (isset($mahasiswaDB[$nim]) || isset($nimMap[$nim])) {
+                // Tambahkan 'x' di akhir NIM
+                $nim .= 'x';
+            }
+            // Simpan NIM yang telah diperbarui
+            $mahasiswaBaru['nim'] = $nim;
+            $nimMap[$nim] = true;
+
             if (isset($mahasiswaDB[$nim])) {
                 // Jika mahasiswa sudah ada di database, cek apakah ada perubahan
                 $mahasiswaDBItem = $mahasiswaDB[$nim];
@@ -136,7 +173,7 @@ class MahasiswaController extends Controller
         Mahasiswa::upsert($updateData, ['nim'], ['nama_mhs', 'jenis_kelamin', 'tgl_lahir', 'agama', 'prodi', 'status', 'periode_masuk']);
 
         return redirect()->back()->with('success', 'Data mahasiswa telah diperbarui');
-       
+
     }
     private function getMahasiswa()
     {
