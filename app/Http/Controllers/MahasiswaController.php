@@ -147,8 +147,12 @@ class MahasiswaController extends Controller
             $nim = $mahasiswaBaru['nim'];
             // Cek apakah NIM sudah ada di database atau dalam updateData
             while (isset($mahasiswaDB[$nim]) || isset($nimMap[$nim])) {
-                // Tambahkan 'x' di akhir NIM
-                $nim .= 'x';
+                // Tambahkan 'x' pada digit terakhir NIM
+                if (is_numeric(substr($nim, -1))) {
+                    $nim = substr($nim, 0, -1) . 'x';
+                } else {
+                    $nim .= 'x';
+                }
             }
             // Simpan NIM yang telah diperbarui
             $mahasiswaBaru['nim'] = $nim;
@@ -173,6 +177,7 @@ class MahasiswaController extends Controller
         Mahasiswa::upsert($updateData, ['nim'], ['nama_mhs', 'jenis_kelamin', 'tgl_lahir', 'agama', 'prodi', 'status', 'periode_masuk']);
 
         return redirect()->back()->with('success', 'Data mahasiswa telah diperbarui');
+
 
     }
     private function getMahasiswa()
