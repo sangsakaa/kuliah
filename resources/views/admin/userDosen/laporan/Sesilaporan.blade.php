@@ -9,7 +9,9 @@
     <div class=" p-4   bg-white w-full py-2 px-2 ">
       <div class=" p-1 sm:p-4 grid grid-cols-2 sm:grid-cols-4">
         <div class=" capitalize">NIDN</div>
-        <div class=" capitalize"> : {{$dataDosen->nidn}}</div>
+        <div class=" capitalize"> :
+          {{ $dataDosen->nidn ?? 'Data Dosen not found.' }}
+        </div>
         <div class=" capitalize">Pembimbing</div>
         <div class=" capitalize"> :
           {{ strtolower(substr($dataDosen->nama_dosen, 0, 20)) }}{{ strtolower(strlen($dataDosen->nama_dosen) > 15 ? '...' : '') }}
