@@ -41,10 +41,13 @@ class UserPerMhsController extends Controller
             $tgl = now();
         }
         $UserPermhs = Auth::user()->mahasiswa_id;
+        // dd($UserPermhs);
         $dataKelompok = Kelompok::query()
-            ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
-        ->where('mahasiswa_id', $UserPermhs)
-        ->first();
+            ->leftjoin('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
+            // ->select('anggota_kelompok.mahasiswa_id')
+            ->where('mahasiswa_id', $UserPermhs)
+            // ->limit(10)
+            ->first();
         // dd($dataKelompok);
         $data = Mahasiswa::query()
             ->join('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'mahasiswa.id')
@@ -54,9 +57,8 @@ class UserPerMhsController extends Controller
             ->leftjoin('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->select('anggota_kelompok.mahasiswa_id', 'kelompok.dosen_id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nim', 'nama_mhs')
-            ->where('mahasiswa.id', $UserPermhs)
-            
-            ->first();
+        ->where('mahasiswa_id', $UserPermhs)
+        ->first();
         // dd($data);
         $DataSesiLap = Sesi_Laporan_Harian::query()    
             ->orderby('tanggal')

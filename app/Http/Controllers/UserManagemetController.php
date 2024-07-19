@@ -30,13 +30,14 @@ class UserManagemetController extends Controller
     {
         $mahasiswas = Mahasiswa::all();
 
-        $createdCount = 0; // Inisialisasi jumlah akun yang berhasil dibuat
+        $createdCount = 0; // Inisialisasi jumlah akun yang berhasil dibuat atau diperbarui
 
         foreach ($mahasiswas as $mahasiswa) {
-            // Memeriksa apakah sudah ada akun dengan mahasiswa_id tertentu
-            $existingUser = User::where('mahasiswa_id', $mahasiswa->id)->first();
+            // Memeriksa apakah sudah ada akun dengan email tertentu
+            $existingUser = User::where('email', $mahasiswa->nim . '@uniwa.ac.id')->first();
 
             if (!$existingUser) {
+                // Jika belum ada, buat akun baru
                 $user = new User();
                 $user->name = $mahasiswa->nama_mhs;
                 $user->email = $mahasiswa->nim . '@uniwa.ac.id';
@@ -50,9 +51,22 @@ class UserManagemetController extends Controller
                 $user->givePermissionTo('edit post'); // Memberikan izin 'edit post' pada user
 
                 $createdCount++; // Menambahkan jumlah akun yang berhasil dibuat
+            } else {
+                // Jika email sudah ada, perbarui mahasiswa_id jika masih null
+                if ($existingUser->mahasiswa_id === null) {
+                    $existingUser->mahasiswa_id = $mahasiswa->id;
+                    $existingUser->save();
+
+                    // Pastikan role dan izin tetap ada jika diperlukan
+                    $existingUser->assignRole('mahasiswa'); // Pastikan peran 'mahasiswa' sudah diberikan
+                    $existingUser->givePermissionTo('create post'); // Memberikan izin 'create post' pada user
+                    $existingUser->givePermissionTo('show post'); // Memberikan izin 'show post' pada user
+                    $existingUser->givePermissionTo('edit post'); // Memberikan izin 'edit post' pada user
+
+                    $createdCount++; // Menambahkan jumlah akun yang berhasil diperbarui
+                }
             }
         }
-
         // Notifikasi jumlah akun yang berhasil dibuat
         if ($createdCount > 0) {
             Session::flash('success', "Berhasil membuat $createdCount akun.");

@@ -118,6 +118,7 @@
                         @foreach($dataMhs as $detail)
                         <p class=" font-semibold">{{$detail->nama_mhs}} </p>
                         <p class=" text-sm">{{$detail->nim}} - {{$detail->prodi}}</p>
+
                         @endforeach
                     </div>
                 </div>

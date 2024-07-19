@@ -15,8 +15,10 @@ class DashboardController extends Controller
     public function index()
     {
         $UserPermhs = Auth::user()->mahasiswa_id;
+        // dd($UserPermhs);
         $UserPerDosen = Auth::user()->dosen_id;
         $dataMhs = Mahasiswa::where('id', $UserPermhs)->get();
+        // dd($dataMhs);
         $dataDosen = Dosen::where('id', $UserPerDosen)->get();
         $putra = Mahasiswa::where('jenis_kelamin', 'L')->count();
         $putri = Mahasiswa::where('jenis_kelamin', 'P')->count();
