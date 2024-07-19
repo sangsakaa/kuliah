@@ -69,21 +69,44 @@ class UserManagemetController extends Controller
         $createdAccounts = 0;
 
         foreach ($dosen as $dosenData) {
-            $user = User::firstOrCreate([
-                'dosen_id' => $dosenData->id,
-            ], [
-                'name' => $dosenData->nama_dosen,
-                'email' => $dosenData->nidn . '@uniwa.ac.id',
-                'password' => Hash::make($dosenData->nidn),
-            ]);
+            // Check if user already exists for the dosen
+            $user = User::firstOrNew(['dosen_id' => $dosenData->id]);
 
-            if ($user->wasRecentlyCreated) {
-                // The user was just created, assign roles and permissions
+            // Check if the email is unique
+            if (!$user->exists && !User::where('email', $dosenData->nidn . '@uniwa.ac.id')->exists()) {
+                $user->name = $dosenData->nama_dosen;
+                $user->email = $dosenData->nidn . '@uniwa.ac.id';
+                $user->password = Hash::make($dosenData->nidn);
+                $user->dosen_id = $dosenData->id;
+                $user->save();
+
+                // Assign roles and permissions
                 $user->assignRole('dosen');
                 $user->givePermissionTo('create post');
                 $user->givePermissionTo('show post');
                 $user->givePermissionTo('edit post');
                 $createdAccounts++;
+            } elseif ($user->exists && $user->dosen_id === null) {
+                // Update existing user record with null dosen_id
+                $user->name = $dosenData->nama_dosen;
+                $user->email = $dosenData->nidn . '@uniwa.ac.id';
+                $user->password = Hash::make($dosenData->nidn);
+                $user->dosen_id = $dosenData->id;
+                $user->save();
+
+                // Assign roles and permissions if not already assigned
+                if (!$user->hasRole('dosen')) {
+                    $user->assignRole('dosen');
+                }
+                if (!$user->hasPermissionTo('create post')) {
+                    $user->givePermissionTo('create post');
+                }
+                if (!$user->hasPermissionTo('show post')) {
+                    $user->givePermissionTo('show post');
+                }
+                if (!$user->hasPermissionTo('edit post')) {
+                    $user->givePermissionTo('edit post');
+                }
             }
         }
 
@@ -93,6 +116,10 @@ class UserManagemetController extends Controller
         } else {
             echo 'Tidak ada akun baru yang dibuat.';
         }
+
+
+
+
 
 
         return redirect()->back();

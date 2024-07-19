@@ -26,10 +26,12 @@ class UserDosenController extends Controller
             $tanggal = now();
         }
         $UserPerDosen = Auth::user()->dosen_id;
+        // dd($UserPerDosen);
         $dataDosen = Dosen::query()
             ->join('kelompok', 'kelompok.dosen_id', '=', 'dosen.id')
             ->where('dosen.id', $UserPerDosen)
             ->first();
+        // dd($dataDosen);
         $dataLaporan  = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
@@ -79,6 +81,7 @@ class UserDosenController extends Controller
     public function dataAnggota()
     {
         $UserPerDosen = Auth::user()->dosen_id;
+        // dd($UserPerDosen);
         $dataDosen = Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->leftjoin('desa', 'desa.id', '=', 'kelompok.desa_id')
@@ -86,12 +89,14 @@ class UserDosenController extends Controller
             ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
             ->where('dosen_id', $UserPerDosen)
             ->first();
+        // dd($dataDosen);
         $dataAnggota = Kelompok::query()
             ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', 'kelompok.id')
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
             ->where('dosen_id', $UserPerDosen)
             ->orderby('nama_mhs')
             ->get();
+        // dd($dataAnggota);
 
         return view('admin.userDosen.laporan.Anggota', compact('dataDosen', 'dataAnggota'));
     }

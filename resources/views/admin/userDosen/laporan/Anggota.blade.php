@@ -10,7 +10,11 @@
       <div class=" bg-white py-1">
         <div class=" p-2  grid grid-cols-2 sm:grid-cols-4     ">
           <div class="">NIDN</div>
-          <div class=" "> : {{$dataDosen->nidn}}</div>
+          <div class=" "> :
+
+            {{ $dataDosen->nidn ?? 'Data Dosen not found.' }}
+
+          </div>
           <div class="">Pembimbing</div>
           <div class=" "> :
             {{strlen($dataDosen->nama_dosen) > 25 ? substr($dataDosen->nama_dosen, 0, 25) . "..." : $dataDosen->nama_dosen;}}
