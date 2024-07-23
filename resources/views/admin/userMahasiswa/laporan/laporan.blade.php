@@ -108,12 +108,14 @@
           </div>
           <label for="">Institusi / Tempat Kegiatan</label>
           <input class="w-full" type="text" name="lokasi_praktik" placeholder="Contoh : SDS Wahidiyah Karangrejo" required value="{{ old('lokasi_praktik', $item->lokasi_praktik ?? '') }}">
-
           @if($item->bukti_laporan == null)
           <p class=" text-red-600">Bukti Kegiatan Belum di uploud dan di simpan</p>
           @else
           <img class=" p-2" src="{{ asset('storage/' .$item->bukti_laporan) }}" alt="" width="500" height="600">
           @endif
+
+
+
           <label for="" class="capitalize">syarat Laporan (Min : 500 Max : 1000 Karakter) <br> <span> jumlal : {{strlen($item->deskripsi_laporan)}} Karakter</span></label>
           @if(strlen($item->deskripsi_laporan)>499)
           <span class=" text-green-700 uppercase font-semibold text-sm"> Sudah Sesuai</span>
@@ -126,6 +128,7 @@
           <input type="file" id="fileInput" required accept="image/*" name="bukti_laporan">
           @else
           <input type="file" name="bukti_laporan" value="{{ $item->bukti_laporan }}">
+
           @endif
 
           @error('bukti_laporan')
