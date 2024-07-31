@@ -98,7 +98,7 @@ class UserDosenController extends Controller
             ->join('periode', 'periode.id', 'kelompok.periode_id')
             ->where('dosen_id', $UserPerDosen)
             ->where('kelompok.periode_id', $dataPeriode->id)
-            ->select('nama_mhs', 'nim', 'periode_id', 'nama_periode')
+            ->select('nama_mhs', 'nim', 'periode_id', 'nama_periode', 'prodi', 'jenis_kelamin')
             ->orderby('nama_mhs')
             ->get();
         // dd($dataAnggota);
