@@ -257,7 +257,7 @@
                     <p class="  sm:text-5xl bold  text-2xl"> SIP-K</p>
                     <p class=" sm:text-sm text-xs">(Sistem Informasi Pelaporan Kegiatan)</p>
                     <div>
-
+                        {{Auth::user()->name}}
                     </div>
                 </div>
             </div>
