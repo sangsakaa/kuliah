@@ -68,6 +68,7 @@ class UserDosenController extends Controller
         ->where('anggota_kelompok.mahasiswa_id', $sesi_Laporan_Harian->anggota_kelompok_id)
         ->first();
         // dd($data);
+
         $UserPerDosen = Auth::user()->dosen_id;
         $dataMhs = Anggota_Kelompok::query()
             ->rightJoin('sesi_laporan_harian', 'sesi_laporan_harian.anggota_kelompok_id', '=', 'anggota_kelompok.id')
@@ -117,11 +118,13 @@ class UserDosenController extends Controller
         $bulan = $request->bulan ? Carbon::parse($request->bulan) : now();
         $periodeBulan = $bulan->startOfMonth()->daysUntil($bulan->copy()->endOfMonth());
         $UserPerDosen = Auth::user()->dosen_id;
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $dataKelompok = Kelompok::query()
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.kelompok_id', '=', 'kelompok.id')
             ->leftjoin('mahasiswa', 'mahasiswa.id', '=', 'anggota_kelompok.mahasiswa_id')
             ->select('kelompok.*', 'mahasiswa_id', 'nama_mhs')
             ->where('kelompok.dosen_id', $UserPerDosen)
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->orderby('nama_mhs')
             ->get();
         // dd($dataKelompok);
