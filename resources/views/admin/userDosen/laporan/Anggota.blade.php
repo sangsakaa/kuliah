@@ -31,7 +31,7 @@
       <div class=" bg-white py-1">
         <div class=" p-2 flex    gap-2    ">
           <div>
-            <span class=" py-1 ">Periode Aktif</span> <span class=" rounded-lg px-3 py-1 bg-blue-700 text-white text-center">{{$dataPeriode->nama_periode}}</span>
+            <span class=" py-1 ">Periode Aktif</span> <span class=" rounded-lg px-2 py-1 bg-blue-700 text-white text-center">{{$dataPeriode->nama_periode}}</span>
           </div>
 
         </div>
