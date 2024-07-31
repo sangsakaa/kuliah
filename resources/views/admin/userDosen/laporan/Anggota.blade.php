@@ -50,7 +50,7 @@
             @foreach($dataAnggota as $list)
             <tr>
               <td class=" border border-black px-1 text-center">{{$loop->iteration}}</td>
-              <td class=" border border-black px-1 text-center">{{$list}}</td>
+              <td class=" border border-black px-1 text-center">{{$list->nama_periode}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{strtolower($list->nim)}}</td>
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nama_mhs)}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{$list->jenis_kelamin}}</td>
