@@ -89,6 +89,7 @@ class UserDosenController extends Controller
             ->leftjoin('desa', 'desa.id', '=', 'kelompok.desa_id')
             ->leftjoin('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->leftjoin('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->where('dosen_id', $UserPerDosen)
             ->first();
         // dd($dataDosen);
