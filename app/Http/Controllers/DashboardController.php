@@ -202,7 +202,7 @@ class DashboardController extends Controller
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
-            ->where('kelompok.periode_id')
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->get();
         // Assuming $dataLapMhs is the data fetched using the query provided in your code
 
