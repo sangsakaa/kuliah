@@ -5,7 +5,7 @@
       {{ __('Sesi Laporan Harian Mahasiswa') }}
     </h2>
   </x-slot>
-  <div class="p-2">
+  <div class="p-2 text-xs">
     <div class=" grid grid-cols-2 sm:grid-cols-4 bg-white p-4">
       <div>NIM</div>
       <div class="">: {{$data->nim}}
