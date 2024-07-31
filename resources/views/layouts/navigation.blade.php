@@ -369,6 +369,21 @@
                 </x-responsive-nav-link>
                 @endif
                 @endif
+                @if (Auth::check())
+                @if (Auth::user()->hasRole('dosen') )
+                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    {{ __('Beranda') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('sesi-validasi-laporan-mhs')" :active="request()->routeIs('sesi-validasi-laporan-mhs')">
+                    {{ __('Validasi Laporan') }}
+                </x-responsive-nav-link>
+                <x-responsive-nav-link :href="route('data-anggota')" :active="request()->routeIs('data-anggota')">
+                    {{ __('Data Anggota Kelompok') }}
+                </x-responsive-nav-link>
+
+
+                @endif
+                @endif
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
