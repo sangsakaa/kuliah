@@ -10,6 +10,7 @@ use Illuminate\Support\Carbon;
 use App\Models\Anggota_Kelompok;
 use App\Models\Sesi_Laporan_Harian;
 use App\Http\Controllers\Controller;
+use App\Models\Periode;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -82,6 +83,7 @@ class UserDosenController extends Controller
     {
         $UserPerDosen = Auth::user()->dosen_id;
         // dd($UserPerDosen);
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $dataDosen = Kelompok::query()
             ->leftjoin('dosen', 'dosen.id', '=', 'kelompok.dosen_id')
             ->leftjoin('desa', 'desa.id', '=', 'kelompok.desa_id')
@@ -93,12 +95,15 @@ class UserDosenController extends Controller
         $dataAnggota = Kelompok::query()
             ->join('anggota_kelompok', 'anggota_kelompok.kelompok_id', 'kelompok.id')
             ->join('mahasiswa', 'mahasiswa.id', 'anggota_kelompok.mahasiswa_id')
+            ->join('periode', 'periode.id', 'kelompok.periode_id')
             ->where('dosen_id', $UserPerDosen)
+            ->where('kelompok.periode_id', $dataPeriode->id)
+            ->select('nama_mhs', 'nim', 'periode_id', 'nama_periode')
             ->orderby('nama_mhs')
             ->get();
         // dd($dataAnggota);
 
-        return view('admin.userDosen.laporan.Anggota', compact('dataDosen', 'dataAnggota'));
+        return view('admin.userDosen.laporan.Anggota', compact('dataDosen', 'dataAnggota', 'dataPeriode'));
     }
 
     public function timeLine(Request $request)

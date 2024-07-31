@@ -13,6 +13,7 @@
           <div class=" "> :
 
             {{ $dataDosen->nidn ?? 'Data Dosen not found.' }}
+            {{$dataPeriode}}
 
           </div>
           <div class="">Pembimbing</div>
@@ -35,6 +36,7 @@
           <thead>
             <tr class=" px-1 border-black border">
               <th class=" px-1 border-black border">No</th>
+              <th class=" px-1 border-black border">Periode</th>
               <th class=" px-1 border-black border">NIM</th>
               <th class=" px-1 border-black border">Nama</th>
               <th class=" px-1 border-black border capitalize">
@@ -48,6 +50,7 @@
             @foreach($dataAnggota as $list)
             <tr>
               <td class=" border border-black px-1 text-center">{{$loop->iteration}}</td>
+              <td class=" border border-black px-1 text-center">{{$list}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{strtolower($list->nim)}}</td>
               <td class=" border border-black px-1 capitalize">{{strtolower($list->nama_mhs)}}</td>
               <td class=" border border-black px-1 capitalize text-center">{{$list->jenis_kelamin}}</td>
