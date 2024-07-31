@@ -51,11 +51,11 @@ class DashboardController extends Controller
             'sesi_laporan_harian.id as sesi_laporan_harian_id',
             'kelompok.dosen_id',
             'dosen.nama_dosen',
-            'kelompok.periode_id'
+            
         )
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
-            ->where('kelompok.periode_id', $dataPeriode->id)
+           
         ->get();
 
         // Buat array untuk menyimpan jumlah status_laporan setiap dosen
@@ -73,7 +73,6 @@ class DashboardController extends Controller
                     'draf' => 0
                 ];
             }
-
             // Hitung jumlah status_laporan berdasarkan status laporan saat ini
             if ($statusLaporan === 'valid') {
                 $jumlahStatusLaporan[$namaDosen]['valid']++;
@@ -150,6 +149,7 @@ class DashboardController extends Controller
             ->where('mahasiswa_id', $UserPermhs)
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->get();
         // Assuming $dataLapMhs is the data fetched using the query provided in your code
 
@@ -177,6 +177,7 @@ class DashboardController extends Controller
             'data' => [$statusCount['menunggu'], $statusCount['valid'], $statusCount['draf']],
         ];
         $UserPerDosen = Auth::user()->dosen_id;
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $dataLapDosen = Sesi_Laporan_Harian::query()
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
@@ -195,11 +196,13 @@ class DashboardController extends Controller
                 'sesi_laporan_harian.tanggal',
                 'sesi_laporan_harian.id as sesi_laporan_harian_id',
                 'kelompok.dosen_id',
-                'dosen.nama_dosen'
+            'dosen.nama_dosen',
+            'kelompok.periode_id'
             )
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
+            ->where('kelompok.periode_id')
             ->get();
         // Assuming $dataLapMhs is the data fetched using the query provided in your code
 
