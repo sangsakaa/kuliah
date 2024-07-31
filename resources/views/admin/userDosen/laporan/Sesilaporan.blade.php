@@ -34,16 +34,16 @@
             <tr class=" uppercase">
               <th class="border border-green-700 px-2 py-1 text-center">No</th>
               <th class="border border-green-700 px-2 py-1 text-center">Mahasiswa</th>
-              <th class="border border-green-700 px-2 py-1 text-center">Prodi</th>
+
               <th class="border border-green-700 px-2 py-1 text-center">Tanggal</th>
               <th class="border border-green-700 px-2 py-1 text-center">Jam</th>
-              <th class="border border-green-700 px-2 py-1 text-center">KEL</th>
+
               <th class="border border-green-700 px-2 py-1 text-center">LAP</th>
               <th class="border border-green-700 px-2 py-1 text-center">File</th>
               <th class="border border-green-700 px-2 py-1 text-center">Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class=" text-xs">
             @if($dataLaporan->count() != null)
             @foreach($dataLaporan as $data)
             <tr class=" hover:bg-gray-100">
@@ -55,26 +55,20 @@
                   {{strtolower($detil->nama_mhs)}}
                   @endforeach
                   @endforeach
+                  <br>
+                  @foreach($data->Mahasiswa as $list)
+                  @foreach($list->Mahasiswa as $detil)
+                  {{strtolower($detil->prodi)}}
+                  @endforeach
+                  @endforeach
                 </a>
 
-              </td>
-              <td class=" capitalize border border-green-700 px-2 py-1 text-center">
-                @foreach($data->Mahasiswa as $list)
-                @foreach($list->Mahasiswa as $detil)
-                {{strtolower($detil->prodi)}}
-                @endforeach
-                @endforeach
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center">
                 {{ \Carbon\Carbon::parse($data->tanggal)->isoFormat('dddd , DD MMMM Y') }}
               </td>
               <td class="border border-green-700 px-2 py-1 text-center">
                 {{ \Carbon\Carbon::parse($data->created_at)->isoFormat('H:m') }}
-              </td>
-              <td class=" border border-green-700 px-2 py-1 text-center">
-                <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
-                  {{ $data->nama_kelompok }}
-                </a>
               </td>
               <td class=" border border-green-700 px-2 py-1 text-center">
                 <a href="/daftar-validasi-laporan-mhs/{{$data->id}}">
