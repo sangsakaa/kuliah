@@ -13,7 +13,6 @@
           <div class=" "> :
 
             {{ $dataDosen->nidn ?? 'Data Dosen not found.' }}
-            {{$dataPeriode}}
 
           </div>
           <div class="">Pembimbing</div>
