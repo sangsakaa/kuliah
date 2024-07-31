@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dosen;
+use App\Models\Periode;
 use App\Models\Kelompok;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
@@ -30,6 +31,7 @@ class DashboardController extends Controller
             ->select('kelompok.id', 'nama_dosen', 'nama_kelompok', 'nama_desa', 'nama_kecamatan', 'nama_kabupaten', 'nidn')
             ->orderByRaw('CAST(nama_kelompok AS SIGNED) asc')
             ->get();
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $dataLap = Sesi_Laporan_Harian::query()
             ->leftJoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftJoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
@@ -48,10 +50,12 @@ class DashboardController extends Controller
             'sesi_laporan_harian.tanggal',
             'sesi_laporan_harian.id as sesi_laporan_harian_id',
             'kelompok.dosen_id',
-            'dosen.nama_dosen'
+            'dosen.nama_dosen',
+            'kelompok.periode_id'
         )
             ->orderBy('tanggal')
             ->orderBy('nama_kelompok')
+            ->where('kelompok.periode_id', $dataPeriode->id)
         ->get();
 
         // Buat array untuk menyimpan jumlah status_laporan setiap dosen
