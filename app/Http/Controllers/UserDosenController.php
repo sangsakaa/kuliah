@@ -28,9 +28,11 @@ class UserDosenController extends Controller
         }
         $UserPerDosen = Auth::user()->dosen_id;
         // dd($UserPerDosen);
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $dataDosen = Dosen::query()
             ->join('kelompok', 'kelompok.dosen_id', '=', 'dosen.id')
             ->where('dosen.id', $UserPerDosen)
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->first();
         // dd($dataDosen);
         $dataLaporan  = Sesi_Laporan_Harian::query()
