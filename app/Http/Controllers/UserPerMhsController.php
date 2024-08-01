@@ -153,8 +153,40 @@ class UserPerMhsController extends Controller
 
         $Lap = Laporan_Mahasiswa::where('sesi_laporan_harian_id', $sesi_Laporan_Harian)->first();
 
+        // if ($Lap) {
+
+        //     $Lap->lokasi_praktik = $request->lokasi_praktik;
+        //     $Lap->deskripsi_laporan = $request->deskripsi_laporan;
+        //     $Lap->status_laporan = $request->status_laporan ?? 'draf';
+        //     $Lap->note_laporan = $request->note_laporan;
+        //     if ($request->hasFile('bukti_laporan')) {
+        //         // Menghapus file laporan yang lama
+        //         Storage::delete($Lap->bukti_laporan);
+
+        //         $file = $request->file('bukti_laporan');
+        //         $filename = $file->getClientOriginalName();
+        //         $path = $file->storeAs('public/bukti_laporan', $filename);
+        //         $Lap->bukti_laporan = 'bukti_laporan/' .  $filename;
+        //     }
+        //     $Lap->save();
+        // } else {
+        //     $Lap = new Laporan_Mahasiswa();
+        //     $Lap->sesi_laporan_harian_id = $sesi_Laporan_Harian;
+        //     $Lap->lokasi_praktik = $request->lokasi_praktik;
+        //     $Lap->deskripsi_laporan = $request->deskripsi_laporan;
+        //     $Lap->status_laporan = $request->status_laporan ?? 'draf';
+        //     $Lap->note_laporan = $request->note_laporan;
+        //     if ($request->hasFile('bukti_laporan')) {
+        //         $file = $request->file('bukti_laporan');
+        //         $filename = $file->getClientOriginalName();
+
+        //         $path = $file->storeAs('public/bukti_laporan', $filename);
+        //         $Lap->bukti_laporan = 'bukti_laporan/' .  $filename;
+        //     }  
+        //     $Lap->save();
+        // }
+
         if ($Lap) {
-            
             $Lap->lokasi_praktik = $request->lokasi_praktik;
             $Lap->deskripsi_laporan = $request->deskripsi_laporan;
             $Lap->status_laporan = $request->status_laporan ?? 'draf';
@@ -164,9 +196,14 @@ class UserPerMhsController extends Controller
                 Storage::delete($Lap->bukti_laporan);
 
                 $file = $request->file('bukti_laporan');
-                $filename = $file->getClientOriginalName();
-                $path = $file->storeAs('public/bukti_laporan', $filename);
-                $Lap->bukti_laporan = 'bukti_laporan/' .  $filename;
+                $filename = pathinfo(
+                    $file->getClientOriginalName(),
+                    PATHINFO_FILENAME
+                );
+                $extension = $file->getClientOriginalExtension();
+                $uniqueFilename = $filename . '_' . uniqid() . '.' . $extension;
+                $path = $file->storeAs('public/bukti_laporan', $uniqueFilename);
+                $Lap->bukti_laporan = 'bukti_laporan/' . $uniqueFilename;
             }
             $Lap->save();
         } else {
@@ -178,11 +215,12 @@ class UserPerMhsController extends Controller
             $Lap->note_laporan = $request->note_laporan;
             if ($request->hasFile('bukti_laporan')) {
                 $file = $request->file('bukti_laporan');
-                $filename = $file->getClientOriginalName();
-                
-                $path = $file->storeAs('public/bukti_laporan', $filename);
-                $Lap->bukti_laporan = 'bukti_laporan/' .  $filename;
-            }  
+                $filename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                $extension = $file->getClientOriginalExtension();
+                $uniqueFilename = $filename . '_' . uniqid() . '.' . $extension;
+                $path = $file->storeAs('public/bukti_laporan', $uniqueFilename);
+                $Lap->bukti_laporan = 'bukti_laporan/' . $uniqueFilename;
+            }
             $Lap->save();
         }
 
