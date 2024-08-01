@@ -284,62 +284,7 @@
             </div>
             <div class="  sm:flex grid bg-white  gap-2 sm:grid-cols-1">
                 <div class=" overflow-auto p-4 text-center w-full">
-                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-                    <canvas id="grafikStatusLaporan" style="width: 600px; height: 400px;"></canvas>
-                    <script>
-                        // Data jumlah status_laporan dari PHP
-                        var dataLaporan = <?php echo json_encode($jumlahStatusLaporan); ?>;
 
-                        // Mengambil nama-nama dosen sebagai label grafik
-                        var namaDosen = Object.keys(dataLaporan);
-
-                        // Mengambil data jumlah status_laporan valid, menunggu, dan draf untuk setiap dosen
-                        var jumlahValid = [];
-                        var jumlahMenunggu = [];
-                        var jumlahDraf = [];
-
-                        namaDosen.forEach(function(nama) {
-                            jumlahValid.push(dataLaporan[nama].valid);
-                            jumlahMenunggu.push(dataLaporan[nama].menunggu);
-                            jumlahDraf.push(dataLaporan[nama].draf);
-                        });
-
-                        // Membuat grafik bar
-                        var ctx = document.getElementById('grafikStatusLaporan').getContext('2d');
-                        var myChart = new Chart(ctx, {
-                            type: 'bar',
-                            data: {
-                                labels: namaDosen,
-                                datasets: [{
-                                    label: 'Valid',
-                                    data: jumlahValid,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                    borderColor: 'rgba(75, 192, 192, 1)',
-                                    borderWidth: 1
-                                }, {
-                                    label: 'Menunggu',
-                                    data: jumlahMenunggu,
-                                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                                    borderColor: 'rgba(255, 206, 86, 1)',
-                                    borderWidth: 1
-                                }, {
-                                    label: 'Draf',
-                                    data: jumlahDraf,
-                                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                                    borderColor: 'rgba(255, 99, 132, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                indexAxis: 'y', // Display labels on the right side of the x-axis
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                        });
-                    </script>
                     <div>
                         <!-- Tambahkan library Chart.js -->
                         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
