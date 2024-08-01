@@ -421,41 +421,7 @@
                         <canvas id="grafikLaporan"></canvas>
 
                         <!-- Script untuk inisialisasi grafik -->
-                        <script>
-                            var ctx = document.getElementById('grafikLaporan').getContext('2d');
-                            var data = @json($data);
-                            var labels = @json($labels);
-                            var statusColors = data.map(function(value) {
-                                return value === 0 ? 'rgba(75, 192, 192, 0.2)' : 'rgba(75, 192, 192, 0.2)';
-                            });
 
-                            var myChart = new Chart(ctx, {
-                                type: 'bar',
-                                data: {
-                                    labels: labels, // Placed on the x-axis (horizontal axis)
-                                    datasets: [{
-                                        label: 'Jumlah Laporan Valid',
-                                        data: data, // Placed on the y-axis (vertical axis)
-                                        backgroundColor: statusColors,
-                                        borderColor: statusColors.map(function(color) {
-                                            return color.replace('0.2', '1');
-                                        }),
-                                        borderWidth: 1
-                                    }]
-                                },
-                                options: {
-                                    scales: {
-                                        x: {
-                                            position: 'right', // Display x-axis labels on the right side
-                                            beginAtZero: true
-                                        },
-                                        y: { // Configure the y-axis (vertical axis)
-                                            beginAtZero: true
-                                        }
-                                    }
-                                }
-                            });
-                        </script>
                     </div>
                 </div>
             </div>
