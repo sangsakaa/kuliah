@@ -13,9 +13,12 @@
           @method('patch')
           <div class=" flex gap-2">
             <button class=" bg-blue-700 text-white px-2 py-1">update kualistas Laporan</button>
-            <div class=" p-1">
+            <div class=" p-1 gap-2 flex">
               <span class=" bg-blue-700 px-2 py-1 text-white">
                 {{$cek_lap->count()}}
+              </span>
+              <span class=" bg-blue-700 px-2 py-1 text-white">
+                periode Aktif {{$dataPeriode->nama_periode}}
               </span>
             </div>
           </div>

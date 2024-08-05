@@ -61,8 +61,8 @@ class KualisLapController extends Controller
             // ->limit(1)
         ->get();
         // dd($cek_lap);
-        
-        return view('admin.siaca.checkLap.laporan', compact('cek_lap'));
+
+        return view('admin.siaca.checkLap.laporan', compact('cek_lap', 'dataPeriode'));
     }
     public function updateChec(Request $request)
     {
