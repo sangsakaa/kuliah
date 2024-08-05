@@ -6,7 +6,7 @@ use App\Models\Dosen;
 use App\Models\Kelompok;
 use Illuminate\Http\Request;
 use App\Models\Laporan_Mahasiswa;
-
+use App\Models\Periode;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use App\Models\Sesi_Laporan_Harian;
@@ -19,6 +19,8 @@ class KualisLapController extends Controller
     {
         
         $UserPerDosen = Auth::user()->dosen_id;
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
+        // dd($dataPeriode);
         
         $cek_lap = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
@@ -29,6 +31,7 @@ class KualisLapController extends Controller
             ->select(
                 [
                     'kelompok.nama_kelompok',
+                'kelompok.periode_id',
                 'mahasiswa_id',
                     'anggota_kelompok.kelompok_id',
                     'mahasiswa.nama_mhs',
@@ -49,12 +52,15 @@ class KualisLapController extends Controller
             ->orderBy('tanggal')
             ->whereIn('laporan_mahasiswa.status_laporan', ['valid']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
-            // ->where('kelompok.dosen_id', $UserPerDosen)
+            ->where('kelompok.dosen_id', $UserPerDosen)
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->where(function ($query) {
                 $query->where('laporan_mahasiswa.kualitas_lap', '=', '')
                     ->orWhereNull('laporan_mahasiswa.kualitas_lap');
             })
+            // ->limit(1)
         ->get();
+        // dd($cek_lap);
         
         return view('admin.siaca.checkLap.laporan', compact('cek_lap'));
     }
