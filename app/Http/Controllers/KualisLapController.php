@@ -17,7 +17,9 @@ class KualisLapController extends Controller
 {
     public function laporan(Sesi_Laporan_Harian $sesi_Laporan_Harian)
     {
+        
         $UserPerDosen = Auth::user()->dosen_id;
+        
         $cek_lap = Sesi_Laporan_Harian::query()
             ->leftjoin('laporan_mahasiswa', 'laporan_mahasiswa.sesi_laporan_harian_id', '=', 'sesi_laporan_harian.id')
             ->leftjoin('anggota_kelompok', 'anggota_kelompok.mahasiswa_id', '=', 'sesi_laporan_harian.anggota_kelompok_id')
@@ -27,7 +29,7 @@ class KualisLapController extends Controller
             ->select(
                 [
                     'kelompok.nama_kelompok',
-                    // 'mahasiswa_id',
+                'mahasiswa_id',
                     'anggota_kelompok.kelompok_id',
                     'mahasiswa.nama_mhs',
                     'sesi_laporan_harian.created_at',
@@ -37,9 +39,9 @@ class KualisLapController extends Controller
                     'laporan_mahasiswa.kualitas_lap',
                     'laporan_mahasiswa.bukti_laporan',
                     'laporan_mahasiswa.id',
-                // 'sesi_laporan_harian.anggota_kelompok_id',
+                'sesi_laporan_harian.anggota_kelompok_id',
                 'sesi_laporan_harian.tanggal',
-                    // 'sesi_laporan_harian.id',
+                'sesi_laporan_harian.id',
                     'kelompok.dosen_id',
                     'dosen.nama_dosen'
                 ]
@@ -47,12 +49,13 @@ class KualisLapController extends Controller
             ->orderBy('tanggal')
             ->whereIn('laporan_mahasiswa.status_laporan', ['valid']) // Ubah "status_laporan" yang valid dan menunggu
             ->orderBy('nama_kelompok')
-            ->where('kelompok.dosen_id', $UserPerDosen)
+            // ->where('kelompok.dosen_id', $UserPerDosen)
             ->where(function ($query) {
                 $query->where('laporan_mahasiswa.kualitas_lap', '=', '')
                     ->orWhereNull('laporan_mahasiswa.kualitas_lap');
             })
         ->get();
+        
         return view('admin.siaca.checkLap.laporan', compact('cek_lap'));
     }
     public function updateChec(Request $request)

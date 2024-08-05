@@ -32,9 +32,10 @@
               </thead>
               <tbody>
                 @foreach($cek_lap as $list)
-                <tr>
-                  <input type="hidden" name="id[]" value="{{$list->id}}" readonly class=" text-center  w-11 py-1 px-1">
 
+                <tr>
+
+                  <input type="hidden" name="id[]" value="{{$list->id}}" readonly class=" text-center  w-11 py-1 px-1">
                   <th class=" border">
                     {{$loop->iteration}}
                   </th>
@@ -48,6 +49,7 @@
                         <div>Nama Mahasiswa </div>
                         <div>
                           : {{strtolower($list->nama_mhs)}}
+
                         </div>
                         <div>DPL </div>
                         <div>
