@@ -46,19 +46,20 @@ class KualisLapController extends Controller
                 'sesi_laporan_harian.tanggal',
                 'sesi_laporan_harian.id',
                     'kelompok.dosen_id',
-                    'dosen.nama_dosen'
+                'dosen.nama_dosen',
+                'sesi_laporan_harian_id'
                 ]
-            )
-            ->orderBy('tanggal')
+        )
             ->whereIn('laporan_mahasiswa.status_laporan', ['valid']) // Ubah "status_laporan" yang valid dan menunggu
-            ->orderBy('nama_kelompok')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->where('kelompok.periode_id', $dataPeriode->id)
             ->where(function ($query) {
                 $query->where('laporan_mahasiswa.kualitas_lap', '=', '')
-                    ->orWhereNull('laporan_mahasiswa.kualitas_lap');
+            ->orWhereNull('laporan_mahasiswa.kualitas_lap');
+        
             })
             // ->limit(1)
+            ->orderby('sesi_laporan_harian_id', 'desc')
         ->get();
         // dd($cek_lap);
 
@@ -83,7 +84,7 @@ class KualisLapController extends Controller
 
         return redirect()->back();
     }
-    public function RekLap(Sesi_Laporan_Harian $sesi_Laporan_Harian)
+    public function RekLap()
     {
         // $UserPerDosen = Auth::user()->dosen_id;
         $dataDosen = Kelompok::query()
