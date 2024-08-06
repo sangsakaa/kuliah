@@ -59,7 +59,7 @@ class KualisLapController extends Controller
         
             })
             // ->limit(1)
-            // ->orderby('sesi_laporan_harian_id', 'desc')
+            ->orderby('sesi_laporan_harian_id', 'desc')
         ->get();
         // dd($cek_lap);
 
