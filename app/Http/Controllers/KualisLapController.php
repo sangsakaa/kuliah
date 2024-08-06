@@ -44,7 +44,7 @@ class KualisLapController extends Controller
                     'laporan_mahasiswa.id',
                 'sesi_laporan_harian.anggota_kelompok_id',
                 'sesi_laporan_harian.tanggal',
-                'sesi_laporan_harian.id',
+                // 'sesi_laporan_harian.id',
                     'kelompok.dosen_id',
                 'dosen.nama_dosen',
                 'sesi_laporan_harian_id'
@@ -59,7 +59,7 @@ class KualisLapController extends Controller
         
             })
             // ->limit(1)
-            ->orderby('sesi_laporan_harian_id', 'desc')
+            // ->orderby('sesi_laporan_harian_id', 'desc')
         ->get();
         // dd($cek_lap);
 
@@ -68,21 +68,35 @@ class KualisLapController extends Controller
     public function updateChec(Request $request)
     {
         // dd($request);
-        $idArray = $request->id;
-        $kualitas_lapArray = $request->kualitas_lap;
+        // $idArray = $request->id;
+        // $kualitas_lapArray = $request->kualitas_lap;
+        // foreach ($idArray as $index => $id) {
+        //     $sesiLaporan = Laporan_Mahasiswa::find($id);
+        //     if ($sesiLaporan && isset($kualitas_lapArray[$index])) {
+        //         $kualitas_lap = $kualitas_lapArray[$index]; // Mengambil kualitas_lap dari array yang sesuai
+        //         $sesiLaporan->kualitas_lap = $kualitas_lap; // Menggunakan '->' untuk mengakses property 'kualitas_lap'
+        //         // dd($sesiLaporan);
+        //         $sesiLaporan->save();
+        //     }
+        // }
+        // return redirect()->back();
+        $idArray = $request->input('id');
+        $kualitas_lapArray = $request->input('kualitas_lap');
 
-        foreach ($idArray as $index => $id) {
-            $sesiLaporan = Laporan_Mahasiswa::find($id);
-            if ($sesiLaporan && isset($kualitas_lapArray[$index])) {
-                $kualitas_lap = $kualitas_lapArray[$index]; // Mengambil kualitas_lap dari array yang sesuai
-                $sesiLaporan->kualitas_lap = $kualitas_lap; // Menggunakan '->' untuk mengakses property 'kualitas_lap'
-                $sesiLaporan->save();
+        if (is_array($idArray) && is_array($kualitas_lapArray)) {
+            foreach ($idArray as $index => $id) {
+                $sesiLaporan = Laporan_Mahasiswa::find($id);
+                if ($sesiLaporan && isset($kualitas_lapArray[$index])) {
+                    $kualitas_lap = $kualitas_lapArray[$index]; // Mengambil kualitas_lap dari array yang sesuai
+                    $sesiLaporan->kualitas_lap = $kualitas_lap; // Menggunakan '->' untuk mengakses property 'kualitas_lap'
+                    $sesiLaporan->save(); // Menyimpan perubahan ke database
+                }
             }
+            return redirect()->back()->with('success', 'Data berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Input tidak valid.');
         }
 
-
-
-        return redirect()->back();
     }
     public function RekLap()
     {
