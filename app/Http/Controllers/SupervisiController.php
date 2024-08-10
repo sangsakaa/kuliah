@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Periode;
 use App\Models\Kelompok;
 use App\Models\Supervisi;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\New_;
-use App\Models\Laporan_Mahasiswa;
 use App\Models\Laporan_Supervisi;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -17,20 +16,26 @@ class SupervisiController extends Controller
     public function superVisi()
     {
         $UserPerDosen = Auth::user()->dosen_id;
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
+        // dd($dataPeriode);
         $dataSupervisi = Supervisi::query()
             ->join('kelompok', 'kelompok.id', 'supervisi.kelompok_id')
             ->join('dosen', 'dosen.id', 'kelompok.dosen_id')
             ->join('desa', 'desa.id', '=', 'kelompok.desa_id')
             ->join('kecamatan', 'kecamatan.id', '=', 'desa.kecamatan_id')
             ->join('kabupaten', 'kabupaten.id', '=', 'kecamatan.kabupaten_id')
-            ->select('supervisi.id', 'nama_kecamatan', 'nama_desa', 'nama_kabupaten', 'nama_kelompok', 'nama_dosen', 'tanggal')
+            ->select('supervisi.id', 'nama_kecamatan', 'nama_desa', 'nama_kabupaten', 'nama_kelompok', 'nama_dosen', 'tanggal', 'periode_id')
+            ->where('kelompok.periode_id', $dataPeriode->id)
             ->where('dosen_id', $UserPerDosen)->get();
         return view('admin.userDosen.laporan.supervisi', compact('dataSupervisi'));
     }
     public function store(Request $request)
     {
         $UserPerDosen = Auth::user()->dosen_id;
-        $Kelompok = Kelompok::where('dosen_id', $UserPerDosen)->first();
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
+        $Kelompok = Kelompok::where('dosen_id', $UserPerDosen)
+        ->where('periode_id', $dataPeriode->id)
+        ->first();
         $supervisi = new Supervisi();
         $supervisi->tanggal = now();
         $supervisi->kelompok_id = $Kelompok->id;

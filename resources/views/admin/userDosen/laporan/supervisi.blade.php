@@ -56,7 +56,6 @@
                 @else
                 Belum Tuntas
                 @endif
-
               </td>
               <td>
                 <form action="/supervisi-dosen/{{$supervisi->id}}" method="post">
