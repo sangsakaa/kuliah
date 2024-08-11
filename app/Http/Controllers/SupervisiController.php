@@ -49,24 +49,30 @@ class SupervisiController extends Controller
     }
     public function LapsuperVisi(Supervisi $supervisi)
     {
+        // dd($supervisi);
         $UserPerDosen = Auth::user()->dosen_id;
+        // dd($UserPerDosen);
+        $dataPeriode = Periode::orderBy('id', 'desc')->first();
         $lapSupervisi = Kelompok::query()
             ->join('supervisi', 'kelompok.id', 'supervisi.kelompok_id')
             ->join('laporan_supervisi', 'supervisi.id', 'laporan_supervisi.supervisi_id')
-            ->select('kelompok.dosen_id', 'kondisi_umum', 'realisasi_kegiatan', 'tidak_realisasi_kegiatan', 'kendala', 'rencana_tindak_lanjut', 'bukti_laporan_supervisi')
+            ->select('kelompok.dosen_id', 'kondisi_umum', 'realisasi_kegiatan', 'tidak_realisasi_kegiatan', 'kendala', 'rencana_tindak_lanjut', 'bukti_laporan_supervisi', 'kelompok.periode_id')
             ->where('kelompok.dosen_id', $UserPerDosen)
             ->where('laporan_supervisi.supervisi_id', $supervisi->id)
+        
             ->get();
         if ($lapSupervisi->count() === 0) {
             $lapSupervisi = Kelompok::query()
                 ->select('kelompok.dosen_id')
                 ->where('kelompok.dosen_id', $UserPerDosen)
+                ->where('kelompok.periode_id', $dataPeriode->id)
                 ->get();
         }
         return view('admin.userDosen.laporan.lapsupervisi', compact('supervisi', 'lapSupervisi'));
     }
     public function StoreLapsuperVisi(Request $request, Supervisi $supervisi)
     {
+        // dd($request);
         $request->validate(
             [
                 'bukti_laporan_supervisi' => 'max:1042',

@@ -11,9 +11,10 @@
         <form action="/laporan-supervisi-dosen/{{$supervisi->id}}" method="post" enctype="multipart/form-data">
           @csrf
           <div class=" grid grid-cols-1 text-left">
-            <label for="">1. Kondisi Umum</label>
+
             <input type="hidden" name="supervisi_id" value="{{$supervisi->id}}" class=" py-1">
             @foreach($lapSupervisi as $super)
+            <label for="">1. Kondisi Umum</label>
             <input required type="text" value="{{$super->kondisi_umum}}" name="kondisi_umum" class=" py-1">
             <label for=""> Foto Supervisi</label>
             <div>
@@ -48,8 +49,8 @@
               </div>
             </div>
           </div>
-          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan_supervisi" value="{{ asset($super->bukti_laporan_supervisi) }}">
           @endforeach
+          <input type="file" id="fileInput" accept="image/*" name="bukti_laporan_supervisi" value="{{ asset($super->bukti_laporan_supervisi) }}">
           <button class="bg-blue-700 text-white px-2 py-1 mt-2" type="submit">Kirim Laporan</button>
         </form>
       </div>
